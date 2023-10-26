@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
@@ -21,12 +20,8 @@ class LeaderBoardScreen extends StatefulWidget {
 }
 
 class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
-  
-  List<dynamic> leaderBoardData = [];
-
-
   Future<List> getLeaderBoardData() async {
-      List<dynamic> responseData = [];
+    List<dynamic> responseData = [];
 
     try {
       final response = await http.get(
@@ -82,13 +77,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                           children: [
                             Expanded(
                               child: FutureBuilder(
-                                future: Future.delayed(.1.seconds, () {
-                                  if (Provider.of<ProfileProvider>(context,
-                                          listen: false)
-                                      .hasProfile) {
-                                    getLeaderBoardData();
-                                  }
-                                }),
+                                future: getLeaderBoardData(),
                                 initialData: null,
                                 builder: (BuildContext context,
                                     AsyncSnapshot snapshot) {
