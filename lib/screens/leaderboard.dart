@@ -42,7 +42,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
         },
       );
 
-      Map<String, dynamic> responseData = jsonDecode(response.body);
+      List<dynamic> responseData = jsonDecode(response.body);
 
       if (response.statusCode == 200) {
         // Request was successful
