@@ -147,7 +147,10 @@ showCreateProfileDialog(BuildContext context) {
                   if (controller.value.text.trim().isNotEmpty) {
                     final profileProvider =
                         Provider.of<ProfileProvider>(context, listen: false);
-                    profileProvider.createPlayer();
+                    profileProvider.createPlayer(
+                      username: controller.value.text.trim(),
+                      isMale: isMale,
+                    );
                     Navigator.pop(context);
                   } else {
                     showGameDialog(
@@ -233,7 +236,10 @@ showCreateProfileDialog(BuildContext context) {
             if (controller.value.text.trim().isNotEmpty) {
               final profileProvider =
                   Provider.of<ProfileProvider>(context, listen: false);
-              profileProvider.createPlayer();
+              profileProvider.createPlayer(
+                username: controller.value.text.trim(),
+                isMale: isMale,
+              );
               Navigator.pop(context);
             } else {
               showGameDialog(
