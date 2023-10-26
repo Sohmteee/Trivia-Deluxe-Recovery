@@ -21,7 +21,7 @@ class ProfileProvider extends ChangeNotifier {
         Uri.parse("cbtportal.linkskool.com/api/post_score.php"),
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Token $apiKey',
+          // 'Authorization': 'Token $apiKey',
         },
         body: jsonEncode({
           'username': username,
