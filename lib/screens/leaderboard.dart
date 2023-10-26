@@ -21,9 +21,11 @@ class LeaderBoardScreen extends StatefulWidget {
 }
 
 class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
-  List<dynamic> responseData = [];
 
-  Future<void> getLeaderBoardData() async {
+
+  Future<List> getLeaderBoardData() async {
+      List<dynamic> responseData = [];
+
     try {
       final response = await http.get(
         Uri.parse(
@@ -47,6 +49,8 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
     } catch (e) {
       debugPrint('Exception: $e');
     }
+
+    return responseData;
   }
 
   @override
