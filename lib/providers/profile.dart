@@ -42,41 +42,38 @@ class ProfileProvider extends ChangeNotifier {
       );
 
       Map<String, dynamic> responseData = jsonDecode(response.body);
+
+      if (response.statusCode == 200) {
+        // Request was successful
+        print(responseData['username'][0].toString());
+        print(responseData);
+
+        this.username = username;
+        hasProfile = true;
+
+        ToastContext().init(context);
+        Toast.show(
+          "Profile created successfully",
+          textStyle: TextStyle(
+            color: Colors.white,
+            fontSize: 20.sp,
+          ),
+          duration: Toast.lengthLong,
+          gravity: Toast.center,
+        );
+      } else {
+        // Request failed
+        print('Request failed with status: ${response.statusCode}');
+      }
       /* if (responseData.containsKey("profile")) {
         // Map<String, dynamic> profile = responseData['profile'];
         print("Sign up successful");
       } else { */
-      print(responseData['username'][0].toString());
-      print(responseData);
 
       // }
-
-      this.username = username;
-      hasProfile = true;
-
-      ToastContext().init(context);
-      Toast.show(
-        "Profile created successfully",
-        textStyle: TextStyle(
-          color: Colors.white,
-          fontSize: 20.sp,
-        ),
-        duration: Toast.lengthLong,
-        gravity: Toast.center,
-      );
     } catch (e) {
       debugPrint('Exception: $e');
-      ToastContext().init(context);
-      Toast.show(
-        "An error occured. Please try again.",
-        textStyle: TextStyle(
-          color: Colors.white,
-          fontSize: 20.sp,
-        ),
-        duration: Toast.lengthLong,
-        gravity: Toast.center,
-      );
-      print('$e');
+      
     }
 
     notifyListeners();
