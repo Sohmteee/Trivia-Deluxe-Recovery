@@ -66,7 +66,16 @@ class ProfileProvider extends ChangeNotifier {
       );
     } catch (e) {
       debugPrint('Exception: $e');
-      Navigator.pop(context);
+      ToastContext().init(context);
+      Toast.show(
+        "An error occured. Please try again.",
+        textStyle: TextStyle(
+          color: Colors.white,
+          fontSize: 20.sp,
+        ),
+        duration: Toast.lengthLong,
+        gravity: Toast.center,
+      );
       print('$e');
     }
 
