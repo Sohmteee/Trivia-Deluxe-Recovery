@@ -297,6 +297,7 @@ showEnterUsernameDialog(BuildContext context) {
                 context,
                 username: controller.value.text.trim(),
                 avatar: avatar!,
+                isCreatePlayer: true,
               );
               Navigator.pop(context);
             } else {

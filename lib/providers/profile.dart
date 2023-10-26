@@ -12,7 +12,6 @@ import 'package:trivia/providers/question.dart';
 
 class ProfileProvider extends ChangeNotifier {
   String? username = box.get("username", defaultValue: null);
-  String? gender = box.get("gender", defaultValue: null);
   bool hasProfile = box.get("hasProfile", defaultValue: false);
 
   createPlayer(BuildContext context,

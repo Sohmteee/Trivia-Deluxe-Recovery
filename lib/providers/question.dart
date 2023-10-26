@@ -128,7 +128,7 @@ class QuestionProvider extends ChangeNotifier {
       if (profileProvider.username != null) {
         profileProvider.createPlayer(context,
             username: profileProvider.username!,
-            avatar: box!,
+            avatar: box.get("avatar")!,
             isCreatePlayer: false);
       }
 
