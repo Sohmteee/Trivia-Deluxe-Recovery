@@ -43,133 +43,128 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
             ),
             Expanded(
               child: Provider.of<ProfileProvider>(context).hasProfile
-                  ? Provider.of<QuestionProvider>(context).totalQuestionsAnswered!=0 ? Column(
-                      children: [
-                        Expanded(
-                          child: ListView.separated(
-                            itemCount: 20,
-                            separatorBuilder:
-                                (BuildContext context, int index) {
-                              return Container(
-                                decoration: BoxDecoration(
-                                  color: AppColor.white,
-                                  borderRadius: BorderRadius.circular(10.r),
-                                ),
-                                child: ListTile(
-                                  tileColor: AppColor.white,
-                                  leading: Text(
-                                    "${index + 1}",
-                                    style: TextStyle(
-                                      color: AppColor.black,
-                                      fontSize: 18.sp,
-                                    ),
-                                  ),
-                                  title: Text(
-                                    "Name",
-                                    style: TextStyle(
-                                      color: AppColor.black,
-                                      fontSize: 30.sp,
-                                    ),
-                                  ),
-                                  trailing: Text(
-                                    "Score",
-                                    style: TextStyle(
-                                      color: AppColor.black,
-                                      fontSize: 18.sp,
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                            itemBuilder: (BuildContext context, int index) {
-                              return SizedBox(height: 10.h);
-                            },
-                          ),
-                        )
-                      ],
-                    )
-                  : Column(
-                      children: [
-                        const Spacer(flex: 5),
-                        Text(
-                          "You don't have a profile",
-                          style: TextStyle(
-                            color: AppColor.white,
-                            fontSize: 25.sp,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(height: 10.h),
-                        Text(
-                          "Would you like to create one now to see the leaderboard?",
-                          style: TextStyle(
-                            color: AppColor.white,
-                            fontSize: 25.sp,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        const Spacer(flex: 4),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  ? Provider.of<QuestionProvider>(context)
+                              .totalQuestionsAnswered !=
+                          0
+                      ? Column(
                           children: [
-                            ZoomTapAnimation(
-                              onTap: () {
-                                playTap(context);
-                                Navigator.pop(context);
-                              },
-                              child: Container(
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 15.sp,
-                                  horizontal: 25.sp,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(50.r),
-                                ),
-                                child: Text(
-                                  "Maybe later",
-                                  style: TextStyle(
-                                    fontSize: 20.sp,
-                                  ),
-                                ),
+                            Expanded(
+                              child: ListView.separated(
+                                itemCount: 20,
+                                separatorBuilder:
+                                    (BuildContext context, int index) {
+                                  return Container(
+                                    decoration: BoxDecoration(
+                                      color: AppColor.white,
+                                      borderRadius: BorderRadius.circular(10.r),
+                                    ),
+                                    child: ListTile(
+                                      tileColor: AppColor.white,
+                                      leading: Text(
+                                        "${index + 1}",
+                                        style: TextStyle(
+                                          color: AppColor.black,
+                                          fontSize: 18.sp,
+                                        ),
+                                      ),
+                                      title: Text(
+                                        "Name",
+                                        style: TextStyle(
+                                          color: AppColor.black,
+                                          fontSize: 30.sp,
+                                        ),
+                                      ),
+                                      trailing: Text(
+                                        "Score",
+                                        style: TextStyle(
+                                          color: AppColor.black,
+                                          fontSize: 18.sp,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                                itemBuilder: (BuildContext context, int index) {
+                                  return SizedBox(height: 10.h);
+                                },
                               ),
-                            ),
-                            ZoomTapAnimation(
-                              onTap: () {
-                                playTap(context);
-                                showCreateProfileDialog(context);
-                              },
-                              child: Container(
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 15.sp,
-                                  horizontal: 25.sp,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(50.r),
-                                ),
-                                child: Text(
-                                  "Continue",
-                                  style: TextStyle(
-                                    fontSize: 20.sp,
-                                  ),
-                                ),
-                              ),
-                            ),
+                            )
                           ],
-                        ),
-                        const Spacer(),
-                      ],
-                    ) : Column(children: [
-                        Text(
-                          "You don't have a profile",
-                          style: TextStyle(
-                            color: AppColor.white,
-                            fontSize: 25.sp,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],),
+                        )
+                      : Column(
+                          children: [
+                            const Spacer(flex: 5),
+                            Text(
+                              "You don't have a profile",
+                              style: TextStyle(
+                                color: AppColor.white,
+                                fontSize: 25.sp,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(height: 10.h),
+                            Text(
+                              "Would you like to create one now to see the leaderboard?",
+                              style: TextStyle(
+                                color: AppColor.white,
+                                fontSize: 25.sp,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            const Spacer(flex: 4),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                ZoomTapAnimation(
+                                  onTap: () {
+                                    playTap(context);
+                                    Navigator.pop(context);
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: 15.sp,
+                                      horizontal: 25.sp,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(50.r),
+                                    ),
+                                    child: Text(
+                                      "Maybe later",
+                                      style: TextStyle(
+                                        fontSize: 20.sp,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                ZoomTapAnimation(
+                                  onTap: () {
+                                    playTap(context);
+                                    showCreateProfileDialog(context);
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: 15.sp,
+                                      horizontal: 25.sp,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(50.r),
+                                    ),
+                                    child: Text(
+                                      "Continue",
+                                      style: TextStyle(
+                                        fontSize: 20.sp,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Spacer(),
+                          ],
+                        )
+                  ,
             ),
           ],
         ),
