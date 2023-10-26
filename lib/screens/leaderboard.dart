@@ -81,7 +81,6 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                                 initialData: null,
                                 builder: (BuildContext context,
                                     AsyncSnapshot snapshot) {
-                                  print("Data:" + snapshot.data!.toString());
                                   if (snapshot.data == null) {
                                     return Center(
                                       child: CircularProgressIndicator(
@@ -102,6 +101,8 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                                       ),
                                     );
                                   }
+
+                                  print("Data:" + snapshot.data.toString());
                                   return ListView.separated(
                                     itemCount: snapshot.data.length,
                                     separatorBuilder:
