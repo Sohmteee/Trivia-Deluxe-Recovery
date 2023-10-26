@@ -144,7 +144,7 @@ showCreateProfileDialog(BuildContext context) {
                 onChanged: (value) {},
                 onSubmitted: (value) {
                   playTap(context);
-                  if (controller.value.text.isNotEmpty) {
+                  if (controller.value.text.trim().isNotEmpty) {
                     final profileProvider =
                         Provider.of<ProfileProvider>(context, listen: false);
                     print(profileProvider.createPlayer());
@@ -230,7 +230,7 @@ showCreateProfileDialog(BuildContext context) {
         ZoomTapAnimation(
           onTap: () {
             playTap(context);
-            if (controller.value.text.isNotEmpty) {
+            if (controller.value.text.trim().isNotEmpty) {
               final profileProvider =
                   Provider.of<ProfileProvider>(context, listen: false);
               print(profileProvider.createPlayer());
