@@ -6,7 +6,7 @@ class ProfileProvider extends ChangeNotifier {
   String? gender = box.get("gender", defaultValue: null);
   bool hasProfile = box.get("hasProfile", defaultValue: false);
 
-  createPlayer({required String username, required bool isMale}) {
+  createPlayer(BuildContext context, {required String username, required bool isMale}) {
     /* DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
     String? deviceID = androidInfo.id; */
@@ -15,6 +15,8 @@ class ProfileProvider extends ChangeNotifier {
     gender = isMale ? "m" : "f";
     hasProfile = true;
 
-    notifyListeners();
+    
+
+    notifyListeners();  
   }
 }

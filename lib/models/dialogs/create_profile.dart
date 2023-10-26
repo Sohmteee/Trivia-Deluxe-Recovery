@@ -148,6 +148,7 @@ showCreateProfileDialog(BuildContext context) {
                     final profileProvider =
                         Provider.of<ProfileProvider>(context, listen: false);
                     profileProvider.createPlayer(
+                      context,
                       username: controller.value.text.trim(),
                       isMale: isMale,
                     );
@@ -237,6 +238,7 @@ showCreateProfileDialog(BuildContext context) {
               final profileProvider =
                   Provider.of<ProfileProvider>(context, listen: false);
               profileProvider.createPlayer(
+                context,
                 username: controller.value.text.trim(),
                 isMale: isMale,
               );
