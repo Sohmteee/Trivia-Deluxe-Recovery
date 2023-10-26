@@ -21,7 +21,7 @@ class LeaderBoardScreen extends StatefulWidget {
 
 class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
   late bool isLoggedIn;
-  late List<dynamic> responseData;
+  List<dynamic> responseData = [];
 
   @override
   void initState() {
@@ -43,7 +43,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
         },
       );
 
-      List<dynamic> responseData = jsonDecode(response.body);
+      responseData = jsonDecode(response.body);
 
       if (response.statusCode == 200) {
         // Request was successful
@@ -83,7 +83,18 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                       ? Column(
                           children: [
                             Expanded(
-                              child: ListView.separated(
+                              child: StreamBuilder(
+                                stream: stream,
+                                initialData: initialData,
+                                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                                  return Container(
+                                    child: child,
+                                  );
+                                },
+                              ),
+                              
+                              
+                              ListView.separated(
                                 itemCount: 20,
                                 separatorBuilder:
                                     (BuildContext context, int index) {
