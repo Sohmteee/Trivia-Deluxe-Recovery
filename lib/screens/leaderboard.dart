@@ -20,8 +20,8 @@ class LeaderBoardScreen extends StatefulWidget {
 }
 
 class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
-  Future<List> getLeaderBoardData() async {
-    List<dynamic> responseData = [];
+  Future<List?> getLeaderBoardData() async {
+    List<dynamic>? responseData;
 
     try {
       final response = await http.get(
