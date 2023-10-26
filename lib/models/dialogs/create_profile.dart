@@ -16,7 +16,7 @@ showCreateProfileDialog(BuildContext context) {
     context,
     isExitable: true,
     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-    margin: EdgeInsets.symmetric(horizontal: 60.w),
+    margin: EdgeInsets.symmetric(horizontal: 40.w),
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -147,7 +147,7 @@ showCreateProfileDialog(BuildContext context) {
                 // : TextCapitalization.none,
                 textInputAction: TextInputAction.done,
                 decoration: InputDecoration(
-                  labelText: "Username (Tap to edit)",
+                  labelText: "Username",
                   labelStyle: TextStyle(
                     color: AppColor.white,
                     fontSize: 22.sp,
