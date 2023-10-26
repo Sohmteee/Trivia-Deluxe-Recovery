@@ -44,19 +44,48 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
               child: Provider.of<ProfileProvider>(context).hasProfile
                   ? Column(
                       children: [
-                        Expanded(child: ListView.separated(
-                          itemCount: 10,
-                          separatorBuilder: (BuildContext context, int index) {
-                            return Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.r),
-                              )
-                            )
-                          },
-                          itemBuilder: (BuildContext context, int index) {
-                            return SizedBox(height: 10.h);
-                          },
-                        ),)
+                        Expanded(
+                          child: ListView.separated(
+                            itemCount: 10,
+                            separatorBuilder:
+                                (BuildContext context, int index) {
+                              return Container(
+                                decoration: BoxDecoration(
+                                  color: AppColor.white,
+                                  borderRadius: BorderRadius.circular(10.r),
+                                ),
+                                child: ListTile(
+                                  tileColor: AppColor.white,
+                                  leading: Text(
+                                    "${index + 1}",
+                                    style: TextStyle(
+                                      color: AppColor.black,
+                                      fontSize: 30.sp,
+                                    ),
+                                  ),
+                                  title: Text(
+                                    "Name",
+                                    style: TextStyle(
+                                      color: AppColor.black,
+                                      fontSize: 30.sp,
+                                    ),
+                                  ),
+                                  trailing: Text(
+                                    "Score",
+                                    style: TextStyle(
+                                      color: AppColor.black,
+                                      fontSize: 30.sp,
+                                    ),
+                                  ),
+                                
+                                ),
+                              );
+                            },
+                            itemBuilder: (BuildContext context, int index) {
+                              return SizedBox(height: 10.h);
+                            },
+                          ),
+                        )
                       ],
                     )
                   : Column(
