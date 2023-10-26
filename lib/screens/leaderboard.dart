@@ -41,6 +41,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                 textAlign: TextAlign.center,
               ),
             ),
+            SizedBox(height: 20.h),
             Expanded(
               child: Provider.of<ProfileProvider>(context).hasProfile
                   ? Provider.of<QuestionProvider>(context)
