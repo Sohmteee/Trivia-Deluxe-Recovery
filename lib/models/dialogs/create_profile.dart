@@ -165,7 +165,6 @@ showCreateProfileDialog(BuildContext context) {
           onTap: () {
             playTap(context);
             if (controller.value.text.isNotEmpty) {
-              
               Navigator.pop(context);
             }
           },
