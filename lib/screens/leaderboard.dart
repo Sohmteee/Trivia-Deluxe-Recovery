@@ -93,23 +93,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                                       ),
                                     );
                                   }
-                                  if (responseData.isEmpty) {
-                                    return Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          "No data available",
-                                          style: TextStyle(
-                                            color: AppColor.white,
-                                            fontSize: 25.sp,
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ],
-                                    );
-                                  }
-                                  if 
+                                  if (snapshot.)
                                 },
                               ),
                               
