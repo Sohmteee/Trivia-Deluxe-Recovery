@@ -10,5 +10,8 @@ class ProfileProvider extends ChangeNotifier {
     /* DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
     String? deviceID = androidInfo.id; */
+
+    hasProfile = true;
+    notifyListeners();
   }
 }
