@@ -186,16 +186,6 @@ showEnterUsernameDialog(BuildContext context) {
         SizedBox(height: 20.h),
         Column(
           children: [
-            Text(
-              "Choose an avatar",
-              style: TextStyle(
-                color: AppColor.white,
-                fontSize: 20.sp,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 10.h),
             StatefulBuilder(builder: (context, setState) {
               return Row(
                 children: [
