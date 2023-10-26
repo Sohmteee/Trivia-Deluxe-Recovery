@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toast/toast.dart';
 import 'package:trivia/data/box.dart';
 
 class ProfileProvider extends ChangeNotifier {
@@ -6,7 +7,8 @@ class ProfileProvider extends ChangeNotifier {
   String? gender = box.get("gender", defaultValue: null);
   bool hasProfile = box.get("hasProfile", defaultValue: false);
 
-  createPlayer(BuildContext context, {required String username, required bool isMale}) {
+  createPlayer(BuildContext context,
+      {required String username, required bool isMale}) {
     /* DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
     String? deviceID = androidInfo.id; */
@@ -15,8 +17,13 @@ class ProfileProvider extends ChangeNotifier {
     gender = isMale ? "m" : "f";
     hasProfile = true;
 
-    
+    ToastContext().init(context);
+    Toast.show(
+      "Profile created successfully",
+      duration: Toast.lengthLong,
+      gravity: Toast.bottom,
+    );
 
-    notifyListeners();  
+    notifyListeners();
   }
 }
