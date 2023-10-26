@@ -21,6 +21,8 @@ class LeaderBoardScreen extends StatefulWidget {
 }
 
 class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
+  
+  List<dynamic> leaderBoardData = [];
 
 
   Future<List> getLeaderBoardData() async {
@@ -110,7 +112,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                                     );
                                   }
                                   return ListView.separated(
-                                    itemCount: responseData.length,
+                                    itemCount: snapshot.data.length,
                                     separatorBuilder:
                                         (BuildContext context, int index) {
                                       return Container(
@@ -129,14 +131,14 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                                             ),
                                           ),
                                           title: Text(
-                                            "${responseData[index]['username']}",
+                                            "${snapshot.data[index]['username']}",
                                             style: TextStyle(
                                               color: AppColor.black,
                                               fontSize: 30.sp,
                                             ),
                                           ),
                                           trailing: Text(
-                                            "${responseData[index]['score']}",
+                                            "${snapshot.data[index]['score']}",
                                             style: TextStyle(
                                               color: AppColor.black,
                                               fontSize: 18.sp,
