@@ -12,7 +12,6 @@ showCreateProfileDialog(BuildContext context) {
   final controller = TextEditingController();
   bool isMale = true;
 
-
   showGameDialog(
     context,
     isExitable: true,
@@ -45,31 +44,34 @@ showCreateProfileDialog(BuildContext context) {
             SizedBox(height: 10.h),
             StatefulBuilder(builder: (context, setState) {
               return Wrap(
-                children: List.generate(24, (index) => ZoomTapAnimation(
-                          onTap: () {
-                            playTap(context);
-                            setState(() {
-                              isMale = true;
-                            });
-                          },
-                          child: Container(
-                            width: 60.sp,
-                            height: 60.sp,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                image:
-                                    const AssetImage('assets/images/avatars/avatar.png'),
-                                colorFilter: isMale
-                                    ? null
-                                    : const ColorFilter.mode(
-                                        Colors.grey,
-                                        BlendMode.saturation,
-                                      ),
-                              ),
-                            ),
-                          ),
-                        ),),
+                children: List.generate(
+                  24,
+                  (index) => ZoomTapAnimation(
+                    onTap: () {
+                      playTap(context);
+                      setState(() {
+                        isMale = true;
+                      });
+                    },
+                    child: Container(
+                      width: 50.sp,
+                      height: 50.sp,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: AssetImage(
+                              'assets/images/avatars/avatar_${index + 1}.png'),
+                          colorFilter: isMale
+                              ? null
+                              : const ColorFilter.mode(
+                                  Colors.grey,
+                                  BlendMode.saturation,
+                                ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               );
             }),
           ],
