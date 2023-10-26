@@ -71,6 +71,7 @@ showCreateProfileDialog(BuildContext context) {
                           ),
                         ),
                       ),
+                      SizedBox(height: 10.h),
                       Text(
                         "Male",
                         style: TextStyle(
