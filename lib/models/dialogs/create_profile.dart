@@ -273,6 +273,10 @@ showEnterUsernameDialog(BuildContext context) {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.r),
+                          borderSide: BorderSide(
+                            color: AppColor.slightlyLighterYellow,
+                            width: 
+                          ),
                         ),
                         counterStyle: const TextStyle(
                           color: Colors.transparent,
