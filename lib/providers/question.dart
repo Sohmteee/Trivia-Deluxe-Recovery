@@ -126,10 +126,12 @@ class QuestionProvider extends ChangeNotifier {
 
       final profileProvider = Provider.of<ProfileProvider>(context);
       if (profileProvider.username != null) {
-        profileProvider.createPlayer(context,
-            username: profileProvider.username!,
-            avatar: box.get("avatar")!,
-            isCreatePlayer: false);
+        profileProvider.createPlayer(
+          context,
+          username: profileProvider.username!,
+          avatar: box.get("avatar")!,
+          isCreatePlayer: false,
+        );
       }
 
       final stageProvider = Provider.of<StageProvider>(context, listen: false);
