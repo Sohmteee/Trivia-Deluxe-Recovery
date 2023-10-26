@@ -136,7 +136,7 @@ showCreateProfileDialog(BuildContext context) {
             Expanded(
               child: TextField(
                 controller: controller,
-                autofocus: true,
+                // autofocus: true,
                 style: TextStyle(
                   color: AppColor.yellow,
                   fontSize: 18.sp,
@@ -147,7 +147,7 @@ showCreateProfileDialog(BuildContext context) {
                 // : TextCapitalization.none,
                 textInputAction: TextInputAction.done,
                 decoration: InputDecoration(
-                  labelText: "Username",
+                  labelText: "Username (Tap to edit)",
                   labelStyle: TextStyle(
                     color: AppColor.white,
                     fontSize: 22.sp,
@@ -170,7 +170,7 @@ showCreateProfileDialog(BuildContext context) {
               final profileProvider =
                   Provider.of<ProfileProvider>(context, listen: false);
               print(profileProvider.createPlayer());
-              // Navigator.pop(context);
+              Navigator.pop(context);
             } else {
               showGameDialog(
                 context,
