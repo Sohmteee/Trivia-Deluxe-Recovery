@@ -45,7 +45,6 @@ class ProfileProvider extends ChangeNotifier {
 
       if (response.statusCode == 200) {
         // Request was successful
-        print(responseData['username'][0].toString());
         print(responseData);
 
         this.username = username;
@@ -64,6 +63,16 @@ class ProfileProvider extends ChangeNotifier {
       } else {
         // Request failed
         print('Request failed with status: ${response.statusCode}');
+        ToastContext().init(context);
+        Toast.show(
+          "An error occured. Please try again.",
+          textStyle: TextStyle(
+            color: Colors.white,
+            fontSize: 20.sp,
+          ),
+          duration: Toast.lengthLong,
+          gravity: Toast.center,
+        );
       }
       /* if (responseData.containsKey("profile")) {
         // Map<String, dynamic> profile = responseData['profile'];
@@ -73,7 +82,6 @@ class ProfileProvider extends ChangeNotifier {
       // }
     } catch (e) {
       debugPrint('Exception: $e');
-      
     }
 
     notifyListeners();
