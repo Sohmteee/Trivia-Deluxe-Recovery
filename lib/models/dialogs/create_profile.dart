@@ -77,7 +77,7 @@ showCreateProfileDialog(BuildContext context) {
                         style: TextStyle(
                           color: isMale
                               ? AppColor.slightlyLighterYellow
-                              : Colors.grey,
+                              : Colors.grey[300],
                           fontSize: 15.sp,
                           fontWeight: FontWeight.bold,
                         ),
@@ -85,29 +85,46 @@ showCreateProfileDialog(BuildContext context) {
                       ),
                     ],
                   ),
-                  ZoomTapAnimation(
-                    onTap: () {
-                      playTap(context);
-                      setState(() {
-                        isMale = false;
-                      });
-                    },
-                    child: Container(
-                      width: 60.sp,
-                      height: 60.sp,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image: const AssetImage('assets/images/woman.png'),
-                          colorFilter: isMale
-                              ? const ColorFilter.mode(
-                                  Colors.grey,
-                                  BlendMode.saturation,
-                                )
-                              : null,
+                  Column(
+                    children: [
+                      ZoomTapAnimation(
+                        onTap: () {
+                          playTap(context);
+                          setState(() {
+                            isMale = false;
+                          });
+                        },
+                        child: Container(
+                          width: 60.sp,
+                          height: 60.sp,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image:
+                                  const AssetImage('assets/images/woman.png'),
+                              colorFilter: isMale
+                                  ? const ColorFilter.mode(
+                                      Colors.grey,
+                                      BlendMode.saturation,
+                                    )
+                                  : null,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                      SizedBox(height: 10.h),
+                      Text(
+                        "Female",
+                        style: TextStyle(
+                          color: !isMale
+                              ? AppColor.slightlyLighterYellow
+                              : Colors.grey[300],
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
                 ],
               );
