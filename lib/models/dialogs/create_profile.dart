@@ -166,7 +166,8 @@ showCreateProfileDialog(BuildContext context) {
           onTap: () {
             playTap(context);
             if (controller.value.text.isNotEmpty) {
-              final profileProvider = 
+              final profileProvider = Provider.of<ProfileProvider>(context,
+                  listen: false);
               Navigator.pop(context);
             }
           },
