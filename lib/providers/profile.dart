@@ -48,26 +48,27 @@ class ProfileProvider extends ChangeNotifier {
       } else { */
       print(responseData['username'][0].toString());
       print(responseData);
+
       // }
+
+      this.username = username;
+      hasProfile = true;
+
+      ToastContext().init(context);
+      Toast.show(
+        "Profile created successfully",
+        textStyle: TextStyle(
+          color: Colors.white,
+          fontSize: 20.sp,
+        ),
+        duration: Toast.lengthLong,
+        gravity: Toast.center,
+      );
     } catch (e) {
       debugPrint('Exception: $e');
       Navigator.pop(context);
       print('$e');
     }
-
-    this.username = username;
-    hasProfile = true;
-
-    ToastContext().init(context);
-    Toast.show(
-      "Profile created successfully",
-      textStyle: TextStyle(
-        color: Colors.white,
-        fontSize: 20.sp,
-      ),
-      duration: Toast.lengthLong,
-      gravity: Toast.center,
-    );
 
     notifyListeners();
   }
