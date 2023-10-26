@@ -62,12 +62,14 @@ showCreateProfileDialog(BuildContext context) {
                         image: DecorationImage(
                           image: AssetImage(
                               'assets/images/avatars/avatar_${index + 1}.png'),
-                          colorFilter: index + 1 == avatar
+                          colorFilter: avatar == null
                               ? null
-                              : const ColorFilter.mode(
-                                  Colors.grey,
-                                  BlendMode.saturation,
-                                ),
+                              : index + 1 == avatar
+                                  ? null
+                                  : const ColorFilter.mode(
+                                      Colors.grey,
+                                      BlendMode.saturation,
+                                    ),
                         ),
                       ),
                     ),
