@@ -86,35 +86,34 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                                 }),
                                 initialData: null,
                                 builder: (BuildContext context, AsyncSnapshot snapshot) {
-                                  return Container(
-                                    decoration: BoxDecoration(
-                                      color: AppColor.white,
-                                      borderRadius: BorderRadius.circular(10.r),
-                                    ),
-                                    child: ListTile(
-                                      tileColor: AppColor.white,
-                                      leading: Text(
-                                        "${index + 1}",
-                                        style: TextStyle(
-                                          color: AppColor.black,
-                                          fontSize: 18.sp,
-                                        ),
+                                  if (snapshot.data == null) {
+                                    return Center(
+                                      child: CircularProgressIndicator(
+                                        color: AppColor.yellow,
                                       ),
-                                      title: Text(
-                                        "Name",
-                                        style: TextStyle(
-                                          color: AppColor.black,
-                                          fontSize: 30.sp,
+                                    );
+                                  }
+                                  if (responseData.isEmpty) {
+                                    return Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "No data available",
+                                          style: TextStyle(
+                                            color: AppColor.white,
+                                            fontSize: 25.sp,
+                                          ),
+                                          textAlign: TextAlign.center,
                                         ),
-                                      ),
-                                      trailing: Text(
-                                        "Score",
-                                        style: TextStyle(
-                                          color: AppColor.black,
-                                          fontSize: 18.sp,
-                                        ),
-                                      ),
-                                    ),
+                                      ],
+                                    );
+                                  }
+                                  if 
+                                },
+                              ),
+                              
+                              
                               ListView.separated(
                                 itemCount: 20,
                                 separatorBuilder:
