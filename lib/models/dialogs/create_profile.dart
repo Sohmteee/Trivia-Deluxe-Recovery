@@ -151,7 +151,6 @@ showCreateProfileDialog(BuildContext context) {
                     profileProvider.createPlayer(
                       context,
                       username: controller.value.text.trim(),
-                      isMale: isMale,
                     );
                     Navigator.pop(context);
                   } else {
@@ -241,7 +240,6 @@ showCreateProfileDialog(BuildContext context) {
               profileProvider.createPlayer(
                 context,
                 username: controller.value.text.trim(),
-                isMale: isMale,
               );
               Navigator.pop(context);
             } else {

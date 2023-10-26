@@ -15,7 +15,6 @@ class ProfileProvider extends ChangeNotifier {
     String? deviceID = androidInfo.id; */
 
     this.username = username;
-    gender = isMale ? "m" : "f";
     hasProfile = true;
 
     ToastContext().init(context);
