@@ -45,7 +45,31 @@ showCreateProfileDialog(BuildContext context) {
             SizedBox(height: 10.h),
             StatefulBuilder(builder: (context, setState) {
               return Wrap(
-                children: List,
+                children: List.generate(24, (index) => ZoomTapAnimation(
+                          onTap: () {
+                            playTap(context);
+                            setState(() {
+                              isMale = true;
+                            });
+                          },
+                          child: Container(
+                            width: 60.sp,
+                            height: 60.sp,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image:
+                                    const AssetImage('assets/images/avatars/avatar.png'),
+                                colorFilter: isMale
+                                    ? null
+                                    : const ColorFilter.mode(
+                                        Colors.grey,
+                                        BlendMode.saturation,
+                                      ),
+                              ),
+                            ),
+                          ),
+                        ),),
               );
             }),
           ],
