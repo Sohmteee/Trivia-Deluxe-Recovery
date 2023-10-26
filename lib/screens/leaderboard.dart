@@ -103,7 +103,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                                   }
 
                                   print("Data:" +
-                                      snapshot.data.length.toString());
+                                      snapshot.data[0]["username"]);
                                   return ListView.separated(
                                     itemCount: snapshot.data.length,
                                     separatorBuilder:
