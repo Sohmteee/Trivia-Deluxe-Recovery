@@ -9,6 +9,7 @@ import 'package:trivia/data/box.dart';
 import 'package:trivia/data/controllers.dart';
 import 'package:trivia/providers/audio.dart';
 import 'package:trivia/providers/money.dart';
+import 'package:trivia/providers/profile.dart';
 import 'package:trivia/providers/question.dart';
 import 'package:trivia/providers/score.dart';
 import 'package:trivia/providers/select.dart';
@@ -48,6 +49,7 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (_) => ScoreProvider()),
         ChangeNotifierProvider(create: (_) => SelectProvider()),
         ChangeNotifierProvider(create: (_) => StreaksProvider()),
+        ChangeNotifierProvider(create: (_) => ProfileProvider()),
       ],
       child: const MyApp(),
     ),
