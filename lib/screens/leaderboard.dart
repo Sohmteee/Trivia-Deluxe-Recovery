@@ -81,7 +81,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                                 initialData: null,
                                 builder: (BuildContext context,
                                     AsyncSnapshot snapshot) {
-                                  print("Data:" + snapshot.data);
+                                  print("Data:" + snapshot.data!.toString());
                                   if (snapshot.data == null) {
                                     return Center(
                                       child: CircularProgressIndicator(
