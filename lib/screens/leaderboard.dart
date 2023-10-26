@@ -43,7 +43,16 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
             Expanded(
               child: Provider.of<ProfileProvider>(context).hasProfile
                   ? Column(
-                      children: [],
+                      children: [
+                        Expanded(child: ListView.separated(
+                          itemCount: 10,
+                          separatorBuilder: (BuildContext context, int index) {
+                          },
+                          itemBuilder: (BuildContext context, int index) {
+                            return SizedBox(height: ,);
+                          },
+                        ),)
+                      ],
                     )
                   : Column(
                       children: [
