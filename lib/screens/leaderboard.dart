@@ -60,7 +60,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                                     "${index + 1}",
                                     style: TextStyle(
                                       color: AppColor.black,
-                                      fontSize: 30.sp,
+                                      fontSize: 18.sp,
                                     ),
                                   ),
                                   title: Text(
@@ -74,10 +74,9 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                                     "Score",
                                     style: TextStyle(
                                       color: AppColor.black,
-                                      fontSize: 30.sp,
+                                      fontSize: 18.sp,
                                     ),
                                   ),
-                                
                                 ),
                               );
                             },
