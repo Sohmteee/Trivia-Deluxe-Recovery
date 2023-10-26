@@ -42,7 +42,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
             ),
             Expanded(
               child: Provider.of<ProfileProvider>(context).hasProfile
-                  ? Column(
+                  ? Provider.of< Column(
                       children: [
                         Expanded(
                           child: ListView.separated(
