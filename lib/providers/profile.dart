@@ -8,6 +8,7 @@ class ProfileProvider extends ChangeNotifier {
 
   createPlayer() async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-    var deviceID = await deviceInfo.androidInfo;
+    var androidInfo = await deviceInfo.androidInfo;
+    var deviceID = androidInfo.
   }
 }
