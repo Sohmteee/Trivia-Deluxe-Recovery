@@ -102,7 +102,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                                     );
                                   }
 
-                                  print(List.generate(
+                                  {print(List.generate(
                                       snapshot.data.length,
                                       (index) =>
                                           snapshot.data[index]["username"]));
@@ -146,7 +146,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                                         (BuildContext context, int index) {
                                       return SizedBox(height: 10.h);
                                     },
-                                  );
+                                  );}
                                 },
                               ),
                             )
