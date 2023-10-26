@@ -20,41 +20,6 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
   late bool isLoggedIn;
 
   @override
-  void initState() {
-    super.initState();
-    try {
-      final response = await http.post(
-        Uri.parse("https://api-v1.thoughts.elincglobal.com/auth/register"),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Token $apiKey',
-        },
-        body: jsonEncode({
-          'username': username,
-          'first_name': firstName,
-          'last_name': lastName,
-          'email': email,
-          'password': password,
-          'confirm_password': confirmPassword,
-        }),
-      );
-      Navigator.pop(context);
-
-      Map<String, dynamic> responseData = jsonDecode(response.body);
-      if (responseData.containsKey("profile")) {
-        // Map<String, dynamic> profile = responseData['profile'];
-        return "Sign up successful";
-      } else {
-        return responseData['username'][0].toString();
-      }
-    } catch (e) {
-      debugPrint('Exception: $e');
-      Navigator.pop(context);
-      return '$e';
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
     return GameBackground(
       body: Padding(
