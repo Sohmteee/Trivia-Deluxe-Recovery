@@ -8,9 +8,9 @@ import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 import 'game.dart';
 
-showCreateProfileDialog(BuildContext context) {
-  int? avatar;
+int? avatar;
 
+showCreateProfileDialog(BuildContext context) {
   showGameDialog(
     context,
     isExitable: true,
@@ -312,6 +312,7 @@ showEnterUsernameDialog(BuildContext context) {
               profileProvider.createPlayer(
                 context,
                 username: controller.value.text.trim(),
+                avatar: avatar!,
               );
               Navigator.pop(context);
             } else {
