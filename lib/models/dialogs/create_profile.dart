@@ -75,7 +75,7 @@ showCreateProfileDialog(BuildContext context) {
                       Text(
                         "Male",
                         style: TextStyle(
-                          color: AppColor.slightlyLighterYellow,
+                          color: isMale ? AppColor.slightlyLighterYellow : Colors.grey,
                           fontSize: 15.sp,
                           fontWeight: FontWeight.bold,
                         ),
