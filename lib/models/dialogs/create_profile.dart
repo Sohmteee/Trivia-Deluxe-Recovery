@@ -44,6 +44,8 @@ showCreateProfileDialog(BuildContext context) {
             SizedBox(height: 10.h),
             StatefulBuilder(builder: (context, setState) {
               return Wrap(
+                runSpacing: 10.h,
+                spacing: 10.w,
                 children: List.generate(
                   24,
                   (index) => ZoomTapAnimation(
@@ -54,8 +56,8 @@ showCreateProfileDialog(BuildContext context) {
                       });
                     },
                     child: Container(
-                      width: 50.sp,
-                      height: 50.sp,
+                      width: 40.sp,
+                      height: 40.sp,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
