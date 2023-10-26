@@ -20,6 +20,45 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
   late bool isLoggedIn;
 
   @override
+  void initState() {
+    super.initState();
+    if (Provider.of<ProfileProvider>(context, listen: false).hasProfile) {
+      try {
+      final response = await http.get(
+        Uri.parse("https://cbtportal.linkskool.com/api/post_score.php"),
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Authorization': 'Token $apiKey',
+        },
+        body: jsonEncode({
+          'game_type': 'triviaDeluxe',
+          'username': username,
+          'avatar': avatar,
+          'device_id': deviceID,
+          'score': questionProvider.leaderboardScore,
+          'mode': 0,
+        }),
+      );
+
+      Map<String, dynamic> responseData = jsonDecode(response.body);
+
+      if (response.statusCode == 200) {
+        // Request was successful
+        print(responseData);
+
+       
+      } else {
+        // Request failed
+        print('Request failed with status: ${response.statusCode}');
+       
+      }
+    } catch (e) {
+      debugPrint('Exception: $e');
+    }
+    } 
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GameBackground(
       body: Padding(
