@@ -11,6 +11,8 @@ class ProfileProvider extends ChangeNotifier {
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
     String? deviceID = androidInfo.id; */
 
+    this.username = username;
+    gender = isMale ? "male" : "female";
     hasProfile = true;
     notifyListeners();
   }
