@@ -169,7 +169,7 @@ showCreateProfileDialog(BuildContext context) {
             if (controller.value.text.isNotEmpty) {
               final profileProvider =
                   Provider.of<ProfileProvider>(context, listen: false);
-              profileProvider.createPlayer();
+              print(profileProvider.createPlayer());
               Navigator.pop(context);
             }
           },
