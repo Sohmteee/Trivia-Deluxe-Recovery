@@ -12,8 +12,9 @@ class ProfileProvider extends ChangeNotifier {
     String? deviceID = androidInfo.id; */
 
     this.username = username;
-    gender = isMale ? "male" : "female";
+    gender = isMale ? "m" : "f";
     hasProfile = true;
+
     notifyListeners();
   }
 }
