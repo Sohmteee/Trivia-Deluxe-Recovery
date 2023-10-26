@@ -192,11 +192,12 @@ showEnterUsernameDialog(BuildContext context) {
                   Expanded(
                     child: TextField(
                       controller: controller,
-                      // autofocus: true,
+                      autofocus: true,
                       style: TextStyle(
                         color: AppColor.yellow,
                         fontSize: 18.sp,
                       ),
+                      cursorColor: AppColor.slightlyLighterYellow,
                       onChanged: (value) {},
                       onSubmitted: (value) {
                         playTap(context);
@@ -275,7 +276,18 @@ showEnterUsernameDialog(BuildContext context) {
                           borderRadius: BorderRadius.circular(20.r),
                           borderSide: BorderSide(
                             color: AppColor.slightlyLighterYellow,
-                            
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.r),
+                          borderSide: BorderSide(
+                            color: AppColor.slightlyLighterYellow,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.r),
+                          borderSide: BorderSide(
+                            color: AppColor.slightlyLighterYellow,
                           ),
                         ),
                         counterStyle: const TextStyle(
