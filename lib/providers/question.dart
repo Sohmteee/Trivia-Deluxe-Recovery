@@ -5,6 +5,7 @@ import 'package:trivia/data/box.dart';
 import 'package:trivia/data/controllers.dart';
 import 'package:trivia/models/dialogs/fail.dart';
 import 'package:trivia/providers/money.dart';
+import 'package:trivia/providers/profile.dart';
 import 'package:trivia/providers/stage.dart';
 
 class QuestionProvider extends ChangeNotifier {
@@ -81,6 +82,8 @@ class QuestionProvider extends ChangeNotifier {
     leaderboardScore =
         correctAnswers / totalQuestionsAnswered * 100 / averageTime;
     box.put("leaderboardScore", leaderboardScore);
+
+    
     notifyListeners();
   }
 
@@ -121,6 +124,8 @@ class QuestionProvider extends ChangeNotifier {
       print("Total Questions Answered: $totalQuestionsAnswered");
 
       updateLeaderBoardScore();
+
+      Provider.of<ProfileProvider>(context).createPlayer(context, username: username, avatar: avatar, isCreatePlayer: isCreatePlayer)
 
       final stageProvider = Provider.of<StageProvider>(context, listen: false);
 
