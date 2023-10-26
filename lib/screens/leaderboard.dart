@@ -88,7 +88,8 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                                       ),
                                     );
                                   }
-                                  if (snapshot.hasError) {
+                                  if (snapshot.hasError ||
+                                      snapshot.data == []) {
                                     return Center(
                                       child: Text(
                                         "An error occured while fetching leaderboard data.",
