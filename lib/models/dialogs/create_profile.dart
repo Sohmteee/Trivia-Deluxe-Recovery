@@ -29,105 +29,109 @@ showCreateProfileDialog(BuildContext context) {
           textAlign: TextAlign.center,
         ),
         SizedBox(height: 20.h),
-        Column(
-          children: [
-            Text(
-              "Gender",
-              style: TextStyle(
-                color: AppColor.white,
-                fontSize: 20.sp,
-                fontWeight: FontWeight.bold,
+        SingleChildScrollView(
+          child: Column(
+            children: [
+              Text(
+                "Gender",
+                style: TextStyle(
+                  color: AppColor.white,
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 10.h),
-            StatefulBuilder(builder: (context, setState) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Column(
-                    children: [
-                      ZoomTapAnimation(
-                        onTap: () {
-                          playTap(context);
-                          setState(() {
-                            isMale = true;
-                          });
-                        },
-                        child: Container(
-                          width: 60.sp,
-                          height: 60.sp,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              image: const AssetImage('assets/images/man.png'),
-                              colorFilter: isMale
-                                  ? null
-                                  : const ColorFilter.mode(
-                                      Colors.grey,
-                                      BlendMode.saturation,
-                                    ),
+              SizedBox(height: 10.h),
+              StatefulBuilder(builder: (context, setState) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Column(
+                      children: [
+                        ZoomTapAnimation(
+                          onTap: () {
+                            playTap(context);
+                            setState(() {
+                              isMale = true;
+                            });
+                          },
+                          child: Container(
+                            width: 60.sp,
+                            height: 60.sp,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image:
+                                    const AssetImage('assets/images/man.png'),
+                                colorFilter: isMale
+                                    ? null
+                                    : const ColorFilter.mode(
+                                        Colors.grey,
+                                        BlendMode.saturation,
+                                      ),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(height: 10.h),
-                      Text(
-                        "Male",
-                        style: TextStyle(
-                          color: isMale ? Colors.greenAccent : Colors.grey[300],
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.bold,
+                        SizedBox(height: 10.h),
+                        Text(
+                          "Male",
+                          style: TextStyle(
+                            color:
+                                isMale ? Colors.greenAccent : Colors.grey[300],
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      ZoomTapAnimation(
-                        onTap: () {
-                          playTap(context);
-                          setState(() {
-                            isMale = false;
-                          });
-                        },
-                        child: Container(
-                          width: 60.sp,
-                          height: 60.sp,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              image:
-                                  const AssetImage('assets/images/woman.png'),
-                              colorFilter: isMale
-                                  ? const ColorFilter.mode(
-                                      Colors.grey,
-                                      BlendMode.saturation,
-                                    )
-                                  : null,
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        ZoomTapAnimation(
+                          onTap: () {
+                            playTap(context);
+                            setState(() {
+                              isMale = false;
+                            });
+                          },
+                          child: Container(
+                            width: 60.sp,
+                            height: 60.sp,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image:
+                                    const AssetImage('assets/images/woman.png'),
+                                colorFilter: isMale
+                                    ? const ColorFilter.mode(
+                                        Colors.grey,
+                                        BlendMode.saturation,
+                                      )
+                                    : null,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(height: 10.h),
-                      Text(
-                        "Female",
-                        style: TextStyle(
-                          color: !isMale
-                              ? AppColor.slightlyLighterYellow
-                              : Colors.grey[300],
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.bold,
+                        SizedBox(height: 10.h),
+                        Text(
+                          "Female",
+                          style: TextStyle(
+                            color: !isMale
+                                ? AppColor.slightlyLighterYellow
+                                : Colors.grey[300],
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ],
-              );
-            }),
-          ],
+                      ],
+                    ),
+                  ],
+                );
+              }),
+            ],
+          ),
         ),
         SizedBox(height: 20.h),
         Row(
