@@ -78,16 +78,43 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                             Expanded(
                               child: FutureBuilder(
                                 future: Future.delayed(.1.seconds,() {
-                                 if (Provider.of<ProfileProvider>(context, listen: false).hasProfile) {
-      getLeaderBoardData();
-    }),
-                                initialData: InitialData,
+                                  if (Provider.of<ProfileProvider>(context,
+                                          listen: false)
+                                      .hasProfile) {
+                                    getLeaderBoardData();
+                                  }
+                                }),
+                                initialData: null,
                                 builder: (BuildContext context, AsyncSnapshot snapshot) {
-                                  return ;
-                                },
-                              ),
-                              
-                              
+                                  return Container(
+                                    decoration: BoxDecoration(
+                                      color: AppColor.white,
+                                      borderRadius: BorderRadius.circular(10.r),
+                                    ),
+                                    child: ListTile(
+                                      tileColor: AppColor.white,
+                                      leading: Text(
+                                        "${index + 1}",
+                                        style: TextStyle(
+                                          color: AppColor.black,
+                                          fontSize: 18.sp,
+                                        ),
+                                      ),
+                                      title: Text(
+                                        "Name",
+                                        style: TextStyle(
+                                          color: AppColor.black,
+                                          fontSize: 30.sp,
+                                        ),
+                                      ),
+                                      trailing: Text(
+                                        "Score",
+                                        style: TextStyle(
+                                          color: AppColor.black,
+                                          fontSize: 18.sp,
+                                        ),
+                                      ),
+                                    ),
                               ListView.separated(
                                 itemCount: 20,
                                 separatorBuilder:
