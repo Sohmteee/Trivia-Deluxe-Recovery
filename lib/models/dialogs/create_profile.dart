@@ -131,7 +131,7 @@ showCreateProfileDialog(BuildContext context) {
             }),
           ],
         ),
-        SizedBox(height: 20.h),
+        Spacer(),
         Row(
           children: [
             Expanded(
