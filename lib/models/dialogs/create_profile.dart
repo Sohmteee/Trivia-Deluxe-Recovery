@@ -45,29 +45,42 @@ showCreateProfileDialog(BuildContext context) {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  ZoomTapAnimation(
-                    onTap: () {
-                      playTap(context);
-                      setState(() {
-                        isMale = true;
-                      });
-                    },
-                    child: Container(
-                      width: 60.sp,
-                      height: 60.sp,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image: const AssetImage('assets/images/man.png'),
-                          colorFilter: isMale
-                              ? null
-                              : const ColorFilter.mode(
-                                  Colors.grey,
-                                  BlendMode.saturation,
-                                ),
+                  Column(
+                    children: [
+                      ZoomTapAnimation(
+                        onTap: () {
+                          playTap(context);
+                          setState(() {
+                            isMale = true;
+                          });
+                        },
+                        child: Container(
+                          width: 60.sp,
+                          height: 60.sp,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: const AssetImage('assets/images/man.png'),
+                              colorFilter: isMale
+                                  ? null
+                                  : const ColorFilter.mode(
+                                      Colors.grey,
+                                      BlendMode.saturation,
+                                    ),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                      Text(
+                        "Male",
+                        style: TextStyle(
+                          color: AppColor.slightlyLighterYellow,
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
                   ZoomTapAnimation(
                     onTap: () {
