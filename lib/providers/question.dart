@@ -83,7 +83,6 @@ class QuestionProvider extends ChangeNotifier {
         correctAnswers / totalQuestionsAnswered * 100 / averageTime;
     box.put("leaderboardScore", leaderboardScore);
 
-    
     notifyListeners();
   }
 
@@ -127,7 +126,11 @@ class QuestionProvider extends ChangeNotifier {
 
       final profileProvider = Provider.of<ProfileProvider>(context);
       if (profileProvider.username != null) {
-      profileProvider.createPlayer(context, username: profileProvider.username!, avatar: avatar, isCreatePlayer: isCreatePlayer)
+        profileProvider.createPlayer(context,
+            username: profileProvider.username!,
+            avatar: box!,
+            isCreatePlayer: false);
+      }
 
       final stageProvider = Provider.of<StageProvider>(context, listen: false);
 
