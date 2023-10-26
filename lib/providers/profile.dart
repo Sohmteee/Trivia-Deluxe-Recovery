@@ -14,9 +14,9 @@ class ProfileProvider extends ChangeNotifier {
 
   createPlayer(BuildContext context,
       {required String username,  required int avatar}) async {
-    /* DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-    String? deviceID = androidInfo.id; */
+    String? deviceID = androidInfo.id;
 
     try {
       final response = await http.post(
@@ -27,8 +27,8 @@ class ProfileProvider extends ChangeNotifier {
         },
         body: jsonEncode({
           'username': username,
-          'first_name': firstName,
-          'last_name': lastName,
+          'avatar': avatar,
+          'device_id': lastName,
           'email': email,
           'password': password,
           'confirm_password': confirmPassword,
