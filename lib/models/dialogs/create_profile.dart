@@ -16,8 +16,7 @@ showCreateProfileDialog(BuildContext context) {
     context,
     isExitable: true,
     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-    // margin: EdgeInsets.symmetric(horizontal: 60.w, vertical: 24.h),
-
+    margin: EdgeInsets.symmetric(horizontal: 60.w),
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -131,7 +130,7 @@ showCreateProfileDialog(BuildContext context) {
             }),
           ],
         ),
-        Spacer(),
+        SizedBox(height: 20.h),
         Row(
           children: [
             Expanded(
