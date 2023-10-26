@@ -164,7 +164,9 @@ showCreateProfileDialog(BuildContext context) {
         ZoomTapAnimation(
           onTap: () {
             playTap(context);
-            Navigator.pop(context);
+            if (controller.value.text.isNotEmpty) {
+              Navigator.pop(context);
+            }
           },
           child: Container(
             padding: EdgeInsets.symmetric(
