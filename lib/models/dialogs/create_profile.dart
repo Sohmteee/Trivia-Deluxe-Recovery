@@ -171,6 +171,12 @@ showCreateProfileDialog(BuildContext context) {
                   Provider.of<ProfileProvider>(context, listen: false);
               print(profileProvider.createPlayer());
               Navigator.pop(context);
+            } else {
+              showGameDialog(context,
+    context,
+    isExitable: true,
+    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+    // margin: EdgeInsets.symmetric(horizontal: 60.w, vertical: 24.h), child: child)
             }
           },
           child: Container(
