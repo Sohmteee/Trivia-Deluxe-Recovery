@@ -137,6 +137,7 @@ showCreateProfileDialog(BuildContext context) {
             Expanded(
               child: TextField(
                 controller: controller,
+                autofocus: true,
                 style: TextStyle(
                   color: AppColor.yellow,
                   fontSize: 18.sp,
@@ -200,6 +201,29 @@ showCreateProfileDialog(BuildContext context) {
                       ),
                       textAlign: TextAlign.center,
                     ),
+                    SizedBox(height: 30.h),
+                    ZoomTapAnimation(
+                      onTap: () {
+                        playTap(context);
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 10.sp,
+                          horizontal: 20.sp,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20.r),
+                        ),
+                        child: Text(
+                          "Okay",
+                          style: TextStyle(
+                            fontSize: 20.sp,
+                          ),
+                        ),
+                      ),
+                    )
                   ],
                 ),
               );
