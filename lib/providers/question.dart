@@ -157,7 +157,8 @@ class QuestionProvider extends ChangeNotifier {
       });
 
       Future.delayed(.2.seconds, () {
-        final profileProvider = Provider.of<ProfileProvider>(context, listen: fasle);
+        final profileProvider =
+            Provider.of<ProfileProvider>(context, listen: false);
         if (profileProvider.username != null) {
           profileProvider.createPlayer(
             context,
