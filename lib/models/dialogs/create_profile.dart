@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/main.dart';
+import 'package:trivia/providers/profile.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 import 'game.dart';
@@ -165,6 +166,7 @@ showCreateProfileDialog(BuildContext context) {
           onTap: () {
             playTap(context);
             if (controller.value.text.isNotEmpty) {
+              final profileProvider = 
               Navigator.pop(context);
             }
           },
