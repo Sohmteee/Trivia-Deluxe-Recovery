@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:toast/toast.dart';
@@ -26,10 +27,11 @@ class ProfileProvider extends ChangeNotifier {
           // 'Authorization': 'Token $apiKey',
         },
         body: jsonEncode({
+          'game_type': 'triviaDeluxe',
           'username': username,
           'avatar': avatar,
-          'device_id': lastName,
-          'email': email,
+          'device_id': deviceID,
+          'score': email,
           'password': password,
           'confirm_password': confirmPassword,
         }),
