@@ -27,7 +27,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
   Widget build(BuildContext context) {
     return GameBackground(
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 40.w, vertical: 40.h),
+        padding: EdgeInsets.fromLTRB(40.w, 40.h, 40.w, 0),
         child: Column(
           children: [
             Center(
@@ -46,7 +46,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                       children: [
                         Expanded(
                           child: ListView.separated(
-                            itemCount: 10,
+                            itemCount: 20,
                             separatorBuilder:
                                 (BuildContext context, int index) {
                               return Container(
