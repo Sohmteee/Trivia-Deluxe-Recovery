@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/main.dart';
@@ -8,6 +9,7 @@ import 'package:trivia/models/game_background.dart';
 import 'package:trivia/providers/profile.dart';
 import 'package:trivia/providers/question.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
+
 
 class LeaderBoardScreen extends StatefulWidget {
   const LeaderBoardScreen({super.key});
@@ -23,7 +25,12 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
   void initState() {
     super.initState();
     if (Provider.of<ProfileProvider>(context, listen: false).hasProfile) {
-      try {
+      getLeaderBoardData();
+    } 
+  }
+
+  Future<void> getLeaderBoardData() async {
+    try {
       final response = await http.get(
         Uri.parse("https://cbtportal.linkskool.com/api/post_score.php"),
         headers: {
@@ -45,17 +52,13 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
       if (response.statusCode == 200) {
         // Request was successful
         print(responseData);
-
-       
       } else {
         // Request failed
         print('Request failed with status: ${response.statusCode}');
-       
       }
     } catch (e) {
       debugPrint('Exception: $e');
     }
-    } 
   }
 
   @override
