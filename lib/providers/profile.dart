@@ -19,6 +19,8 @@ class ProfileProvider extends ChangeNotifier {
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
     String? deviceID = androidInfo.id;
 
+    final questionProvider = Provider.of<QuestionProvider>(context, listen: false);
+
     try {
       final response = await http.post(
         Uri.parse("cbtportal.linkskool.com/api/post_score.php"),
@@ -31,12 +33,10 @@ class ProfileProvider extends ChangeNotifier {
           'username': username,
           'avatar': avatar,
           'device_id': deviceID,
-          'score': email,
-          'password': password,
-          'confirm_password': confirmPassword,
+          'score': quesi,
+          'mode': password,
         }),
       );
-      Navigator.pop(context);
 
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey("profile")) {
