@@ -147,7 +147,7 @@ showCreateProfileDialog(BuildContext context) {
                   if (controller.value.text.trim().isNotEmpty) {
                     final profileProvider =
                         Provider.of<ProfileProvider>(context, listen: false);
-                    print(profileProvider.createPlayer());
+                    profileProvider.createPlayer();
                     Navigator.pop(context);
                   } else {
                     showGameDialog(
@@ -233,7 +233,7 @@ showCreateProfileDialog(BuildContext context) {
             if (controller.value.text.trim().isNotEmpty) {
               final profileProvider =
                   Provider.of<ProfileProvider>(context, listen: false);
-              print(profileProvider.createPlayer());
+              profileProvider.createPlayer();
               Navigator.pop(context);
             } else {
               showGameDialog(
