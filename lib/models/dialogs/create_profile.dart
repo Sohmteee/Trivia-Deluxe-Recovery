@@ -172,14 +172,17 @@ showCreateProfileDialog(BuildContext context) {
               horizontal: 20.sp,
             ),
             decoration: BoxDecoration(
-              color: controller.text.isNotEmpty ?  Colors.white : Colors.grey[300],
+              color:
+                  controller.text.isNotEmpty ? Colors.white : Colors.grey[300],
               borderRadius: BorderRadius.circular(20.r),
             ),
             child: Text(
               "Create",
               style: TextStyle(
                 fontSize: 20.sp,
-                color: 
+                color: controller.text.isNotEmpty
+                    ? Colors.black
+                    : Colors.grey[600],
               ),
             ),
           ),
