@@ -17,7 +17,9 @@ class ProfileProvider extends ChangeNotifier {
   bool hasProfile = box.get("hasProfile", defaultValue: false);
 
   createPlayer(BuildContext context,
-      {required String username, required int avatar, required bool isCreatePlayer}) async {
+      {required String username,
+      required int avatar,
+      required bool isCreatePlayer}) async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
     String? deviceID = androidInfo.id;
@@ -48,7 +50,7 @@ class ProfileProvider extends ChangeNotifier {
         // Request was successful
         print(responseData);
 
-        if(isCreatePlayer) {
+        if (isCreatePlayer) {
           this.username = username;
           box.put("username", username);
           hasProfile = true;
@@ -62,7 +64,7 @@ class ProfileProvider extends ChangeNotifier {
               fontSize: 20.sp,
             ),
             duration: Toast.lengthLong,
-            gravity: Toast.center,
+            gravity: Toast.bottom,
           );
         }
       } else {
