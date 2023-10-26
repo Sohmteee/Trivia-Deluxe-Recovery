@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
@@ -32,19 +34,12 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
   Future<void> getLeaderBoardData() async {
     try {
       final response = await http.get(
-        Uri.parse("https://cbtportal.linkskool.com/api/post_score.php"),
+        Uri.parse("http://cbtportal.linkskool.com/api/get_leaderboard.php?game_type={triviaDeluxe}&period={daily, week, month or null}"),
         headers: {
           'Content-Type': 'application/json',
+
           // 'Authorization': 'Token $apiKey',
         },
-        body: jsonEncode({
-          'game_type': 'triviaDeluxe',
-          'username': username,
-          'avatar': avatar,
-          'device_id': deviceID,
-          'score': questionProvider.leaderboardScore,
-          'mode': 0,
-        }),
       );
 
       Map<String, dynamic> responseData = jsonDecode(response.body);
