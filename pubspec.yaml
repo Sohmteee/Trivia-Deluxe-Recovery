@@ -36,7 +36,7 @@ dependencies:
   countup: ^0.1.4
   csv: ^5.1.0
   cupertino_icons: ^1.0.2
-  device_info: ^2.0.3
+  device_info_plus: ^9.1.0
   flutter:
     sdk: flutter
   flutter_animate: ^4.2.0+1
