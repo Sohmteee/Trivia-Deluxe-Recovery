@@ -47,9 +47,14 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                         Expanded(child: ListView.separated(
                           itemCount: 10,
                           separatorBuilder: (BuildContext context, int index) {
+                            return Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.r),
+                              )
+                            )
                           },
                           itemBuilder: (BuildContext context, int index) {
-                            return SizedBox(height: ,);
+                            return SizedBox(height: 10.h);
                           },
                         ),)
                       ],
