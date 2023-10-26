@@ -126,7 +126,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                                             ),
                                           ),
                                           title: Text(
-                                            "${responseData[index]['name']}",
+                                            "${responseData[index]['username']}",
                                             style: TextStyle(
                                               color: AppColor.black,
                                               fontSize: 30.sp,
