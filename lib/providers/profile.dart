@@ -35,8 +35,8 @@ class ProfileProvider extends ChangeNotifier {
           'username': username,
           'avatar': avatar,
           'device_id': deviceID,
-          'score': questionProvider.totalQuestionAnswered,
-          'mode': password,
+          'score': questionProvider.leaderboardScore,
+          'mode': 0,
         }),
       );
 
