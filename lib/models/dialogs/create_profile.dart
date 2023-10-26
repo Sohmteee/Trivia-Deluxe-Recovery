@@ -24,7 +24,7 @@ showCreateProfileDialog(BuildContext context) {
           "Create Profile",
           style: TextStyle(
             color: AppColor.slightlyLighterYellow,
-            fontSize: 25.sp,
+            fontSize: 30.sp,
             fontWeight: FontWeight.bold,
           ),
           textAlign: TextAlign.center,
@@ -33,7 +33,7 @@ showCreateProfileDialog(BuildContext context) {
         Column(
           children: [
             Text(
-              "Choose and avatar",
+              "Choose an avatar",
               style: TextStyle(
                 color: AppColor.white,
                 fontSize: 20.sp,
@@ -78,8 +78,6 @@ showCreateProfileDialog(BuildContext context) {
             }),
           ],
         ),
-        SizedBox(height: 20.h),
-        
         SizedBox(height: 20.h),
         ZoomTapAnimation(
           onTap: () {
