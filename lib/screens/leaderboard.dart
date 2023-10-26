@@ -12,7 +12,6 @@ import 'package:trivia/providers/profile.dart';
 import 'package:trivia/providers/question.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
-
 class LeaderBoardScreen extends StatefulWidget {
   const LeaderBoardScreen({super.key});
 
@@ -28,13 +27,14 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
     super.initState();
     if (Provider.of<ProfileProvider>(context, listen: false).hasProfile) {
       getLeaderBoardData();
-    } 
+    }
   }
 
   Future<void> getLeaderBoardData() async {
     try {
       final response = await http.get(
-        Uri.parse("http://cbtportal.linkskool.com/api/get_leaderboard.php?game_type={triviaDeluxe}&period={daily, week, month or null}"),
+        Uri.parse(
+            "http://cbtportal.linkskool.com/api/get_leaderboard.php?game_type=triviaDeluxe&period=daily"),
         headers: {
           'Content-Type': 'application/json',
 
