@@ -176,7 +176,7 @@ showCreateProfileDialog(BuildContext context) {
     context,
     isExitable: true,
     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-    margin: EdgeInsets.symmetric(horizontal: 60.w, vertical: 24.h), child: Column())
+    margin: EdgeInsets.symmetric(horizontal: 60.w, vertical: 24.h), child: Column(children: [children: ],))
             }
           },
           child: Container(
