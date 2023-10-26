@@ -83,15 +83,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                       ? Column(
                           children: [
                             Expanded(
-                              child: StreamBuilder(
-                                stream: stream,
-                                initialData: initialData,
-                                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                                  return Container(
-                                    child: child,
-                                  );
-                                },
-                              ),
+                              child: futu
                               
                               
                               ListView.separated(
