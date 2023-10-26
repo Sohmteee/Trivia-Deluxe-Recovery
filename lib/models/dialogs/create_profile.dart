@@ -170,7 +170,7 @@ showCreateProfileDialog(BuildContext context) {
               final profileProvider =
                   Provider.of<ProfileProvider>(context, listen: false);
               print(profileProvider.createPlayer());
-              Navigator.pop(context);
+              // Navigator.pop(context);
             } else {
               showGameDialog(
                 context,
