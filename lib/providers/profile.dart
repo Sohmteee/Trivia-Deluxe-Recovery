@@ -3,10 +3,12 @@ import 'dart:convert';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:trivia/data/box.dart';
+import 'package:trivia/providers/question.dart';
 
 class ProfileProvider extends ChangeNotifier {
   String? username = box.get("username", defaultValue: null);
@@ -33,7 +35,7 @@ class ProfileProvider extends ChangeNotifier {
           'username': username,
           'avatar': avatar,
           'device_id': deviceID,
-          'score': quesi,
+          'score': questionProvider.totalQuestionAnswered,
           'mode': password,
         }),
       );
