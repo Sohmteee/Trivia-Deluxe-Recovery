@@ -119,12 +119,9 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                                         ),
                                         child: ListTile(
                                           tileColor: AppColor.white,
-                                          leading: Text(
-                                            "${index + 1}",
-                                            style: TextStyle(
-                                              color: AppColor.black,
-                                              fontSize: 18.sp,
-                                            ),
+                                          leading: Image.asset(
+                                            "assets/images/avatars/avatar_${snapshot.data[index]['avatar']}.png",
+                                            height: 30.h,
                                           ),
                                           title: Text(
                                             "${snapshot.data[index]['username']}",
