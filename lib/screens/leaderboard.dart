@@ -102,10 +102,11 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                                     );
                                   }
 
-                                  {print(List.generate(
+                                  print(List.generate(
                                       snapshot.data.length,
                                       (index) =>
                                           snapshot.data[index]["username"]));
+                                  print(snapshot.hasData);
                                   return ListView.separated(
                                     itemCount: snapshot.data.length,
                                     separatorBuilder:
@@ -146,7 +147,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                                         (BuildContext context, int index) {
                                       return SizedBox(height: 10.h);
                                     },
-                                  );}
+                                  );
                                 },
                               ),
                             )
