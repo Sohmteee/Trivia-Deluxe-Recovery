@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:trivia/colors/app_color.dart';
-import 'package:trivia/data/box.dart';
 import 'package:trivia/main.dart';
 import 'package:trivia/models/dialogs/create_profile.dart';
 import 'package:trivia/models/game_background.dart';
+import 'package:trivia/providers/profile.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class LeaderBoardScreen extends StatefulWidget {
@@ -20,7 +21,6 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
   @override
   void initState() {
     super.initState();
-    isLoggedIn = box.get("isLoggedIn", defaultValue: false);
   }
 
   @override
@@ -41,7 +41,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
               ),
             ),
             Expanded(
-              child: isLoggedIn
+              child: Provider.of<ProfileProvider>(context).hasProfile
                   ? Column(
                       children: [],
                     )
