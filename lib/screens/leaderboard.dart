@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
@@ -22,14 +23,6 @@ class LeaderBoardScreen extends StatefulWidget {
 class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
   late bool isLoggedIn;
   List<dynamic> responseData = [];
-
-  @override
-  void initState() {
-    super.initState();
-    if (Provider.of<ProfileProvider>(context, listen: false).hasProfile) {
-      getLeaderBoardData();
-    }
-  }
 
   Future<void> getLeaderBoardData() async {
     try {
@@ -83,7 +76,16 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                       ? Column(
                           children: [
                             Expanded(
-                              child: futu
+                              child: FutureBuilder(
+                                future: Future.delayed(.1.seconds,() {
+                                 if (Provider.of<ProfileProvider>(context, listen: false).hasProfile) {
+      getLeaderBoardData();
+    }),
+                                initialData: InitialData,
+                                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                                  return ;
+                                },
+                              ),
                               
                               
                               ListView.separated(
