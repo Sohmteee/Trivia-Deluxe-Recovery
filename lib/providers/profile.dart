@@ -78,12 +78,6 @@ class ProfileProvider extends ChangeNotifier {
           gravity: Toast.center,
         );
       }
-      /* if (responseData.containsKey("profile")) {
-        // Map<String, dynamic> profile = responseData['profile'];
-        print("Sign up successful");
-      } else { */
-
-      // }
     } catch (e) {
       debugPrint('Exception: $e');
     }
