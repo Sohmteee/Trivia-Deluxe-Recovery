@@ -102,14 +102,9 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                                     );
                                   }
 
-                                  print(List.generate(
-                                      snapshot.data.length,
-                                      (index) =>
-                                          snapshot.data[index]["username"]));
-                                  print(snapshot.hasData);
                                   return ListView.separated(
                                     itemCount: snapshot.data.length,
-                                    
+                                    physics: const BouncingScrollPhysics(),
                                     itemBuilder:
                                         (BuildContext context, int index) {
                                       return Container(
