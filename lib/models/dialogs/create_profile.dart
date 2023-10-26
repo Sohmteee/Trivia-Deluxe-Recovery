@@ -151,7 +151,7 @@ showCreateProfileDialog(BuildContext context) {
               borderRadius: BorderRadius.circular(20.r),
             ),
             child: Text(
-              "Create",
+              "Next",
               style: TextStyle(
                 fontSize: 20.sp,
               ),
