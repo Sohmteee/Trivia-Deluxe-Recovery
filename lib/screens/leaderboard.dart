@@ -95,7 +95,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "You don't have a profile",
+                              "Please play at least one game to see leaderboard.",
                               style: TextStyle(
                                 color: AppColor.white,
                                 fontSize: 25.sp,
