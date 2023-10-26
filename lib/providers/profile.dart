@@ -42,12 +42,13 @@ class ProfileProvider extends ChangeNotifier {
       );
 
       Map<String, dynamic> responseData = jsonDecode(response.body);
-      if (responseData.containsKey("profile")) {
+      /* if (responseData.containsKey("profile")) {
         // Map<String, dynamic> profile = responseData['profile'];
         print("Sign up successful");
-      } else {
-        print(responseData['username'][0].toString());
-      }
+      } else { */
+      print(responseData['username'][0].toString());
+      print(responseData);
+      // }
     } catch (e) {
       debugPrint('Exception: $e');
       Navigator.pop(context);
