@@ -9,7 +9,7 @@ class ProfileProvider extends ChangeNotifier {
   bool hasProfile = box.get("hasProfile", defaultValue: false);
 
   createPlayer(BuildContext context,
-      {required String username, required bool isMale, required int avatar}) {
+      {required String username, required bool isMale,  int? avatar}) {
     /* DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
     String? deviceID = androidInfo.id; */
