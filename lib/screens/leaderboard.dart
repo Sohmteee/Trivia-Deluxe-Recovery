@@ -21,7 +21,6 @@ class LeaderBoardScreen extends StatefulWidget {
 }
 
 class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
-  late bool isLoggedIn;
   List<dynamic> responseData = [];
 
   Future<void> getLeaderBoardData() async {

@@ -48,7 +48,10 @@ class ProfileProvider extends ChangeNotifier {
         print(responseData);
 
         this.username = username;
+        box.put("username", username);
         hasProfile = true;
+        box.put("username", username);
+
 
         ToastContext().init(context);
         Toast.show(
