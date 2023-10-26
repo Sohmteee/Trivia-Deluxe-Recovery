@@ -179,17 +179,27 @@ showCreateProfileDialog(BuildContext context) {
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
                 margin: EdgeInsets.symmetric(horizontal: 60.w, vertical: 24.h),
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
                       "Invalid Username",
                       style: TextStyle(
-                        color: AppColor.white,
-                        fontSize: 20.sp,
+                        color: AppColor.slightlyLighterYellow,
+                        fontSize: 25.sp,
                         fontWeight: FontWeight.bold,
                       ),
                       textAlign: TextAlign.center,
                     ),
                     SizedBox(height: 10.h),
+                    Text(
+                      "Please provide a valid username to continue",
+                      style: TextStyle(
+                        color: AppColor.white,
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ],
                 ),
               );
