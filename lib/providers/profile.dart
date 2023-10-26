@@ -11,6 +11,6 @@ class ProfileProvider extends ChangeNotifier {
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
     String? deviceID = androidInfo.id;
 
-    print(deviceID);
+    print("DedeviceID);
   }
 }
