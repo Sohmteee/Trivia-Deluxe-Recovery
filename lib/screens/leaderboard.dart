@@ -106,16 +106,16 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                                       snapshot.data.length,
                                       (index) =>
                                           snapshot.data[index]["username"]));
-                                          print(snapshot.hasData);
+                                  print(snapshot.hasData);
                                   return ListView.separated(
                                     itemCount: snapshot.data.length,
-                                    separatorBuilder:
+                                    itemBuilder:
                                         (BuildContext context, int index) {
                                       return Container(
                                         decoration: BoxDecoration(
                                           color: AppColor.white,
                                           borderRadius:
-                                              BorderRadius.circular(10.r),
+                                              BorderRadius.circular(20.r),
                                         ),
                                         child: ListTile(
                                           tileColor: AppColor.white,
@@ -143,7 +143,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                                         ),
                                       );
                                     },
-                                    separa:
+                                    separatorBuilder:
                                         (BuildContext context, int index) {
                                       return SizedBox(height: 10.h);
                                     },
