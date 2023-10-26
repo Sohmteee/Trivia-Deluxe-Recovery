@@ -271,12 +271,9 @@ showEnterUsernameDialog(BuildContext context) {
                       // : TextCapitalization.none,
                       textInputAction: TextInputAction.done,
                       decoration: InputDecoration(
-                        labelText: "Username (Tap to edit)",
-                        labelStyle: TextStyle(
-                          color: AppColor.white,
-                          fontSize: 22.sp,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.r),
                         ),
-                        border: InputBorder.none,
                         counterStyle: const TextStyle(
                           color: Colors.transparent,
                         ),
