@@ -16,12 +16,13 @@ class ProfileProvider extends ChangeNotifier {
   bool hasProfile = box.get("hasProfile", defaultValue: false);
 
   createPlayer(BuildContext context,
-      {required String username,  required int avatar}) async {
+      {required String username, required int avatar}) async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
     String? deviceID = androidInfo.id;
 
-    final questionProvider = Provider.of<QuestionProvider>(context, listen: false);
+    final questionProvider =
+        Provider.of<QuestionProvider>(context, listen: false);
 
     try {
       final response = await http.post(
@@ -43,14 +44,14 @@ class ProfileProvider extends ChangeNotifier {
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey("profile")) {
         // Map<String, dynamic> profile = responseData['profile'];
-        return "Sign up successful";
+        print("Sign up successful");
       } else {
-        return responseData['username'][0].toString();
+        print(responseData['username'][0].toString());
       }
     } catch (e) {
       debugPrint('Exception: $e');
       Navigator.pop(context);
-      return '$e';
+      print('$e');
     }
 
     this.username = username;
