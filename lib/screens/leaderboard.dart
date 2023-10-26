@@ -109,6 +109,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                                   print(snapshot.hasData);
                                   return ListView.separated(
                                     itemCount: snapshot.data.length,
+                                    
                                     itemBuilder:
                                         (BuildContext context, int index) {
                                       return Container(
@@ -127,7 +128,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                                             "${snapshot.data[index]['username']}",
                                             style: TextStyle(
                                               color: AppColor.black,
-                                              fontSize: 30.sp,
+                                              fontSize: 20.sp,
                                             ),
                                           ),
                                           trailing: Text(
