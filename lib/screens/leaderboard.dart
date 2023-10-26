@@ -106,8 +106,9 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                                       snapshot.data.length,
                                       (index) =>
                                           snapshot.data[index]["username"]));
+                                          print(snapshot.hasData);
                                   return ListView.separated(
-                                    itemCount: 2,
+                                    itemCount: snapshot.data.length,
                                     separatorBuilder:
                                         (BuildContext context, int index) {
                                       return Container(
@@ -126,14 +127,14 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                                             ),
                                           ),
                                           title: Text(
-                                            "Username",
+                                            "${snapshot.data[index]['username']}",
                                             style: TextStyle(
                                               color: AppColor.black,
                                               fontSize: 30.sp,
                                             ),
                                           ),
                                           trailing: Text(
-                                            "Score",
+                                            "${snapshot.data[index]['score']}",
                                             style: TextStyle(
                                               color: AppColor.black,
                                               fontSize: 18.sp,
@@ -142,7 +143,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                                         ),
                                       );
                                     },
-                                    itemBuilder:
+                                    separa:
                                         (BuildContext context, int index) {
                                       return SizedBox(height: 10.h);
                                     },
