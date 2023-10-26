@@ -16,7 +16,7 @@ class ProfileProvider extends ChangeNotifier {
   bool hasProfile = box.get("hasProfile", defaultValue: false);
 
   createPlayer(BuildContext context,
-      {required String username, required int avatar}) async {
+      {required String username, required int avatar, required bool isCreatePlayer}) async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
     String? deviceID = androidInfo.id;
@@ -47,27 +47,29 @@ class ProfileProvider extends ChangeNotifier {
         // Request was successful
         print(responseData);
 
-        this.username = username;
-        box.put("username", username);
-        hasProfile = true;
-        box.put("hasProfile", hasProfile);
+        if(isCreatePlayer) {
+          this.username = username;
+          box.put("username", username);
+          hasProfile = true;
+          box.put("hasProfile", hasProfile);
 
-        ToastContext().init(context);
-        Toast.show(
-          "Profile created successfully",
-          textStyle: TextStyle(
-            color: Colors.white,
-            fontSize: 20.sp,
-          ),
-          duration: Toast.lengthLong,
-          gravity: Toast.center,
-        );
+          ToastContext().init(context);
+          Toast.show(
+            "Profile created successfully",
+            textStyle: TextStyle(
+              color: Colors.white,
+              fontSize: 20.sp,
+            ),
+            duration: Toast.lengthLong,
+            gravity: Toast.center,
+          );
+        }
       } else {
         // Request failed
         print('Request failed with status: ${response.statusCode}');
         ToastContext().init(context);
         Toast.show(
-          "An error occured. Please try again.",
+          "An error occured. Please try again later.",
           textStyle: TextStyle(
             color: Colors.white,
             fontSize: 20.sp,
