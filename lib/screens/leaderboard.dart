@@ -77,7 +77,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                           children: [
                             Expanded(
                               child: FutureBuilder(
-                                future: Future.delayed(.1.seconds,() {
+                                future: Future.delayed(.1.seconds, () {
                                   if (Provider.of<ProfileProvider>(context,
                                           listen: false)
                                       .hasProfile) {
@@ -85,7 +85,8 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                                   }
                                 }),
                                 initialData: null,
-                                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                                builder: (BuildContext context,
+                                    AsyncSnapshot snapshot) {
                                   if (snapshot.data == null) {
                                     return Center(
                                       child: CircularProgressIndicator(
@@ -93,48 +94,59 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                                       ),
                                     );
                                   }
-                                  if (snapshot.)
-                                },
-                              ),
-                              
-                              
-                              ListView.separated(
-                                itemCount: 20,
-                                separatorBuilder:
-                                    (BuildContext context, int index) {
-                                  return Container(
-                                    decoration: BoxDecoration(
-                                      color: AppColor.white,
-                                      borderRadius: BorderRadius.circular(10.r),
-                                    ),
-                                    child: ListTile(
-                                      tileColor: AppColor.white,
-                                      leading: Text(
-                                        "${index + 1}",
+                                  if (snapshot.hasError) {
+                                    return Center(
+                                      child: Text(
+                                        "An error occured while fetching leaderboard data.",
                                         style: TextStyle(
-                                          color: AppColor.black,
-                                          fontSize: 18.sp,
+                                          color: AppColor.white,
+                                          fontSize: 25.sp,
                                         ),
+                                        textAlign: TextAlign.center,
                                       ),
-                                      title: Text(
-                                        "Name",
-                                        style: TextStyle(
-                                          color: AppColor.black,
-                                          fontSize: 30.sp,
+                                    );
+                                  }
+                                  return ListView.separated(
+                                    itemCount: responseData.length,
+                                    separatorBuilder:
+                                        (BuildContext context, int index) {
+                                      return Container(
+                                        decoration: BoxDecoration(
+                                          color: AppColor.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10.r),
                                         ),
-                                      ),
-                                      trailing: Text(
-                                        "Score",
-                                        style: TextStyle(
-                                          color: AppColor.black,
-                                          fontSize: 18.sp,
+                                        child: ListTile(
+                                          tileColor: AppColor.white,
+                                          leading: Text(
+                                            "${index + 1}",
+                                            style: TextStyle(
+                                              color: AppColor.black,
+                                              fontSize: 18.sp,
+                                            ),
+                                          ),
+                                          title: Text(
+                                            "${responseData[index]['name']}",
+                                            style: TextStyle(
+                                              color: AppColor.black,
+                                              fontSize: 30.sp,
+                                            ),
+                                          ),
+                                          trailing: Text(
+                                            "${responseData[index]['score']}",
+                                            style: TextStyle(
+                                              color: AppColor.black,
+                                              fontSize: 18.sp,
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                    ),
+                                      );
+                                    },
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return SizedBox(height: 10.h);
+                                    },
                                   );
-                                },
-                                itemBuilder: (BuildContext context, int index) {
-                                  return SizedBox(height: 10.h);
                                 },
                               ),
                             )
