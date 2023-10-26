@@ -125,7 +125,8 @@ class QuestionProvider extends ChangeNotifier {
 
       updateLeaderBoardScore();
 
-      Provider.of<ProfileProvider>(context).createPlayer(context, username: username, avatar: avatar, isCreatePlayer: isCreatePlayer)
+      final profileProvider = Provider.of<ProfileProvider>(context);
+      profileProvider.createPlayer(context, username: profileProvider.username!, avatar: avatar, isCreatePlayer: isCreatePlayer)
 
       final stageProvider = Provider.of<StageProvider>(context, listen: false);
 
