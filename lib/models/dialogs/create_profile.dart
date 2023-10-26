@@ -173,10 +173,26 @@ showCreateProfileDialog(BuildContext context) {
               Navigator.pop(context);
             } else {
               showGameDialog(
-    context,
-    isExitable: true,
-    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-    margin: EdgeInsets.symmetric(horizontal: 60.w, vertical: 24.h), child: Column(children: [children: ],))
+                context,
+                isExitable: true,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                margin: EdgeInsets.symmetric(horizontal: 60.w, vertical: 24.h),
+                child: Column(
+                  children: [
+                    Text(
+                      "Invalid Username",
+                      style: TextStyle(
+                        color: AppColor.white,
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 10.h),
+                  ],
+                ),
+              );
             }
           },
           child: Container(
