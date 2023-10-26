@@ -6,6 +6,7 @@ import 'package:trivia/main.dart';
 import 'package:trivia/models/dialogs/create_profile.dart';
 import 'package:trivia/models/game_background.dart';
 import 'package:trivia/providers/profile.dart';
+import 'package:trivia/providers/question.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class LeaderBoardScreen extends StatefulWidget {
@@ -42,7 +43,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
             ),
             Expanded(
               child: Provider.of<ProfileProvider>(context).hasProfile
-                  ? Provider.of< Column(
+                  ? Provider.of<QuestionProvider>(context).totalQuestionsAnswered!=0 ? Column(
                       children: [
                         Expanded(
                           child: ListView.separated(
@@ -159,7 +160,16 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                         ),
                         const Spacer(),
                       ],
-                    ),
+                    ) : Column(children: [
+                        Text(
+                          "You don't have a profile",
+                          style: TextStyle(
+                            color: AppColor.white,
+                            fontSize: 25.sp,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],),
             ),
           ],
         ),
