@@ -10,7 +10,7 @@ import 'game.dart';
 
 showCreateProfileDialog(BuildContext context) {
   final controller = TextEditingController();
-  bool isMale = true;
+  int? avatar;
 
   showGameDialog(
     context,
@@ -52,7 +52,7 @@ showCreateProfileDialog(BuildContext context) {
                     onTap: () {
                       playTap(context);
                       setState(() {
-                        isMale = true;
+                        avatar = index + 1;
                       });
                     },
                     child: Container(
@@ -63,7 +63,7 @@ showCreateProfileDialog(BuildContext context) {
                         image: DecorationImage(
                           image: AssetImage(
                               'assets/images/avatars/avatar_${index + 1}.png'),
-                          colorFilter: isMale
+                          colorFilter: index + 1 == avatar
                               ? null
                               : const ColorFilter.mode(
                                   Colors.grey,
