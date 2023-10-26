@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:trivia/colors/app_color.dart';
+import 'package:trivia/data/box.dart';
 import 'package:trivia/main.dart';
 import 'package:trivia/providers/profile.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
@@ -291,6 +292,7 @@ showEnterUsernameDialog(BuildContext context) {
           onTap: () {
             playTap(context);
             if (controller.value.text.trim().isNotEmpty) {
+              box.put("avatar", avatar!);
               final profileProvider =
                   Provider.of<ProfileProvider>(context, listen: false);
               profileProvider.createPlayer(
