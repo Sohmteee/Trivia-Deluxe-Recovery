@@ -23,10 +23,10 @@ class ProfileProvider extends ChangeNotifier {
       "Profile created successfully",
       textStyle: TextStyle(
         color: Colors.white,
-        fontSize: 16.sp,
+        fontSize: 20.sp,
       ),
       duration: Toast.lengthLong,
-      gravity: Toast.bottom,
+      gravity: Toast.center,
     );
 
     notifyListeners();
