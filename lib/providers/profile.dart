@@ -26,7 +26,7 @@ class ProfileProvider extends ChangeNotifier {
 
     try {
       final response = await http.post(
-        Uri.parse("cbtportal.linkskool.com/api/post_score.php"),
+        Uri.parse("https://cbtportal.linkskool.com/api/post_score.php"),
         headers: {
           'Content-Type': 'application/json',
           // 'Authorization': 'Token $apiKey',
