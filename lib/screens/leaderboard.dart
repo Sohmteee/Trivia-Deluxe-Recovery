@@ -183,12 +183,36 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                               padding: EdgeInsets.all(2.sp),
                                               decoration: const BoxDecoration(
                                                 color: Color.fromARGB(
-                                                    255, 216, 135, 13),
+                                                    255, 243, 165, 47),
                                                 shape: BoxShape.circle,
                                               ),
                                               child: Image.asset(
                                                 // "assets/images/avatars/avatar_${snapshot.data[0]['avatar']}.png",
                                                 "assets/images/avatars/avatar_1.png",
+                                              ),
+                                            ),
+                                            Container(
+                                              height: 70.h,
+                                              padding: EdgeInsets.all(2.sp),
+                                              decoration: const BoxDecoration(
+                                                color: Colors.grey,
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Image.asset(
+                                                // "assets/images/avatars/avatar_${snapshot.data[0]['avatar']}.png",
+                                                "assets/images/avatars/avatar_2.png",
+                                              ),
+                                            ),
+                                            Container(
+                                              height: 70.h,
+                                              padding: EdgeInsets.all(2.sp),
+                                              decoration: const BoxDecoration(
+                                                color: Colors.brown,
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Image.asset(
+                                                // "assets/images/avatars/avatar_${snapshot.data[0]['avatar']}.png",
+                                                "assets/images/avatars/avatar_3.png",
                                               ),
                                             ),
                                           ],
