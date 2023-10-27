@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/main.dart';
+import 'package:trivia/models/circle_tab_indicator.dart';
 import 'package:trivia/models/dialogs/create_profile.dart';
 import 'package:trivia/models/game_background.dart';
 import 'package:trivia/providers/profile.dart';
@@ -98,7 +99,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> with TickerProvid
             Align(
               alignment: Alignment.center,
               child: TabBar(
-                controller: graphController,
+                controller: tabController,
                 isScrollable: true,
                 labelColor: grey100,
                 unselectedLabelColor: grey500,
