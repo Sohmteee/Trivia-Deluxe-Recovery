@@ -172,7 +172,9 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                   }
 
                                   return Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
+                                      if (snapshot.data.length >= 4)
                                       Expanded(
                                         child: ListView.separated(
                                           itemCount: 20,
@@ -180,37 +182,35 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                               const BouncingScrollPhysics(),
                                           itemBuilder: (BuildContext context,
                                               int index) {
-                                            if (index >= 3) {
-  return Container(
-    decoration: BoxDecoration(
-      color: AppColor.white,
-      borderRadius:
-          BorderRadius.circular(20.r),
-    ),
-    child: Row(
-      children: [
-        Image.asset(
-          "assets/images/avatars/avatar_${index + 1}.png",
-          height: 30.h,
-        ),
-        Text(
-          "Username",
-          style: TextStyle(
-            color: AppColor.black,
-            fontSize: 20.sp,
-          ),
-        ),
-        Text(
-          "${30 - index}",
-          style: TextStyle(
-            color: AppColor.black,
-            fontSize: 18.sp,
-          ),
-        ),
-      ],
-    ),
-  );
-}
+                                            return Container(
+                                              decoration: BoxDecoration(
+                                                color: AppColor.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(20.r),
+                                              ),
+                                              child: Row(
+                                                children: [
+                                                  Image.asset(
+                                                  "assets/images/avatars/avatar_${index + 1}.png",
+                                                  height: 30.h,
+                                                ),
+
+Text(
+                                                  "Username",
+                                                  style: TextStyle(
+                                                    color: AppColor.black,
+                                                    fontSize: 20.sp,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "${30 - index}",
+                                                  style: TextStyle(
+                                                    color: AppColor.black,
+                                                    fontSize: 18.sp,
+                                                  ),),
+                                                ],
+                                              ),
+                                            );
                                           },
                                           separatorBuilder:
                                               (BuildContext context,
