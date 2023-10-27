@@ -96,44 +96,6 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> with TickerProvid
               ),
             ),
             SizedBox(height: 20.h),
-            Align(
-              alignment: Alignment.center,
-              child: TabBar(
-                controller: tabController,
-                isScrollable: true,
-                labelColor: AppColor.slightlyLighterYellow,
-                unselectedLabelColor: Colors.grey[400],
-                indicator: CircleTabIndicator(
-                  color: AppColor.slightlyLighterYellow,
-                ),
-                splashFactory: NoSplash.splashFactory,
-                overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                  (Set<MaterialState> states) {
-                    return states.contains(MaterialState.focused)
-                        ? null
-                        : Colors.transparent;
-                  },
-                ),
-                tabs: const [
-                  ZoomTapAnimation(
-                    child: Tab(
-                      text: "Daily",
-                    ),
-                  ),
-                  ZoomTapAnimation(
-                    child: Tab(
-                      text: "Weekly",
-                    ),
-                  ),
-                  ZoomTapAnimation(
-                    child: Tab(
-                      text: "Monthly",
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 20.h),
             Expanded(
               child: Provider.of<ProfileProvider>(context).hasProfile
                   ? Provider.of<QuestionProvider>(context)
@@ -141,6 +103,46 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> with TickerProvid
                           0
                       ? Column(
                           children: [
+                            SizedBox(height: 20.h),
+                            Align(
+                              alignment: Alignment.center,
+                              child: TabBar(
+                                controller: tabController,
+                                isScrollable: true,
+                                labelColor: AppColor.slightlyLighterYellow,
+                                unselectedLabelColor: Colors.grey[400],
+                                indicator: CircleTabIndicator(
+                                  color: AppColor.slightlyLighterYellow,
+                                ),
+                                splashFactory: NoSplash.splashFactory,
+                                overlayColor:
+                                    MaterialStateProperty.resolveWith<Color?>(
+                                  (Set<MaterialState> states) {
+                                    return states
+                                            .contains(MaterialState.focused)
+                                        ? null
+                                        : Colors.transparent;
+                                  },
+                                ),
+                                tabs: const [
+                                  ZoomTapAnimation(
+                                    child: Tab(
+                                      text: "Daily",
+                                    ),
+                                  ),
+                                  ZoomTapAnimation(
+                                    child: Tab(
+                                      text: "Weekly",
+                                    ),
+                                  ),
+                                  ZoomTapAnimation(
+                                    child: Tab(
+                                      text: "Monthly",
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                             Expanded(
                               child: FutureBuilder(
                                 future: getLeaderBoardData(2),
