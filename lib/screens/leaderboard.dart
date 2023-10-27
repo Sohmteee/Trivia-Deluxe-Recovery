@@ -186,25 +186,30 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                 borderRadius:
                                                     BorderRadius.circular(20.r),
                                               ),
-                                              child: ListTile(
-                                                tileColor: AppColor.white,
-                                                leading: Image.asset(
+                                              child: Row(
+                                                children: [
+                                                  Image.asset(
                                                   "assets/images/avatars/avatar_${index + 1}.png",
                                                   height: 30.h,
                                                 ),
-                                                title: Text(
+
+Text(
                                                   "Username",
                                                   style: TextStyle(
                                                     color: AppColor.black,
                                                     fontSize: 20.sp,
                                                   ),
                                                 ),
-                                                trailing: Text(
+                                                Text(
                                                   "${30 - index}",
                                                   style: TextStyle(
                                                     color: AppColor.black,
                                                     fontSize: 18.sp,
-                                                  ),
+                                                  ),),
+                                                ],
+                                                leading: 
+                                                title: 
+                                                trailing: 
                                                 ),
                                               ),
                                             );
