@@ -179,12 +179,23 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                           child: Row(children: [
                                             Container(
                                               height: 40.h,
+                                              padding: EdgeInsets.all(5.sp),
                                               
                                               decoration: BoxDecoration(
                                                 color: Colors.orange,
                                                 shape: BoxShape.circle,
+                                                image: DecorationImage(
+                                                  image: AssetImage(
+                                                      // "assets/images/avatars/avatar_${snapshot.data[0]['avatar']}.png",
+                                                      "assets/images/avatars/avatar_1.png",
+                                                      ),
+                                                  fit: BoxFit.cover,
+                                                ),
 
                                               ),
+
+
+
                                             ),
                                           ],),),
                                       // if (snapshot.data.length >= 4)
