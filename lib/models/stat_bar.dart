@@ -34,7 +34,6 @@ class _GameStatsState extends State<GameStats> {
         setState(() {
           animateCoins = true;
           debugPrint("Animate coins: $animateCoins");
-          Future.delayed(.);
         });
       });
     });
@@ -42,8 +41,10 @@ class _GameStatsState extends State<GameStats> {
 
   @override
   void dispose() {
+    setState(() {
+      animateCoins = false;
       debugPrint("Animate coins: $animateCoins");
-    
+    });
     super.dispose();
   }
 
