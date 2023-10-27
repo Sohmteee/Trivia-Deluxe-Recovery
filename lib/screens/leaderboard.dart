@@ -104,7 +104,6 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                           0
                       ? Column(
                           children: [
-                            SizedBox(height: 20.h),
                             Align(
                               alignment: Alignment.center,
                               child: TabBar(
@@ -144,6 +143,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                 ],
                               ),
                             ),
+                            SizedBox(height: 20.h),
                             Expanded(
                               child: FutureBuilder(
                                 future: getLeaderBoardData(2),
