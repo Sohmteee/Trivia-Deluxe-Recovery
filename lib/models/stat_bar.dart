@@ -34,6 +34,7 @@ class _GameStatsState extends State<GameStats> {
         setState(() {
           animateCoins = true;
           debugPrint("Animate coins: $animateCoins");
+          Future.delayed(.);
         });
       });
     });
