@@ -185,7 +185,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                             return Container(
                                               padding: EdgeInsets.symmetric(
                                                   vertical: 15.h,
-                                                  horizontal: 10.w),
+                                                  horizontal: 15.w),
                                               decoration: BoxDecoration(
                                                 color: AppColor.white,
                                                 borderRadius:
@@ -201,8 +201,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                       Text(
                                                         "${index + 3 + 1}",
                                                         style: TextStyle(
-                                                          color:
-                                                              AppColor.black,
+                                                          color: AppColor.black,
                                                           fontSize: 18.sp,
                                                         ),
                                                       ),
@@ -211,14 +210,15 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                         "assets/images/avatars/avatar_${index + 3 + 1}.png",
                                                         height: 30.h,
                                                       ),
+                                                      SizedBox(width: 10.w),
+                                                      Text(
+                                                        "Username",
+                                                        style: TextStyle(
+                                                          color: AppColor.black,
+                                                          fontSize: 20.sp,
+                                                        ),
+                                                      ),
                                                     ],
-                                                  ),
-                                                  Text(
-                                                    "Username",
-                                                    style: TextStyle(
-                                                      color: AppColor.black,
-                                                      fontSize: 20.sp,
-                                                    ),
                                                   ),
                                                   Text(
                                                     "${30 - index + 3}",
