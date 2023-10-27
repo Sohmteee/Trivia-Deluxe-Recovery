@@ -28,16 +28,16 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> with TickerProvid
     tabController = TabController(length: 3, vsync: this);
   }
 
-  Future<List?> getLeaderBoardData() async {
+  Future<List?> getLeaderBoardData(int index) async {
 
-    String? getPeriod(int index) {
+    String? getPeriod() {
       switch (index) {
         case 0:
           return "daily";
         case 1:
-          return "weekly";
+          return "week";
         case 2:
-          return "monthly";
+          return "month";
         default:
         return null;
       }
@@ -47,7 +47,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> with TickerProvid
     try {
       final response = await http.get(
         Uri.parse(
-            "http://cbtportal.linkskool.com/api/get_leaderboard.php?game_type=triviaDeluxe&period=daily"),
+            "http://cbtportal.linkskool.com/api/get_leaderboard.php?game_type=triviaDeluxe&period={getPeriod}"),
         headers: {
           'Content-Type': 'application/json',
 
