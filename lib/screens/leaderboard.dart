@@ -20,9 +20,8 @@ class LeaderBoardScreen extends StatefulWidget {
   State<LeaderBoardScreen> createState() => _LeaderBoardScreenState();
 }
 
-class _LeaderBoardScreenState extends State<LeaderBoardScreen>
-    with TickerProviderStateMixin {
-  late TabController tabController;
+class _LeaderBoardScreenState extends State<LeaderBoardScreen> with TickerProviderStateMixin {
+  late TabController tabController ;
 
   @override
   void initState() {
@@ -30,13 +29,14 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
     tabController = TabController(length: 3, vsync: this);
   }
 
-  @override
+   @override
   void dispose() {
     tabController.dispose();
     super.dispose();
   }
 
   Future<List?> getLeaderBoardData(int index) async {
+
     String? getPeriod() {
       switch (index) {
         case 0:
@@ -46,10 +46,9 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
         case 2:
           return "month";
         default:
-          return null;
+        return null;
       }
     }
-
     List<dynamic>? responseData;
 
     try {
@@ -115,35 +114,20 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                         : Colors.transparent;
                   },
                 ),
-                tabs: [
+                tabs: const [
                   ZoomTapAnimation(
-                    child: Text(
-                      "Daily",
-                      style: TextStyle(
-                        color: AppColor.white,
-                        fontSize: 25.sp,
-                      ),
-                      textAlign: TextAlign.center,
+                    child: Tab(
+                      text: "Daily",
                     ),
                   ),
                   ZoomTapAnimation(
-                    child: Text(
-                      "Weekly",
-                      style: TextStyle(
-                        color: AppColor.white,
-                        fontSize: 25.sp,
-                      ),
-                      textAlign: TextAlign.center,
+                    child: Tab(
+                      text: "Weekly",
                     ),
                   ),
                   ZoomTapAnimation(
-                    child: Text(
-                      "Monthly",
-                      style: TextStyle(
-                        color: AppColor.white,
-                        fontSize: 25.sp,
-                      ),
-                      textAlign: TextAlign.center,
+                    child: Tab(
+                      text: "Monthly",
                     ),
                   ),
                 ],
