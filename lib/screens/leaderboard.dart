@@ -185,7 +185,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                         child: ListTile(
                                           tileColor: AppColor.white,
                                           leading: Image.asset(
-                                            "assets/images/avatars/avatar_$index.png",
+                                            "assets/images/avatars/avatar_${index + 1}.png",
                                             height: 30.h,
                                           ),
                                           title: Text(
