@@ -37,9 +37,9 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> with TickerProvid
         case 1:
           return "weekly";
         case 2:
-          return "daily";
+          return "monthly";
         default:
-        retutn null;
+        return null;
       }
     }
     List<dynamic>? responseData;
