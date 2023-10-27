@@ -20,12 +20,12 @@ class LeaderBoardScreen extends StatefulWidget {
 }
 
 class _LeaderBoardScreenState extends State<LeaderBoardScreen> with TickerProviderStateMixin {
-  final tabController = TabController(length: 2, vsync: this);
+  late TabController tabController ;
 
   @override
   void initState() {
     super.initState();
-    tabController = 
+    tabController = TabController(length: 2, vsync: this);
   }
 
   Future<List?> getLeaderBoardData() async {
