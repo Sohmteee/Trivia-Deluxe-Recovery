@@ -183,7 +183,9 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                           itemBuilder: (BuildContext context,
                                               int index) {
                                             return Container(
-                                              padding: EdgeInsets.all(20.r),
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 15.h,
+                                                  horizontal: 10.w),
                                               decoration: BoxDecoration(
                                                 color: AppColor.white,
                                                 borderRadius:
