@@ -24,7 +24,9 @@ class _StageScreenState extends State<StageScreen> {
   @override
   void initState() {
     playLevel(context);
-    checkExhausted();
+    Future.microtask(() {
+      checkExhausted();
+    });
     super.initState();
   }
 
