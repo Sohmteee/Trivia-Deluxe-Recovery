@@ -95,51 +95,37 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> with TickerProvid
               ),
             ),
             SizedBox(height: 20.h),
-            TabBar(
-              controller: tabController,
-              isScrollable: true,
-              labelColor: morningGlory300,
-              unselectedLabelColor: grey300,
-              indicator: Circ(
-                color: morningGlory300,
-                width: 41.w,
-                height: 4.h,
-                radius: 6.r,
-              ),
-              splashFactory: NoSplash.splashFactory,
-              overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                (Set<MaterialState> states) {
-                  return states.contains(MaterialState.focused)
-                      ? null
-                      : Colors.transparent;
-                },
-              ),
-              tabs: [
-                ZoomTapAnimation(
-                  child: Tab(
-                    child: Text(
-                      "All",
-                      style: TextStyle(
-                        fontSize: 16.2.sp,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: "Trueno",
-                      ),
+            Align(
+              alignment: Alignment.center,
+              child: TabBar(
+                controller: graphController,
+                isScrollable: true,
+                labelColor: grey100,
+                unselectedLabelColor: grey500,
+                indicator: CircleTabIndicator(
+                  color: grey100,
+                ),
+                splashFactory: NoSplash.splashFactory,
+                overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                  (Set<MaterialState> states) {
+                    return states.contains(MaterialState.focused)
+                        ? null
+                        : Colors.transparent;
+                  },
+                ),
+                tabs: const [
+                  ZoomTapAnimation(
+                    child: Tab(
+                      text: "Line",
                     ),
                   ),
-                ),
-                ZoomTapAnimation(
-                  child: Tab(
-                    child: Text(
-                      "Collections",
-                      style: TextStyle(
-                        fontSize: 16.2.sp,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: "Trueno",
-                      ),
+                  ZoomTapAnimation(
+                    child: Tab(
+                      text: "Grouped Bar",
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             SizedBox(height: 20.h),
             Expanded(
