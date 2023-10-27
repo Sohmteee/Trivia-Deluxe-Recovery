@@ -179,17 +179,17 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                         child: Row(
                                           children: [
                                             Container(
-                                              height: 40.h,
-                                              padding: EdgeInsets.all(5.sp),
-                                              decoration: BoxDecoration(
-                                                color: Colors.orange,
+                                              height: 70.h,
+                                              padding: EdgeInsets.all(2.sp),
+                                              decoration: const BoxDecoration(
+                                                color: Color.fromARGB(
+                                                    255, 216, 135, 13),
                                                 shape: BoxShape.circle,
-                                                
                                               ),
-                                              child: AssetImage(
-                                                    // "assets/images/avatars/avatar_${snapshot.data[0]['avatar']}.png",
-                                                    "assets/images/avatars/avatar_1.png",
-                                                  ),
+                                              child: Image.asset(
+                                                // "assets/images/avatars/avatar_${snapshot.data[0]['avatar']}.png",
+                                                "assets/images/avatars/avatar_1.png",
+                                              ),
                                             ),
                                           ],
                                         ),
