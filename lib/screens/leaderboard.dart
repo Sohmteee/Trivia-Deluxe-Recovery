@@ -114,10 +114,9 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> with TickerProvid
                         : Colors.transparent;
                   },
                 ),
-                tabs: const [
+                tabs:  [
                   ZoomTapAnimation(
-                    child: Text(
-                      child: "Daily",
+                    child: Text(                      "Daily",
                       style: TextStyle(
                             color: AppColor.white,
                             fontSize: 25.sp,
@@ -127,7 +126,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> with TickerProvid
                   ),
                   ZoomTapAnimation(
                     child: Text(
-                      child: "Weekly",
+                      ("Weekly",
                       style: TextStyle(
                             color: AppColor.white,
                             fontSize: 25.sp,
@@ -137,7 +136,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> with TickerProvid
                   ),
                   ZoomTapAnimation(
                     child: Text(
-                      child: "Monthly",
+                      ("Monthly",
                       style: TextStyle(
                             color: AppColor.white,
                             fontSize: 25.sp,
