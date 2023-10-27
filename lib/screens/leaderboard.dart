@@ -174,52 +174,52 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                   return Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      if (snapshot.data.length >= 4)
-                                        Expanded(
-                                          child: ListView.separated(
-                                            itemCount: 20 - 3,
-                                            physics:
-                                                const BouncingScrollPhysics(),
-                                            itemBuilder: (BuildContext context,
-                                                int index) {
-                                              return Container(
-                                                decoration: BoxDecoration(
-                                                  color: AppColor.white,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20.r),
-                                                ),
-                                                child: Row(
-                                                  children: [
-                                                    Image.asset(
-                                                      "assets/images/avatars/avatar_${index + 3 + 1}.png",
-                                                      height: 30.h,
+                                      // if (snapshot.data.length >= 4)
+                                      Expanded(
+                                        child: ListView.separated(
+                                          itemCount: 20 - 3,
+                                          physics:
+                                              const BouncingScrollPhysics(),
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
+                                            return Container(
+                                              padding: EdgeInsets.all(20.r),
+                                              decoration: BoxDecoration(
+                                                color: AppColor.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(20.r),
+                                              ),
+                                              child: Row(
+                                                children: [
+                                                  Image.asset(
+                                                    "assets/images/avatars/avatar_${index + 3 + 1}.png",
+                                                    height: 30.h,
+                                                  ),
+                                                  Text(
+                                                    "Username",
+                                                    style: TextStyle(
+                                                      color: AppColor.black,
+                                                      fontSize: 20.sp,
                                                     ),
-                                                    Text(
-                                                      "Username",
-                                                      style: TextStyle(
-                                                        color: AppColor.black,
-                                                        fontSize: 20.sp,
-                                                      ),
+                                                  ),
+                                                  Text(
+                                                    "${30 - index + 3}",
+                                                    style: TextStyle(
+                                                      color: AppColor.black,
+                                                      fontSize: 18.sp,
                                                     ),
-                                                    Text(
-                                                      "${30 - index + 3}",
-                                                      style: TextStyle(
-                                                        color: AppColor.black,
-                                                        fontSize: 18.sp,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              );
-                                            },
-                                            separatorBuilder:
-                                                (BuildContext context,
-                                                    int index) {
-                                              return SizedBox(height: 10.h);
-                                            },
-                                          ),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                          separatorBuilder:
+                                              (BuildContext context,
+                                                  int index) {
+                                            return SizedBox(height: 10.h);
+                                          },
                                         ),
+                                      ),
                                     ],
                                   );
                                   /* return ListView.separated(
