@@ -174,6 +174,9 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                   return Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
+                                      SizedBox(
+                                        height: 200.h,
+                                      ),
                                       // if (snapshot.data.length >= 4)
                                       Expanded(
                                         child: ListView.separated(
