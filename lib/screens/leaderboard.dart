@@ -172,6 +172,45 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                   }
 
                                   return ListView.separated(
+                                    itemCount: 20,
+                                    physics: const BouncingScrollPhysics(),
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return Container(
+                                        decoration: BoxDecoration(
+                                          color: AppColor.white,
+                                          borderRadius:
+                                              BorderRadius.circular(20.r),
+                                        ),
+                                        child: ListTile(
+                                          tileColor: AppColor.white,
+                                          leading: Image.asset(
+                                            "assets/images/avatars/avatar_$index.png",
+                                            height: 30.h,
+                                          ),
+                                          title: Text(
+                                            "Username",
+                                            style: TextStyle(
+                                              color: AppColor.black,
+                                              fontSize: 20.sp,
+                                            ),
+                                          ),
+                                          trailing: Text(
+                                            "${30 - index}",
+                                            style: TextStyle(
+                                              color: AppColor.black,
+                                              fontSize: 18.sp,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    separatorBuilder:
+                                        (BuildContext context, int index) {
+                                      return SizedBox(height: 10.h);
+                                    },
+                                  );
+                                  /* return ListView.separated(
                                     itemCount: snapshot.data.length,
                                     physics: const BouncingScrollPhysics(),
                                     itemBuilder:
@@ -209,7 +248,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                         (BuildContext context, int index) {
                                       return SizedBox(height: 10.h);
                                     },
-                                  );
+                                  ); */
                                 },
                               ),
                             )
