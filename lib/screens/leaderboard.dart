@@ -101,10 +101,10 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> with TickerProvid
               child: TabBar(
                 controller: tabController,
                 isScrollable: true,
-                labelColor: grey100,
-                unselectedLabelColor: grey500,
+                labelColor: AppColor.slightlyLighterYellow,
+                unselectedLabelColor: Colors.grey[400],
                 indicator: CircleTabIndicator(
-                  color: grey100,
+                  color: AppColor.slightlyLighterYellow,
                 ),
                 splashFactory: NoSplash.splashFactory,
                 overlayColor: MaterialStateProperty.resolveWith<Color?>(
@@ -117,12 +117,17 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> with TickerProvid
                 tabs: const [
                   ZoomTapAnimation(
                     child: Tab(
-                      text: "Line",
+                      text: "Daily",
                     ),
                   ),
                   ZoomTapAnimation(
                     child: Tab(
-                      text: "Grouped Bar",
+                      text: "Weekly",
+                    ),
+                  ),
+                  ZoomTapAnimation(
+                    child: Tab(
+                      text: "Monthly",
                     ),
                   ),
                 ],
