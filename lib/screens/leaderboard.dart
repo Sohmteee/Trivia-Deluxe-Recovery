@@ -192,10 +192,26 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                     BorderRadius.circular(20.r),
                                               ),
                                               child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
-                                                  Image.asset(
-                                                    "assets/images/avatars/avatar_${index + 3 + 1}.png",
-                                                    height: 30.h,
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        "${index + 3 + 1}",
+                                                        style: TextStyle(
+                                                          color:
+                                                              AppColor.black,
+                                                          fontSize: 18.sp,
+                                                        ),
+                                                      ),
+                                                      SizedBox(width: 10.w),
+                                                      Image.asset(
+                                                        "assets/images/avatars/avatar_${index + 3 + 1}.png",
+                                                        height: 30.h,
+                                                      ),
+                                                    ],
                                                   ),
                                                   Text(
                                                     "Username",
