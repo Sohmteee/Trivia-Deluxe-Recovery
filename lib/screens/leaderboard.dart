@@ -30,7 +30,13 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> with TickerProvid
 
   Future<List?> getLeaderBoardData() async {
 
-    
+    String? getPeriod(int index) {
+      switch (index) {
+        case 0:
+          return 
+        default:
+      }
+    }
     List<dynamic>? responseData;
 
     try {
