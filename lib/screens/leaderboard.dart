@@ -33,8 +33,13 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> with TickerProvid
     String? getPeriod(int index) {
       switch (index) {
         case 0:
-          return 
+          return "daily";
+        case 1:
+          return "weekly";
+        case 2:
+          return "daily";
         default:
+        retutn null;
       }
     }
     List<dynamic>? responseData;
