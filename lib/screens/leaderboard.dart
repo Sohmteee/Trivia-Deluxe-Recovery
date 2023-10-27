@@ -28,6 +28,12 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> with TickerProvid
     tabController = TabController(length: 3, vsync: this);
   }
 
+   @override
+  void dispose() {
+    tabController.dispose();
+    super.dispose();
+  }
+
   Future<List?> getLeaderBoardData(int index) async {
 
     String? getPeriod() {
