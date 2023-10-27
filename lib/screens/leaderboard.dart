@@ -175,29 +175,25 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       SizedBox(
-                                          height: 150.h,
-                                          child: Row(children: [
+                                        height: 150.h,
+                                        child: Row(
+                                          children: [
                                             Container(
                                               height: 40.h,
                                               padding: EdgeInsets.all(5.sp),
-                                              
                                               decoration: BoxDecoration(
                                                 color: Colors.orange,
                                                 shape: BoxShape.circle,
-                                                image: DecorationImage(
-                                                  image: AssetImage(
-                                                      // "assets/images/avatars/avatar_${snapshot.data[0]['avatar']}.png",
-                                                      "assets/images/avatars/avatar_1.png",
-                                                      ),
-                                                  fit: BoxFit.cover,
-                                                ),
-
+                                                
                                               ),
-
-
-
+                                              child: AssetImage(
+                                                    // "assets/images/avatars/avatar_${snapshot.data[0]['avatar']}.png",
+                                                    "assets/images/avatars/avatar_1.png",
+                                                  ),
                                             ),
-                                          ],),),
+                                          ],
+                                        ),
+                                      ),
                                       // if (snapshot.data.length >= 4)
                                       Expanded(
                                         child: ListView.separated(
