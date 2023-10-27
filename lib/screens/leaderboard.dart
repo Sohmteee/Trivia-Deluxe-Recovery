@@ -20,6 +20,8 @@ class LeaderBoardScreen extends StatefulWidget {
 }
 
 class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
+  final tabController = TabController();
+
   Future<List?> getLeaderBoardData() async {
     List<dynamic>? responseData;
 
