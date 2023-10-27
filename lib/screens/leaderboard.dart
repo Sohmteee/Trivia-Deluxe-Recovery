@@ -19,8 +19,14 @@ class LeaderBoardScreen extends StatefulWidget {
   State<LeaderBoardScreen> createState() => _LeaderBoardScreenState();
 }
 
-class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
-  final tabController = TabController();
+class _LeaderBoardScreenState extends State<LeaderBoardScreen> with TickerProviderStateMixin {
+  final tabController = TabController(length: 2, vsync: this);
+
+  @override
+  void initState() {
+    super.initState();
+    tabController = 
+  }
 
   Future<List?> getLeaderBoardData() async {
     List<dynamic>? responseData;
