@@ -116,18 +116,33 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> with TickerProvid
                 ),
                 tabs: const [
                   ZoomTapAnimation(
-                    child: Tab(
-                      text: "Daily",
+                    child: Text(
+                      child: "Daily",
+                      style: TextStyle(
+                            color: AppColor.white,
+                            fontSize: 25.sp,
+                          ),
+                          textAlign: TextAlign.center,
                     ),
                   ),
                   ZoomTapAnimation(
-                    child: Tab(
-                      text: "Weekly",
+                    child: Text(
+                      child: "Weekly",
+                      style: TextStyle(
+                            color: AppColor.white,
+                            fontSize: 25.sp,
+                          ),
+                          textAlign: TextAlign.center,
                     ),
                   ),
                   ZoomTapAnimation(
-                    child: Tab(
-                      text: "Monthly",
+                    child: Text(
+                      child: "Monthly",
+                      style: TextStyle(
+                            color: AppColor.white,
+                            fontSize: 25.sp,
+                          ),
+                          textAlign: TextAlign.center,
                     ),
                   ),
                 ],
