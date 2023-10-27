@@ -100,11 +100,8 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> with TickerProvid
               isScrollable: true,
               labelColor: morningGlory300,
               unselectedLabelColor: grey300,
-              indicator: RectangleTabIndicator(
-                color: morningGlory300,
-                width: 41.w,
-                height: 4.h,
-                radius: 6.r,
+              indicator: CustomPaint(
+                
               ),
               splashFactory: NoSplash.splashFactory,
               overlayColor: MaterialStateProperty.resolveWith<Color?>(
