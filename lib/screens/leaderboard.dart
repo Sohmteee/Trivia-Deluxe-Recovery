@@ -20,8 +20,9 @@ class LeaderBoardScreen extends StatefulWidget {
   State<LeaderBoardScreen> createState() => _LeaderBoardScreenState();
 }
 
-class _LeaderBoardScreenState extends State<LeaderBoardScreen> with TickerProviderStateMixin {
-  late TabController tabController ;
+class _LeaderBoardScreenState extends State<LeaderBoardScreen>
+    with TickerProviderStateMixin {
+  late TabController tabController;
 
   @override
   void initState() {
@@ -29,14 +30,13 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> with TickerProvid
     tabController = TabController(length: 3, vsync: this);
   }
 
-   @override
+  @override
   void dispose() {
     tabController.dispose();
     super.dispose();
   }
 
   Future<List?> getLeaderBoardData(int index) async {
-
     String? getPeriod() {
       switch (index) {
         case 0:
@@ -46,9 +46,10 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> with TickerProvid
         case 2:
           return "month";
         default:
-        return null;
+          return null;
       }
     }
+
     List<dynamic>? responseData;
 
     try {
