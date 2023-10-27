@@ -47,7 +47,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> with TickerProvid
     try {
       final response = await http.get(
         Uri.parse(
-            "http://cbtportal.linkskool.com/api/get_leaderboard.php?game_type=triviaDeluxe&period={getPeriod}"),
+            "http://cbtportal.linkskool.com/api/get_leaderboard.php?game_type=triviaDeluxe&period=${getPeriod()}"),
         headers: {
           'Content-Type': 'application/json',
 
@@ -98,7 +98,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> with TickerProvid
                           children: [
                             Expanded(
                               child: FutureBuilder(
-                                future: getLeaderBoardData(),
+                                future: getLeaderBoardData(2),
                                 initialData: null,
                                 builder: (BuildContext context,
                                     AsyncSnapshot snapshot) {
