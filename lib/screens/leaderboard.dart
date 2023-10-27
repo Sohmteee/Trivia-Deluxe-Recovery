@@ -180,39 +180,37 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                               const BouncingScrollPhysics(),
                                           itemBuilder: (BuildContext context,
                                               int index) {
-                                            return Container(
-                                              decoration: BoxDecoration(
-                                                color: AppColor.white,
-                                                borderRadius:
-                                                    BorderRadius.circular(20.r),
-                                              ),
-                                              child: Row(
-                                                children: [
-                                                  Image.asset(
-                                                  "assets/images/avatars/avatar_${index + 1}.png",
-                                                  height: 30.h,
-                                                ),
-
-Text(
-                                                  "Username",
-                                                  style: TextStyle(
-                                                    color: AppColor.black,
-                                                    fontSize: 20.sp,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  "${30 - index}",
-                                                  style: TextStyle(
-                                                    color: AppColor.black,
-                                                    fontSize: 18.sp,
-                                                  ),),
-                                                ],
-                                                leading: 
-                                                title: 
-                                                trailing: 
-                                                ),
-                                              ),
-                                            );
+                                            if (index >= 3) {
+  return Container(
+    decoration: BoxDecoration(
+      color: AppColor.white,
+      borderRadius:
+          BorderRadius.circular(20.r),
+    ),
+    child: Row(
+      children: [
+        Image.asset(
+          "assets/images/avatars/avatar_${index + 1}.png",
+          height: 30.h,
+        ),
+        Text(
+          "Username",
+          style: TextStyle(
+            color: AppColor.black,
+            fontSize: 20.sp,
+          ),
+        ),
+        Text(
+          "${30 - index}",
+          style: TextStyle(
+            color: AppColor.black,
+            fontSize: 18.sp,
+          ),
+        ),
+      ],
+    ),
+  );
+}
                                           },
                                           separatorBuilder:
                                               (BuildContext context,
