@@ -41,7 +41,6 @@ class _GameStatsState extends State<GameStats> {
 
   @override
   void dispose() {
-      animateCoins = false;
       debugPrint("Animate coins: $animateCoins");
     
     super.dispose();
