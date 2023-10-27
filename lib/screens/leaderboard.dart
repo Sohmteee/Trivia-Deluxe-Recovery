@@ -25,10 +25,12 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> with TickerProvid
   @override
   void initState() {
     super.initState();
-    tabController = TabController(length: 2, vsync: this);
+    tabController = TabController(length: 3, vsync: this);
   }
 
   Future<List?> getLeaderBoardData() async {
+
+    
     List<dynamic>? responseData;
 
     try {
