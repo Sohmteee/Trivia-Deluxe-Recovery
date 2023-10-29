@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/data/box.dart';
 import 'package:trivia/main.dart';
+import 'package:trivia/models/dialogs/loading.dart';
 import 'package:trivia/providers/profile.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
@@ -293,6 +294,8 @@ showEnterUsernameDialog(BuildContext context) {
             playTap(context);
             if (controller.value.text.trim().isNotEmpty) {
               box.put("avatar", avatar!);
+              print("Avatar: $avatar");
+              print("Username: ${controller.value.text.trim()}");
               final profileProvider =
                   Provider.of<ProfileProvider>(context, listen: false);
               profileProvider.createPlayer(
@@ -301,7 +304,15 @@ showEnterUsernameDialog(BuildContext context) {
                 avatar: avatar!,
                 isCreatePlayer: true,
               );
+
               Navigator.pop(context);
+              showLoadingDialog(context);
+
+              profileProvider.addListener(() {
+                if (!profileProvider.isLoading) {
+                  Navigator.pop(context);
+                }
+              });
             } else {
               showGameDialog(
                 context,

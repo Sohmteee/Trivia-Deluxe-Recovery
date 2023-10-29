@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
@@ -28,6 +29,10 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
   void initState() {
     super.initState();
     tabController = TabController(length: 3, vsync: this);
+
+    final questionProvider =
+        Provider.of<QuestionProvider>(context, listen: false);
+    questionProvider.updateLeaderBoardScore(context);
   }
 
   @override
@@ -55,11 +60,9 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
     try {
       final response = await http.get(
         Uri.parse(
-            "http://cbtportal.linkskool.com/api/get_leaderboard.php?game_type=triviaDeluxe&period=${getPeriod()}"),
+            "http://cbtportal.linkskool.com/api/get_leaderboard.php?game_type=triviaDTest&period=${getPeriod()}"),
         headers: {
           'Content-Type': 'application/json',
-
-          // 'Authorization': 'Token $apiKey',
         },
       );
 
@@ -82,8 +85,99 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
   @override
   Widget build(BuildContext context) {
     return GameBackground(
+      /* floatingActionButton: SizedBox(
+        height: 50.h,
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 15.w),
+          decoration: BoxDecoration(
+            color: AppColor.white,
+            borderRadius: BorderRadius.circular(30.r),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                "Current Position",
+                style: TextStyle(
+                  color: AppColor.black,
+                  fontSize: 20.sp,
+                ),
+              ),
+              SizedBox(width: 10.w),
+              FutureBuilder(
+                future: getLeaderBoardData(0),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  Map<String, dynamic> getPosition() {
+                    int index = snapshot.data.indexOf(snapshot.data
+                            .where((profile) =>
+                                profile["username"] ==
+                                Provider.of<ProfileProvider>(context).username)
+                            .first) +
+                        1;
+
+                    Color color = switch (index) {
+                      1 => const Color.fromARGB(255, 243, 165, 47),
+                      2 => Colors.grey,
+                      3 => const Color.fromARGB(255, 177, 117, 95),
+                      _ => AppColor.white,
+                    };
+
+                    String suffix = switch (int.parse(
+                        index.toString()[index.toString().length - 1])) {
+                      1 => "st",
+                      2 => "nd",
+                      3 => "rd",
+                      _ => "th",
+                    };
+
+                    if (index >= 1) {
+                      return {
+                        "position": "$index$suffix",
+                        "color": color,
+                      };
+                    }
+
+                    return {
+                      "position": "---",
+                      "color": AppColor.white,
+                    };
+                  }
+
+                  if (snapshot.data == null) {
+                    return Center(
+                      child: CircularProgressIndicator(
+                        color: AppColor.yellow,
+                      ),
+                    );
+                  }
+                  if (snapshot.hasError || snapshot.data == []) {
+                    return Center(
+                      child: Text(
+                        "---",
+                        style: TextStyle(
+                          color: AppColor.white,
+                          fontSize: 25.sp,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    );
+                  }
+                  return Text(
+                    getPosition()["position"],
+                    style: TextStyle(
+                      color: getPosition()["color"],
+                      fontSize: 30.sp,
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+      ), */
       body: Padding(
-        padding: EdgeInsets.fromLTRB(40.w, 40.h, 40.w, 0),
+        padding: EdgeInsets.only(top: 40.h),
         child: Column(
           children: [
             Center(
@@ -124,296 +218,1397 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                         : Colors.transparent;
                                   },
                                 ),
-                                tabs: const [
-                                  ZoomTapAnimation(
-                                    child: Tab(
-                                      text: "Daily",
-                                    ),
+                                tabs: [
+                                  Column(
+                                    children: [
+                                      ZoomTapAnimation(
+                                        child: Text(
+                                          "Daily",
+                                          style: TextStyle(
+                                            fontSize: 20.sp,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: 10.h),
+                                    ],
                                   ),
-                                  ZoomTapAnimation(
-                                    child: Tab(
-                                      text: "Weekly",
-                                    ),
+                                  Column(
+                                    children: [
+                                      ZoomTapAnimation(
+                                        child: Text(
+                                          "Weekly",
+                                          style: TextStyle(
+                                            fontSize: 20.sp,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: 10.h),
+                                    ],
                                   ),
-                                  ZoomTapAnimation(
-                                    child: Tab(
-                                      text: "Monthly",
-                                    ),
+                                  Column(
+                                    children: [
+                                      ZoomTapAnimation(
+                                        child: Text(
+                                          "Monthly",
+                                          style: TextStyle(
+                                            fontSize: 20.sp,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: 10.h),
+                                    ],
                                   ),
                                 ],
                               ),
                             ),
                             SizedBox(height: 20.h),
                             Expanded(
-                              child: FutureBuilder(
-                                future: getLeaderBoardData(2),
-                                initialData: null,
-                                builder: (BuildContext context,
-                                    AsyncSnapshot snapshot) {
-                                  if (snapshot.data == null) {
-                                    return Center(
-                                      child: CircularProgressIndicator(
-                                        color: AppColor.yellow,
-                                      ),
-                                    );
-                                  }
-                                  if (snapshot.hasError ||
-                                      snapshot.data == []) {
-                                    return Center(
-                                      child: Text(
-                                        "An error occured while fetching leaderboard data.",
-                                        style: TextStyle(
-                                          color: AppColor.white,
-                                          fontSize: 25.sp,
-                                        ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    );
-                                  }
+                              child: TabBarView(
+                                controller: tabController,
+                                physics: const BouncingScrollPhysics(),
+                                children: List.generate(
+                                  3,
+                                  (index) {
+                                    return FutureBuilder(
+                                      future: getLeaderBoardData(index),
+                                      initialData: null,
+                                      builder: (BuildContext context,
+                                          AsyncSnapshot snapshot) {
+                                        if (snapshot.data == null) {
+                                          return Center(
+                                            child: CircularProgressIndicator(
+                                              color: AppColor.yellow,
+                                            ),
+                                          );
+                                        }
+                                        if (snapshot.hasError ||
+                                            snapshot.data == []) {
+                                          return Center(
+                                            child: Text(
+                                              "An error occured while fetching leaderboard data.",
+                                              style: TextStyle(
+                                                color: AppColor.white,
+                                                fontSize: 25.sp,
+                                              ),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          );
+                                        }
 
-                                  return Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        height: 150.h,
-                                        child: Row(
+                                        return Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
                                           children: [
                                             Container(
-                                              height: 65.h,
-                                              padding: EdgeInsets.all(2.sp),
-                                              decoration: const BoxDecoration(
-                                                color: Colors.grey,
-                                                shape: BoxShape.circle,
-                                              ),
-                                              child: Image.asset(
-                                                // "assets/images/avatars/avatar_${snapshot.data[0]['avatar']}.png",
-                                                "assets/images/avatars/avatar_2.png",
-                                              ),
-                                            ),
-                                            Container(
-                                              height: 70.h,
-                                              padding: EdgeInsets.all(2.sp),
-                                              decoration: const BoxDecoration(
-                                                color: Color.fromARGB(
-                                                    255, 243, 165, 47),
-                                                shape: BoxShape.circle,
-                                              ),
-                                              child: Image.asset(
-                                                // "assets/images/avatars/avatar_${snapshot.data[0]['avatar']}.png",
-                                                "assets/images/avatars/avatar_1.png",
-                                              ),
-                                            ),
-                                            Container(
-                                              height: 60.h,
-                                              padding: EdgeInsets.all(2.sp),
-                                              decoration: const BoxDecoration(
-                                                color: Color.fromARGB(
-                                                    255, 177, 117, 95),
-                                                shape: BoxShape.circle,
-                                              ),
-                                              child: Image.asset(
-                                                // "assets/images/avatars/avatar_${snapshot.data[0]['avatar']}.png",
-                                                "assets/images/avatars/avatar_3.png",
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      // if (snapshot.data.length >= 4)
-                                      Expanded(
-                                        child: ListView.separated(
-                                          itemCount: 20 - 3,
-                                          physics:
-                                              const BouncingScrollPhysics(),
-                                          itemBuilder: (BuildContext context,
-                                              int index) {
-                                            return Container(
                                               padding: EdgeInsets.symmetric(
-                                                  vertical: 15.h,
-                                                  horizontal: 15.w),
-                                              decoration: BoxDecoration(
-                                                color: AppColor.white,
-                                                borderRadius:
-                                                    BorderRadius.circular(20.r),
-                                              ),
+                                                  horizontal: 40.w),
+                                              height: 150.h,
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceBetween,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
                                                 children: [
-                                                  Row(
+                                                  Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
                                                     children: [
-                                                      Text(
-                                                        "${index + 3 + 1}",
-                                                        style: TextStyle(
-                                                          color: AppColor.black,
-                                                          fontSize: 18.sp,
-                                                        ),
+                                                      Stack(
+                                                        clipBehavior: Clip.none,
+                                                        children: [
+                                                          Container(
+                                                            height: 65.h,
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    2.sp),
+                                                            decoration:
+                                                                const BoxDecoration(
+                                                              color:
+                                                                  Colors.grey,
+                                                              shape: BoxShape
+                                                                  .circle,
+                                                            ),
+                                                            child: Image.asset(
+                                                              // "assets/images/avatars/avatar_${snapshot.data[0]['avatar']}.png",
+                                                              "assets/images/avatars/avatar_${snapshot.data[1]["avatar"]}.png",
+                                                            ),
+                                                          ),
+                                                          Positioned(
+                                                            bottom: 0,
+                                                            left: 50.w,
+                                                            child: Column(
+                                                              children: [
+                                                                Text(
+                                                                  "${snapshot.data[1]["username"]}",
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                              .grey[
+                                                                          400],
+                                                                      fontSize:
+                                                                          18.sp,
+                                                                      shadows: const [
+                                                                        Shadow(
+                                                                          color:
+                                                                              Colors.black,
+                                                                          offset: Offset(
+                                                                              -2,
+                                                                              2),
+                                                                          blurRadius:
+                                                                              5,
+                                                                        ),
+                                                                        Shadow(
+                                                                          color:
+                                                                              Colors.black,
+                                                                          offset: Offset(
+                                                                              -2,
+                                                                              -2),
+                                                                          blurRadius:
+                                                                              5,
+                                                                        ),
+                                                                      ]),
+                                                                ),
+                                                                Text(
+                                                                  "${snapshot.data[1]["score"]}",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: Colors
+                                                                        .grey,
+                                                                    fontSize:
+                                                                        18.sp,
+                                                                    shadows: const [
+                                                                      Shadow(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        offset: Offset(
+                                                                            -2,
+                                                                            2),
+                                                                        blurRadius:
+                                                                            5,
+                                                                      ),
+                                                                      Shadow(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        offset: Offset(
+                                                                            -2,
+                                                                            -2),
+                                                                        blurRadius:
+                                                                            5,
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          Positioned(
+                                                            bottom: 0,
+                                                            left: 0.w,
+                                                            child: Image.asset(
+                                                              "assets/images/medals/silver.png",
+                                                              width: 30.w,
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                      SizedBox(width: 10.w),
-                                                      Image.asset(
-                                                        "assets/images/avatars/avatar_${index + 3 + 1}.png",
-                                                        height: 30.h,
-                                                      ),
-                                                      SizedBox(width: 10.w),
-                                                      Text(
-                                                        "Username",
-                                                        style: TextStyle(
-                                                          color: AppColor.black,
-                                                          fontSize: 20.sp,
+                                                      Container(
+                                                        height: 43.h,
+                                                        width: 3.w,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          gradient:
+                                                              LinearGradient(
+                                                            colors: [
+                                                              Colors.grey,
+                                                              AppColor.yellow,
+                                                            ],
+                                                            begin: Alignment
+                                                                .topCenter,
+                                                            end: Alignment
+                                                                .bottomCenter,
+                                                          ),
                                                         ),
                                                       ),
                                                     ],
-                                                  ),
-                                                  Text(
-                                                    "${30 - index + 3}",
-                                                    style: TextStyle(
-                                                      color: AppColor.black,
-                                                      fontSize: 18.sp,
-                                                    ),
-                                                  ),
+                                                  ).animate().moveY(
+                                                        duration: 1.seconds,
+                                                        curve: Curves.easeInOut,
+                                                        begin: 43.h,
+                                                        end: 0,
+                                                      ),
+                                                  Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    children: [
+                                                      Stack(
+                                                        clipBehavior: Clip.none,
+                                                        children: [
+                                                          Container(
+                                                            height: 70.h,
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    2.sp),
+                                                            decoration:
+                                                                const BoxDecoration(
+                                                              color: Color
+                                                                  .fromARGB(
+                                                                      255,
+                                                                      243,
+                                                                      165,
+                                                                      47),
+                                                              shape: BoxShape
+                                                                  .circle,
+                                                            ),
+                                                            child: Image.asset(
+                                                              "assets/images/avatars/avatar_${snapshot.data[0]['avatar']}.png",
+                                                            ),
+                                                          ),
+                                                          Positioned(
+                                                            bottom: 0,
+                                                            right: 0.w,
+                                                            child: Image.asset(
+                                                              "assets/images/medals/gold.png",
+                                                              width: 30.w,
+                                                            ),
+                                                          ),
+                                                          Positioned(
+                                                            top: 0,
+                                                            left: 50.w,
+                                                            child: Column(
+                                                              children: [
+                                                                Text(
+                                                                  "${snapshot.data[0]["username"]}",
+                                                                  style: TextStyle(
+                                                                      color: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          247,
+                                                                          180,
+                                                                          81),
+                                                                      fontSize:
+                                                                          18.sp,
+                                                                      shadows: const [
+                                                                        Shadow(
+                                                                          color:
+                                                                              Colors.black,
+                                                                          offset: Offset(
+                                                                              -2,
+                                                                              2),
+                                                                          blurRadius:
+                                                                              5,
+                                                                        ),
+                                                                        Shadow(
+                                                                          color:
+                                                                              Colors.black,
+                                                                          offset: Offset(
+                                                                              -2,
+                                                                              -2),
+                                                                          blurRadius:
+                                                                              5,
+                                                                        ),
+                                                                      ]),
+                                                                ),
+                                                                Text(
+                                                                  "${snapshot.data[0]["score"]}",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: const Color
+                                                                        .fromARGB(
+                                                                        255,
+                                                                        243,
+                                                                        165,
+                                                                        47),
+                                                                    fontSize:
+                                                                        18.sp,
+                                                                    shadows: const [
+                                                                      Shadow(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        offset: Offset(
+                                                                            -2,
+                                                                            2),
+                                                                        blurRadius:
+                                                                            5,
+                                                                      ),
+                                                                      Shadow(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        offset: Offset(
+                                                                            -2,
+                                                                            -2),
+                                                                        blurRadius:
+                                                                            5,
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      Container(
+                                                        height: 78.h,
+                                                        width: 3.w,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          gradient:
+                                                              LinearGradient(
+                                                            colors: [
+                                                              const Color
+                                                                  .fromARGB(255,
+                                                                  243, 165, 47),
+                                                              AppColor.yellow,
+                                                            ],
+                                                            begin: Alignment
+                                                                .topCenter,
+                                                            end: Alignment
+                                                                .bottomCenter,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ).animate().moveY(
+                                                        duration: 1.seconds,
+                                                        curve: Curves.easeInOut,
+                                                        begin: 78.h,
+                                                        end: 0,
+                                                      ),
+                                                  Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    children: [
+                                                      Stack(
+                                                        clipBehavior: Clip.none,
+                                                        children: [
+                                                          Container(
+                                                            height: 60.h,
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    2.sp),
+                                                            decoration:
+                                                                const BoxDecoration(
+                                                              color: Color
+                                                                  .fromARGB(
+                                                                      255,
+                                                                      243,
+                                                                      165,
+                                                                      47),
+                                                              shape: BoxShape
+                                                                  .circle,
+                                                            ),
+                                                            child: Image.asset(
+                                                              "assets/images/avatars/avatar_${snapshot.data[2]['avatar']}.png",
+                                                            ),
+                                                          ),
+                                                          Positioned(
+                                                            bottom: 0,
+                                                            right: 0.w,
+                                                            child: Image.asset(
+                                                              "assets/images/medals/bronze.png",
+                                                              width: 30.w,
+                                                            ),
+                                                          ),
+                                                          Positioned(
+                                                            bottom: 0,
+                                                            right: 50.w,
+                                                            child: Column(
+                                                              children: [
+                                                                Text(
+                                                                  "${snapshot.data[2]["username"]}",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: const Color
+                                                                        .fromARGB(
+                                                                        255,
+                                                                        226,
+                                                                        157,
+                                                                        132),
+                                                                    fontSize:
+                                                                        18.sp,
+                                                                    shadows: const [
+                                                                      Shadow(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        offset: Offset(
+                                                                            2,
+                                                                            2),
+                                                                        blurRadius:
+                                                                            5,
+                                                                      ),
+                                                                      Shadow(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        offset: Offset(
+                                                                            2,
+                                                                            -2),
+                                                                        blurRadius:
+                                                                            5,
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                                Text(
+                                                                  "${snapshot.data[2]["score"]}",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: const Color
+                                                                        .fromARGB(
+                                                                        255,
+                                                                        177,
+                                                                        117,
+                                                                        95),
+                                                                    fontSize:
+                                                                        18.sp,
+                                                                    shadows: const [
+                                                                      Shadow(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        offset: Offset(
+                                                                            2,
+                                                                            2),
+                                                                        blurRadius:
+                                                                            5,
+                                                                      ),
+                                                                      Shadow(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        offset: Offset(
+                                                                            2,
+                                                                            -2),
+                                                                        blurRadius:
+                                                                            5,
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      Container(
+                                                        height: 25.h,
+                                                        width: 3.w,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          gradient:
+                                                              LinearGradient(
+                                                            colors: [
+                                                              const Color
+                                                                  .fromARGB(255,
+                                                                  177, 117, 95),
+                                                              AppColor.yellow,
+                                                            ],
+                                                            begin: Alignment
+                                                                .topCenter,
+                                                            end: Alignment
+                                                                .bottomCenter,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ).animate().moveY(
+                                                        duration: 1.seconds,
+                                                        curve: Curves.easeInOut,
+                                                        begin: 25.h,
+                                                        end: 0,
+                                                      ),
                                                 ],
                                               ),
-                                            );
-                                          },
-                                          separatorBuilder:
-                                              (BuildContext context,
-                                                  int index) {
-                                            return SizedBox(height: 10.h);
-                                          },
-                                        ),
-                                      ),
-                                    ],
-                                  );
-                                  /* return ListView.separated(
-                                    itemCount: snapshot.data.length,
-                                    physics: const BouncingScrollPhysics(),
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return Container(
-                                        decoration: BoxDecoration(
-                                          color: AppColor.white,
-                                          borderRadius:
-                                              BorderRadius.circular(20.r),
-                                        ),
-                                        child: ListTile(
-                                          tileColor: AppColor.white,
-                                          leading: Image.asset(
-                                            "assets/images/avatars/avatar_${snapshot.data[index]['avatar']}.png",
-                                            height: 30.h,
+                                            ),
+                                            Expanded(
+                                              child: Container(
+                                                padding:
+                                                    EdgeInsets.only(top: 5.h),
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.vertical(
+                                                    top: Radius.circular(30.r),
+                                                  ),
+                                                  gradient: LinearGradient(
+                                                    colors: [
+                                                      AppColor.yellow,
+                                                      AppColor.darkRed,
+                                                    ],
+                                                    begin: Alignment.topCenter,
+                                                    end: Alignment.bottomCenter,
+                                                  ),
+                                                ),
+                                                child: (snapshot.data.length >=
+                                                        4)
+                                                    ? ListView.separated(
+                                                        padding:
+                                                            EdgeInsets.fromLTRB(
+                                                                20.w,
+                                                                15.h,
+                                                                20.w,
+                                                                0),
+                                                        itemCount: snapshot
+                                                                .data.length -
+                                                            3,
+                                                        physics:
+                                                            const BouncingScrollPhysics(),
+                                                        itemBuilder:
+                                                            (BuildContext
+                                                                    context,
+                                                                int index) {
+                                                          return Container(
+                                                            padding: EdgeInsets
+                                                                .symmetric(
+                                                                    vertical:
+                                                                        10.h,
+                                                                    horizontal:
+                                                                        15.w),
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: AppColor
+                                                                  .white,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          50.r),
+                                                            ),
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Row(
+                                                                  children: [
+                                                                    Text(
+                                                                      "${index + 3 + 1}",
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: AppColor
+                                                                            .black,
+                                                                        fontSize:
+                                                                            18.sp,
+                                                                      ),
+                                                                    ),
+                                                                    SizedBox(
+                                                                        width: 10
+                                                                            .w),
+                                                                    Image.asset(
+                                                                      "assets/images/avatars/avatar_${snapshot.data[index + 3]["avatar"]}.png",
+                                                                      height:
+                                                                          30.h,
+                                                                    ),
+                                                                    SizedBox(
+                                                                        width: 10
+                                                                            .w),
+                                                                    Text(
+                                                                      "${snapshot.data[index + 3]["username"]}",
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: AppColor
+                                                                            .black,
+                                                                        fontSize:
+                                                                            20.sp,
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                Container(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(15
+                                                                              .sp),
+                                                                  decoration: BoxDecoration(
+                                                                      color: AppColor
+                                                                          .slightlyLighterYellow
+                                                                          .withOpacity(
+                                                                              .8),
+                                                                      shape: BoxShape
+                                                                          .circle),
+                                                                  child: Text(
+                                                                    "${snapshot.data[index + 3]["score"]}",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: AppColor
+                                                                          .white,
+                                                                      fontSize:
+                                                                          18.sp,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          );
+                                                        },
+                                                        separatorBuilder:
+                                                            (BuildContext
+                                                                    context,
+                                                                int index) {
+                                                          return SizedBox(
+                                                              height: 10.h);
+                                                        },
+                                                      )
+                                                    : const Column(
+                                                        children: [
+                                                          Center(
+                                                            child: Text(
+                                                                "End of Leaderboard"),
+                                                          ),
+                                                        ],
+                                                      ),
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                        /* return ListView.separated(
+                                      itemCount: snapshot.data.length,
+                                      physics: const BouncingScrollPhysics(),
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        return Container(
+                                          decoration: BoxDecoration(
+                                            color: AppColor.white,
+                                            borderRadius:
+                                                BorderRadius.circular(20.r),
                                           ),
-                                          title: Text(
-                                            "${snapshot.data[index]['username']}",
-                                            style: TextStyle(
-                                              color: AppColor.black,
-                                              fontSize: 20.sp,
+                                          child: ListTile(
+                                            tileColor: AppColor.white,
+                                            leading: Image.asset(
+                                              "assets/images/avatars/avatar_${snapshot.data[index]['avatar']}.png",
+                                              height: 30.h,
+                                            ),
+                                            title: Text(
+                                              "${snapshot.data[index]['username']}",
+                                              style: TextStyle(
+                                                color: AppColor.black,
+                                                fontSize: 20.sp,
+                                              ),
+                                            ),
+                                            trailing: Text(
+                                              "${snapshot.data[index]['score']}",
+                                              style: TextStyle(
+                                                color: AppColor.black,
+                                                fontSize: 18.sp,
+                                              ),
                                             ),
                                           ),
-                                          trailing: Text(
-                                            "${snapshot.data[index]['score']}",
-                                            style: TextStyle(
-                                              color: AppColor.black,
-                                              fontSize: 18.sp,
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                    separatorBuilder:
-                                        (BuildContext context, int index) {
-                                      return SizedBox(height: 10.h);
-                                    },
-                                  ); */
-                                },
+                                        );
+                                      },
+                                      separatorBuilder:
+                                          (BuildContext context, int index) {
+                                        return SizedBox(height: 10.h);
+                                      },
+                                    ); */
+                                      },
+                                    );
+                                  },
+                                ),
                               ),
                             )
-                          ],
-                        )
-                      : Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Please play at least one game to see leaderboard.",
-                              style: TextStyle(
-                                color: AppColor.white,
-                                fontSize: 25.sp,
+
+                            /* Expanded(
+                              child: TabBarView(
+                                controller: tabController,
+                                physics: const BouncingScrollPhysics(),
+                                children: List.generate(
+                                  3,
+                                  (index) {
+                                    return FutureBuilder(
+                                      future: getLeaderBoardData(index),
+                                      initialData: null,
+                                      builder: (BuildContext context,
+                                          AsyncSnapshot snapshot) {
+                                        if (snapshot.data == null) {
+                                          return Center(
+                                            child: CircularProgressIndicator(
+                                              color: AppColor.yellow,
+                                            ),
+                                          );
+                                        }
+                                        if (snapshot.hasError ||
+                                            snapshot.data == []) {
+                                          return Center(
+                                            child: Text(
+                                              "An error occured while fetching leaderboard data.",
+                                              style: TextStyle(
+                                                color: AppColor.white,
+                                                fontSize: 25.sp,
+                                              ),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          );
+                                        }
+
+                                        return Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 40.w),
+                                              height: 150.h,
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
+                                                children: [
+                                                  Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    children: [
+                                                      Stack(
+                                                        clipBehavior: Clip.none,
+                                                        children: [
+                                                          Container(
+                                                            height: 65.h,
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    2.sp),
+                                                            decoration:
+                                                                const BoxDecoration(
+                                                              color:
+                                                                  Colors.grey,
+                                                              shape: BoxShape
+                                                                  .circle,
+                                                            ),
+                                                            child: Image.asset(
+                                                              // "assets/images/avatars/avatar_${snapshot.data[0]['avatar']}.png",
+                                                              "assets/images/avatars/avatar_2.png",
+                                                            ),
+                                                          ),
+                                                          Positioned(
+                                                            bottom: 0,
+                                                            left: 50.w,
+                                                            child: Column(
+                                                              children: [
+                                                                Text(
+                                                                  "Alex Smith",
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                              .grey[
+                                                                          400],
+                                                                      fontSize:
+                                                                          18.sp,
+                                                                      shadows: const [
+                                                                        Shadow(
+                                                                          color:
+                                                                              Colors.black,
+                                                                          offset: Offset(
+                                                                              -2,
+                                                                              2),
+                                                                          blurRadius:
+                                                                              5,
+                                                                        ),
+                                                                        Shadow(
+                                                                          color:
+                                                                              Colors.black,
+                                                                          offset: Offset(
+                                                                              -2,
+                                                                              -2),
+                                                                          blurRadius:
+                                                                              5,
+                                                                        ),
+                                                                      ]),
+                                                                ),
+                                                                Text(
+                                                                  "35",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: Colors
+                                                                        .grey,
+                                                                    fontSize:
+                                                                        18.sp,
+                                                                    shadows: const [
+                                                                      Shadow(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        offset: Offset(
+                                                                            -2,
+                                                                            2),
+                                                                        blurRadius:
+                                                                            5,
+                                                                      ),
+                                                                      Shadow(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        offset: Offset(
+                                                                            -2,
+                                                                            -2),
+                                                                        blurRadius:
+                                                                            5,
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          Positioned(
+                                                            bottom: 0,
+                                                            left: 0.w,
+                                                            child: Image.asset(
+                                                              "assets/images/medals/silver.png",
+                                                              width: 30.w,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      Container(
+                                                        height: 43.h,
+                                                        width: 3.w,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          gradient:
+                                                              LinearGradient(
+                                                            colors: [
+                                                              Colors.grey,
+                                                              AppColor.yellow,
+                                                            ],
+                                                            begin: Alignment
+                                                                .topCenter,
+                                                            end: Alignment
+                                                                .bottomCenter,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ).animate().moveY(
+                                                        duration: 1.seconds,
+                                                        curve: Curves.easeInOut,
+                                                        begin: 43.h,
+                                                        end: 0,
+                                                      ),
+                                                  Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    children: [
+                                                      Stack(
+                                                        clipBehavior: Clip.none,
+                                                        children: [
+                                                          Container(
+                                                            height: 70.h,
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    2.sp),
+                                                            decoration:
+                                                                const BoxDecoration(
+                                                              color: Color
+                                                                  .fromARGB(
+                                                                      255,
+                                                                      243,
+                                                                      165,
+                                                                      47),
+                                                              shape: BoxShape
+                                                                  .circle,
+                                                            ),
+                                                            child: Image.asset(
+                                                              // "assets/images/avatars/avatar_${snapshot.data[0]['avatar']}.png",
+                                                              "assets/images/avatars/avatar_1.png",
+                                                            ),
+                                                          ),
+                                                          Positioned(
+                                                            bottom: 0,
+                                                            right: 0.w,
+                                                            child: Image.asset(
+                                                              "assets/images/medals/gold.png",
+                                                              width: 30.w,
+                                                            ),
+                                                          ),
+                                                          Positioned(
+                                                            top: 0,
+                                                            left: 50.w,
+                                                            child: Column(
+                                                              children: [
+                                                                Text(
+                                                                  "John Doe",
+                                                                  style: TextStyle(
+                                                                      color: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          247,
+                                                                          180,
+                                                                          81),
+                                                                      fontSize:
+                                                                          18.sp,
+                                                                      shadows: const [
+                                                                        Shadow(
+                                                                          color:
+                                                                              Colors.black,
+                                                                          offset: Offset(
+                                                                              -2,
+                                                                              2),
+                                                                          blurRadius:
+                                                                              5,
+                                                                        ),
+                                                                        Shadow(
+                                                                          color:
+                                                                              Colors.black,
+                                                                          offset: Offset(
+                                                                              -2,
+                                                                              -2),
+                                                                          blurRadius:
+                                                                              5,
+                                                                        ),
+                                                                      ]),
+                                                                ),
+                                                                Text(
+                                                                  "36",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: const Color
+                                                                        .fromARGB(
+                                                                        255,
+                                                                        243,
+                                                                        165,
+                                                                        47),
+                                                                    fontSize:
+                                                                        18.sp,
+                                                                    shadows: const [
+                                                                      Shadow(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        offset: Offset(
+                                                                            -2,
+                                                                            2),
+                                                                        blurRadius:
+                                                                            5,
+                                                                      ),
+                                                                      Shadow(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        offset: Offset(
+                                                                            -2,
+                                                                            -2),
+                                                                        blurRadius:
+                                                                            5,
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      Container(
+                                                        height: 78.h,
+                                                        width: 3.w,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          gradient:
+                                                              LinearGradient(
+                                                            colors: [
+                                                              const Color
+                                                                  .fromARGB(255,
+                                                                  243, 165, 47),
+                                                              AppColor.yellow,
+                                                            ],
+                                                            begin: Alignment
+                                                                .topCenter,
+                                                            end: Alignment
+                                                                .bottomCenter,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ).animate().moveY(
+                                                        duration: 1.seconds,
+                                                        curve: Curves.easeInOut,
+                                                        begin: 78.h,
+                                                        end: 0,
+                                                      ),
+                                                  Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    children: [
+                                                      Stack(
+                                                        clipBehavior: Clip.none,
+                                                        children: [
+                                                          Container(
+                                                            height: 60.h,
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    2.sp),
+                                                            decoration:
+                                                                const BoxDecoration(
+                                                              color: Color
+                                                                  .fromARGB(
+                                                                      255,
+                                                                      177,
+                                                                      117,
+                                                                      95),
+                                                              shape: BoxShape
+                                                                  .circle,
+                                                            ),
+                                                            child: Image.asset(
+                                                              // "assets/images/avatars/avatar_${snapshot.data[0]['avatar']}.png",
+                                                              "assets/images/avatars/avatar_3.png",
+                                                            ),
+                                                          ),
+                                                          Positioned(
+                                                            bottom: 0,
+                                                            right: 0.w,
+                                                            child: Image.asset(
+                                                              "assets/images/medals/bronze.png",
+                                                              width: 30.w,
+                                                            ),
+                                                          ),
+                                                          Positioned(
+                                                            bottom: 0,
+                                                            right: 50.w,
+                                                            child: Column(
+                                                              children: [
+                                                                Text(
+                                                                  "James Dude",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: const Color
+                                                                        .fromARGB(
+                                                                        255,
+                                                                        226,
+                                                                        157,
+                                                                        132),
+                                                                    fontSize:
+                                                                        18.sp,
+                                                                    shadows: const [
+                                                                      Shadow(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        offset: Offset(
+                                                                            2,
+                                                                            2),
+                                                                        blurRadius:
+                                                                            5,
+                                                                      ),
+                                                                      Shadow(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        offset: Offset(
+                                                                            2,
+                                                                            -2),
+                                                                        blurRadius:
+                                                                            5,
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                                Text(
+                                                                  "34",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: const Color
+                                                                        .fromARGB(
+                                                                        255,
+                                                                        177,
+                                                                        117,
+                                                                        95),
+                                                                    fontSize:
+                                                                        18.sp,
+                                                                    shadows: const [
+                                                                      Shadow(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        offset: Offset(
+                                                                            2,
+                                                                            2),
+                                                                        blurRadius:
+                                                                            5,
+                                                                      ),
+                                                                      Shadow(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        offset: Offset(
+                                                                            2,
+                                                                            -2),
+                                                                        blurRadius:
+                                                                            5,
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      Container(
+                                                        height: 25.h,
+                                                        width: 3.w,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          gradient:
+                                                              LinearGradient(
+                                                            colors: [
+                                                              const Color
+                                                                  .fromARGB(255,
+                                                                  177, 117, 95),
+                                                              AppColor.yellow,
+                                                            ],
+                                                            begin: Alignment
+                                                                .topCenter,
+                                                            end: Alignment
+                                                                .bottomCenter,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ).animate().moveY(
+                                                        duration: 1.seconds,
+                                                        curve: Curves.easeInOut,
+                                                        begin: 25.h,
+                                                        end: 0,
+                                                      ),
+                                                ],
+                                              ),
+                                            ),
+                                            // if (snapshot.data.length >= 4)
+                                            Expanded(
+                                              child: Container(
+                                                padding:
+                                                    EdgeInsets.only(top: 5.h),
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.vertical(
+                                                    top: Radius.circular(30.r),
+                                                  ),
+                                                  gradient: LinearGradient(
+                                                    colors: [
+                                                      AppColor.yellow,
+                                                      AppColor.darkRed,
+                                                    ],
+                                                    begin: Alignment.topCenter,
+                                                    end: Alignment.bottomCenter,
+                                                  ),
+                                                ),
+                                                child: ListView.separated(
+                                                  padding: EdgeInsets.fromLTRB(
+                                                      20.w, 15.h, 20.w, 0),
+                                                  itemCount: 20 - 3,
+                                                  physics:
+                                                      const BouncingScrollPhysics(),
+                                                  itemBuilder:
+                                                      (BuildContext context,
+                                                          int index) {
+                                                    return Container(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              vertical: 10.h,
+                                                              horizontal: 15.w),
+                                                      decoration: BoxDecoration(
+                                                        color: AppColor.white,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(50.r),
+                                                      ),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Row(
+                                                            children: [
+                                                              Text(
+                                                                "${index + 3 + 1}",
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: AppColor
+                                                                      .black,
+                                                                  fontSize:
+                                                                      18.sp,
+                                                                ),
+                                                              ),
+                                                              SizedBox(
+                                                                  width: 10.w),
+                                                              Image.asset(
+                                                                "assets/images/avatars/avatar_${index + 3 + 1}.png",
+                                                                height: 30.h,
+                                                              ),
+                                                              SizedBox(
+                                                                  width: 10.w),
+                                                              Text(
+                                                                "Username",
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: AppColor
+                                                                      .black,
+                                                                  fontSize:
+                                                                      20.sp,
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          Container(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    15.sp),
+                                                            decoration: BoxDecoration(
+                                                                color: AppColor
+                                                                    .slightlyLighterYellow
+                                                                    .withOpacity(
+                                                                        .8),
+                                                                shape: BoxShape
+                                                                    .circle),
+                                                            child: Text(
+                                                              "${30 - index + 3}",
+                                                              style: TextStyle(
+                                                                color: AppColor
+                                                                    .white,
+                                                                fontSize: 18.sp,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    );
+                                                  },
+                                                  separatorBuilder:
+                                                      (BuildContext context,
+                                                          int index) {
+                                                    return SizedBox(
+                                                        height: 10.h);
+                                                  },
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                        /* return ListView.separated(
+                                      itemCount: snapshot.data.length,
+                                      physics: const BouncingScrollPhysics(),
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        return Container(
+                                          decoration: BoxDecoration(
+                                            color: AppColor.white,
+                                            borderRadius:
+                                                BorderRadius.circular(20.r),
+                                          ),
+                                          child: ListTile(
+                                            tileColor: AppColor.white,
+                                            leading: Image.asset(
+                                              "assets/images/avatars/avatar_${snapshot.data[index]['avatar']}.png",
+                                              height: 30.h,
+                                            ),
+                                            title: Text(
+                                              "${snapshot.data[index]['username']}",
+                                              style: TextStyle(
+                                                color: AppColor.black,
+                                                fontSize: 20.sp,
+                                              ),
+                                            ),
+                                            trailing: Text(
+                                              "${snapshot.data[index]['score']}",
+                                              style: TextStyle(
+                                                color: AppColor.black,
+                                                fontSize: 18.sp,
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      separatorBuilder:
+                                          (BuildContext context, int index) {
+                                        return SizedBox(height: 10.h);
+                                      },
+                                    ); */
+                                      },
+                                    );
+                                  },
+                                ),
                               ),
-                              textAlign: TextAlign.center,
-                            ),
+                            )
+                           */
                           ],
                         )
-                  : Column(
-                      children: [
-                        const Spacer(flex: 5),
-                        Text(
-                          "You don't have a profile",
-                          style: TextStyle(
-                            color: AppColor.white,
-                            fontSize: 25.sp,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(height: 10.h),
-                        Text(
-                          "Would you like to create one now to see the leaderboard?",
-                          style: TextStyle(
-                            color: AppColor.white,
-                            fontSize: 25.sp,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        const Spacer(flex: 4),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            ZoomTapAnimation(
-                              onTap: () {
-                                playTap(context);
-                                Navigator.pop(context);
-                              },
-                              child: Container(
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 15.sp,
-                                  horizontal: 25.sp,
+                      : Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 40.w),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Please play at least one game to see leaderboard.",
+                                style: TextStyle(
+                                  color: AppColor.white,
+                                  fontSize: 25.sp,
                                 ),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(50.r),
-                                ),
-                                child: Text(
-                                  "Maybe later",
-                                  style: TextStyle(
-                                    fontSize: 20.sp,
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        )
+                  : Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 40.w),
+                      child: Column(
+                        children: [
+                          const Spacer(flex: 5),
+                          Text(
+                            "You don't have a profile",
+                            style: TextStyle(
+                              color: AppColor.white,
+                              fontSize: 25.sp,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          SizedBox(height: 10.h),
+                          Text(
+                            "Would you like to create one now to see the leaderboard?",
+                            style: TextStyle(
+                              color: AppColor.white,
+                              fontSize: 25.sp,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          const Spacer(flex: 4),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              ZoomTapAnimation(
+                                onTap: () {
+                                  playTap(context);
+                                  Navigator.pop(context);
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: 15.sp,
+                                    horizontal: 25.sp,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(50.r),
+                                  ),
+                                  child: Text(
+                                    "Maybe later",
+                                    style: TextStyle(
+                                      fontSize: 20.sp,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            ZoomTapAnimation(
-                              onTap: () {
-                                playTap(context);
-                                showCreateProfileDialog(context);
-                              },
-                              child: Container(
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 15.sp,
-                                  horizontal: 25.sp,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(50.r),
-                                ),
-                                child: Text(
-                                  "Continue",
-                                  style: TextStyle(
-                                    fontSize: 20.sp,
+                              ZoomTapAnimation(
+                                onTap: () {
+                                  playTap(context);
+                                  showCreateProfileDialog(context);
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: 15.sp,
+                                    horizontal: 25.sp,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(50.r),
+                                  ),
+                                  child: Text(
+                                    "Continue",
+                                    style: TextStyle(
+                                      fontSize: 20.sp,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        const Spacer(),
-                      ],
+                            ],
+                          ),
+                          const Spacer(),
+                        ],
+                      ),
                     ),
             ),
           ],

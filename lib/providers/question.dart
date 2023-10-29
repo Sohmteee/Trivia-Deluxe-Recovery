@@ -78,10 +78,15 @@ class QuestionProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  updateLeaderBoardScore() {
-    leaderboardScore =
-        correctAnswers / totalQuestionsAnswered * 100 / averageTime;
+  updateLeaderBoardScore(BuildContext context) {
+    final moneyProvider = Provider.of<MoneyProvider>(context, listen: false);
+
+    leaderboardScore = (correctAnswers / totalQuestionsAnswered) *
+        moneyProvider.coins /
+        averageTime;
     box.put("leaderboardScore", leaderboardScore);
+
+    print("Leaderboard score: $leaderboardScore");
 
     notifyListeners();
   }
@@ -122,7 +127,7 @@ class QuestionProvider extends ChangeNotifier {
       box.put("totalQuestionsAnswered", totalQuestionsAnswered);
       print("Total Questions Answered: $totalQuestionsAnswered");
 
-      updateLeaderBoardScore();
+      updateLeaderBoardScore(context);
 
       final stageProvider = Provider.of<StageProvider>(context, listen: false);
 
