@@ -36,25 +36,26 @@ class ProfileProvider extends ChangeNotifier {
 
     bool playerExists;
 
-    fb.doc(deviceID).get().then((DocumentSnapshot snapshot) {
+    fb.doc(deviceID + 123.toString()).get().then((DocumentSnapshot snapshot) async {
       playerExists = snapshot.exists;
       if (playerExists) {
         print("Player exists!");
         // Do something if the player exists
       } else {
         print("Player does not exist.");
-        // Do something if the player doesn't exist
+        
+        await FirebaseFirestore.instance.collection("players").add({
+      'username': username.trim(),
+      'avatar': avatar,
+      'device_id': deviceID + 123.toString(),
+      'score': questionProvider.leaderboardScore.round(),
+    });
       }
     }).catchError((error) {
       print("Error checking player existence: $error");
     });
 
-    await FirebaseFirestore.instance.collection("players").add({
-      'username': username.trim(),
-      'avatar': avatar,
-      'device_id': deviceID + 127.toString(),
-      'score': questionProvider.leaderboardScore.round(),
-    });
+    
   }
 
   createPlayer(BuildContext context,
