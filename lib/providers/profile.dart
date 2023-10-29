@@ -298,19 +298,17 @@ class ProfileProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> addPlayer(
+  Future<void> updatePlayer(
     BuildContext context, {
     required String username,
     required int avatar,
   }) async {
-    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-    String? deviceID = androidInfo.id;
-
-    deviceID;
-
     final questionProvider =
         Provider.of<QuestionProvider>(context, listen: false);
+    final profileProvider =
+        Provider.of<ProfileProvider>(context, listen: false);
+
+        String deviceID = box.get("id", defaultValue: null);
     final fb = FirebaseFirestore.instance.collection("players");
 
     bool playerExists;
