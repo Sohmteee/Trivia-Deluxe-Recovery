@@ -55,12 +55,13 @@ class ProfileProvider extends ChangeNotifier {
             'score': 0,
           },
           SetOptions(merge: true),
-        ).then((_) => null);
+        ).then((_) {
+          print("Success adding player!");
 
-        uid = await FirebaseFirestore.instance
-            .collection("players")
-            .doc(deviceID)
-            .id;
+          
+        }).catchError((error) {
+          print("Error: $error");
+        });
 
         print("UID: $uid");
 
