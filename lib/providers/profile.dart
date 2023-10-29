@@ -43,6 +43,8 @@ class ProfileProvider extends ChangeNotifier {
       if (playerExists) {
         print("Player exists!");
 
+        
+
         box.put("id", deviceID);
         this.username = username;
         box.put("username", username);
@@ -246,7 +248,7 @@ class ProfileProvider extends ChangeNotifier {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "",
+              "Error Creating Profile",
               style: TextStyle(
                 color: AppColor.yellow,
                 fontSize: 25.sp,
@@ -256,7 +258,7 @@ class ProfileProvider extends ChangeNotifier {
             ),
             SizedBox(height: 20.h),
             Text(
-              "Your profile has been created successfully. Your can now view your progress on the leaderboard.",
+              "An error occured while creating your profile. Please try again later.",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18.sp,
