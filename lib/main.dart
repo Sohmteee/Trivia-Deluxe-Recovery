@@ -40,9 +40,7 @@ Future<void> main() async {
   Hive.openBox("myBox", path: dir.path);
   box = await Hive.openBox("myBox");
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp();
 
   runApp(
     MultiProvider(
