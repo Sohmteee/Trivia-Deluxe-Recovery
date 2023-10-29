@@ -21,7 +21,9 @@ class ProfileProvider extends ChangeNotifier {
   bool hasProfile = /* box.get("hasProfile", defaultValue:  */ false /* ) */;
   bool isLoading = false;
 
-  Future<void> addPlayer(BuildContext context, {required String username,
+  Future<void> addPlayer(
+    BuildContext context, {
+    required String username,
     required int avatar,
   }) async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
@@ -30,10 +32,9 @@ class ProfileProvider extends ChangeNotifier {
 
     final questionProvider =
         Provider.of<QuestionProvider>(context, listen: false);
+    final fb = FirebaseFirestore.instance.collection("players").get;
 
-         Future<QuerySnapshot> getImages() {
-      return fb.collection("images").get();
-    } 
+    bool playerExists = fb.where("device_id", isEqualTo: deviceID).isEmpty;
 
     await FirebaseFirestore.instance.collection("players").add({
       'username': username.trim(),
