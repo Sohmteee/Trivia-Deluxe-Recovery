@@ -43,10 +43,12 @@ class ProfileProvider extends ChangeNotifier {
       if (playerExists) {
         print("Player exists!");
 
-        
+        var profile = snapshot.data() as Map<String, dynamic>;
+
+        print(profile);
 
         box.put("id", deviceID);
-        this.username = username;
+        this.username = profile["username"];
         box.put("username", username);
         hasProfile = true;
         box.put("hasProfile", hasProfile);
