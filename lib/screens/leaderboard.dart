@@ -270,7 +270,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                   3,
                                   (index) {
                                     return FutureBuilder(
-                                      future: getLeaderBoardData(index),
+                                      future: getLeaderBoardData(0),
                                       initialData: null,
                                       builder: (BuildContext context,
                                           AsyncSnapshot snapshot) {
