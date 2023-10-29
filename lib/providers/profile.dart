@@ -18,6 +18,7 @@ import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class ProfileProvider extends ChangeNotifier {
   String? username = box.get("username", defaultValue: null);
+  String deviceID = box.get("id", defaultValue: null);
   bool hasProfile = /* box.get("hasProfile", defaultValue:  */ false /* ) */;
   bool isLoading = false;
 
@@ -302,7 +303,6 @@ class ProfileProvider extends ChangeNotifier {
     final questionProvider =
         Provider.of<QuestionProvider>(context, listen: false);
 
-    String deviceID = box.get("id", defaultValue: null);
     final fb = FirebaseFirestore.instance.collection("players");
 
     fb.doc(deviceID).get().then((DocumentSnapshot snapshot) async {
