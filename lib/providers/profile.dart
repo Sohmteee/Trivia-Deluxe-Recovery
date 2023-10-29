@@ -31,6 +31,8 @@ class ProfileProvider extends ChangeNotifier {
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
     String? deviceID = androidInfo.id;
 
+    deviceID += "123";
+
     final questionProvider =
         Provider.of<QuestionProvider>(context, listen: false);
     final fb = FirebaseFirestore.instance.collection("players");
@@ -38,7 +40,7 @@ class ProfileProvider extends ChangeNotifier {
     bool playerExists;
 
     fb
-        .doc(deviceID + 123.toString())
+        .doc(deviceID)
         .get()
         .then((DocumentSnapshot snapshot) async {
       playerExists = snapshot.exists;
@@ -48,14 +50,17 @@ class ProfileProvider extends ChangeNotifier {
       } else {
         print("Player does not exist.");
 
-        await FirebaseFirestore.instance.collection("players").add({
+        await fb.doc().add({
           'username': username.trim(),
           'avatar': avatar,
-          'device_id': deviceID + 123.toString(),
+          'device_id': deviceID,
           'score': 0,
         });
 
-        uid = await FirebaseFirestore.instance.collection("players").doc(deviceID).id;
+        uid = await FirebaseFirestore.instance
+            .collection("players")
+            .doc(deviceID)
+            .id;
 
         print("UID: $uid");
 
