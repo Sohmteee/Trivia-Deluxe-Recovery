@@ -55,7 +55,7 @@ class ProfileProvider extends ChangeNotifier {
           'score': 0,
         });
 
-        uid = await FirebaseFirestore.instance.doc("players").id;
+        uid = await FirebaseFirestore.instance.collection("players").doc(deviceID).id;
 
         print("UID: $uid");
 
