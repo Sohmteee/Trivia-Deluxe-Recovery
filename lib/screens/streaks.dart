@@ -8,6 +8,7 @@ import 'package:trivia/main.dart';
 import 'package:trivia/models/dialogs/average_time.dart';
 import 'package:trivia/models/game_background.dart';
 import 'package:trivia/providers/money.dart';
+import 'package:trivia/providers/profile.dart';
 import 'package:trivia/providers/question.dart';
 import 'package:trivia/providers/streaks.dart';
 import 'package:toast/toast.dart';
@@ -441,7 +442,9 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
                                                 questionProvider
                                                     .updateLeaderBoardScore(
                                                         context);
-                                                        Provider.of<>(context).
+                                                Provider.of<ProfileProvider>(
+                                                        context)
+                                                    .updatePlayer(context);
 
                                                 ToastContext().init(context);
                                                 Toast.show(

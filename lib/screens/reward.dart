@@ -13,6 +13,7 @@ import 'package:trivia/main.dart';
 import 'package:trivia/models/game_background.dart';
 import 'package:trivia/models/stat_bar.dart';
 import 'package:trivia/providers/money.dart';
+import 'package:trivia/providers/profile.dart';
 import 'package:trivia/providers/question.dart';
 import 'package:trivia/providers/streaks.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
@@ -267,6 +268,8 @@ class _RewardScreenState extends State<RewardScreen> {
                                           moneyProvider.coins);
                                       questionProvider
                                           .updateLeaderBoardScore(context);
+                                      Provider.of<ProfileProvider>(context)
+                                          .updatePlayer(context);
                                     });
                                   });
                                 });
