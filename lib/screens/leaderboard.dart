@@ -678,7 +678,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                               vertical: 6.h,
                                                               horizontal: 15.w),
                                                       decoration: BoxDecoration(
-                                                        color: AppColor.black,
+                                                        color: AppColor.darkRed,
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(30.r),
@@ -691,7 +691,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                             MainAxisSize.min,
                                                         children: [
                                                           Text(
-                                                            "Current Position",
+                                                            "You are currently",
                                                             style: TextStyle(
                                                               color: AppColor
                                                                   .white,
