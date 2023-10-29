@@ -298,6 +298,283 @@ class ProfileProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> addPlayer(
+    BuildContext context, {
+    required String username,
+    required int avatar,
+  }) async {
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    String? deviceID = androidInfo.id;
+
+    deviceID;
+
+    final questionProvider =
+        Provider.of<QuestionProvider>(context, listen: false);
+    final fb = FirebaseFirestore.instance.collection("players");
+
+    bool playerExists;
+
+    fb.doc(deviceID).get().then((DocumentSnapshot snapshot) async {
+      playerExists = snapshot.exists;
+      if (playerExists) {
+        print("Player exists!");
+
+        var profile = snapshot.data() as Map<String, dynamic>;
+
+        print(profile);
+
+        box.put("id", deviceID);
+        this.username = profile["username"];
+        box.put("username", username);
+        hasProfile = true;
+        box.put("hasProfile", hasProfile);
+
+        notifyListeners();
+
+        showGameDialog(
+          context,
+          isExitable: true,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+          margin: EdgeInsets.symmetric(horizontal: 60.w, vertical: 24.h),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                "Profile Already Exists",
+                style: TextStyle(
+                  color: AppColor.yellow,
+                  fontSize: 25.sp,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 20.h),
+              Text(
+                "Your profile already exists. Your data has now been synced.",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18.sp,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 30.h),
+              ZoomTapAnimation(
+                onTap: () {
+                  playTap(context);
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 10.sp,
+                    horizontal: 20.sp,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20.r),
+                  ),
+                  child: Text(
+                    "Okay",
+                    style: TextStyle(
+                      fontSize: 20.sp,
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        );
+      } else {
+        print("Player does not exist.");
+
+        await fb.doc(deviceID).set(
+          {
+            'username': username.trim(),
+            'avatar': avatar,
+            'device_id': deviceID,
+            'score': questionProvider.leaderboardScore.round(),
+          },
+          SetOptions(merge: true),
+        ).then((_) {
+          print("Success adding player!");
+
+          box.put("id", deviceID);
+          this.username = username;
+          box.put("username", username);
+          hasProfile = true;
+          box.put("hasProfile", hasProfile);
+
+          notifyListeners();
+
+          showGameDialog(
+            context,
+            isExitable: true,
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+            margin: EdgeInsets.symmetric(horizontal: 60.w, vertical: 24.h),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "Profile Created Successfully",
+                  style: TextStyle(
+                    color: AppColor.yellow,
+                    fontSize: 25.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 20.h),
+                Text(
+                  "Your profile has been created successfully. Your can now view your progress on the leaderboard.",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18.sp,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 30.h),
+                ZoomTapAnimation(
+                  onTap: () {
+                    playTap(context);
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 10.sp,
+                      horizontal: 20.sp,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20.r),
+                    ),
+                    child: Text(
+                      "Okay",
+                      style: TextStyle(
+                        fontSize: 20.sp,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          );
+        }).catchError((error) {
+          print("Error: $error");
+
+          showGameDialog(
+            context,
+            isExitable: true,
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+            margin: EdgeInsets.symmetric(horizontal: 60.w, vertical: 24.h),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "Error Creating Profile",
+                  style: TextStyle(
+                    color: AppColor.yellow,
+                    fontSize: 25.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 20.h),
+                Text(
+                  "An error occured while creating your profile. Please try again later.",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18.sp,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 30.h),
+                ZoomTapAnimation(
+                  onTap: () {
+                    playTap(context);
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 10.sp,
+                      horizontal: 20.sp,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20.r),
+                    ),
+                    child: Text(
+                      "Okay",
+                      style: TextStyle(
+                        fontSize: 20.sp,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          );
+        });
+      }
+    }).catchError((error) {
+      print("Error checking player existence: $error");
+
+      showGameDialog(
+        context,
+        isExitable: true,
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+        margin: EdgeInsets.symmetric(horizontal: 60.w, vertical: 24.h),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              "Error Creating Profile",
+              style: TextStyle(
+                color: AppColor.yellow,
+                fontSize: 25.sp,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 20.h),
+            Text(
+              "An error occured while creating your profile. Please try again later.",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18.sp,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 30.h),
+            ZoomTapAnimation(
+              onTap: () {
+                playTap(context);
+                Navigator.pop(context);
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                  vertical: 10.sp,
+                  horizontal: 20.sp,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20.r),
+                ),
+                child: Text(
+                  "Okay",
+                  style: TextStyle(
+                    fontSize: 20.sp,
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      );
+    });
+
+    notifyListeners();
+  }
+
   createPlayer(BuildContext context,
       {required String username,
       required int avatar,
