@@ -25,8 +25,7 @@ class LeaderBoardScreen extends StatefulWidget {
 class _LeaderBoardScreenState extends State<LeaderBoardScreen>
     with TickerProviderStateMixin {
   late TabController tabController;
-    var storage = FirebaseStorage.instance;
-
+  var storage = FirebaseStorage.instance;
 
   @override
   void initState() {
@@ -43,6 +42,8 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
     tabController.dispose();
     super.dispose();
   }
+
+  Future<List?> getLeaderBoardData(int index) async {}
 
   Future<List?> getLeaderBoardData(int index) async {
     String? getPeriod() {
@@ -84,8 +85,6 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
 
     return responseData;
   }
-
- 
 
   @override
   Widget build(BuildContext context) {
