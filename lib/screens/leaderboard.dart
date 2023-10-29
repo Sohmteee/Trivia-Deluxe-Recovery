@@ -691,7 +691,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                             MainAxisSize.min,
                                                         children: [
                                                           Text(
-                                                            "You are currently",
+                                                            "Current Position",
                                                             style: TextStyle(
                                                               color: AppColor
                                                                   .white,
