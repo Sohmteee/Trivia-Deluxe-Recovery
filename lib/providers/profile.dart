@@ -49,6 +49,8 @@ class ProfileProvider extends ChangeNotifier {
         hasProfile = true;
         box.put("hasProfile", hasProfile);
 
+        notifyListeners();
+
         showGameDialog(
           context,
           isExitable: true,
@@ -120,6 +122,8 @@ class ProfileProvider extends ChangeNotifier {
           box.put("username", username);
           hasProfile = true;
           box.put("hasProfile", hasProfile);
+
+          notifyListeners();
 
           showGameDialog(
             context,
