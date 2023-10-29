@@ -670,115 +670,119 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                     end: Alignment.bottomCenter,
                                                   ),
                                                 ),
-                                                child: (snapshot.data.length >=
-                                                        4)
-                                                    ? ListView.separated(
-                                                        padding:
-                                                            EdgeInsets.fromLTRB(
-                                                                20.w,
-                                                                15.h,
-                                                                20.w,
-                                                                0),
-                                                        itemCount: snapshot
-                                                                .data.length -
-                                                            3,
-                                                        physics:
-                                                            const BouncingScrollPhysics(),
-                                                        itemBuilder:
-                                                            (BuildContext
-                                                                    context,
-                                                                int index) {
-                                                          return Container(
-                                                            padding: EdgeInsets
-                                                                .symmetric(
-                                                                    vertical:
-                                                                        10.h,
-                                                                    horizontal:
-                                                                        15.w),
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: AppColor
-                                                                  .white,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          50.r),
-                                                            ),
-                                                            child: Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceBetween,
-                                                              children: [
-                                                                Row(
+                                                child: 
+                                                    Column(
+                                                      children: [
+                                                        if (snapshot.data.length >=
+                                                        4) ListView.separated(
+                                                            padding:
+                                                                EdgeInsets.fromLTRB(
+                                                                    20.w,
+                                                                    15.h,
+                                                                    20.w,
+                                                                    0),
+                                                            itemCount: snapshot
+                                                                    .data.length -
+                                                                3,
+                                                            physics:
+                                                                const BouncingScrollPhysics(),
+                                                            itemBuilder:
+                                                                (BuildContext
+                                                                        context,
+                                                                    int index) {
+                                                              return Container(
+                                                                padding: EdgeInsets
+                                                                    .symmetric(
+                                                                        vertical:
+                                                                            10.h,
+                                                                        horizontal:
+                                                                            15.w),
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: AppColor
+                                                                      .white,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              50.r),
+                                                                ),
+                                                                child: Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
                                                                   children: [
-                                                                    Text(
-                                                                      "${index + 3 + 1}",
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color: AppColor
-                                                                            .black,
-                                                                        fontSize:
-                                                                            18.sp,
-                                                                      ),
+                                                                    Row(
+                                                                      children: [
+                                                                        Text(
+                                                                          "${index + 3 + 1}",
+                                                                          style:
+                                                                              TextStyle(
+                                                                            color: AppColor
+                                                                                .black,
+                                                                            fontSize:
+                                                                                18.sp,
+                                                                          ),
+                                                                        ),
+                                                                        SizedBox(
+                                                                            width: 10
+                                                                                .w),
+                                                                        Image.asset(
+                                                                          "assets/images/avatars/avatar_${snapshot.data[index + 3]["avatar"]}.png",
+                                                                          height:
+                                                                              30.h,
+                                                                        ),
+                                                                        SizedBox(
+                                                                            width: 10
+                                                                                .w),
+                                                                        Text(
+                                                                          "${snapshot.data[index + 3]["username"]}",
+                                                                          style:
+                                                                              TextStyle(
+                                                                            color: AppColor
+                                                                                .black,
+                                                                            fontSize:
+                                                                                20.sp,
+                                                                          ),
+                                                                        ),
+                                                                      ],
                                                                     ),
-                                                                    SizedBox(
-                                                                        width: 10
-                                                                            .w),
-                                                                    Image.asset(
-                                                                      "assets/images/avatars/avatar_${snapshot.data[index + 3]["avatar"]}.png",
-                                                                      height:
-                                                                          30.h,
-                                                                    ),
-                                                                    SizedBox(
-                                                                        width: 10
-                                                                            .w),
-                                                                    Text(
-                                                                      "${snapshot.data[index + 3]["username"]}",
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color: AppColor
-                                                                            .black,
-                                                                        fontSize:
-                                                                            20.sp,
+                                                                    Container(
+                                                                      padding:
+                                                                          EdgeInsets
+                                                                              .all(15
+                                                                                  .sp),
+                                                                      decoration: BoxDecoration(
+                                                                          color: AppColor
+                                                                              .slightlyLighterYellow
+                                                                              .withOpacity(
+                                                                                  .8),
+                                                                          shape: BoxShape
+                                                                              .circle),
+                                                                      child: Text(
+                                                                        "${snapshot.data[index + 3]["score"]}",
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color: AppColor
+                                                                              .white,
+                                                                          fontSize:
+                                                                              18.sp,
+                                                                        ),
                                                                       ),
                                                                     ),
                                                                   ],
                                                                 ),
-                                                                Container(
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .all(15
-                                                                              .sp),
-                                                                  decoration: BoxDecoration(
-                                                                      color: AppColor
-                                                                          .slightlyLighterYellow
-                                                                          .withOpacity(
-                                                                              .8),
-                                                                      shape: BoxShape
-                                                                          .circle),
-                                                                  child: Text(
-                                                                    "${snapshot.data[index + 3]["score"]}",
-                                                                    style:
-                                                                        TextStyle(
-                                                                      color: AppColor
-                                                                          .white,
-                                                                      fontSize:
-                                                                          18.sp,
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          );
-                                                        },
-                                                        separatorBuilder:
-                                                            (BuildContext
-                                                                    context,
-                                                                int index) {
-                                                          return SizedBox(
-                                                              height: 10.h);
-                                                        },
-                                                      )
+                                                              );
+                                                            },
+                                                            separatorBuilder:
+                                                                (BuildContext
+                                                                        context,
+                                                                    int index) {
+                                                              return SizedBox(
+                                                                  height: 10.h);
+                                                            },
+                                                          ),
+                                                      ],
+                                                    )
                                                     : const Column(
                                                         children: [
                                                           Center(
