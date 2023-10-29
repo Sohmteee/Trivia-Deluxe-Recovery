@@ -685,7 +685,8 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                               vertical: 6.h,
                                                               horizontal: 15.w),
                                                       decoration: BoxDecoration(
-                                                        color: AppColor.orange,
+                                                        color:
+                                                            Colors.deepOrange,
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(30.r),
