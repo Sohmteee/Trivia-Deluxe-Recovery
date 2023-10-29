@@ -65,18 +65,25 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
     return GameBackground(
       body: Consumer<StreaksProvider>(builder: (context, streaksProvider, _) {
         return Padding(
-          padding: EdgeInsets.fromLTRB(20.w, 40.h, 20.w, 0),
+          padding: EdgeInsets.fromLTRB(20.w, 30.h, 20.w, 0),
           child: Column(
             children: [
-              Center(
-                child: Text(
-                  "Streaks",
-                  style: TextStyle(
-                    color: AppColor.yellow,
-                    fontSize: 50.sp,
+              Row(
+                children: [
+                  BackButton(
+                    color: AppColor.white,
                   ),
-                  textAlign: TextAlign.center,
-                ),
+                  const Spacer(),
+                  Text(
+                    "Streaks",
+                    style: TextStyle(
+                      color: AppColor.yellow,
+                      fontSize: 50.sp,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const Spacer(flex: 2),
+                ],
               ),
               Consumer<QuestionProvider>(
                 builder: (context, questionProvider, _) {
@@ -187,7 +194,7 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
                                           Container(
                                             width: 10.w,
                                             height: 10.w,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               color: Colors.red,
                                               shape: BoxShape.circle,
                                             ),
