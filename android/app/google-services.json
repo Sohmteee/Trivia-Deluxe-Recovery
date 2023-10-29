@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "540968045370",
+    "firebase_url": "https://trivia-deluxe-default-rtdb.firebaseio.com",
+    "project_id": "trivia-deluxe",
+    "storage_bucket": "trivia-deluxe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:540968045370:android:6a6f4229de5523212d1e03",
+        "android_client_info": {
+          "package_name": "com.digitaldreamsng.triviadeluxe"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCo7mBgw-fw7OX9Xzp75wxrO7_MDt6MIEw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
