@@ -311,14 +311,7 @@ class ProfileProvider extends ChangeNotifier {
 
     fb.doc(deviceID).get().then((DocumentSnapshot snapshot) async {
       playerExists = snapshot.exists;
-      if (playerExists) {
-        print("Player exists!");
-
-        var profile = snapshot.data() as Map<String, dynamic>;
-
-        print(profile);
-
-      } else {
+      {
         print("Player does not exist.");
 
         await fb.doc(deviceID).set(
@@ -341,7 +334,7 @@ class ProfileProvider extends ChangeNotifier {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  "Error Creating Profile",
+                  "Error Updating Leaderboard",
                   style: TextStyle(
                     color: AppColor.yellow,
                     fontSize: 25.sp,
@@ -351,7 +344,7 @@ class ProfileProvider extends ChangeNotifier {
                 ),
                 SizedBox(height: 20.h),
                 Text(
-                  "An error occured while creating your profile. Please try again later.",
+                  "An error occured while updating the leaderboard. Please make sure you have an active internet connection and try again later.",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18.sp,
