@@ -776,8 +776,8 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                                   child:
                                                                       SizedBox(
                                                                     height:
-                                                                        10.h,
-                                                                    width: 10.w,
+                                                                        25.h,
+                                                                    width: 25.w,
                                                                     child:
                                                                         CircularProgressIndicator(
                                                                       color: AppColor
