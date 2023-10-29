@@ -20,6 +20,12 @@ class ProfileProvider extends ChangeNotifier {
   bool hasProfile = /* box.get("hasProfile", defaultValue:  */ false /* ) */;
   bool isLoading = false;
 
+   Future<void> addPlayer() async{
+ await FirebaseFirestore.instance
+                .collection("players")
+                .add({'username': });
+  }
+
   createPlayer(BuildContext context,
       {required String username,
       required int avatar,
