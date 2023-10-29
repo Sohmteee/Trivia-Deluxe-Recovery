@@ -32,9 +32,22 @@ class ProfileProvider extends ChangeNotifier {
 
     final questionProvider =
         Provider.of<QuestionProvider>(context, listen: false);
-    final fb = FirebaseFirestore.instance.collection("players").get;
+    final fb = FirebaseFirestore.instance.collection("players");
 
-    bool playerExists = fb.
+    bool playerExists;
+
+    fb.doc(deviceID).get().then((DocumentSnapshot snapshot) {
+      playerExists = snapshot.exists;
+      if (playerExists) {
+        print("Player exists!");
+        // Do something if the player exists
+      } else {
+        print("Player does not exist.");
+        // Do something if the player doesn't exist
+      }
+    }).catchError((error) {
+      print("Error checking player existence: $error");
+    });
 
     await FirebaseFirestore.instance.collection("players").add({
       'username': username.trim(),
