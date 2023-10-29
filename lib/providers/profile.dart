@@ -39,83 +39,9 @@ class ProfileProvider extends ChangeNotifier {
     bool playerExists;
 
     fb.doc(deviceID).get().then((DocumentSnapshot snapshot) async {
-
       playerExists = snapshot.exists;
-
-      await fb.doc(deviceID).set(
-        {
-          'username': username.trim(),
-          'avatar': avatar,
-          'device_id': deviceID,
-          'score': questionProvider.leaderboardScore.round(),
-        },
-        SetOptions(merge: true),
-      ).then((_) {
-        if (playerExists) {
-          print("Player exists!");
-
-          box.put("id", deviceID);
-          this.username = username;
-          box.put("username", username);
-          hasProfile = true;
-          box.put("hasProfile", hasProfile);
-
-          showGameDialog(
-            context,
-            isExitable: true,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-            margin: EdgeInsets.symmetric(horizontal: 60.w, vertical: 24.h),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  "Profile Already Exists",
-                  style: TextStyle(
-                    color: AppColor.yellow,
-                    fontSize: 25.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(height: 20.h),
-                Text(
-                  "Your profile already exists. Your data has now been synced.",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18.sp,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(height: 30.h),
-                ZoomTapAnimation(
-                  onTap: () {
-                    playTap(context);
-                    Navigator.pop(context);
-                  },
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                      vertical: 10.sp,
-                      horizontal: 20.sp,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20.r),
-                    ),
-                    child: Text(
-                      "Okay",
-                      style: TextStyle(
-                        fontSize: 20.sp,
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          );
-        } else {
-          print("Player does not exist.");
-        }
-        print("Success adding player!");
+      if (playerExists) {
+        print("Player exists!");
 
         box.put("id", deviceID);
         this.username = username;
@@ -132,7 +58,7 @@ class ProfileProvider extends ChangeNotifier {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                "Profile Created Successfully",
+                "Profile Already Exists",
                 style: TextStyle(
                   color: AppColor.yellow,
                   fontSize: 25.sp,
@@ -142,7 +68,7 @@ class ProfileProvider extends ChangeNotifier {
               ),
               SizedBox(height: 20.h),
               Text(
-                "Your profile has been created successfully. Your can now view your progress on the leaderboard.",
+                "Your profile already exists. Your data has now been synced.",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 18.sp,
@@ -175,10 +101,82 @@ class ProfileProvider extends ChangeNotifier {
             ],
           ),
         );
-      }).catchError((error) {
-        print("Error: $error");
-      });
-      
+      } else {
+        print("Player does not exist.");
+
+        await fb.doc(deviceID).set(
+          {
+            'username': username.trim(),
+            'avatar': avatar,
+            'device_id': deviceID,
+            'score': questionProvider.leaderboardScore.round(),
+          },
+          SetOptions(merge: true),
+        ).then((_) {
+          print("Success adding player!");
+
+          box.put("id", deviceID);
+          this.username = username;
+          box.put("username", username);
+          hasProfile = true;
+          box.put("hasProfile", hasProfile);
+
+          showGameDialog(
+            context,
+            isExitable: true,
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+            margin: EdgeInsets.symmetric(horizontal: 60.w, vertical: 24.h),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "Profile Created Successfully",
+                  style: TextStyle(
+                    color: AppColor.yellow,
+                    fontSize: 25.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 20.h),
+                Text(
+                  "Your profile has been created successfully. Your can now view your progress on the leaderboard.",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18.sp,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 30.h),
+                ZoomTapAnimation(
+                  onTap: () {
+                    playTap(context);
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 10.sp,
+                      horizontal: 20.sp,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20.r),
+                    ),
+                    child: Text(
+                      "Okay",
+                      style: TextStyle(
+                        fontSize: 20.sp,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          );
+        }).catchError((error) {
+          print("Error: $error");
+        });
+      }
     }).catchError((error) {
       print("Error checking player existence: $error");
     });
