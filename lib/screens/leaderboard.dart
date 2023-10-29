@@ -854,7 +854,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                                           color:
                                                                               Colors.black,
                                                                           offset: Offset(
-                                                                              -2,
+                                                                              2,
                                                                               -2),
                                                                           blurRadius:
                                                                               5,
