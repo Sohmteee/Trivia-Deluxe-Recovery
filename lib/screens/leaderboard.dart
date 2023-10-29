@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:device_info_plus/device_info_plus.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -138,11 +137,6 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                       future: getLeaderBoardData(0),
                       builder: (BuildContext context, AsyncSnapshot snapshot) {
                         Map<String, dynamic> getPosition() {
-                          
-    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-    String? deviceID = androidInfo.id;
-    
                           int index = snapshot.data.indexOf(snapshot.data
                                   .where((profile) =>
                                       profile["device_id"] ==
