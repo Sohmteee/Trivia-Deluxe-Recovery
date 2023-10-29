@@ -59,8 +59,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
       };
     }).toList();
 
-    print()
-    
+    print(leaderBoardData);
 
     return querySnapshot.docs;
   }
