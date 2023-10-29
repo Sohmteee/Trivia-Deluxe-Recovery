@@ -108,7 +108,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
   @override
   Widget build(BuildContext context) {
     return GameBackground(
-      /* floatingActionButton: SizedBox(
+      floatingActionButton: SizedBox(
         height: 50.h,
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 15.w),
@@ -198,7 +198,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
             ],
           ),
         ),
-      ), */
+      ),
       body: Padding(
         padding: EdgeInsets.only(top: 40.h),
         child: Column(
