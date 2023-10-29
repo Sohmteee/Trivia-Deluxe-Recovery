@@ -31,8 +31,6 @@ class ProfileProvider extends ChangeNotifier {
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
     String? deviceID = androidInfo.id;
 
-    deviceID;
-
     final questionProvider =
         Provider.of<QuestionProvider>(context, listen: false);
     final fb = FirebaseFirestore.instance.collection("players");
