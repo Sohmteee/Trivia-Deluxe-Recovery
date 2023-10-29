@@ -5,6 +5,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:trivia/colors/app_color.dart';
+import 'package:trivia/data/box.dart';
 import 'package:trivia/main.dart';
 import 'package:trivia/models/circle_tab_indicator.dart';
 import 'package:trivia/models/dialogs/create_profile.dart';
@@ -110,8 +111,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
   @override
   Widget build(BuildContext context) {
     return GameBackground(
-      floatingActionButton: Provider.of<ProfileProvider>(context).hasProfile ==
-              false
+      floatingActionButton: box.get("hasProfile") == false
           ? null
           : SizedBox(
               height: 50.h,
