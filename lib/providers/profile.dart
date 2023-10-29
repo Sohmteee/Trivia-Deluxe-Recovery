@@ -308,7 +308,9 @@ class ProfileProvider extends ChangeNotifier {
     fb.doc(deviceID).set(
       {'score': questionProvider.leaderboardScore.round()},
       SetOptions(merge: true),
-    ).catchError((error) {
+    ).then((_) {
+      final profile = fb.doc(deviceID);
+    }).catchError((error) {
       print("Error: $error");
 
       showGameDialog(
