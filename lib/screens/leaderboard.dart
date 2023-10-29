@@ -112,7 +112,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
   Widget build(BuildContext context) {
     return GameBackground(
       body: Padding(
-        padding: EdgeInsets.only(top: 40.h),
+        padding: EdgeInsets.only(top: 20.h),
         child: Column(
           children: [
             Row(

@@ -30,7 +30,6 @@ class _GameBackgroundState extends State<GameBackground> {
     return Scaffold(
       bottomNavigationBar: widget.bottomNavigationBar,
       floatingActionButton: widget.floatingActionButton,
-      appBar: AppBar(),
       body: Stack(
         children: [
           buildBlurBackground(),
