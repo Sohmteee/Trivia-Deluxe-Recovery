@@ -20,7 +20,7 @@ class ProfileProvider extends ChangeNotifier {
   String? username = box.get("username", defaultValue: null);
   bool hasProfile = /* box.get("hasProfile", defaultValue:  */ false /* ) */;
   bool isLoading = false;
-  String id = box.get("id", defaultValue: "");
+  String uid = box.get("uid", defaultValue: "");
 
   Future<void> addPlayer(
     BuildContext context, {
@@ -55,15 +55,17 @@ class ProfileProvider extends ChangeNotifier {
           'score': 0,
         });
 
-        uid = 
+        uid = await FirebaseFirestore.instance.collection("players").id;
+
+        print("UID: $uid");
 
         box.put("id", deviceID);
+        box.put("uid", uid);
 
         this.username = username;
         box.put("username", username);
         hasProfile = true;
         box.put("hasProfile", hasProfile);
-
 
         Future.delayed(.5.seconds, () {
           showGameDialog(
