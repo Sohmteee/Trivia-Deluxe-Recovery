@@ -119,6 +119,8 @@ class ProfileProvider extends ChangeNotifier {
     }).catchError((error) {
       print("Error checking player existence: $error");
     });
+
+    notifyListeners();
   }
 
   createPlayer(BuildContext context,
