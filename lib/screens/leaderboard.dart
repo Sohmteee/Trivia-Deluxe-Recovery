@@ -670,127 +670,252 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                     end: Alignment.bottomCenter,
                                                   ),
                                                 ),
-                                                child: 
-                                                    Column(
+                                                child: Column(
+                                                  children: [
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
                                                       children: [
-                                                        if (snapshot.data.length >=
-                                                        4) ListView.separated(
-                                                            padding:
-                                                                EdgeInsets.fromLTRB(
-                                                                    20.w,
-                                                                    15.h,
-                                                                    20.w,
-                                                                    0),
-                                                            itemCount: snapshot
-                                                                    .data.length -
-                                                                3,
-                                                            physics:
-                                                                const BouncingScrollPhysics(),
-                                                            itemBuilder:
-                                                                (BuildContext
-                                                                        context,
-                                                                    int index) {
-                                                              return Container(
-                                                                padding: EdgeInsets
-                                                                    .symmetric(
-                                                                        vertical:
-                                                                            10.h,
-                                                                        horizontal:
-                                                                            15.w),
-                                                                decoration:
-                                                                    BoxDecoration(
+                                                        Text(
+                                                          "Current Position",
+                                                          style: TextStyle(
+                                                            color:
+                                                                AppColor.black,
+                                                            fontSize: 20.sp,
+                                                          ),
+                                                        ),
+                                                        SizedBox(width: 10.w),
+                                                        FutureBuilder(
+                                                          future:
+                                                              getLeaderBoardData(
+                                                                  0),
+                                                          builder: (BuildContext
+                                                                  context,
+                                                              AsyncSnapshot
+                                                                  snapshot) {
+                                                            Map<String, dynamic>
+                                                                getPosition() {
+                                                              int index = snapshot.data.indexOf(snapshot
+                                                                      .data
+                                                                      .where((profile) =>
+                                                                          profile[
+                                                                              "device_id"] ==
+                                                                          deviceID)
+                                                                      .first) +
+                                                                  1;
+
+                                                              Color color =
+                                                                  switch (
+                                                                      index) {
+                                                                1 => const Color
+                                                                    .fromARGB(
+                                                                    255,
+                                                                    243,
+                                                                    165,
+                                                                    47),
+                                                                2 =>
+                                                                  Colors.grey,
+                                                                3 => const Color
+                                                                    .fromARGB(
+                                                                    255,
+                                                                    177,
+                                                                    117,
+                                                                    95),
+                                                                _ => AppColor
+                                                                    .white,
+                                                              };
+
+                                                              String suffix = switch (
+                                                                  int.parse(index
+                                                                      .toString()[index
+                                                                          .toString()
+                                                                          .length -
+                                                                      1])) {
+                                                                1 => "st",
+                                                                2 => "nd",
+                                                                3 => "rd",
+                                                                _ => "th",
+                                                              };
+
+                                                              if (index >= 1) {
+                                                                return {
+                                                                  "position":
+                                                                      "$index$suffix",
+                                                                  "color":
+                                                                      color,
+                                                                };
+                                                              }
+
+                                                              return {
+                                                                "position":
+                                                                    "---",
+                                                                "color":
+                                                                    AppColor
+                                                                        .white,
+                                                              };
+                                                            }
+
+                                                            if (snapshot.data ==
+                                                                null) {
+                                                              return Center(
+                                                                child:
+                                                                    CircularProgressIndicator(
                                                                   color: AppColor
-                                                                      .white,
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              50.r),
+                                                                      .yellow,
                                                                 ),
-                                                                child: Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  children: [
-                                                                    Row(
-                                                                      children: [
-                                                                        Text(
-                                                                          "${index + 3 + 1}",
-                                                                          style:
-                                                                              TextStyle(
-                                                                            color: AppColor
-                                                                                .black,
-                                                                            fontSize:
-                                                                                18.sp,
-                                                                          ),
-                                                                        ),
-                                                                        SizedBox(
-                                                                            width: 10
-                                                                                .w),
-                                                                        Image.asset(
-                                                                          "assets/images/avatars/avatar_${snapshot.data[index + 3]["avatar"]}.png",
-                                                                          height:
-                                                                              30.h,
-                                                                        ),
-                                                                        SizedBox(
-                                                                            width: 10
-                                                                                .w),
-                                                                        Text(
-                                                                          "${snapshot.data[index + 3]["username"]}",
-                                                                          style:
-                                                                              TextStyle(
-                                                                            color: AppColor
-                                                                                .black,
-                                                                            fontSize:
-                                                                                20.sp,
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    Container(
-                                                                      padding:
-                                                                          EdgeInsets
-                                                                              .all(15
-                                                                                  .sp),
-                                                                      decoration: BoxDecoration(
-                                                                          color: AppColor
-                                                                              .slightlyLighterYellow
-                                                                              .withOpacity(
-                                                                                  .8),
-                                                                          shape: BoxShape
-                                                                              .circle),
-                                                                      child: Text(
-                                                                        "${snapshot.data[index + 3]["score"]}",
+                                                              );
+                                                            }
+                                                            if (snapshot
+                                                                    .hasError ||
+                                                                snapshot.data ==
+                                                                    []) {
+                                                              return Center(
+                                                                child: Text(
+                                                                  "---",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: AppColor
+                                                                        .white,
+                                                                    fontSize:
+                                                                        25.sp,
+                                                                  ),
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                ),
+                                                              );
+                                                            }
+                                                            return Text(
+                                                              getPosition()[
+                                                                  "position"],
+                                                              style: TextStyle(
+                                                                color:
+                                                                    getPosition()[
+                                                                        "color"],
+                                                                fontSize: 30.sp,
+                                                              ),
+                                                            );
+                                                          },
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    if (snapshot.data.length >=
+                                                        4)
+                                                      Expanded(
+                                                        child:
+                                                            ListView.separated(
+                                                          padding: EdgeInsets
+                                                              .fromLTRB(
+                                                                  20.w,
+                                                                  15.h,
+                                                                  20.w,
+                                                                  0),
+                                                          itemCount: snapshot
+                                                                  .data.length -
+                                                              3,
+                                                          physics:
+                                                              const BouncingScrollPhysics(),
+                                                          itemBuilder:
+                                                              (BuildContext
+                                                                      context,
+                                                                  int index) {
+                                                            return Container(
+                                                              padding: EdgeInsets
+                                                                  .symmetric(
+                                                                      vertical:
+                                                                          10.h,
+                                                                      horizontal:
+                                                                          15.w),
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color: AppColor
+                                                                    .white,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            50.r),
+                                                              ),
+                                                              child: Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                children: [
+                                                                  Row(
+                                                                    children: [
+                                                                      Text(
+                                                                        "${index + 3 + 1}",
                                                                         style:
                                                                             TextStyle(
-                                                                          color: AppColor
-                                                                              .white,
+                                                                          color:
+                                                                              AppColor.black,
                                                                           fontSize:
                                                                               18.sp,
                                                                         ),
                                                                       ),
+                                                                      SizedBox(
+                                                                          width:
+                                                                              10.w),
+                                                                      Image
+                                                                          .asset(
+                                                                        "assets/images/avatars/avatar_${snapshot.data[index + 3]["avatar"]}.png",
+                                                                        height:
+                                                                            30.h,
+                                                                      ),
+                                                                      SizedBox(
+                                                                          width:
+                                                                              10.w),
+                                                                      Text(
+                                                                        "${snapshot.data[index + 3]["username"]}",
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              AppColor.black,
+                                                                          fontSize:
+                                                                              20.sp,
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                  Container(
+                                                                    padding: EdgeInsets
+                                                                        .all(15
+                                                                            .sp),
+                                                                    decoration: BoxDecoration(
+                                                                        color: AppColor
+                                                                            .slightlyLighterYellow
+                                                                            .withOpacity(
+                                                                                .8),
+                                                                        shape: BoxShape
+                                                                            .circle),
+                                                                    child: Text(
+                                                                      "${snapshot.data[index + 3]["score"]}",
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: AppColor
+                                                                            .white,
+                                                                        fontSize:
+                                                                            18.sp,
+                                                                      ),
                                                                     ),
-                                                                  ],
-                                                                ),
-                                                              );
-                                                            },
-                                                            separatorBuilder:
-                                                                (BuildContext
-                                                                        context,
-                                                                    int index) {
-                                                              return SizedBox(
-                                                                  height: 10.h);
-                                                            },
-                                                          ),
-                                                      ],
-                                                    )
-                                                    : const Column(
-                                                        children: [
-                                                          Center(
-                                                            child: Text(
-                                                                "End of Leaderboard"),
-                                                          ),
-                                                        ],
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            );
+                                                          },
+                                                          separatorBuilder:
+                                                              (BuildContext
+                                                                      context,
+                                                                  int index) {
+                                                            return SizedBox(
+                                                                height: 10.h);
+                                                          },
+                                                        ),
                                                       ),
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           ],
