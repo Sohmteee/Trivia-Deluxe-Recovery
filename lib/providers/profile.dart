@@ -39,10 +39,7 @@ class ProfileProvider extends ChangeNotifier {
 
     bool playerExists;
 
-    fb
-        .doc(deviceID)
-        .get()
-        .then((DocumentSnapshot snapshot) async {
+    fb.doc(deviceID).get().then((DocumentSnapshot snapshot) async {
       playerExists = snapshot.exists;
       if (playerExists) {
         print("Player exists!");
@@ -50,12 +47,15 @@ class ProfileProvider extends ChangeNotifier {
       } else {
         print("Player does not exist.");
 
-        await fb.doc().add({
-          'username': username.trim(),
-          'avatar': avatar,
-          'device_id': deviceID,
-          'score': 0,
-        });
+        await fb.doc(deviceID).set(
+          {
+            'username': username.trim(),
+            'avatar': avatar,
+            'device_id': deviceID,
+            'score': 0,
+          },
+          SetOptions(merge: true),
+        ).then((_) => null);
 
         uid = await FirebaseFirestore.instance
             .collection("players")
