@@ -66,7 +66,6 @@ class ProfileProvider extends ChangeNotifier {
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 20.h),
               Text(
                 "Your profile already exists. Your data has now been synced as ${profile["username"]}",
                 style: TextStyle(
