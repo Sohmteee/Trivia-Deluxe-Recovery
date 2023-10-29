@@ -45,7 +45,6 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
     final fb = FirebaseFirestore.instance.collection("players");
     final querySnapshot = await fb.get();
 
-    print(querySnapshot.docs);
     return querySnapshot.docs;
   }
 
