@@ -21,12 +21,21 @@ class ProfileProvider extends ChangeNotifier {
   bool hasProfile = /* box.get("hasProfile", defaultValue:  */ false /* ) */;
   bool isLoading = false;
 
-  Future<void> addPlayer({required String username,
+  Future<void> addPlayer(BuildContext context, {required String username,
     required int avatar,
   }) async {
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    String? deviceID = androidInfo.id;
+
+    final questionProvider =
+        Provider.of<QuestionProvider>(context, listen: false);
+
     await FirebaseFirestore.instance.collection("players").add({
       'username': username.trim(),
       'avatar': avatar,
+      'device_id': deviceID + 127.toString(),
+      'score': questionProvider.leaderboardScore.round(),
     });
   }
 
