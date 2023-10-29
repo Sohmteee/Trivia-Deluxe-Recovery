@@ -310,12 +310,7 @@ class ProfileProvider extends ChangeNotifier {
     final fb = FirebaseFirestore.instance.collection("players");
 
     fb.doc(deviceID).set(
-      {
-        'username': username.trim(),
-        'avatar': avatar,
-        'device_id': deviceID,
-        'score': questionProvider.leaderboardScore.round(),
-      },
+      {'score': questionProvider.leaderboardScore.round()},
       SetOptions(merge: true),
     ).catchError((error) {
       print("Error: $error");
