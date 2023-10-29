@@ -51,7 +51,7 @@ class ProfileProvider extends ChangeNotifier {
           'username': username.trim(),
           'avatar': avatar,
           'device_id': deviceID + 123.toString(),
-          'score': questionProvider.leaderboardScore.round(),
+          'score': 0,
         });
 
         box.put("id", deviceID);
