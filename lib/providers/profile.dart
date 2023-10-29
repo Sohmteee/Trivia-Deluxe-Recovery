@@ -210,6 +210,9 @@ class ProfileProvider extends ChangeNotifier {
       fb.doc(deviceID).set(
         {
           'score': questionProvider.leaderboardScore.round(),
+          'correct_answers': questionProvider.correctAnswers,
+          'total_questions': questionProvider.totalQuestionsAnswered,
+          'average_time': questionProvider.averageTime,
         },
         SetOptions(merge: true),
       ).then((_) {
