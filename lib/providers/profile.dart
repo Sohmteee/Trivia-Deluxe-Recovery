@@ -20,6 +20,7 @@ class ProfileProvider extends ChangeNotifier {
   String? username = box.get("username", defaultValue: null);
   bool hasProfile = /* box.get("hasProfile", defaultValue:  */ false /* ) */;
   bool isLoading = false;
+  String id = box.get("id", defaultValue: "");
 
   Future<void> addPlayer(
     BuildContext context, {
