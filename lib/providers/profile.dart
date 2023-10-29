@@ -26,9 +26,6 @@ class ProfileProvider extends ChangeNotifier {
     required String username,
     required int avatar,
   }) async {
-    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-    String? deviceID = androidInfo.id;
 
     final questionProvider =
         Provider.of<QuestionProvider>(context, listen: false);
