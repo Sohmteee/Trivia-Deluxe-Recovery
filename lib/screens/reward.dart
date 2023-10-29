@@ -39,9 +39,11 @@ class _RewardScreenState extends State<RewardScreen> {
 
   @override
   void initState() {
-    bgPlayer.pause();
     playVictory(context);
-    Future.delayed(4.seconds, () => bgPlayer.resume());
+    Future.delayed(.5.seconds, () {
+      bgPlayer.pause();
+      Future.delayed(4.seconds, () => bgPlayer.resume());
+    });
     final questionProvider =
         Provider.of<QuestionProvider>(context, listen: false);
     level = questionProvider.currentLevel;
