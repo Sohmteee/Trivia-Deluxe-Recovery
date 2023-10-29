@@ -112,14 +112,14 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
   Widget build(BuildContext context) {
     return GameBackground(
       floatingActionButton: !Provider.of<ProfileProvider>(context).hasProfile ||
-              Provider.of<QuestionProvider>(context).totalQuestionsAnswered != 0
+              Provider.of<QuestionProvider>(context).totalQuestionsAnswered == 0
           ? null
           : SizedBox(
               height: 50.h,
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 15.w),
                 decoration: BoxDecoration(
-                  color: AppColor.white.withOpacity(.5),
+                  color: AppColor.white,
                   borderRadius: BorderRadius.circular(30.r),
                 ),
                 child: Row(
