@@ -256,12 +256,17 @@ class _RewardScreenState extends State<RewardScreen> {
                                     final streaksProvider =
                                         Provider.of<StreaksProvider>(context,
                                             listen: false);
+                                    final questionProvider =
+                                        Provider.of<QuestionProvider>(context,
+                                            listen: false);
 
                                     Future.delayed(2.seconds, () {
                                       playCoinUp(context);
                                       moneyProvider.increaseCoins(score);
                                       streaksProvider.updateCoinStreak(
                                           moneyProvider.coins);
+                                      questionProvider
+                                          .updateLeaderBoardScore(context);
                                     });
                                   });
                                 });
