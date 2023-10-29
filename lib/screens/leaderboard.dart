@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -85,7 +86,11 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
     return responseData;
   }
 
-  Fu
+  Future<void> addPlayer() async{
+ await FirebaseFirestore.instance
+                .collection("players")
+                .add({"url": downloadUrl, "name": imageName,});
+  };
 
   @override
   Widget build(BuildContext context) {
