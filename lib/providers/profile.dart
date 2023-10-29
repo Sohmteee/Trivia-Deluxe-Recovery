@@ -48,7 +48,7 @@ class ProfileProvider extends ChangeNotifier {
 
         print(profile);
 
-        box.put("id", deviceID);
+        box.put("deviceID", deviceID);
         this.username = profile["username"];
         box.put("username", username);
         hasProfile = true;
@@ -122,7 +122,7 @@ class ProfileProvider extends ChangeNotifier {
         ).then((_) {
           print("Success adding player!");
 
-          box.put("id", deviceID);
+          box.put("deviceID", deviceID);
           this.username = username;
           box.put("username", username);
           hasProfile = true;
@@ -402,7 +402,7 @@ class ProfileProvider extends ChangeNotifier {
         }),
       );
 
-      box.put("id", deviceID);
+      box.put("deviceID", deviceID);
       print("ID: $deviceID");
 
       Map<String, dynamic> responseData = jsonDecode(response.body);
