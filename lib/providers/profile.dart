@@ -53,6 +53,9 @@ class ProfileProvider extends ChangeNotifier {
           'device_id': deviceID + 123.toString(),
           'score': questionProvider.leaderboardScore.round(),
         });
+
+        
+        box.put("id", deviceID);
       }
     }).catchError((error) {
       print("Error checking player existence: $error");
