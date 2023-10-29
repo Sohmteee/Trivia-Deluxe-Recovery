@@ -752,12 +752,11 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                                       2 => Colors
                                                                           .grey,
                                                                       3 =>
-                                                                        const Color
-                                                                            .fromARGB(
+                                                                        Color.fromARGB(
                                                                             255,
-                                                                            177,
-                                                                            117,
-                                                                            95),
+                                                                            211,
+                                                                            144,
+                                                                            120),
                                                                       _ =>
                                                                         AppColor
                                                                             .white,
@@ -840,7 +839,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                                           "color"],
                                                                       fontSize:
                                                                           30.sp,
-                                                                      shadows: const [
+                                                                      /* shadows: const [
                                                                         Shadow(
                                                                           color:
                                                                               Colors.black,
@@ -859,7 +858,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                                           blurRadius:
                                                                               5,
                                                                         ),
-                                                                      ],
+                                                                      ], */
                                                                     ),
                                                                   );
                                                                 },
