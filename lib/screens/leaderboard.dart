@@ -43,9 +43,11 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
     super.dispose();
   }
 
-  Future<List?> getLeaderBoardData(int index) async {}
-
   Future<List?> getLeaderBoardData(int index) async {
+    fb = FirebaseFireStore;
+  }
+
+  /* Future<List?> getLeaderBoardData(int index) async {
     String? getPeriod() {
       switch (index) {
         case 0:
@@ -85,7 +87,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
 
     return responseData;
   }
-
+ */
   @override
   Widget build(BuildContext context) {
     return GameBackground(
