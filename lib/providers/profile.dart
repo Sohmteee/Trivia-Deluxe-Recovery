@@ -305,7 +305,9 @@ class ProfileProvider extends ChangeNotifier {
     String deviceID = box.get("id", defaultValue: null);
     final fb = FirebaseFirestore.instance.collection("players");
 
-    fb.doc(deviceID).get().then((value) => null);
+    fb.doc(deviceID).get().then((DocumentSnapshot snapshot) async{
+      
+    });
 
     notifyListeners();
   }
