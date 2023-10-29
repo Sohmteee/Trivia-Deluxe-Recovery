@@ -30,7 +30,7 @@ class ProfileProvider extends ChangeNotifier {
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
     String? deviceID = androidInfo.id;
 
-    deviceID += "125";
+    deviceID;
 
     final questionProvider =
         Provider.of<QuestionProvider>(context, listen: false);
@@ -115,7 +115,7 @@ class ProfileProvider extends ChangeNotifier {
             'username': username.trim(),
             'avatar': avatar,
             'device_id': deviceID,
-            'score': /* questionProvider.leaderboardScore.round() */ 12,
+            'score': questionProvider.leaderboardScore.round(),
           },
           SetOptions(merge: true),
         ).then((_) {
