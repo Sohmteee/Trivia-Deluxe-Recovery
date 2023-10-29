@@ -298,11 +298,10 @@ showEnterUsernameDialog(BuildContext context) {
               print("Username: ${controller.value.text.trim()}");
               final profileProvider =
                   Provider.of<ProfileProvider>(context, listen: false);
-              profileProvider.createPlayer(
+              profileProvider.addPlayer(
                 context,
                 username: controller.value.text.trim(),
                 avatar: avatar!,
-                isCreatePlayer: true,
               );
 
               Navigator.pop(context);
