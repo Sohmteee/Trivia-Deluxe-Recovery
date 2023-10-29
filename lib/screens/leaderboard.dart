@@ -533,9 +533,9 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                               color: Color
                                                                   .fromARGB(
                                                                       255,
-                                                                      243,
-                                                                      165,
-                                                                      47),
+                                                                      177,
+                                                                      117,
+                                                                      95),
                                                               shape: BoxShape
                                                                   .circle,
                                                             ),
