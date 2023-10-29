@@ -45,10 +45,8 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
   }
 
   Future<Map?> getLeaderBoardData(int index) async {
-    final fb = FirebaseFirestore.instance.collection("players");
-
-    
-
+    return FirebaseFirestore.instance.collection("players")
+        as Map<String, dynamic>;
   }
 
   /* Future<List?> getLeaderBoardData(int index) async {
