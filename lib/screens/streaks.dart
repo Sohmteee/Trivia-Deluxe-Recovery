@@ -441,6 +441,7 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
                                                 questionProvider
                                                     .updateLeaderBoardScore(
                                                         context);
+                                                        Provider.of<>(context).
 
                                                 ToastContext().init(context);
                                                 Toast.show(
