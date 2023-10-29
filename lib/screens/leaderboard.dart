@@ -675,10 +675,10 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                     Container(
                                                       padding:
                                                           EdgeInsets.symmetric(
-                                                              vertical: 10.h,
+                                                              vertical: 6.h,
                                                               horizontal: 15.w),
                                                       decoration: BoxDecoration(
-                                                        color: AppColor.white,
+                                                        color: AppColor.black,
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(30.r),
@@ -694,7 +694,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                             "Current Position",
                                                             style: TextStyle(
                                                               color: AppColor
-                                                                  .black,
+                                                                  .white,
                                                               fontSize: 20.sp,
                                                             ),
                                                           ),
