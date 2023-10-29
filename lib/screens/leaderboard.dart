@@ -30,15 +30,17 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
     super.initState();
     tabController = TabController(length: 3, vsync: this);
 
-    final questionProvider =
-        Provider.of<QuestionProvider>(context, listen: false);
-    questionProvider.updateLeaderBoardScore(context);
+    Future.microtask(() {
+      final questionProvider =
+          Provider.of<QuestionProvider>(context, listen: false);
+      questionProvider.updateLeaderBoardScore(context);
 
-    final profileProvider =
-        Provider.of<ProfileProvider>(context, listen: false);
-    if (profileProvider.username != null) {
-      profileProvider.updatePlayer(context);
-    }
+      final profileProvider =
+          Provider.of<ProfileProvider>(context, listen: false);
+      if (profileProvider.username != null) {
+        profileProvider.updatePlayer(context);
+      }
+    });
   }
 
   @override
