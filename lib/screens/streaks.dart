@@ -65,13 +65,13 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
     return GameBackground(
       body: Consumer<StreaksProvider>(builder: (context, streaksProvider, _) {
         return Padding(
-          padding: EdgeInsets.fromLTRB(20.w, 30.h, 20.w, 0),
+          padding: EdgeInsets.fromLTRB(20.w, 20.h, 20.w, 0),
           child: Column(
             children: [
               Row(
                 children: [
                   BackButton(
-                    color: AppColor.white,
+                    color: AppColor.yellow,
                   ),
                   const Spacer(),
                   Text(

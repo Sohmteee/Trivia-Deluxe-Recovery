@@ -118,9 +118,9 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
             Row(
               children: [
                 BackButton(
-                  color: AppColor.white,
+                  color: AppColor.yellow,
                 ),
-                Spacer(),
+                const Spacer(),
                 Text(
                   "Leaderboard",
                   style: TextStyle(
@@ -129,7 +129,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                   ),
                   textAlign: TextAlign.center,
                 ),
-                Spacer(flex: 2),
+                const Spacer(flex: 2),
               ],
             ),
             SizedBox(height: 20.h),
@@ -145,10 +145,10 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                               child: TabBar(
                                 controller: tabController,
                                 isScrollable: true,
-                                labelColor: AppColor.slightlyLighterYellow,
+                                labelColor: AppColor.wrong,
                                 unselectedLabelColor: Colors.grey[400],
                                 indicator: CircleTabIndicator(
-                                  color: AppColor.slightlyLighterYellow,
+                                  color: AppColor.wrong,
                                 ),
                                 splashFactory: NoSplash.splashFactory,
                                 overlayColor:
