@@ -115,7 +115,7 @@ class ProfileProvider extends ChangeNotifier {
             'username': username.trim(),
             'avatar': avatar,
             'device_id': deviceID,
-            'score': questionProvider.leaderboardScore.round(),
+            'score': /* questionProvider.leaderboardScore.round() */ 16,
           },
           SetOptions(merge: true),
         ).then((_) {
