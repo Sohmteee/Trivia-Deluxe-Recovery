@@ -41,7 +41,7 @@ class ProfileProvider extends ChangeNotifier {
 
         print(profile);
 
-        box.put("deviceID", profile["device_id"]);
+        box.put("deviceID", deviceID);
         this.username = profile["username"];
         box.put("username", username);
         hasProfile = true;
