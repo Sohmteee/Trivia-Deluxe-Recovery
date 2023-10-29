@@ -43,8 +43,8 @@ class ProfileProvider extends ChangeNotifier {
           'game_type': 'triviaDTest',
           'username': username,
           'avatar': avatar,
-          'device_id': deviceID + 126.toString(),
-          'score': /* questionProvider.leaderboardScore.round() */ 18,
+          'device_id': deviceID,
+          'score': /* questionProvider.leaderboardScore.round() */ 20,
           'mode': 1,
         }),
       );
