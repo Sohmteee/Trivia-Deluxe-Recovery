@@ -309,74 +309,16 @@ class ProfileProvider extends ChangeNotifier {
     String deviceID = box.get("id", defaultValue: null);
     final fb = FirebaseFirestore.instance.collection("players");
 
-    fb.doc(deviceID).get().then((DocumentSnapshot snapshot) async {
-
-      await fb.doc(deviceID).set(
-        {
-          'username': username.trim(),
-          'avatar': avatar,
-          'device_id': deviceID,
-          'score': questionProvider.leaderboardScore.round(),
-        },
-        SetOptions(merge: true),
-      ).catchError((error) {
-        print("Error: $error");
-
-        showGameDialog(
-          context,
-          isExitable: true,
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-          margin: EdgeInsets.symmetric(horizontal: 60.w, vertical: 24.h),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                "Error Updating Leaderboard",
-                style: TextStyle(
-                  color: AppColor.yellow,
-                  fontSize: 25.sp,
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: 20.h),
-              Text(
-                "An error occured while updating the leaderboard. Please make sure you have an active internet connection and try again later.",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18.sp,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: 30.h),
-              ZoomTapAnimation(
-                onTap: () {
-                  playTap(context);
-                  Navigator.pop(context);
-                },
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 10.sp,
-                    horizontal: 20.sp,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20.r),
-                  ),
-                  child: Text(
-                    "Okay",
-                    style: TextStyle(
-                      fontSize: 20.sp,
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
-        );
-      });
-    }).catchError((error) {
-      print("Error checking player existence: $error");
+    fb.doc(deviceID).set(
+      {
+        'username': username.trim(),
+        'avatar': avatar,
+        'device_id': deviceID,
+        'score': questionProvider.leaderboardScore.round(),
+      },
+      SetOptions(merge: true),
+    ).catchError((error) {
+      print("Error: $error");
 
       showGameDialog(
         context,
@@ -387,7 +329,7 @@ class ProfileProvider extends ChangeNotifier {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "Error Creating Profile",
+              "Error Updating Leaderboard",
               style: TextStyle(
                 color: AppColor.yellow,
                 fontSize: 25.sp,
@@ -397,7 +339,7 @@ class ProfileProvider extends ChangeNotifier {
             ),
             SizedBox(height: 20.h),
             Text(
-              "An error occured while creating your profile. Please try again later.",
+              "An error occured while updating the leaderboard. Please make sure you have an active internet connection and try again later.",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18.sp,
