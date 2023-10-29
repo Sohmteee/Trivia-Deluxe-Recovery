@@ -33,6 +33,12 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
     final questionProvider =
         Provider.of<QuestionProvider>(context, listen: false);
     questionProvider.updateLeaderBoardScore(context);
+
+    final profileProvider =
+        Provider.of<ProfileProvider>(context, listen: false);
+    if (profileProvider.username != null) {
+      profileProvider.updatePlayer(context);
+    }
   }
 
   @override
