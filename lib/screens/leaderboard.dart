@@ -1,11 +1,8 @@
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/main.dart';
@@ -44,16 +41,12 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
     super.dispose();
   }
 
-  Future<Map?> getLeaderBoardData(int index) async {
-    return FirebaseFirestore.instance.collection("players")
-        as Map<String, dynamic>;
-  }
-  
-    Future<List<QueryDocumentSnapshot>> getLeaderBoardData(int index)  async {
-    final fb = FirebaseFirestore.instance.collection("your_collection");
+  Future<List<QueryDocumentSnapshot>> getLeaderBoardData(int index) async {
+    final fb = FirebaseFirestore.instance.collection("players");
     final querySnapshot = await fb.get();
     return querySnapshot.docs;
   }
+
   /* Future<List?> getLeaderBoardData(int index) async {
     String? getPeriod() {
       switch (index) {
