@@ -20,7 +20,6 @@ class ProfileProvider extends ChangeNotifier {
   String? username = box.get("username", defaultValue: null);
   bool hasProfile = /* box.get("hasProfile", defaultValue:  */ false /* ) */;
   bool isLoading = false;
-  String uid = box.get("uid", defaultValue: "");
 
   Future<void> addPlayer(
     BuildContext context, {
@@ -58,74 +57,69 @@ class ProfileProvider extends ChangeNotifier {
         ).then((_) {
           print("Success adding player!");
 
-          
-        }).catchError((error) {
-          print("Error: $error");
-        });
+          box.put("id", deviceID);
 
-        print("UID: $uid");
+          this.username = username;
+          box.put("username", username);
+          hasProfile = true;
+          box.put("hasProfile", hasProfile);
 
-        box.put("id", deviceID);
-        box.put("uid", uid);
-
-        this.username = username;
-        box.put("username", username);
-        hasProfile = true;
-        box.put("hasProfile", hasProfile);
-
-        Future.delayed(.5.seconds, () {
-          showGameDialog(
-            context,
-            isExitable: true,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-            margin: EdgeInsets.symmetric(horizontal: 60.w, vertical: 24.h),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  "Profile Created Successfully",
-                  style: TextStyle(
-                    color: AppColor.yellow,
-                    fontSize: 25.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(height: 20.h),
-                Text(
-                  "Your profile has been created successfully. Your can now view your progress on the leaderboard.",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18.sp,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(height: 30.h),
-                ZoomTapAnimation(
-                  onTap: () {
-                    playTap(context);
-                    Navigator.pop(context);
-                  },
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                      vertical: 10.sp,
-                      horizontal: 20.sp,
+          Future.delayed(.5.seconds, () {
+            showGameDialog(
+              context,
+              isExitable: true,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+              margin: EdgeInsets.symmetric(horizontal: 60.w, vertical: 24.h),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    "Profile Created Successfully",
+                    style: TextStyle(
+                      color: AppColor.yellow,
+                      fontSize: 25.sp,
+                      fontWeight: FontWeight.bold,
                     ),
-                    decoration: BoxDecoration(
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 20.h),
+                  Text(
+                    "Your profile has been created successfully. Your can now view your progress on the leaderboard.",
+                    style: TextStyle(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(20.r),
+                      fontSize: 18.sp,
                     ),
-                    child: Text(
-                      "Okay",
-                      style: TextStyle(
-                        fontSize: 20.sp,
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 30.h),
+                  ZoomTapAnimation(
+                    onTap: () {
+                      playTap(context);
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 10.sp,
+                        horizontal: 20.sp,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20.r),
+                      ),
+                      child: Text(
+                        "Okay",
+                        style: TextStyle(
+                          fontSize: 20.sp,
+                        ),
                       ),
                     ),
-                  ),
-                )
-              ],
-            ),
-          );
+                  )
+                ],
+              ),
+            );
+          });
+        }).catchError((error) {
+          print("Error: $error");
         });
       }
     }).catchError((error) {
