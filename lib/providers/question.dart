@@ -109,7 +109,7 @@ class QuestionProvider extends ChangeNotifier {
         print("Correct Answers: $correctAnswers");
 
         averageTime = ((averageTime * (correctAnswers - 1)) +
-                (30 - double.parse(timeElapsed!))) /
+                (30 - double.parse(timeElapsed ?? "1"))) /
             correctAnswers;
         box.put("averageTime", averageTime);
         print("Average Answering Time: $averageTime");
