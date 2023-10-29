@@ -823,6 +823,26 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                                       "color"],
                                                                   fontSize:
                                                                       30.sp,
+                                                                      shadows: const [
+                                                                        Shadow(
+                                                                          color:
+                                                                              Colors.black,
+                                                                          offset: Offset(
+                                                                              -2,
+                                                                              2),
+                                                                          blurRadius:
+                                                                              5,
+                                                                        ),
+                                                                        Shadow(
+                                                                          color:
+                                                                              Colors.black,
+                                                                          offset: Offset(
+                                                                              -2,
+                                                                              -2),
+                                                                          blurRadius:
+                                                                              5,
+                                                                        ),
+                                                                      ],
                                                                 ),
                                                               );
                                                             },
