@@ -34,7 +34,7 @@ class ProfileProvider extends ChangeNotifier {
         Provider.of<QuestionProvider>(context, listen: false);
     final fb = FirebaseFirestore.instance.collection("players").get;
 
-    bool playerExists = fb.where("device_id", isEqualTo: deviceID).isEmpty;
+    bool playerExists = fb.
 
     await FirebaseFirestore.instance.collection("players").add({
       'username': username.trim(),
