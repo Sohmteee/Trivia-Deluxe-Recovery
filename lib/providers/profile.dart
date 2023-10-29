@@ -68,7 +68,7 @@ class ProfileProvider extends ChangeNotifier {
               ),
               SizedBox(height: 20.h),
               Text(
-                "Your profile already exists. Your data has now been synced.",
+                "Your profile already exists. Your data has now been synced as ",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 18.sp,
