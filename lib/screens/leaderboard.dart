@@ -111,7 +111,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
   @override
   Widget build(BuildContext context) {
     return GameBackground(
-      floatingActionButton: box.get("hasProfile") == false
+      floatingActionButton: !Provider.of<ProfileProvider>(context).hasProfile
           ? null
           : SizedBox(
               height: 50.h,
