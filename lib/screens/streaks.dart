@@ -424,6 +424,12 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
                                                     .increaseCoins(
                                                         item["reward"]);
 
+                                                final questionProvider =
+                                                    Provider.of<
+                                                            QuestionProvider>(
+                                                        context,
+                                                        listen: false);
+
                                                 streaksProvider.streaks =
                                                     streakData;
                                                 streaksProvider
@@ -432,6 +438,9 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
                                                                 context,
                                                                 listen: false)
                                                         .coins);
+                                                questionProvider
+                                                    .updateLeaderBoardScore(
+                                                        context);
 
                                                 ToastContext().init(context);
                                                 Toast.show(
