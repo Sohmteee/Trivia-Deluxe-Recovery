@@ -42,7 +42,65 @@ class ProfileProvider extends ChangeNotifier {
       playerExists = snapshot.exists;
       if (playerExists) {
         print("Player exists!");
-        // Do something if the player exists
+
+        box.put("id", deviceID);
+        this.username = username;
+        box.put("username", username);
+        hasProfile = true;
+        box.put("hasProfile", hasProfile);
+
+        showGameDialog(
+          context,
+          isExitable: true,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+          margin: EdgeInsets.symmetric(horizontal: 60.w, vertical: 24.h),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                "Profile Already Exists",
+                style: TextStyle(
+                  color: AppColor.yellow,
+                  fontSize: 25.sp,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 20.h),
+              Text(
+                "Your profile already exists. Your data has now been synced.",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18.sp,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 30.h),
+              ZoomTapAnimation(
+                onTap: () {
+                  playTap(context);
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 10.sp,
+                    horizontal: 20.sp,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20.r),
+                  ),
+                  child: Text(
+                    "Okay",
+                    style: TextStyle(
+                      fontSize: 20.sp,
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        );
       } else {
         print("Player does not exist.");
 
