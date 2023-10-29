@@ -26,7 +26,6 @@ class ProfileProvider extends ChangeNotifier {
     required String username,
     required int avatar,
   }) async {
-
     final questionProvider =
         Provider.of<QuestionProvider>(context, listen: false);
     final fb = FirebaseFirestore.instance.collection("players");
@@ -76,29 +75,6 @@ class ProfileProvider extends ChangeNotifier {
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 30.h),
-              ZoomTapAnimation(
-                onTap: () {
-                  playTap(context);
-                  Navigator.pop(context);
-                },
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 10.sp,
-                    horizontal: 20.sp,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20.r),
-                  ),
-                  child: Text(
-                    "Okay",
-                    style: TextStyle(
-                      fontSize: 20.sp,
-                    ),
-                  ),
-                ),
-              )
             ],
           ),
         );
@@ -150,29 +126,6 @@ class ProfileProvider extends ChangeNotifier {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 30.h),
-                ZoomTapAnimation(
-                  onTap: () {
-                    playTap(context);
-                    Navigator.pop(context);
-                  },
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                      vertical: 10.sp,
-                      horizontal: 20.sp,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20.r),
-                    ),
-                    child: Text(
-                      "Okay",
-                      style: TextStyle(
-                        fontSize: 20.sp,
-                      ),
-                    ),
-                  ),
-                )
               ],
             ),
           );
@@ -205,29 +158,6 @@ class ProfileProvider extends ChangeNotifier {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 30.h),
-                ZoomTapAnimation(
-                  onTap: () {
-                    playTap(context);
-                    Navigator.pop(context);
-                  },
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                      vertical: 10.sp,
-                      horizontal: 20.sp,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20.r),
-                    ),
-                    child: Text(
-                      "Okay",
-                      style: TextStyle(
-                        fontSize: 20.sp,
-                      ),
-                    ),
-                  ),
-                )
               ],
             ),
           );
@@ -262,29 +192,6 @@ class ProfileProvider extends ChangeNotifier {
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 30.h),
-            ZoomTapAnimation(
-              onTap: () {
-                playTap(context);
-                Navigator.pop(context);
-              },
-              child: Container(
-                padding: EdgeInsets.symmetric(
-                  vertical: 10.sp,
-                  horizontal: 20.sp,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20.r),
-                ),
-                child: Text(
-                  "Okay",
-                  style: TextStyle(
-                    fontSize: 20.sp,
-                  ),
-                ),
-              ),
-            )
           ],
         ),
       );
@@ -335,29 +242,6 @@ class ProfileProvider extends ChangeNotifier {
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 30.h),
-              ZoomTapAnimation(
-                onTap: () {
-                  playTap(context);
-                  Navigator.pop(context);
-                },
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 10.sp,
-                    horizontal: 20.sp,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20.r),
-                  ),
-                  child: Text(
-                    "Okay",
-                    style: TextStyle(
-                      fontSize: 20.sp,
-                    ),
-                  ),
-                ),
-              )
             ],
           ),
         );
