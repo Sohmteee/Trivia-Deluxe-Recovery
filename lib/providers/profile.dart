@@ -31,6 +31,10 @@ class ProfileProvider extends ChangeNotifier {
     final questionProvider =
         Provider.of<QuestionProvider>(context, listen: false);
 
+         Future<QuerySnapshot> getImages() {
+      return fb.collection("images").get();
+    } 
+
     await FirebaseFirestore.instance.collection("players").add({
       'username': username.trim(),
       'avatar': avatar,
