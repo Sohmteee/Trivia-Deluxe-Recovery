@@ -44,10 +44,11 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
     super.dispose();
   }
 
-  Future<List?> getLeaderBoardData(int index) async {
+  Future<Map?> getLeaderBoardData(int index) async {
     final fb = FirebaseFirestore.instance.collection("players");
 
     
+
   }
 
   /* Future<List?> getLeaderBoardData(int index) async {
