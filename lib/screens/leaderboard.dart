@@ -117,6 +117,10 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
           children: [
             Row(
               children: [
+                BackButton(
+                  color: AppColor.white,
+                ),
+                Spacer(),
                 Text(
                   "Leaderboard",
                   style: TextStyle(
@@ -125,6 +129,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                   ),
                   textAlign: TextAlign.center,
                 ),
+                Spacer(flex: 2),
               ],
             ),
             SizedBox(height: 20.h),
