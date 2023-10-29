@@ -19,7 +19,7 @@ import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 class ProfileProvider extends ChangeNotifier {
   String? username = box.get("username", defaultValue: null);
   String deviceID = box.get("deviceID", defaultValue: null);
-  bool hasProfile = /* box.get("hasProfile", defaultValue:  */ false /* ) */;
+  bool hasProfile = /* box.get("hasProfile", defaultValue:  */ false );
   bool isLoading = false;
 
   Future<void> addPlayer(

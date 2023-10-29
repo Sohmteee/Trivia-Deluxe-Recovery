@@ -134,7 +134,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                   Map<String, dynamic> getPosition() {
                     int index = snapshot.data.indexOf(snapshot.data
                             .where((profile) =>
-                                profile["deviceID"] ==
+                                profile["device_id"] ==
                                 Provider.of<ProfileProvider>(context).deviceID)
                             .first) +
                         1;
