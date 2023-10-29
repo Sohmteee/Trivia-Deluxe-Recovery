@@ -44,7 +44,7 @@ class ProfileProvider extends ChangeNotifier {
           'username': username,
           'avatar': avatar,
           'device_id': deviceID,
-          'score': /* questionProvider.leaderboardScore.round() */ 20,
+          'score': questionProvider.leaderboardScore.round(),
           'mode': 1,
         }),
       );
