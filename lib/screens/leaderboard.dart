@@ -672,135 +672,149 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                 ),
                                                 child: Column(
                                                   children: [
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      children: [
-                                                        Text(
-                                                          "Current Position",
-                                                          style: TextStyle(
-                                                            color:
-                                                                AppColor.black,
-                                                            fontSize: 20.sp,
+                                                    Container(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              vertical: 10.h,
+                                                              horizontal: 15.w),
+                                                      decoration: BoxDecoration(
+                                                        color: AppColor.white,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(30.r),
+                                                      ),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        children: [
+                                                          Text(
+                                                            "Current Position",
+                                                            style: TextStyle(
+                                                              color: AppColor
+                                                                  .black,
+                                                              fontSize: 20.sp,
+                                                            ),
                                                           ),
-                                                        ),
-                                                        SizedBox(width: 10.w),
-                                                        FutureBuilder(
-                                                          future:
-                                                              getLeaderBoardData(
-                                                                  0),
-                                                          builder: (BuildContext
-                                                                  context,
-                                                              AsyncSnapshot
-                                                                  snapshot) {
-                                                            Map<String, dynamic>
-                                                                getPosition() {
-                                                              int index = snapshot.data.indexOf(snapshot
-                                                                      .data
-                                                                      .where((profile) =>
-                                                                          profile[
-                                                                              "device_id"] ==
-                                                                          deviceID)
-                                                                      .first) +
-                                                                  1;
+                                                          SizedBox(width: 10.w),
+                                                          FutureBuilder(
+                                                            future:
+                                                                getLeaderBoardData(
+                                                                    0),
+                                                            builder: (BuildContext
+                                                                    context,
+                                                                AsyncSnapshot
+                                                                    snapshot) {
+                                                              Map<String,
+                                                                      dynamic>
+                                                                  getPosition() {
+                                                                int index = snapshot.data.indexOf(snapshot
+                                                                        .data
+                                                                        .where((profile) =>
+                                                                            profile["device_id"] ==
+                                                                            deviceID)
+                                                                        .first) +
+                                                                    1;
 
-                                                              Color color =
-                                                                  switch (
-                                                                      index) {
-                                                                1 => const Color
-                                                                    .fromARGB(
-                                                                    255,
-                                                                    243,
-                                                                    165,
-                                                                    47),
-                                                                2 =>
-                                                                  Colors.grey,
-                                                                3 => const Color
-                                                                    .fromARGB(
-                                                                    255,
-                                                                    177,
-                                                                    117,
-                                                                    95),
-                                                                _ => AppColor
-                                                                    .white,
-                                                              };
+                                                                Color color =
+                                                                    switch (
+                                                                        index) {
+                                                                  1 => const Color
+                                                                      .fromARGB(
+                                                                      255,
+                                                                      243,
+                                                                      165,
+                                                                      47),
+                                                                  2 =>
+                                                                    Colors.grey,
+                                                                  3 => const Color
+                                                                      .fromARGB(
+                                                                      255,
+                                                                      177,
+                                                                      117,
+                                                                      95),
+                                                                  _ => AppColor
+                                                                      .white,
+                                                                };
 
-                                                              String suffix = switch (
-                                                                  int.parse(index
-                                                                      .toString()[index
-                                                                          .toString()
-                                                                          .length -
-                                                                      1])) {
-                                                                1 => "st",
-                                                                2 => "nd",
-                                                                3 => "rd",
-                                                                _ => "th",
-                                                              };
+                                                                String suffix = switch (int.parse(index
+                                                                    .toString()[index
+                                                                        .toString()
+                                                                        .length -
+                                                                    1])) {
+                                                                  1 => "st",
+                                                                  2 => "nd",
+                                                                  3 => "rd",
+                                                                  _ => "th",
+                                                                };
 
-                                                              if (index >= 1) {
+                                                                if (index >=
+                                                                    1) {
+                                                                  return {
+                                                                    "position":
+                                                                        "$index$suffix",
+                                                                    "color":
+                                                                        color,
+                                                                  };
+                                                                }
+
                                                                 return {
                                                                   "position":
-                                                                      "$index$suffix",
+                                                                      "---",
                                                                   "color":
-                                                                      color,
+                                                                      AppColor
+                                                                          .white,
                                                                 };
                                                               }
 
-                                                              return {
-                                                                "position":
-                                                                    "---",
-                                                                "color":
-                                                                    AppColor
-                                                                        .white,
-                                                              };
-                                                            }
-
-                                                            if (snapshot.data ==
-                                                                null) {
-                                                              return Center(
-                                                                child:
-                                                                    CircularProgressIndicator(
-                                                                  color: AppColor
-                                                                      .yellow,
-                                                                ),
-                                                              );
-                                                            }
-                                                            if (snapshot
-                                                                    .hasError ||
-                                                                snapshot.data ==
-                                                                    []) {
-                                                              return Center(
-                                                                child: Text(
-                                                                  "---",
-                                                                  style:
-                                                                      TextStyle(
+                                                              if (snapshot
+                                                                      .data ==
+                                                                  null) {
+                                                                return Center(
+                                                                  child:
+                                                                      CircularProgressIndicator(
                                                                     color: AppColor
-                                                                        .white,
-                                                                    fontSize:
-                                                                        25.sp,
+                                                                        .yellow,
                                                                   ),
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
+                                                                );
+                                                              }
+                                                              if (snapshot
+                                                                      .hasError ||
+                                                                  snapshot.data ==
+                                                                      []) {
+                                                                return Center(
+                                                                  child: Text(
+                                                                    "---",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: AppColor
+                                                                          .white,
+                                                                      fontSize:
+                                                                          25.sp,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                  ),
+                                                                );
+                                                              }
+                                                              return Text(
+                                                                getPosition()[
+                                                                    "position"],
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: getPosition()[
+                                                                      "color"],
+                                                                  fontSize:
+                                                                      30.sp,
                                                                 ),
                                                               );
-                                                            }
-                                                            return Text(
-                                                              getPosition()[
-                                                                  "position"],
-                                                              style: TextStyle(
-                                                                color:
-                                                                    getPosition()[
-                                                                        "color"],
-                                                                fontSize: 30.sp,
-                                                              ),
-                                                            );
-                                                          },
-                                                        ),
-                                                      ],
+                                                            },
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
                                                     if (snapshot.data.length >=
                                                         4)
