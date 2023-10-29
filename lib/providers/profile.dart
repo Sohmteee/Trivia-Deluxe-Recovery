@@ -208,7 +208,9 @@ class ProfileProvider extends ChangeNotifier {
 
     fb.doc(deviceID).get().then((DocumentSnapshot snapshot) async {
       fb.doc(deviceID).set(
-        {'score': questionProvider.leaderboardScore.round()},
+        {
+          'score': questionProvider.leaderboardScore.round(),
+        },
         SetOptions(merge: true),
       ).then((_) {
         var profile = snapshot.data() as Map<String, dynamic>;
