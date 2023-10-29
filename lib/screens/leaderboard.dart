@@ -115,15 +115,17 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
         padding: EdgeInsets.only(top: 40.h),
         child: Column(
           children: [
-            Center(
-              child: Text(
-                "Leaderboard",
-                style: TextStyle(
-                  color: AppColor.yellow,
-                  fontSize: 50.sp,
+            Row(
+              children: [
+                Text(
+                  "Leaderboard",
+                  style: TextStyle(
+                    color: AppColor.yellow,
+                    fontSize: 50.sp,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
-              ),
+              ],
             ),
             SizedBox(height: 20.h),
             Expanded(
