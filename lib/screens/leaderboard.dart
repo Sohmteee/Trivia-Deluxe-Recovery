@@ -145,10 +145,10 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                               child: TabBar(
                                 controller: tabController,
                                 isScrollable: true,
-                                labelColor: AppColor.wrong,
+                                labelColor: AppColor.slightlyLighterYellow,
                                 unselectedLabelColor: Colors.grey[400],
                                 indicator: CircleTabIndicator(
-                                  color: AppColor.wrong,
+                                  color: AppColor.slightlyLighterYellow,
                                 ),
                                 splashFactory: NoSplash.splashFactory,
                                 overlayColor:
@@ -685,7 +685,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                               vertical: 6.h,
                                                               horizontal: 15.w),
                                                       decoration: BoxDecoration(
-                                                        color: AppColor.darkRed,
+                                                        color: AppColor.orange,
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(30.r),
