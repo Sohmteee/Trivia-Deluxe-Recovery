@@ -655,7 +655,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                             Expanded(
                                               child: Container(
                                                 padding:
-                                                    EdgeInsets.only(top: 5.h),
+                                                    EdgeInsets.only(top: 10.h),
                                                 decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.vertical(
