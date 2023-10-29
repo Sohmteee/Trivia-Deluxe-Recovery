@@ -86,7 +86,6 @@ class QuestionProvider extends ChangeNotifier {
         averageTime;
     if (totalQuestionsAnswered == 0) leaderboardScore = 0;
 
-
     box.put("leaderboardScore", leaderboardScore);
 
     print("Leaderboard score: $leaderboardScore");
