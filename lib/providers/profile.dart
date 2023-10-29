@@ -309,7 +309,7 @@ class ProfileProvider extends ChangeNotifier {
       {'score': questionProvider.leaderboardScore.round()},
       SetOptions(merge: true),
     ).then((_) {
-      final profile = fb.doc(deviceID) as Map<String, dynamic>;
+      final profile = fb.doc(deviceID). as Map<String, dynamic>;
       print(profile);
     }).catchError((error) {
       print("Error: $error");
