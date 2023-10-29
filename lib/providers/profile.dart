@@ -55,12 +55,15 @@ class ProfileProvider extends ChangeNotifier {
           'score': 0,
         });
 
+        uid = 
+
         box.put("id", deviceID);
 
         this.username = username;
         box.put("username", username);
         hasProfile = true;
         box.put("hasProfile", hasProfile);
+
 
         Future.delayed(.5.seconds, () {
           showGameDialog(
