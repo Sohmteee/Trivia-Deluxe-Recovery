@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -20,10 +21,13 @@ class ProfileProvider extends ChangeNotifier {
   bool hasProfile = /* box.get("hasProfile", defaultValue:  */ false /* ) */;
   bool isLoading = false;
 
-   Future<void> addPlayer() async{
- await FirebaseFirestore.instance
-                .collection("players")
-                .add({'username': });
+  Future<void> addPlayer({required String username,
+    required int avatar,
+  }) async {
+    await FirebaseFirestore.instance.collection("players").add({
+      'username': username.trim(),
+      'avatar': avatar,
+    });
   }
 
   createPlayer(BuildContext context,
