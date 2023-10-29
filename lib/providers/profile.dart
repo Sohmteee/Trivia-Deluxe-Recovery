@@ -305,13 +305,9 @@ class ProfileProvider extends ChangeNotifier {
   }) async {
     final questionProvider =
         Provider.of<QuestionProvider>(context, listen: false);
-    final profileProvider =
-        Provider.of<ProfileProvider>(context, listen: false);
 
         String deviceID = box.get("id", defaultValue: null);
     final fb = FirebaseFirestore.instance.collection("players");
-
-    bool playerExists;
 
     fb.doc(deviceID).get().then((DocumentSnapshot snapshot) async {
       playerExists = snapshot.exists;
@@ -321,8 +317,6 @@ class ProfileProvider extends ChangeNotifier {
         var profile = snapshot.data() as Map<String, dynamic>;
 
         print(profile);
-
-        box.put("id", deviceID);
         this.username = profile["username"];
         box.put("username", username);
         hasProfile = true;
