@@ -774,9 +774,16 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                                   null) {
                                                                 return Center(
                                                                   child:
-                                                                      CircularProgressIndicator(
-                                                                    color: AppColor
-                                                                        .yellow,
+                                                                      Padding(
+                                                                    padding:
+                                                                        const EdgeInsets
+                                                                            .all(
+                                                                            8.0),
+                                                                    child:
+                                                                        CircularProgressIndicator(
+                                                                      color: AppColor
+                                                                          .yellow,
+                                                                    ),
                                                                   ),
                                                                 );
                                                               }
