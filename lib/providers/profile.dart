@@ -298,11 +298,7 @@ class ProfileProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> updatePlayer(
-    BuildContext context, {
-    required String username,
-    required int avatar,
-  }) async {
+  Future<void> updatePlayer(BuildContext context) async {
     final questionProvider =
         Provider.of<QuestionProvider>(context, listen: false);
 

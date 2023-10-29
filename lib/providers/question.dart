@@ -165,7 +165,7 @@ class QuestionProvider extends ChangeNotifier {
         final profileProvider =
             Provider.of<ProfileProvider>(context, listen: false);
         if (profileProvider.username != null) {
-          profileProvider.addPlayer(
+          profileProvider.updatePlayer(
             context,
             username: profileProvider.username!,
             avatar: box.get("avatar")!,
