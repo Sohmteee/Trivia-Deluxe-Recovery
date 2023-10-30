@@ -325,33 +325,31 @@ class _MenuScreenState extends State<MenuScreen>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
+    Future<void> playBGAudio() async {
+      final audioProvider = Provider.of<AudioProvider>(context, listen: false);
 
-      Future<void> playBGAudio() async {
-    final audioProvider = Provider.of<AudioProvider>(context, listen: false);
+      if (audioProvider.music) {
+        await bgPlayer.setSource(AssetSource("audio/bg-music.mp3"));
+        await bgPlayer.resume();
+        debugPrint("music playing");
+      }
 
-    if (audioProvider.music) {
-      await bgPlayer.setSource(AssetSource("audio/bg-music.mp3"));
-      await bgPlayer.resume();
-      debugPrint("music playing");
+      bgPlayer.onPlayerComplete.listen((_) async {
+        await bgPlayer.setSource(AssetSource("audio/bg-music.mp3"));
+        await bgPlayer.resume();
+      });
     }
 
-    bgPlayer.onPlayerComplete.listen((_) async {
-      await bgPlayer.setSource(AssetSource("audio/bg-music.mp3"));
-      await bgPlayer.resume();
-    });
-  }
+    Future<void> pauseBGAudio() async {
+      await bgPlayer.pause();
+      debugPrint("music paused");
+    }
 
-  Future<void> pauseBGAudio() async {
-    await bgPlayer.pause();
-    debugPrint("music paused");
-  }
+    Future<void> stopBGAudio() async {
+      await bgPlayer.stop();
+      debugPrint("music stopped");
+    }
 
-  Future<void> stopBGAudio() async {
-    await bgPlayer.stop();
-    debugPrint("music stopped");
-  }
-
-  
     switch (state) {
       case AppLifecycleState.resumed:
       case AppLifecycleState.inactive:
@@ -367,7 +365,20 @@ class _MenuScreenState extends State<MenuScreen>
     }
   }
 
+  Future<void> playBGAudio() async {
+    final audioProvider = Provider.of<AudioProvider>(context, listen: false);
 
+    if (audioProvider.music) {
+      await bgPlayer.setSource(AssetSource("audio/bg-music.mp3"));
+      await bgPlayer.resume();
+      debugPrint("music playing");
+    }
+
+    bgPlayer.onPlayerComplete.listen((_) async {
+      await bgPlayer.setSource(AssetSource("audio/bg-music.mp3"));
+      await bgPlayer.resume();
+    });
+  }
 
   void initializeEffectsVolume() {
     final audioProvider = Provider.of<AudioProvider>(context, listen: false);
@@ -380,4 +391,29 @@ class _MenuScreenState extends State<MenuScreen>
   _loadBannerAd() {
     MobileAds.instance.updateRequestConfiguration(
       RequestConfiguration(
-        testDeviceIds: ['5C26A3D9AFF
+        testDeviceIds: ['5C26A3D9AFFD85F566BED84A49F36278'],
+      ),
+    );
+
+    _bannerAd = BannerAd(
+      adUnitId: AdHelper.bannerAdUnitId,
+      request: const AdRequest(),
+      size: AdSize.banner,
+      listener: BannerAdListener(
+        // Called when an ad is successfully received.
+        onAdLoaded: (ad) {
+          debugPrint('$ad loaded.');
+          setState(() {
+            _isLoaded = true;
+          });
+        },
+        // Called when an ad request failed.
+        onAdFailedToLoad: (ad, err) {
+          debugPrint('BannerAd failed to load: $err');
+          // Dispose the ad here to free resources.
+          ad.dispose();
+        },
+      ),
+    )..load();
+  }
+}
