@@ -51,7 +51,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
     super.dispose();
   }
 
-  Future<List<QueryDocumentSnapshot>> getLeaderBoardData(int index) async {
+  Future<Stream<QueryDocumentSnapshot>> getLeaderBoardData(int index) async {
     final fb = FirebaseFirestore.instance.collection("players");
     final querySnapshot = await fb.orderBy("score", descending: true).get();
 
