@@ -63,19 +63,25 @@ Average Time answering
  */
 
 class _StreaksScreeenState extends State<StreaksScreeen> {
-
-    Future<List<QueryDocumentSnapshot>> getLeaderBoardData(int index) async {
+  Future<List<QueryDocumentSnapshot>> getLeaderBoardData(int index) async {
+    
     final fb = FirebaseFirestore.instance.collection("players");
     final querySnapshot = await fb.orderBy("score", descending: true).get();
 
-    final leaderBoardPosition = querySnapshot.docs
-        .indexWhere((element) => element.id == deviceID) + 1;
+    final leaderBoardPosition =
+        querySnapshot.docs.indexWhere((element) => element.id == deviceID) + 1;
 
     print(leaderBoardPosition);
 
     return querySnapshot.docs;
   }
-  
+
+  @override
+  void initState() {
+    super.initState();
+    getLeaderBoardData(0);
+  }
+
   @override
   Widget build(BuildContext context) {
     return GameBackground(
