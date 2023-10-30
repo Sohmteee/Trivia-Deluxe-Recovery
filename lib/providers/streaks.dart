@@ -647,35 +647,39 @@ class StreaksProvider extends ChangeNotifier {
   }
 
   Future<void> updateLeaderboardStreak() async {
-    if (FutureBuilder.debugRethrowError) {}
-    final leaderBoardPosition = (await FirebaseFirestore.instance
-                .collection("players")
-                .orderBy("score", descending: true)
-                .get())
+    if ((await FirebaseFirestore.instance.collection("players").get())
             .docs
-            .indexWhere((element) => element.id == deviceID) +
-        1;
+            .length >=
+        10) {
+      final leaderBoardPosition = (await FirebaseFirestore.instance
+                  .collection("players")
+                  .orderBy("score", descending: true)
+                  .get())
+              .docs
+              .indexWhere((element) => element.id == deviceID) +
+          1;
 
-    leaderboardStreak = leaderBoardPosition;
-    print("Leaderboard Streak: $leaderboardStreak");
-    box.put("leaderboardStreak", leaderboardStreak);
+      leaderboardStreak = leaderBoardPosition;
+      print("Leaderboard Streak: $leaderboardStreak");
+      box.put("leaderboardStreak", leaderboardStreak);
 
-    if (leaderboardStreak < permanentLeaderboardStreak) {
-      if (leaderboardStreak <= 10) {
-        permanentLeaderboardStreak = 10;
-      }
-      if (leaderboardStreak <= 5) {
-        permanentLeaderboardStreak = 5;
-      }
-      if (leaderboardStreak <= 3) {
-        permanentLeaderboardStreak = 3;
-      }
-      if (leaderboardStreak <= 1) {
-        permanentLeaderboardStreak = 1;
-      }
+      if (leaderboardStreak < permanentLeaderboardStreak) {
+        if (leaderboardStreak <= 10) {
+          permanentLeaderboardStreak = 10;
+        }
+        if (leaderboardStreak <= 5) {
+          permanentLeaderboardStreak = 5;
+        }
+        if (leaderboardStreak <= 3) {
+          permanentLeaderboardStreak = 3;
+        }
+        if (leaderboardStreak <= 1) {
+          permanentLeaderboardStreak = 1;
+        }
 
-      print("Permanent Leaderboard Streak: $permanentLeaderboardStreak");
-      box.put("permanentLeaderboardStreak", permanentLeaderboardStreak);
+        print("Permanent Leaderboard Streak: $permanentLeaderboardStreak");
+        box.put("permanentLeaderboardStreak", permanentLeaderboardStreak);
+      }
     }
 
     updateStreaksData();
