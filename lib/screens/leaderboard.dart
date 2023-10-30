@@ -80,7 +80,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
     return leaderBoardData;
   }
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return GameBackground(
       body: Padding(
@@ -134,82 +134,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                             ],
                           ),
                         )
-                  : Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 40.w),
-                      child: Column(
-                        children: [
-                          const Spacer(flex: 5),
-                          Text(
-                            "You don't have a profile",
-                            style: TextStyle(
-                              color: AppColor.yellow,
-                              fontSize: 25.sp,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                          SizedBox(height: 10.h),
-                          Text(
-                            "Would you like to create one now to see the leaderboard?",
-                            style: TextStyle(
-                              color: AppColor.yellow,
-                              fontSize: 25.sp,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                          const Spacer(flex: 4),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              ZoomTapAnimation(
-                                onTap: () {
-                                  playTap(context);
-                                  Navigator.pop(context);
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(
-                                    vertical: 15.sp,
-                                    horizontal: 25.sp,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(50.r),
-                                  ),
-                                  child: Text(
-                                    "Maybe later",
-                                    style: TextStyle(
-                                      fontSize: 20.sp,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              ZoomTapAnimation(
-                                onTap: () {
-                                  playTap(context);
-                                  showCreateProfileDialog(context);
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(
-                                    vertical: 15.sp,
-                                    horizontal: 25.sp,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(50.r),
-                                  ),
-                                  child: Text(
-                                    "Continue",
-                                    style: TextStyle(
-                                      fontSize: 20.sp,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const Spacer(),
-                        ],
-                      ),
-                    ),
+                  : createProfilePrompt(context),
             ),
           ],
         ),
@@ -217,137 +142,209 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
     );
   }
 
-   Expanded leaderBoardTabBarView() {
-     return Expanded(
-                            child: TabBarView(
-                              controller: tabController,
-                              physics: const BouncingScrollPhysics(),
-                              children: List.generate(
-                                3,
-                                (index) {
-                                  return FutureBuilder(
-                                    future: getLeaderBoardData(index),
-                                    initialData: null,
-                                    builder: (BuildContext context,
-                                        AsyncSnapshot snapshot) {
-                                      if (snapshot.data == null) {
-                                        return Center(
-                                          child: CircularProgressIndicator(
-                                            color: AppColor.yellow,
-                                          ),
-                                        );
-                                      }
-                                      if (snapshot.hasError) {
-                                        return Center(
-                                          child: Text(
-                                            "An error occured while fetching leaderboard data.",
-                                            style: TextStyle(
-                                              color: AppColor.yellow,
-                                              fontSize: 25.sp,
-                                            ),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        );
-                                      }
-                                      if (snapshot.data.length == 0) {
-                                        return Center(
-                                          child: Text(
-                                            switch (index) {
-                                              0 =>
-                                                "No data available for today.",
-                                              1 =>
-                                                "No data available for this week.",
-                                              2 =>
-                                                "No data available for this month.",
-                                              _ => "No data available.",
-                                            },
-                                            style: TextStyle(
-                                              color: AppColor.yellow,
-                                              fontSize: 25.sp,
-                                            ),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        );
-                                      }
+  Padding createProfilePrompt(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 40.w),
+      child: Column(
+        children: [
+          const Spacer(flex: 5),
+          Text(
+            "You don't have a profile",
+            style: TextStyle(
+              color: AppColor.yellow,
+              fontSize: 25.sp,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: 10.h),
+          Text(
+            "Would you like to create one now to see the leaderboard?",
+            style: TextStyle(
+              color: AppColor.yellow,
+              fontSize: 25.sp,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const Spacer(flex: 4),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ZoomTapAnimation(
+                onTap: () {
+                  playTap(context);
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 15.sp,
+                    horizontal: 25.sp,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(50.r),
+                  ),
+                  child: Text(
+                    "Maybe later",
+                    style: TextStyle(
+                      fontSize: 20.sp,
+                    ),
+                  ),
+                ),
+              ),
+              ZoomTapAnimation(
+                onTap: () {
+                  playTap(context);
+                  showCreateProfileDialog(context);
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 15.sp,
+                    horizontal: 25.sp,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(50.r),
+                  ),
+                  child: Text(
+                    "Continue",
+                    style: TextStyle(
+                      fontSize: 20.sp,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const Spacer(),
+        ],
+      ),
+    );
+  }
 
-                                      return popsicleLeaderBoard(
-                                          snapshot, index);
-                                    },
-                                  );
-                                },
-                              ),
-                            ),
-                          );
-   }
+  Expanded leaderBoardTabBarView() {
+    return Expanded(
+      child: TabBarView(
+        controller: tabController,
+        physics: const BouncingScrollPhysics(),
+        children: List.generate(
+          3,
+          (index) {
+            return FutureBuilder(
+              future: getLeaderBoardData(index),
+              initialData: null,
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.data == null) {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      color: AppColor.yellow,
+                    ),
+                  );
+                }
+                if (snapshot.hasError) {
+                  return Center(
+                    child: Text(
+                      "An error occured while fetching leaderboard data.",
+                      style: TextStyle(
+                        color: AppColor.yellow,
+                        fontSize: 25.sp,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  );
+                }
+                if (snapshot.data.length == 0) {
+                  return Center(
+                    child: Text(
+                      switch (index) {
+                        0 => "No data available for today.",
+                        1 => "No data available for this week.",
+                        2 => "No data available for this month.",
+                        _ => "No data available.",
+                      },
+                      style: TextStyle(
+                        color: AppColor.yellow,
+                        fontSize: 25.sp,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  );
+                }
 
-   Padding leaderboardTab() {
-     return Padding(
-                            padding: EdgeInsets.only(left: 25.w),
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: TabBar(
-                                controller: tabController,
-                                isScrollable: true,
-                                labelColor: AppColor.slightlyLighterYellow,
-                                unselectedLabelColor: Colors.grey[400],
-                                indicator: CircleTabIndicator(
-                                  color: AppColor.slightlyLighterYellow,
-                                ),
-                                splashFactory: NoSplash.splashFactory,
-                                overlayColor:
-                                    MaterialStateProperty.resolveWith<Color?>(
-                                  (Set<MaterialState> states) {
-                                    return states
-                                            .contains(MaterialState.focused)
-                                        ? null
-                                        : Colors.transparent;
-                                  },
-                                ),
-                                tabs: [
-                                  Column(
-                                    children: [
-                                      ZoomTapAnimation(
-                                        child: Text(
-                                          "Daily",
-                                          style: TextStyle(
-                                            fontSize: 20.sp,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(height: 10.h),
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      ZoomTapAnimation(
-                                        child: Text(
-                                          "Weekly",
-                                          style: TextStyle(
-                                            fontSize: 20.sp,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(height: 10.h),
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      ZoomTapAnimation(
-                                        child: Text(
-                                          "Monthly",
-                                          style: TextStyle(
-                                            fontSize: 20.sp,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(height: 10.h),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-   }
+                return popsicleLeaderBoard(snapshot, index);
+              },
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  Padding leaderboardTab() {
+    return Padding(
+      padding: EdgeInsets.only(left: 25.w),
+      child: Align(
+        alignment: Alignment.center,
+        child: TabBar(
+          controller: tabController,
+          isScrollable: true,
+          labelColor: AppColor.slightlyLighterYellow,
+          unselectedLabelColor: Colors.grey[400],
+          indicator: CircleTabIndicator(
+            color: AppColor.slightlyLighterYellow,
+          ),
+          splashFactory: NoSplash.splashFactory,
+          overlayColor: MaterialStateProperty.resolveWith<Color?>(
+            (Set<MaterialState> states) {
+              return states.contains(MaterialState.focused)
+                  ? null
+                  : Colors.transparent;
+            },
+          ),
+          tabs: [
+            Column(
+              children: [
+                ZoomTapAnimation(
+                  child: Text(
+                    "Daily",
+                    style: TextStyle(
+                      fontSize: 20.sp,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10.h),
+              ],
+            ),
+            Column(
+              children: [
+                ZoomTapAnimation(
+                  child: Text(
+                    "Weekly",
+                    style: TextStyle(
+                      fontSize: 20.sp,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10.h),
+              ],
+            ),
+            Column(
+              children: [
+                ZoomTapAnimation(
+                  child: Text(
+                    "Monthly",
+                    style: TextStyle(
+                      fontSize: 20.sp,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10.h),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   Column popsicleLeaderBoard(AsyncSnapshot<dynamic> snapshot, int index) {
     return Column(

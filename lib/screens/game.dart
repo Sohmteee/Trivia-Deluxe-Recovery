@@ -94,73 +94,7 @@ class _GameScreenState extends State<GameScreen> {
                       ),
                     ),
                     buildQuestion(),
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount: 4,
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 25.w, vertical: 30.h),
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (BuildContext context, int index) {
-                          return ZoomTapAnimation(
-                            onTap: () {
-                              final streaksProvider =
-                                  Provider.of<StreaksProvider>(context,
-                                      listen: false);
-
-                              countDownController.pause();
-
-                              if (!answered) {
-                                streaksProvider.count++;
-
-                                if (questionProvider.options[index]["value"] ==
-                                    true) {
-                                  playCorrect(context);
-                                  confettiController.play();
-                                  streaksProvider.updateTriviaStreak(true);
-                                } else {
-                                  playWrong(context);
-                                  streaksProvider.updateTriviaStreak(false);
-                                }
-
-                                questionProvider.checkCorrectAnswer(
-                                  context,
-                                  index,
-                                  answered: answered,
-                                  timeElapsed: countDownController.getTime()!,
-                                );
-
-                                setState(() {
-                                  answered = true;
-                                });
-                              }
-                            },
-                            child: Container(
-                              margin: EdgeInsets.only(bottom: 20.h),
-                              padding: EdgeInsets.all(15.sp),
-                              width: double.maxFinite,
-                              decoration: BoxDecoration(
-                                color: stringToColor(
-                                    questionProvider.options[index]["color"]),
-                                borderRadius: BorderRadius.circular(10.r),
-                              ),
-                              child: Text(
-                                "${optionLetter(index)}:  ${questionProvider.options[index]["text"]}",
-                                style: TextStyle(
-                                  color: AppColor.white,
-                                  fontSize: 20.sp,
-                                ),
-                                textAlign: TextAlign.start,
-                              ),
-                            ),
-                          ).animate().slideY(
-                                delay: 2.5.seconds,
-                                duration: (300 + (index * 100)).milliseconds,
-                                begin: 10,
-                                end: 0,
-                              );
-                        },
-                      ),
-                    ),
+                    buildOptions(questionProvider),
                   ],
                 ),
                 ConfettiWidget(
@@ -186,6 +120,76 @@ class _GameScreenState extends State<GameScreen> {
         ),
       ),
     );
+  }
+
+  Expanded buildOptions(QuestionProvider questionProvider) {
+    return Expanded(
+                    child: ListView.builder(
+                      itemCount: 4,
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 25.w, vertical: 30.h),
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (BuildContext context, int index) {
+                        return ZoomTapAnimation(
+                          onTap: () {
+                            final streaksProvider =
+                                Provider.of<StreaksProvider>(context,
+                                    listen: false);
+
+                            countDownController.pause();
+
+                            if (!answered) {
+                              streaksProvider.count++;
+
+                              if (questionProvider.options[index]["value"] ==
+                                  true) {
+                                playCorrect(context);
+                                confettiController.play();
+                                streaksProvider.updateTriviaStreak(true);
+                              } else {
+                                playWrong(context);
+                                streaksProvider.updateTriviaStreak(false);
+                              }
+
+                              questionProvider.checkCorrectAnswer(
+                                context,
+                                index,
+                                answered: answered,
+                                timeElapsed: countDownController.getTime()!,
+                              );
+
+                              setState(() {
+                                answered = true;
+                              });
+                            }
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(bottom: 20.h),
+                            padding: EdgeInsets.all(15.sp),
+                            width: double.maxFinite,
+                            decoration: BoxDecoration(
+                              color: stringToColor(
+                                  questionProvider.options[index]["color"]),
+                              borderRadius: BorderRadius.circular(10.r),
+                            ),
+                            child: Text(
+                              "${optionLetter(index)}:  ${questionProvider.options[index]["text"]}",
+                              style: TextStyle(
+                                color: AppColor.white,
+                                fontSize: 20.sp,
+                              ),
+                              textAlign: TextAlign.start,
+                            ),
+                          ),
+                        ).animate().slideY(
+                              delay: 2.5.seconds,
+                              duration: (300 + (index * 100)).milliseconds,
+                              begin: 10,
+                              end: 0,
+                            );
+                      },
+                    ),
+                  );
   }
 
   Padding buildQuestion() {
