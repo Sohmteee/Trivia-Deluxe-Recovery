@@ -115,66 +115,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                           children: [
                             leaderboardTab(),
                             SizedBox(height: 20.h),
-                            Expanded(
-                              child: TabBarView(
-                                controller: tabController,
-                                physics: const BouncingScrollPhysics(),
-                                children: List.generate(
-                                  3,
-                                  (index) {
-                                    return FutureBuilder(
-                                      future: getLeaderBoardData(index),
-                                      initialData: null,
-                                      builder: (BuildContext context,
-                                          AsyncSnapshot snapshot) {
-                                        if (snapshot.data == null) {
-                                          return Center(
-                                            child: CircularProgressIndicator(
-                                              color: AppColor.yellow,
-                                            ),
-                                          );
-                                        }
-                                        if (snapshot.hasError) {
-                                          return Center(
-                                            child: Text(
-                                              "An error occured while fetching leaderboard data.",
-                                              style: TextStyle(
-                                                color: AppColor.yellow,
-                                                fontSize: 25.sp,
-                                              ),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          );
-                                        }
-                                        if (snapshot.data.length == 0) {
-                                          return Center(
-                                            child: Text(
-                                              switch (index) {
-                                                0 =>
-                                                  "No data available for today.",
-                                                1 =>
-                                                  "No data available for this week.",
-                                                2 =>
-                                                  "No data available for this month.",
-                                                _ => "No data available.",
-                                              },
-                                              style: TextStyle(
-                                                color: AppColor.yellow,
-                                                fontSize: 25.sp,
-                                              ),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          );
-                                        }
-
-                                        return popsicleLeaderBoard(
-                                            snapshot, index);
-                                      },
-                                    );
-                                  },
-                                ),
-                              ),
-                            )
+                            leaderBoardTabBarView(),
                           ],
                         )
                       : Padding(
@@ -275,6 +216,69 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
       ),
     );
   }
+
+   Expanded leaderBoardTabBarView() {
+     return Expanded(
+                            child: TabBarView(
+                              controller: tabController,
+                              physics: const BouncingScrollPhysics(),
+                              children: List.generate(
+                                3,
+                                (index) {
+                                  return FutureBuilder(
+                                    future: getLeaderBoardData(index),
+                                    initialData: null,
+                                    builder: (BuildContext context,
+                                        AsyncSnapshot snapshot) {
+                                      if (snapshot.data == null) {
+                                        return Center(
+                                          child: CircularProgressIndicator(
+                                            color: AppColor.yellow,
+                                          ),
+                                        );
+                                      }
+                                      if (snapshot.hasError) {
+                                        return Center(
+                                          child: Text(
+                                            "An error occured while fetching leaderboard data.",
+                                            style: TextStyle(
+                                              color: AppColor.yellow,
+                                              fontSize: 25.sp,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        );
+                                      }
+                                      if (snapshot.data.length == 0) {
+                                        return Center(
+                                          child: Text(
+                                            switch (index) {
+                                              0 =>
+                                                "No data available for today.",
+                                              1 =>
+                                                "No data available for this week.",
+                                              2 =>
+                                                "No data available for this month.",
+                                              _ => "No data available.",
+                                            },
+                                            style: TextStyle(
+                                              color: AppColor.yellow,
+                                              fontSize: 25.sp,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        );
+                                      }
+
+                                      return popsicleLeaderBoard(
+                                          snapshot, index);
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                          );
+   }
 
    Padding leaderboardTab() {
      return Padding(
