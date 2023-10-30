@@ -10,6 +10,7 @@ import 'package:trivia/data/box.dart';
 import 'package:trivia/main.dart';
 import 'package:trivia/models/dialogs/settings.dart';
 import 'package:trivia/providers/money.dart';
+import 'package:trivia/providers/question.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class GameStats extends StatefulWidget {
@@ -161,6 +162,12 @@ class _GameStatsState extends State<GameStats> {
                         snapshot.data == null ||
                         snapshot.data.isEmpty) {
                       // Handle the error state.
+                      return "---";
+                    }
+
+                    if (Provider.of<QuestionProvider>(context)
+                            .totalQuestionsAnswered ==
+                        0) {
                       return "---";
                     }
 
