@@ -1453,6 +1453,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                           );
                         },
                       ),
+                      const Spacer(),
                     ],
                   ),
                 ),
