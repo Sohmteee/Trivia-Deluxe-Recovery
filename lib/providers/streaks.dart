@@ -657,7 +657,7 @@ class StreaksProvider extends ChangeNotifier {
                   .get())
               .docs
               .indexWhere((element) => element.id == deviceID) +
-          1;
+          20;
 
       leaderboardStreak = leaderBoardPosition;
       print("Leaderboard Streak: $leaderboardStreak");
