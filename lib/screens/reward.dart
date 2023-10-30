@@ -98,7 +98,7 @@ class _RewardScreenState extends State<RewardScreen> {
     super.dispose();
   }
 
-    void didChangeAppLifecycleState(AppLifecycleState state) {
+  void didChangeAppLifecycleState(AppLifecycleState state) {
     Future<void> playBGAudio() async {
       final audioProvider = Provider.of<AudioProvider>(context, listen: false);
 
@@ -174,123 +174,125 @@ class _RewardScreenState extends State<RewardScreen> {
                       Colors.purple,
                     ],
                   ),
-                  level <= 29 ?  SizedBox(
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Lottie.asset(
-                          "assets/lottie/celebration.json",
-                          width: 200,
-                          height: 200,
-                          fit: BoxFit.fill,
-                        ),
-                        Text(
-                          "Level\nPassed!",
-                          style: TextStyle(
-                            color: AppColor.right,
-                            fontSize: 55.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        Text(
-                          "Level\nPassed!",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 50.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    )
-                        .animate(
-                          onPlay: (controller) => controller.repeat(),
+                  level <= 29
+                      ? SizedBox(
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Lottie.asset(
+                                "assets/lottie/celebration.json",
+                                width: 200,
+                                height: 200,
+                                fit: BoxFit.fill,
+                              ),
+                              Text(
+                                "Level\nPassed!",
+                                style: TextStyle(
+                                  color: AppColor.right,
+                                  fontSize: 55.sp,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              Text(
+                                "Level\nPassed!",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 50.sp,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          )
+                              .animate(
+                                onPlay: (controller) => controller.repeat(),
+                              )
+                              .shimmer(
+                                delay: 2.seconds,
+                                duration: 1.seconds,
+                              ),
                         )
-                        .shimmer(
-                          delay: 2.seconds,
-                          duration: 1.seconds,
-                        ),
-                  )
-                      .animate(
-                        onPlay: (controller) => Future.delayed(
-                          1.seconds,
-                          () => vitoryConfettiController.play(),
-                        ),
-                      )
-                      .scaleXY(
-                        delay: .3.seconds,
-                        duration: 1.seconds,
-                        curve: Curves.bounceOut,
-                        begin: 0,
-                        end: 1.4,
-                      )
-                      .then()
-                      .scaleXY(
-                        delay: 2.seconds,
-                        curve: Curves.bounceOut,
-                        duration: .3.seconds,
-                        begin: 1.4,
-                        end: 1,
-                      ) : SizedBox(
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Lottie.asset(
-                          "assets/lottie/celebration.json",
-                          width: 200,
-                          height: 200,
-                          fit: BoxFit.fill,
-                        ),
-                        Text(
-                          "Category\nCompleted!",
-                          style: TextStyle(
-                            color: AppColor.right,
-                            fontSize: 55.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        Text(
-                          "Category\nCompleted!",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 50.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    )
-                        .animate(
-                          onPlay: (controller) => controller.repeat(),
+                          .animate(
+                            onPlay: (controller) => Future.delayed(
+                              1.seconds,
+                              () => vitoryConfettiController.play(),
+                            ),
+                          )
+                          .scaleXY(
+                            delay: .3.seconds,
+                            duration: 1.seconds,
+                            curve: Curves.bounceOut,
+                            begin: 0,
+                            end: 1.4,
+                          )
+                          .then()
+                          .scaleXY(
+                            delay: 2.seconds,
+                            curve: Curves.bounceOut,
+                            duration: .3.seconds,
+                            begin: 1.4,
+                            end: 1,
+                          )
+                      : SizedBox(
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Lottie.asset(
+                                "assets/lottie/celebration.json",
+                                width: 200,
+                                height: 200,
+                                fit: BoxFit.fill,
+                              ),
+                              Text(
+                                "Category\nCompleted!",
+                                style: TextStyle(
+                                  color: AppColor.right,
+                                  fontSize: 55.sp,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              Text(
+                                "Category\nCompleted!",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 50.sp,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          )
+                              .animate(
+                                onPlay: (controller) => controller.repeat(),
+                              )
+                              .shimmer(
+                                delay: 2.seconds,
+                                duration: 1.seconds,
+                              ),
                         )
-                        .shimmer(
-                          delay: 2.seconds,
-                          duration: 1.seconds,
-                        ),
-                  )
-                      .animate(
-                        onPlay: (controller) => Future.delayed(
-                          1.seconds,
-                          () => vitoryConfettiController.play(),
-                        ),
-                      )
-                      .scaleXY(
-                        delay: .3.seconds,
-                        duration: 1.seconds,
-                        curve: Curves.bounceOut,
-                        begin: 0,
-                        end: 1.4,
-                      )
-                      .then()
-                      .scaleXY(
-                        delay: 2.seconds,
-                        curve: Curves.bounceOut,
-                        duration: .3.seconds,
-                        begin: 1.4,
-                        end: 1,
-                      ),
+                          .animate(
+                            onPlay: (controller) => Future.delayed(
+                              1.seconds,
+                              () => vitoryConfettiController.play(),
+                            ),
+                          )
+                          .scaleXY(
+                            delay: .3.seconds,
+                            duration: 1.seconds,
+                            curve: Curves.bounceOut,
+                            begin: 0,
+                            end: 1.4,
+                          )
+                          .then()
+                          .scaleXY(
+                            delay: 2.seconds,
+                            curve: Curves.bounceOut,
+                            duration: .3.seconds,
+                            begin: 1.4,
+                            end: 1,
+                          ),
                   ConfettiWidget(
                     confettiController: vitoryConfettiController,
                     blastDirection: pi,
@@ -489,7 +491,7 @@ class _RewardScreenState extends State<RewardScreen> {
                       if (level <= 29) {
                         Navigator.pushReplacementNamed(context, "/stage");
                       } else {
-                        Navigator.pushReplacementNamed(context, "/menu");
+                        Navigator.pushReplacementNamed(context, "/select");
                       }
                     }
                   },
@@ -503,7 +505,9 @@ class _RewardScreenState extends State<RewardScreen> {
                       borderRadius: BorderRadius.circular(30.r),
                     ),
                     child: Text(
-                      "Continue to Level ${level + 1}",
+                      level <= 29
+                          ? "Continue to Level ${level + 1}"
+                          : "Select Another Category",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 25.sp,
