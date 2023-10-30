@@ -659,6 +659,7 @@ class StreaksProvider extends ChangeNotifier {
 
     if (correct) {
       leaderboardStreak = leaderBoardPosition;
+      print("Leaderboard Streak: ${leaderboardStreak}");
       box.put("leaderboardStreak", leaderboardStreak);
 
       if (leaderboardStreak > permanentLeaderboardStreak &&
