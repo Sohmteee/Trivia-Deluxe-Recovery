@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:countup/countup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -47,6 +48,35 @@ class _GameStatsState extends State<GameStats> {
       debugPrint("Animate coins: $animateCoins");
     });
     super.dispose();
+  }
+
+  Future<List<Map<String, dynamic>>> getLeaderBoardData(int index) async {
+    DateTime constraint = switch (index) {
+      0 => DateTime.now().subtract(1.days),
+      1 => DateTime.now().subtract(7.days),
+      2 => DateTime.now().subtract(30.days),
+      _ => DateTime.now().subtract(1.days),
+    };
+    final fb = FirebaseFirestore.instance.collection("players");
+    final querySnapshot = await fb.orderBy("score", descending: true).get();
+
+    final leaderBoardData = querySnapshot.docs.map((doc) {
+      return {
+        "username": doc["username"],
+        "score": doc["score"],
+        "avatar": doc["avatar"],
+        "time": doc["time"],
+        "device_id": doc["device_id"],
+      };
+    }).where((player) {
+      Timestamp timestamp = player["time"];
+      DateTime playerTime = timestamp.toDate();
+      return playerTime.isAfter(constraint);
+    }).toList();
+
+    print(leaderBoardData);
+
+    return leaderBoardData;
   }
 
   @override
@@ -133,7 +163,7 @@ class _GameStatsState extends State<GameStats> {
             ),
             child:  Center(
               child: FutureBuilder(
-                future: getLeaderBoardData(index),
+                future: getLeaderBoardData(0),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   Map<String, dynamic> getPosition() {
                     if (snapshot.connectionState == ConnectionState.waiting) {
@@ -195,8 +225,7 @@ class _GameStatsState extends State<GameStats> {
                   return Text(
                     getPosition()["position"],
                     style: TextStyle(
-                      color: getPosition()["color"],
-                      fontSize: 30.sp,
+                      color: AppColor.yellow,
                     ),
                   );
                 },
