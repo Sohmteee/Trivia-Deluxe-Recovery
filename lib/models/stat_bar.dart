@@ -52,6 +52,7 @@ class _GameStatsState extends State<GameStats> {
     super.dispose();
   }
 
+  // 
   Future<List<Map<String, dynamic>>> getLeaderBoardData(int index) async {
     DateTime constraint = switch (index) {
       0 => DateTime.now().subtract(1.days),
@@ -175,9 +176,12 @@ class _GameStatsState extends State<GameStats> {
                     int index = snapshot.data.indexWhere(
                         (profile) => profile["device_id"] == deviceID);
 
+
+                    // If the player with device_id is found, return the position.
                     if (index != -1) {
                       index += 1;
 
+                      // Add the appropriate suffix to the index.
                       String suffix = switch (index % 10) {
                         1 => "st",
                         2 => "nd",
