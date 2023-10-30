@@ -200,10 +200,11 @@ class _GameStatsState extends State<GameStats> {
                                   ? const Color.fromARGB(255, 211, 144, 120)
                                   : AppColor.white;
 
-                      String suffix = switch(index){
-                                1: "st",
-                                2: "nd",
-                                3: "rd",
+                      String suffix = switch(index % 10){
+                                1=> "st",
+                                2=> "nd",
+                                3=> "rd",
+                                _=> "th",
                               }[index % 10] ??
                               "th";
 
