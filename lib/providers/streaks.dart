@@ -657,7 +657,6 @@ class StreaksProvider extends ChangeNotifier {
             .indexWhere((element) => element.id == deviceID) +
         1;
 
-    if (correct) {
       leaderboardStreak = leaderBoardPosition;
       print("Leaderboard Streak: $leaderboardStreak");
       box.put("leaderboardStreak", leaderboardStreak);
@@ -667,12 +666,6 @@ class StreaksProvider extends ChangeNotifier {
         permanentLeaderboardStreak = leaderboardStreak;
         box.put("permanentLeaderboardStreak", permanentLeaderboardStreak);
       }
-    } else {
-      leaderboardStreak = leaderboardStreak == 0
-          ? 0
-          : permanentLeaderboardStreakList[index - 1];
-      box.put("leaderboardStreak", leaderboardStreak);
-    }
 
     updateStreaksData();
     updateUltimateStreak();
