@@ -384,8 +384,8 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
                                     leading: item["status"]
                                         ? Image.asset(
                                             "assets/images/cleared.png",
-                                            width: 25.w)
-                                        : SizedBox(width: 25.w),
+                                            width: 30.w)
+                                        : SizedBox(width: 30.w),
                                     title: Text(
                                       item["title"],
                                       style: TextStyle(
