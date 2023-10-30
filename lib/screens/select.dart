@@ -124,9 +124,8 @@ class _SelectScreenState extends State<SelectScreen> {
   void initState() {
     for (var selectItem in selectItems) {
       for (var item in selectItem) {
-        if (box.get(item["data"]["title"]) == null) {
-          box.put(item["data"]["title"], item["data"]);
-        }
+        box.put(item["data"]["title"], item["data"]);
+        if (box.get(item["data"]["title"]) == null) {}
       }
     }
 
@@ -143,7 +142,6 @@ class _SelectScreenState extends State<SelectScreen> {
     pageController.dispose();
     super.dispose();
   }
-  
 
   @override
   Widget build(BuildContext context) {
