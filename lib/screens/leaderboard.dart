@@ -261,7 +261,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                             ),
                                           );
                                         }
-                                        if (snapshot.data == []) {
+                                        if (snapshot.data.length == 0) {
                                           return Center(
                                             child: Text(
                                               switch (index) {
