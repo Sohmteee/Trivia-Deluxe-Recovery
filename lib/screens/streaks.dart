@@ -92,6 +92,10 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
       if (profileProvider.username != null) {
         profileProvider.updatePlayer(context);
       }
+
+      final streakProvider =
+          Provider.of<StreaksProvider>(context, listen: false);
+      streakProvider.updateLeaderboardStreak(context);
     });
 
     getLeaderBoardData(0);

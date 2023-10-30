@@ -646,7 +646,7 @@ class StreaksProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> updateLeaderboardStreak(bool correct) async {
+  Future<void> updateLeaderboardStreak() async {
     int index = permanentLeaderboardStreakList.indexOf(leaderboardStreak);
 
     final leaderBoardPosition = (await FirebaseFirestore.instance
