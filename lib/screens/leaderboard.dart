@@ -166,67 +166,70 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                           0
                       ? Column(
                           children: [
-                            Align(
-                              alignment: Alignment.center,
-                              child: TabBar(
-                                controller: tabController,
-                                isScrollable: true,
-                                labelColor: AppColor.slightlyLighterYellow,
-                                unselectedLabelColor: Colors.grey[400],
-                                indicator: CircleTabIndicator(
-                                  color: AppColor.slightlyLighterYellow,
+                            Padding(
+                              padding: EdgeInsets.only(left: 20.w),
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: TabBar(
+                                  controller: tabController,
+                                  isScrollable: true,
+                                  labelColor: AppColor.slightlyLighterYellow,
+                                  unselectedLabelColor: Colors.grey[400],
+                                  indicator: CircleTabIndicator(
+                                    color: AppColor.slightlyLighterYellow,
+                                  ),
+                                  splashFactory: NoSplash.splashFactory,
+                                  overlayColor:
+                                      MaterialStateProperty.resolveWith<Color?>(
+                                    (Set<MaterialState> states) {
+                                      return states
+                                              .contains(MaterialState.focused)
+                                          ? null
+                                          : Colors.transparent;
+                                    },
+                                  ),
+                                  tabs: [
+                                    Column(
+                                      children: [
+                                        ZoomTapAnimation(
+                                          child: Text(
+                                            "Daily",
+                                            style: TextStyle(
+                                              fontSize: 20.sp,
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(height: 10.h),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        ZoomTapAnimation(
+                                          child: Text(
+                                            "Weekly",
+                                            style: TextStyle(
+                                              fontSize: 20.sp,
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(height: 10.h),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        ZoomTapAnimation(
+                                          child: Text(
+                                            "Monthly",
+                                            style: TextStyle(
+                                              fontSize: 20.sp,
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(height: 10.h),
+                                      ],
+                                    ),
+                                  ],
                                 ),
-                                splashFactory: NoSplash.splashFactory,
-                                overlayColor:
-                                    MaterialStateProperty.resolveWith<Color?>(
-                                  (Set<MaterialState> states) {
-                                    return states
-                                            .contains(MaterialState.focused)
-                                        ? null
-                                        : Colors.transparent;
-                                  },
-                                ),
-                                tabs: [
-                                  Column(
-                                    children: [
-                                      ZoomTapAnimation(
-                                        child: Text(
-                                          "Daily",
-                                          style: TextStyle(
-                                            fontSize: 20.sp,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(height: 10.h),
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      ZoomTapAnimation(
-                                        child: Text(
-                                          "Weekly",
-                                          style: TextStyle(
-                                            fontSize: 20.sp,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(height: 10.h),
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      ZoomTapAnimation(
-                                        child: Text(
-                                          "Monthly",
-                                          style: TextStyle(
-                                            fontSize: 20.sp,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(height: 10.h),
-                                    ],
-                                  ),
-                                ],
                               ),
                             ),
                             SizedBox(height: 20.h),
