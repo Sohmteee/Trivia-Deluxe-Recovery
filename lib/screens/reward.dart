@@ -44,6 +44,7 @@ class _RewardScreenState extends State<RewardScreen> {
   @override
   void initState() {
     playVictory(context);
+    _loadInterstitialAd();
     Future.delayed(.5.seconds, () {
       bgPlayer.pause();
       Future.delayed(4.seconds, () => bgPlayer.resume());
