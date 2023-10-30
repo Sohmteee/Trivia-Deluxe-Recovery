@@ -111,7 +111,7 @@ class _GameStatsState extends State<GameStats> {
               ),
               child: Icon(
                 Icons.home_rounded,
-                size: 25.sp,
+                size: 22.sp,
                 color: AppColor.orange,
               ),
             ),
@@ -119,7 +119,7 @@ class _GameStatsState extends State<GameStats> {
         if (widget.showHome ?? true != false) const Spacer(flex: 4),
         Lottie.asset(
           "assets/lottie/red_award.json",
-          height: 25.h,
+          height: 20.h,
           repeat: false,
           animate: true,
         ),
@@ -129,7 +129,7 @@ class _GameStatsState extends State<GameStats> {
             playTap(context);
           },
           child: Container(
-            height: 25.h,
+            height: 20.h,
             width: 60.w,
             decoration: BoxDecoration(
               color: Colors.white,
@@ -188,6 +188,7 @@ class _GameStatsState extends State<GameStats> {
                   return Text(
                     getPosition(),
                     style: TextStyle(
+                      fontSize: 1.sp,
                       color: AppColor.yellow,
                     ),
                   );
@@ -196,9 +197,9 @@ class _GameStatsState extends State<GameStats> {
             ),
           ),
         ),
-        const Spacer(flex: 6),
+        const Spacer(flex: 4),
         Container(
-          height: 25.h,
+          height: 20.h,
           padding: EdgeInsets.all(2.sp),
           decoration: BoxDecoration(
             color: Colors.white,
@@ -226,7 +227,7 @@ class _GameStatsState extends State<GameStats> {
                 playTap(context);
               },
               child: Container(
-                height: 25.h,
+                height: 20.h,
                 width: 60.w,
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -250,13 +251,15 @@ class _GameStatsState extends State<GameStats> {
                           begin: moneyProvider.previousCoins.toDouble(),
                           end: moneyProvider.coins.toDouble(),
                           duration: 1.seconds,
-                          style: const TextStyle(
+                          style: TextStyle(
+                            fontSize: 1.sp,
                             color: Colors.yellow,
                           ),
                         )
                       : Text(
                           moneyProvider.coins.toString(),
-                          style: const TextStyle(
+                          style: TextStyle(
+                            fontSize: 1.sp,
                             color: Colors.yellow,
                           ),
                         ),
@@ -292,7 +295,7 @@ class _GameStatsState extends State<GameStats> {
               ),
               child: Icon(
                 Icons.settings_rounded,
-                size: 25.sp,
+                size: 22.sp,
                 color: AppColor.orange,
               ),
             ),
