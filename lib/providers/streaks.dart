@@ -6,7 +6,7 @@ class StreaksProvider extends ChangeNotifier {
   final permanentLevelStreakList = [5, 10, 20, 50, 100];
   final permanentCoinStreakList = [100, 200, 500, 1000, 2000];
   final permanentTriviaStreakList = [5, 10, 20, 50, 100];
-  final permanentLeaderboardStreakList = [0, 10, 5, 3, 1];
+  final permanentLeaderboardStreakList = [10, 5, 3, 1];
 
   int count = 0;
 
@@ -658,7 +658,7 @@ class StreaksProvider extends ChangeNotifier {
         1;
 
     if (correct) {
-      leaderboardStreak = permanentLeaderboardStreakList[index + 1];
+      leaderboardStreak = leaderBoardPosition;
       box.put("leaderboardStreak", leaderboardStreak);
 
       if (leaderboardStreak > permanentLeaderboardStreak &&
