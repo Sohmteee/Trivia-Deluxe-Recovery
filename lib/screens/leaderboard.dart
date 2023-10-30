@@ -282,7 +282,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                           );
                                         }
 
-                                        return  popsicleLeaderBoard(snapshot);
+                                        return popsicleLeaderBoard(snapshot);
 
                                         /* return ListView.separated(
                                       itemCount: snapshot.data.length,
@@ -1056,101 +1056,103 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-             (snapshot.data.length >=2) ? Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      Container(
-                        height: 65.h,
-                        padding: EdgeInsets.all(2.sp),
-                        decoration: const BoxDecoration(
-                          color: Colors.grey,
-                          shape: BoxShape.circle,
-                        ),
-                        child: Image.asset(
-                          // "assets/images/avatars/avatar_${snapshot.data[0]['avatar']}.png",
-                          "assets/images/avatars/avatar_${snapshot.data[1]["avatar"]}.png",
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        left: 50.w,
-                        child: Column(
+              (snapshot.data.length >= 2)
+                  ? Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Stack(
+                          clipBehavior: Clip.none,
                           children: [
-                            Text(
-                              "${snapshot.data[1]["username"]}",
-                              style: TextStyle(
-                                  color: Colors.grey[400],
-                                  fontSize: 18.sp,
-                                  shadows: const [
-                                    Shadow(
-                                      color: Colors.black,
-                                      offset: Offset(-2, 2),
-                                      blurRadius: 5,
-                                    ),
-                                    Shadow(
-                                      color: Colors.black,
-                                      offset: Offset(-2, -2),
-                                      blurRadius: 5,
-                                    ),
-                                  ]),
-                            ),
-                            Text(
-                              "${snapshot.data[1]["score"]}",
-                              style: TextStyle(
+                            Container(
+                              height: 65.h,
+                              padding: EdgeInsets.all(2.sp),
+                              decoration: const BoxDecoration(
                                 color: Colors.grey,
-                                fontSize: 18.sp,
-                                shadows: const [
-                                  Shadow(
-                                    color: Colors.black,
-                                    offset: Offset(-2, 2),
-                                    blurRadius: 5,
+                                shape: BoxShape.circle,
+                              ),
+                              child: Image.asset(
+                                // "assets/images/avatars/avatar_${snapshot.data[0]['avatar']}.png",
+                                "assets/images/avatars/avatar_${snapshot.data[1]["avatar"]}.png",
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 0,
+                              left: 50.w,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    "${snapshot.data[1]["username"]}",
+                                    style: TextStyle(
+                                        color: Colors.grey[400],
+                                        fontSize: 18.sp,
+                                        shadows: const [
+                                          Shadow(
+                                            color: Colors.black,
+                                            offset: Offset(-2, 2),
+                                            blurRadius: 5,
+                                          ),
+                                          Shadow(
+                                            color: Colors.black,
+                                            offset: Offset(-2, -2),
+                                            blurRadius: 5,
+                                          ),
+                                        ]),
                                   ),
-                                  Shadow(
-                                    color: Colors.black,
-                                    offset: Offset(-2, -2),
-                                    blurRadius: 5,
+                                  Text(
+                                    "${snapshot.data[1]["score"]}",
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 18.sp,
+                                      shadows: const [
+                                        Shadow(
+                                          color: Colors.black,
+                                          offset: Offset(-2, 2),
+                                          blurRadius: 5,
+                                        ),
+                                        Shadow(
+                                          color: Colors.black,
+                                          offset: Offset(-2, -2),
+                                          blurRadius: 5,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
                             ),
+                            Positioned(
+                              bottom: 0,
+                              left: 0.w,
+                              child: Image.asset(
+                                "assets/images/medals/silver.png",
+                                width: 30.w,
+                              ),
+                            ),
                           ],
                         ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        left: 0.w,
-                        child: Image.asset(
-                          "assets/images/medals/silver.png",
-                          width: 30.w,
+                        Container(
+                          height: 43.h,
+                          width: 3.w,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.grey,
+                                AppColor.yellow,
+                              ],
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                            ),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    height: 43.h,
-                    width: 3.w,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          Colors.grey,
-                          AppColor.yellow,
-                        ],
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                      ),
-                    ),
-                  ),
-                ],
-              ).animate().moveY(
-                    duration: 1.seconds,
-                    curve: Curves.easeInOut,
-                    begin: 43.h,
-                    end: 0,
-                  ) : SizeBox(width: 65.h),
-              Column(
+                      ],
+                    ).animate().moveY(
+                        duration: 1.seconds,
+                        curve: Curves.easeInOut,
+                        begin: 43.h,
+                        end: 0,
+                      )
+                  : SizedBox(width: 65.h),
+             (snapshot.data.length >= 1)  ? Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Stack(
@@ -1243,8 +1245,9 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                     curve: Curves.easeInOut,
                     begin: 78.h,
                     end: 0,
-                  ),
-              Column(
+                  )
+                  : SizedBox(width: 70.h),
+             (snapshot.data.length >= 3) ? Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Stack(
@@ -1337,7 +1340,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                     curve: Curves.easeInOut,
                     begin: 25.h,
                     end: 0,
-                  ),
+                  ) : SizedBox(width: 60.h),
             ],
           ),
         ),
