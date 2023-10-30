@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mrx_charts/mrx_charts.dart';
 import 'package:provider/provider.dart';
 import 'package:trivia/colors/app_color.dart';
+import 'package:trivia/data/box.dart';
 import 'package:trivia/main.dart';
 import 'package:trivia/models/dialogs/average_time.dart';
 import 'package:trivia/models/game_background.dart';
@@ -68,9 +69,9 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
     final querySnapshot = await fb.orderBy("score", descending: true).get();
 
     final leaderBoardPosition = querySnapshot.docs
-        .indexWhere((element) => element.id == Provider.of<ProfileProvider>(context, listen: false).) + 1;
+        .indexWhere((element) => element.id == deviceID) + 1;
 
-    print(leaderBoardData);
+    print(leaderBoardPosition);
 
     return querySnapshot.docs;
   }
