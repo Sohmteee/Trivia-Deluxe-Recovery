@@ -483,10 +483,16 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
                                                 questionProvider
                                                     .updateLeaderBoardScore(
                                                         context);
-                                                Provider.of<ProfileProvider>(
+
+                                                final profileProvider = Provider
+                                                    .of<ProfileProvider>(
                                                         context,
-                                                        listen: false)
-                                                    .updatePlayer(context);
+                                                        listen: false);
+                                                if (profileProvider.username !=
+                                                    null) {
+                                                  profileProvider
+                                                      .updatePlayer(context);
+                                                }
 
                                                 ToastContext().init(context);
                                                 Toast.show(

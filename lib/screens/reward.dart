@@ -375,9 +375,13 @@ class _RewardScreenState extends State<RewardScreen> {
                                           moneyProvider.coins);
                                       questionProvider
                                           .updateLeaderBoardScore(context);
-                                      Provider.of<ProfileProvider>(context,
-                                              listen: false)
-                                          .updatePlayer(context);
+
+                                      final profileProvider =
+                                          Provider.of<ProfileProvider>(context,
+                                              listen: false);
+                                      if (profileProvider.username != null) {
+                                        profileProvider.updatePlayer(context);
+                                      }
                                     });
                                   });
                                 });
