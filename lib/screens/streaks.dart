@@ -95,7 +95,7 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
 
       final streakProvider =
           Provider.of<StreaksProvider>(context, listen: false);
-      streakProvider.updateLeaderboardStreak(context);
+      streakProvider.updateLeaderboardStreak();
     });
 
     getLeaderBoardData(0);

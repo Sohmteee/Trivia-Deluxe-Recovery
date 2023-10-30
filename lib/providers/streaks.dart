@@ -647,8 +647,6 @@ class StreaksProvider extends ChangeNotifier {
   }
 
   Future<void> updateLeaderboardStreak() async {
-    int index = permanentLeaderboardStreakList.indexOf(leaderboardStreak);
-
     final leaderBoardPosition = (await FirebaseFirestore.instance
                 .collection("players")
                 .orderBy("score", descending: true)
@@ -657,15 +655,14 @@ class StreaksProvider extends ChangeNotifier {
             .indexWhere((element) => element.id == deviceID) +
         1;
 
-      leaderboardStreak = leaderBoardPosition;
-      print("Leaderboard Streak: $leaderboardStreak");
-      box.put("leaderboardStreak", leaderboardStreak);
+    leaderboardStreak = leaderBoardPosition;
+    print("Leaderboard Streak: $leaderboardStreak");
+    box.put("leaderboardStreak", leaderboardStreak);
 
-      if (leaderboardStreak > permanentLeaderboardStreak &&
-          permanentLeaderboardStreakList.contains(leaderboardStreak)) {
-        permanentLeaderboardStreak = leaderboardStreak;
-        box.put("permanentLeaderboardStreak", permanentLeaderboardStreak);
-      }
+    if (permanentLeaderboardStreakList.contains(leaderboardStreak)) {
+      permanentLeaderboardStreak = leaderboardStreak;
+      box.put("permanentLeaderboardStreak", permanentLeaderboardStreak);
+    }
 
     updateStreaksData();
     updateUltimateStreak();
