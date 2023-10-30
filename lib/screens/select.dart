@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,6 +8,7 @@ import 'package:toast/toast.dart';
 import 'package:trivia/ad_helper.dart';
 import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/data/box.dart';
+import 'package:trivia/data/controllers.dart';
 import 'package:trivia/data/questions/anime.dart';
 import 'package:trivia/data/questions/arts.dart';
 import 'package:trivia/data/questions/books.dart';
@@ -25,6 +27,7 @@ import 'package:trivia/main.dart';
 import 'package:trivia/models/dialogs/completed_category.dart';
 import 'package:trivia/models/game_background.dart';
 import 'package:trivia/models/stat_bar.dart';
+import 'package:trivia/providers/audio.dart';
 import 'package:trivia/providers/question.dart';
 import 'package:trivia/providers/select.dart';
 import 'package:trivia/providers/stage.dart';
@@ -136,6 +139,53 @@ class _SelectScreenState extends State<SelectScreen> {
     final selectProvider = Provider.of<SelectProvider>(context, listen: false);
     pageController = PageController(initialPage: selectProvider.pageIndex);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
+
+    void didChangeAppLifecycleState(AppLifecycleState state) {
+    Future<void> playBGAudio() async {
+      final audioProvider = Provider.of<AudioProvider>(context, listen: false);
+
+      if (audioProvider.music) {
+        await bgPlayer.setSource(AssetSource("audio/bg-music.mp3"));
+        await bgPlayer.resume();
+        debugPrint("music playing");
+      }
+
+      bgPlayer.onPlayerComplete.listen((_) async {
+        await bgPlayer.setSource(AssetSource("audio/bg-music.mp3"));
+        await bgPlayer.resume();
+      });
+    }
+
+    Future<void> pauseBGAudio() async {
+      await bgPlayer.pause();
+      debugPrint("music paused");
+    }
+
+    Future<void> stopBGAudio() async {
+      await bgPlayer.stop();
+      debugPrint("music stopped");
+    }
+
+    switch (state) {
+      case AppLifecycleState.resumed:
+      case AppLifecycleState.inactive:
+        playBGAudio();
+        break;
+      case AppLifecycleState.paused:
+      case AppLifecycleState.hidden:
+        pauseBGAudio();
+        break;
+      case AppLifecycleState.detached:
+        stopBGAudio();
+        break;
+    }
   }
 
   @override

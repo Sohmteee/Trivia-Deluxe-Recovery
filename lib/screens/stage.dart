@@ -9,6 +9,7 @@ import 'package:trivia/models/dialogs/exhausted_questions.dart';
 import 'package:trivia/models/game_background.dart';
 import 'package:trivia/models/level_tile.dart';
 import 'package:trivia/models/stat_bar.dart';
+import 'package:trivia/providers/audio.dart';
 import 'package:trivia/providers/question.dart';
 import 'package:trivia/providers/stage.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
@@ -28,6 +29,47 @@ class _StageScreenState extends State<StageScreen> {
       checkExhausted();
     });
     super.initState();
+  }
+
+    void didChangeAppLifecycleState(AppLifecycleState state) {
+    Future<void> playBGAudio() async {
+      final audioProvider = Provider.of<AudioProvider>(context, listen: false);
+
+      if (audioProvider.music) {
+        await bgPlayer.setSource(AssetSource("audio/bg-music.mp3"));
+        await bgPlayer.resume();
+        debugPrint("music playing");
+      }
+
+      bgPlayer.onPlayerComplete.listen((_) async {
+        await bgPlayer.setSource(AssetSource("audio/bg-music.mp3"));
+        await bgPlayer.resume();
+      });
+    }
+
+    Future<void> pauseBGAudio() async {
+      await bgPlayer.pause();
+      debugPrint("music paused");
+    }
+
+    Future<void> stopBGAudio() async {
+      await bgPlayer.stop();
+      debugPrint("music stopped");
+    }
+
+    switch (state) {
+      case AppLifecycleState.resumed:
+      case AppLifecycleState.inactive:
+        playBGAudio();
+        break;
+      case AppLifecycleState.paused:
+      case AppLifecycleState.hidden:
+        pauseBGAudio();
+        break;
+      case AppLifecycleState.detached:
+        stopBGAudio();
+        break;
+    }
   }
 
   void checkExhausted() {

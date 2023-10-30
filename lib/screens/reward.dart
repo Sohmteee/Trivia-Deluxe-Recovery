@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:confetti/confetti.dart';
 import 'package:countup/countup.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ import 'package:trivia/data/controllers.dart';
 import 'package:trivia/main.dart';
 import 'package:trivia/models/game_background.dart';
 import 'package:trivia/models/stat_bar.dart';
+import 'package:trivia/providers/audio.dart';
 import 'package:trivia/providers/money.dart';
 import 'package:trivia/providers/profile.dart';
 import 'package:trivia/providers/question.dart';
