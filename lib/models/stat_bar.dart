@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:trivia/colors/app_color.dart';
+import 'package:trivia/data/box.dart';
 import 'package:trivia/main.dart';
 import 'package:trivia/models/dialogs/settings.dart';
 import 'package:trivia/providers/money.dart';
@@ -130,12 +131,75 @@ class _GameStatsState extends State<GameStats> {
                 end: Alignment.bottomRight,
               ),
             ),
-            child: const Center(
-              child: Text(
-                "5000",
-                style: TextStyle(
-                  color: Colors.yellow,
-                ),
+            child:  Center(
+              child: FutureBuilder(
+                future: getLeaderBoardData(index),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  Map<String, dynamic> getPosition() {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      // Data is still loading, return a default value or loading indicator.
+                      return {
+                        "position": "---",
+                        "color": AppColor.white,
+                      };
+                    }
+
+                    if (snapshot.hasError ||
+                        snapshot.data == null ||
+                        snapshot.data.isEmpty) {
+                      // Handle the error state.
+                      return {
+                        "position": "---",
+                        "color": AppColor.white,
+                      };
+                    }
+
+                    // Find the index of the player with the specified device_id, if it exists.
+                    int index = snapshot.data.indexWhere(
+                        (profile) => profile["device_id"] == deviceID);
+
+                    if (index != -1) {
+                      // Player with device_id found, adjust the index as needed.
+                      index += 1;
+
+                      Color color = index == 1
+                          ? const Color.fromARGB(255, 243, 165, 47)
+                          : index == 2
+                              ? Colors.grey
+                              : index == 3
+                                  ? const Color.fromARGB(255, 211, 144, 120)
+                                  : AppColor.white;
+
+                      String suffix = (index >= 11 && index <= 13)
+                          ? "th"
+                          : {
+                                1: "st",
+                                2: "nd",
+                                3: "rd",
+                              }[index % 10] ??
+                              "th";
+
+                      return {
+                        "position": "$index$suffix",
+                        "color": color,
+                      };
+                    }
+
+                    // If the player with device_id is not found, you can return a default value.
+                    return {
+                      "position": "---",
+                      "color": AppColor.white,
+                    };
+                  }
+
+                  return Text(
+                    getPosition()["position"],
+                    style: TextStyle(
+                      color: getPosition()["color"],
+                      fontSize: 30.sp,
+                    ),
+                  );
+                },
               ),
             ),
           ),
