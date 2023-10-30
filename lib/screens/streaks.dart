@@ -443,7 +443,8 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
                                                     .updateLeaderBoardScore(
                                                         context);
                                                 Provider.of<ProfileProvider>(
-                                                        context)
+                                                        context,
+                                                        listen: false)
                                                     .updatePlayer(context);
 
                                                 ToastContext().init(context);
