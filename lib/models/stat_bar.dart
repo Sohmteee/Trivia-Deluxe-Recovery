@@ -26,7 +26,6 @@ class GameStats extends StatefulWidget {
 }
 
 class _GameStatsState extends State<GameStats> {
-  bool animateCoins = false;
 
   @override
   void initState() {
