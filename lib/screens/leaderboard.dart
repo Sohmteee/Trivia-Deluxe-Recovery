@@ -1425,7 +1425,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                   : index == 2
                                       ? Colors.grey
                                       : index == 3
-                                          ? Color.fromARGB(255, 211, 144, 120)
+                                          ? const Color.fromARGB(255, 211, 144, 120)
                                           : AppColor.white;
 
                               String suffix = (index >= 11 && index <= 13)
