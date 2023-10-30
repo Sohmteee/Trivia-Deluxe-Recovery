@@ -256,7 +256,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                 child: Text(
                                                   "An error occured while fetching leaderboard data.",
                                                   style: TextStyle(
-                                                    color: AppColor.white,
+                                                    color: AppColor.yellow,
                                                     fontSize: 25.sp,
                                                   ),
                                                   textAlign: TextAlign.center,
@@ -273,7 +273,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                     _=> "No data available.",
                                                   },
                                                   style: TextStyle(
-                                                    color: AppColor.white,
+                                                    color: AppColor.yellow,
                                                     fontSize: 25.sp,
                                                   ),
                                                   textAlign: TextAlign.center,
@@ -1710,7 +1710,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                   Text(
                                     "Please play at least one game to see leaderboard.",
                                     style: TextStyle(
-                                      color: AppColor.white,
+                                      color: AppColor.yellow,
                                       fontSize: 25.sp,
                                     ),
                                     textAlign: TextAlign.center,
@@ -1726,7 +1726,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                               Text(
                                 "You don't have a profile",
                                 style: TextStyle(
-                                  color: AppColor.white,
+                                  color: AppColor.yellow,
                                   fontSize: 25.sp,
                                 ),
                                 textAlign: TextAlign.center,
@@ -1735,7 +1735,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                               Text(
                                 "Would you like to create one now to see the leaderboard?",
                                 style: TextStyle(
-                                  color: AppColor.white,
+                                  color: AppColor.yellow,
                                   fontSize: 25.sp,
                                 ),
                                 textAlign: TextAlign.center,
