@@ -26,31 +26,13 @@ class GameStats extends StatefulWidget {
 }
 
 class _GameStatsState extends State<GameStats> {
-  bool animateCoins = false;
-
   @override
   void initState() {
     super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final coins = Provider.of<MoneyProvider>(context, listen: false);
-      coins.addListener(() {
-        setState(() {
-          animateCoins = true;
-          debugPrint("Animate coins: $animateCoins");
-        });
-      });
-    });
   }
 
   @override
   void dispose() {
-    Provider.of<MoneyProvider>(context, listen: false).removeListener(() {
-      setState(() {
-        animateCoins = false;
-        debugPrint("Animate coins: $animateCoins");
-      });
-    });
     super.dispose();
   }
 
