@@ -256,7 +256,7 @@ class StreaksProvider extends ChangeNotifier {
       permanentTriviaStreak = box.get("permanentTriviaStreak", defaultValue: 0);
   int leaderboardStreak = box.get("leaderboardStreak", defaultValue: 0),
       permanentLeaderboardStreak =
-          box.get("permanentLeaderboardStreak", defaultValue: 0);
+          box.get("permanentLeaderboardStreak", defaultValue: 100);
 
   int ultimateStreak = box.get("ultimateStreak", defaultValue: 0);
 
@@ -659,7 +659,7 @@ class StreaksProvider extends ChangeNotifier {
     print("Leaderboard Streak: $leaderboardStreak");
     box.put("leaderboardStreak", leaderboardStreak);
 
-    if (leaderboardStreak >= 10) {
+    if (leaderboardStreak < permanentLeaderboardStreak) {
       if (leaderboardStreak <= 10) {
         permanentLeaderboardStreak = 10;
       } 
