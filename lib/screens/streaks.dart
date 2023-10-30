@@ -380,7 +380,7 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
                               return Column(
                                 children: [
                                   ListTile(
-                                    minVerticalPadding: 20,
+                                    minVerticalPadding: 2.h,
                                     minLeadingWidth: 20.w,
                                     leading: item["status"]
                                         ? Image.asset(
