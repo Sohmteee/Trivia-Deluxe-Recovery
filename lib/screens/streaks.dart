@@ -63,7 +63,7 @@ Average Time answering
  */
 
 class _StreaksScreeenState extends State<StreaksScreeen> {
-  Future<List<QueryDocumentSnapshot>> getLeaderBoardData(int index) async {
+  Future<int> getLeaderBoardData(int index) async {
     final fb = FirebaseFirestore.instance.collection("players");
     final querySnapshot = await fb.orderBy("score", descending: true).get();
 
@@ -72,7 +72,7 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
 
     print(leaderBoardPosition);
 
-    return querySnapshot.docs;
+    return leaderBoardPosition;
   }
 
   @override
