@@ -1425,7 +1425,8 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                   : index == 2
                                       ? Colors.grey
                                       : index == 3
-                                          ? const Color.fromARGB(255, 211, 144, 120)
+                                          ? const Color.fromARGB(
+                                              255, 211, 144, 120)
                                           : AppColor.white;
 
                               String suffix = (index >= 11 && index <= 13)
@@ -1450,29 +1451,6 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                             };
                           }
 
-                          if (snapshot.data == null) {
-                            return Center(
-                              child: SizedBox(
-                                height: 25.h,
-                                width: 25.w,
-                                child: CircularProgressIndicator(
-                                  color: AppColor.yellow,
-                                ),
-                              ),
-                            );
-                          }
-                          if (snapshot.hasError || snapshot.data == []) {
-                            return Center(
-                              child: Text(
-                                "---",
-                                style: TextStyle(
-                                  color: AppColor.white,
-                                  fontSize: 25.sp,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            );
-                          }
                           return Text(
                             getPosition()["position"],
                             style: TextStyle(
