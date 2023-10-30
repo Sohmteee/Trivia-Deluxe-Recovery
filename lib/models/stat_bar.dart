@@ -176,7 +176,7 @@ class _GameStatsState extends State<GameStats> {
                         (profile) => profile["device_id"] == deviceID);
 
                     if (index != -1) {
-                      index += 1;
+                      index += 21;
 
                       String suffix = switch (index % 10) {
                         1 => "st",
