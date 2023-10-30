@@ -42,6 +42,7 @@ class QuestionProvider extends ChangeNotifier {
       for (var i = 0; i < 10; i++) {
         questions.shuffle();
       }
+
       data["data"] = questions;
       box.put(data["title"], data);
     }
@@ -59,6 +60,9 @@ class QuestionProvider extends ChangeNotifier {
     for (var i = 0; i < 10; i++) {
       questions.shuffle();
     }
+
+    data["data"] = questions;
+    box.put(data["title"], data);
 
     notifyListeners();
   }
