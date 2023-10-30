@@ -188,7 +188,6 @@ class _GameStatsState extends State<GameStats> {
                   return Text(
                     getPosition(),
                     style: TextStyle(
-                      fontSize: 1.sp,
                       color: AppColor.yellow,
                     ),
                   );
@@ -251,15 +250,13 @@ class _GameStatsState extends State<GameStats> {
                           begin: moneyProvider.previousCoins.toDouble(),
                           end: moneyProvider.coins.toDouble(),
                           duration: 1.seconds,
-                          style: TextStyle(
-                            fontSize: 1.sp,
+                          style: const TextStyle(
                             color: Colors.yellow,
                           ),
                         )
                       : Text(
                           moneyProvider.coins.toString(),
-                          style: TextStyle(
-                            fontSize: 1.sp,
+                          style: const TextStyle(
                             color: Colors.yellow,
                           ),
                         ),
