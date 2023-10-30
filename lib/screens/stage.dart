@@ -59,25 +59,29 @@ class _StageScreenState extends State<StageScreen> {
               const Spacer(),
               buildLevel(),
               const Spacer(flex: 3),
-              Consumer<StageProvider>(builder: (context, stageProvider, _) {
-                return (stageProvider.completedStage != 3)
-                    ? SizedBox(
-                        height: 60.h,
-                        child: ZoomTapAnimation(
-                          onTap: () {
-                            playTap(context);
-                            Navigator.pushReplacementNamed(context, "/game");
-                          },
-                          child: Image.asset("assets/images/play.png"),
-                        ),
-                      )
-                    : const SizedBox();
-              })
+              playButton(),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Consumer<StageProvider> playButton() {
+    return Consumer<StageProvider>(builder: (context, stageProvider, _) {
+              return (stageProvider.completedStage != 3)
+                  ? SizedBox(
+                      height: 60.h,
+                      child: ZoomTapAnimation(
+                        onTap: () {
+                          playTap(context);
+                          Navigator.pushReplacementNamed(context, "/game");
+                        },
+                        child: Image.asset("assets/images/play.png"),
+                      ),
+                    )
+                  : const SizedBox();
+            });
   }
 
   Consumer<QuestionProvider> levelTitle() {
