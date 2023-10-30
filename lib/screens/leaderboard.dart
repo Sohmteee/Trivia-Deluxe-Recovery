@@ -133,7 +133,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                 BackButton(
                   color: AppColor.yellow,
                 ),
-                const Spacer(),
+                const Spacer(flex: 2),
                 Text(
                   "Leaderboard",
                   style: TextStyle(
@@ -167,7 +167,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                       ? Column(
                           children: [
                             Padding(
-                              padding: EdgeInsets.only(left: 20.w),
+                              padding: EdgeInsets.only(left: 25.w),
                               child: Align(
                                 alignment: Alignment.center,
                                 child: TabBar(
