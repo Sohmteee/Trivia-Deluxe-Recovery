@@ -61,7 +61,6 @@ Average Time answering
  */
 
 class _StreaksScreeenState extends State<StreaksScreeen> {
-  
   @override
   Widget build(BuildContext context) {
     return GameBackground(
