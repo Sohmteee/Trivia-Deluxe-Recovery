@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -6,11 +7,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/data/box.dart';
+import 'package:trivia/data/controllers.dart';
 import 'package:trivia/main.dart';
 import 'package:trivia/models/circle_tab_indicator.dart';
 import 'package:trivia/models/dialogs/create_profile.dart';
 import 'package:trivia/models/dialogs/leaderboard_scoring.dart';
 import 'package:trivia/models/game_background.dart';
+import 'package:trivia/providers/audio.dart';
 import 'package:trivia/providers/profile.dart';
 import 'package:trivia/providers/question.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
@@ -49,6 +52,48 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
   void dispose() {
     tabController.dispose();
     super.dispose();
+  }
+
+
+    void didChangeAppLifecycleState(AppLifecycleState state) {
+    Future<void> playBGAudio() async {
+      final audioProvider = Provider.of<AudioProvider>(context, listen: false);
+
+      if (audioProvider.music) {
+        await bgPlayer.setSource(AssetSource("audio/bg-music.mp3"));
+        await bgPlayer.resume();
+        debugPrint("music playing");
+      }
+
+      bgPlayer.onPlayerComplete.listen((_) async {
+        await bgPlayer.setSource(AssetSource("audio/bg-music.mp3"));
+        await bgPlayer.resume();
+      });
+    }
+
+    Future<void> pauseBGAudio() async {
+      await bgPlayer.pause();
+      debugPrint("music paused");
+    }
+
+    Future<void> stopBGAudio() async {
+      await bgPlayer.stop();
+      debugPrint("music stopped");
+    }
+
+    switch (state) {
+      case AppLifecycleState.resumed:
+      case AppLifecycleState.inactive:
+        playBGAudio();
+        break;
+      case AppLifecycleState.paused:
+      case AppLifecycleState.hidden:
+        pauseBGAudio();
+        break;
+      case AppLifecycleState.detached:
+        stopBGAudio();
+        break;
+    }
   }
 
   Future<List<QueryDocumentSnapshot>> getLeaderBoardData(int index) async {
