@@ -1372,6 +1372,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      const Spacer(),
                       Text(
                         "Current Position",
                         style: TextStyle(
