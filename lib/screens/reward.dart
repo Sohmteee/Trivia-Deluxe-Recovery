@@ -430,7 +430,7 @@ class _RewardScreenState extends State<RewardScreen> {
         onAdLoaded: (ad) {
           ad.fullScreenContentCallback = FullScreenContentCallback(
             onAdDismissedFullScreenContent: (ad) {
-              _moveToHome();
+              Navigator.pushReplacementNamed(context, "/stage");
             },
           );
 
