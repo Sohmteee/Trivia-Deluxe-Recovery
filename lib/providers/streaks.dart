@@ -497,9 +497,9 @@ class StreaksProvider extends ChangeNotifier {
           {
             "title": "Achiever",
             "subtitle": "Rank top 10 on the leaderboard",
-            "status": permanentLeaderboardStreak == 10,
+            "status": permanentLeaderboardStreak <= 10,
             "collected": streaks[3]["streaks"][0]["collected"],
-            "progress": permanentLeaderboardStreak == 10
+            "progress": permanentLeaderboardStreak <= 10
                 ? 1
                 : leaderboardStreak == 10
                     ? 1
@@ -511,9 +511,9 @@ class StreaksProvider extends ChangeNotifier {
           {
             "title": "Top Ranker",
             "subtitle": "Rank top 5 on the leaderboard",
-            "status": permanentLeaderboardStreak == 5,
+            "status": permanentLeaderboardStreak <= 5,
             "collected": streaks[3]["streaks"][1]["collected"],
-            "progress": permanentLeaderboardStreak == 5
+            "progress": permanentLeaderboardStreak <= 5
                 ? 1
                 : leaderboardStreak == 5
                     ? 1
@@ -525,9 +525,9 @@ class StreaksProvider extends ChangeNotifier {
           {
             "title": "Master Ranker",
             "subtitle": "Rank top 3 on the leaderboard",
-            "status": permanentLeaderboardStreak == 3,
+            "status": permanentLeaderboardStreak <= 3,
             "collected": streaks[3]["streaks"][2]["collected"],
-            "progress": permanentLeaderboardStreak == 3
+            "progress": permanentLeaderboardStreak <= 3
                 ? 1
                 : leaderboardStreak == 3
                     ? 1
@@ -539,9 +539,9 @@ class StreaksProvider extends ChangeNotifier {
           {
             "title": "Leaderboard Champion",
             "subtitle": "Rank first on the leaderboard",
-            "status": permanentLeaderboardStreak == 1,
+            "status": permanentLeaderboardStreak <= 1,
             "collected": streaks[3]["streaks"][3]["collected"],
-            "progress": permanentLeaderboardStreak == 1
+            "progress": permanentLeaderboardStreak <= 1
                 ? 1
                 : leaderboardStreak == 1
                     ? 1
