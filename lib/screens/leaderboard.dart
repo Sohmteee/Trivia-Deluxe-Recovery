@@ -266,8 +266,12 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                             if (snapshot.data == []) {
                                               return Center(
                                                 child: Text(
-                                                  switch()
-                                                  "No data available.",
+                                                  switch(index) {
+                                                    0=> "No data available for today.",
+                                                    1=> "No data available for this week.",
+                                                    2=> "No data available for this month.",
+                                                    _=> "No data available.",
+                                                  },
                                                   style: TextStyle(
                                                     color: AppColor.white,
                                                     fontSize: 25.sp,
