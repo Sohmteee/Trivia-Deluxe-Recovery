@@ -282,7 +282,8 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                           );
                                         }
 
-                                        return popsicleLeaderBoard(snapshot);
+                                        return popsicleLeaderBoard(
+                                            snapshot, index);
 
                                         /* return ListView.separated(
                                       itemCount: snapshot.data.length,
