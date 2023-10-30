@@ -36,7 +36,7 @@ class _GameScreenState extends State<GameScreen> {
         Provider.of<QuestionProvider>(context, listen: false);
 
     confettiController = ConfettiController(duration: 1.5.seconds);
-    questionProvider.initQuestionProvider(context);
+    Future.microtask(() => questionProvider.initQuestionProvider(context));
     Future.delayed(
         3.5.seconds, () => (!answered) ? countDownController.start() : null);
 
