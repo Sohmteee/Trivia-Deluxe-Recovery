@@ -42,6 +42,8 @@ class QuestionProvider extends ChangeNotifier {
       for (var i = 0; i < 10; i++) {
         questions.shuffle();
       }
+      data["data"] = questions;
+      box.put(data["title"], data);
     }
 
     question = questions[questionIndex]["question"];
@@ -54,7 +56,9 @@ class QuestionProvider extends ChangeNotifier {
   void onExhaustedQuestions(context) {
     questionIndex = 0;
     data["currentIndex"] = questionIndex;
-    questions.shuffle();
+    for (var i = 0; i < 10; i++) {
+      questions.shuffle();
+    }
 
     notifyListeners();
   }
