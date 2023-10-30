@@ -143,7 +143,6 @@ class _SelectScreenState extends State<SelectScreen> {
     pageController.dispose();
     super.dispose();
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -289,9 +288,14 @@ class _SelectScreenState extends State<SelectScreen> {
                                             Container(
                                               height: 6.h,
                                               width: (box.get(item["data"]
-                                                              ["title"])?[
-                                                          "currentLevel"] +
-                                                      3) /
+                                                                  ["title"])?[
+                                                              "currentLevel"] ==
+                                                          0
+                                                      ? 0
+                                                      : box.get(item["data"]
+                                                                  ["title"])?[
+                                                              "currentLevel"] +
+                                                          3) /
                                                   33 *
                                                   50.toDouble(),
                                               decoration: BoxDecoration(
