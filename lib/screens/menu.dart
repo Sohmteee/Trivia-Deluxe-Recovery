@@ -35,6 +35,9 @@ class _MenuScreenState extends State<MenuScreen>
   BannerAd? _bannerAd;
   bool _isLoaded = false;
 
+  
+  late ImageProvider backgroundImage;
+
   @override
   void initState() {
     WidgetsBinding.instance.addObserver(this);
@@ -43,6 +46,9 @@ class _MenuScreenState extends State<MenuScreen>
     playBGAudio();
     _loadBannerAd();
     Future.microtask(() => initializeEffectsVolume());
+
+    backgroundImage = const AssetImage("assets/images/house.jpg");
+    precacheImage(backgroundImage, context);
 
     rotationController = AnimationController(duration: 100.seconds, vsync: this)
       ..addStatusListener((status) {
@@ -95,9 +101,9 @@ class _MenuScreenState extends State<MenuScreen>
                 )
               : null,
           body: Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/house.jpg"),
+                image: backgroundImage,
                 fit: BoxFit.fill,
               ),
             ),
