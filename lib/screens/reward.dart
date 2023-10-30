@@ -381,7 +381,11 @@ class _RewardScreenState extends State<RewardScreen> {
                 ZoomTapAnimation(
                   onTap: () {
                     playTap(context);
-                    Navigator.pushReplacementNamed(context, "/stage");
+                    if (_interstitialAd != null) {
+                      _interstitialAd?.show();
+                    } else {
+                      Navigator.pushReplacementNamed(context, "/stage");
+                    }
                   },
                   child: Container(
                     padding: EdgeInsets.symmetric(
@@ -422,10 +426,10 @@ class _RewardScreenState extends State<RewardScreen> {
     );
   }
 
-    void _loadInterstitialAd() {
+  void _loadInterstitialAd() {
     InterstitialAd.load(
       adUnitId: AdHelper.interstitialAdUnitId,
-      request: AdRequest(),
+      request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) {
           ad.fullScreenContentCallback = FullScreenContentCallback(
