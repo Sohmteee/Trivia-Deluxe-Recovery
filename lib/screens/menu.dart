@@ -221,7 +221,11 @@ class _MenuScreenState extends State<MenuScreen>
                               playTap(context);
                               Navigator.pushNamed(context, "/leaderboard");
                             },
-                            child: Lottie.asset("assets/lottie/red_award.json"),
+                            child: Lottie.asset(
+                              "assets/lottie/red_award.json",
+                              repeat: false,
+                              animate: true,
+                            ),
                           ),
                         ),
                         Stack(
