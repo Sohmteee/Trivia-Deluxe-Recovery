@@ -1363,7 +1363,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
               children: [
                 Row(
                   children: [
-                    const Spacer(flex: 4),
+                    const Spacer(flex: 3),
                     Container(
                       padding:
                           EdgeInsets.symmetric(vertical: 6.h, horizontal: 15.w),
