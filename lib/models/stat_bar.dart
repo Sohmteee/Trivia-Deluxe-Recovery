@@ -33,7 +33,7 @@ class _GameStatsState extends State<GameStats> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final coins = Provider.of<MoneyProvider>(context, listen: false);
+      final coins = Provider.of<MoneyProvider>(context, listen: false).coins;
       coins.addListener(() {
         setState(() {
           animateCoins = true;
