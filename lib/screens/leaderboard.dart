@@ -1056,7 +1056,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-             if  Column(
+             (snapshot.data.length >=2) ? Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Stack(
@@ -1149,7 +1149,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                     curve: Curves.easeInOut,
                     begin: 43.h,
                     end: 0,
-                  ),
+                  ) : SizeBox(width: 65.h),
               Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
