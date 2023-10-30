@@ -486,7 +486,11 @@ class _RewardScreenState extends State<RewardScreen> {
                     if (_interstitialAd != null) {
                       _interstitialAd?.show();
                     } else {
-                      Navigator.pushReplacementNamed(context, "/stage");
+                      if (level <= 29) {
+                        Navigator.pushReplacementNamed(context, "/stage");
+                      } else {
+                        Navigator.pushReplacementNamed(context, "/menu");
+                      }
                     }
                   },
                   child: Container(
