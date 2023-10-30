@@ -55,33 +55,7 @@ class _StageScreenState extends State<StageScreen> {
             children: [
               const GameStats(),
               const Spacer(),
-              Consumer<QuestionProvider>(
-                  builder: (context, questionProvider, _) {
-                final stageProvider = Provider.of<StageProvider>(context);
-
-                return stageProvider.completedStage != 0
-                    ? Text(
-                        "Level ${questionProvider.currentLevel + 1}",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 50.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textAlign: TextAlign.center,
-                      )
-                    : Text(
-                        "Level ${questionProvider.currentLevel + 1}",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 50.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textAlign: TextAlign.center,
-                      ).animate().slideX(
-                          duration: 1.seconds,
-                          begin: 10.h,
-                        );
-              }),
+              levelTitle(),
               const Spacer(),
               buildLevel(),
               const Spacer(flex: 3),
@@ -104,6 +78,36 @@ class _StageScreenState extends State<StageScreen> {
         ),
       ),
     );
+  }
+
+  Consumer<QuestionProvider> levelTitle() {
+    return Consumer<QuestionProvider>(
+                builder: (context, questionProvider, _) {
+              final stageProvider = Provider.of<StageProvider>(context);
+
+              return stageProvider.completedStage != 0
+                  ? Text(
+                      "Level ${questionProvider.currentLevel + 1}",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 50.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    )
+                  : Text(
+                      "Level ${questionProvider.currentLevel + 1}",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 50.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ).animate().slideX(
+                        duration: 1.seconds,
+                        begin: 10.h,
+                      );
+            });
   }
 
   Stack buildLevel() {
