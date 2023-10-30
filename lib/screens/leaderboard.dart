@@ -71,8 +71,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
     }).where((player) {
       Timestamp timestamp = player["time"];
       DateTime playerTime = timestamp.toDate();
-      // print(playerTime);
-      return playerTime.isBefore(constraint);
+      return playerTime.isAfter(constraint);
     }).toList();
 
     print(leaderBoardData);
