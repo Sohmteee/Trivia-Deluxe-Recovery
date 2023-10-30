@@ -61,7 +61,7 @@ class _StageScreenState extends State<StageScreen> {
 
                 return stageProvider.completedStage != 0
                     ? Text(
-                        "Level ${questionProvider.currentLevel}",
+                        "Level ${questionProvider.currentLevel + 1}",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 50.sp,
@@ -70,7 +70,7 @@ class _StageScreenState extends State<StageScreen> {
                         textAlign: TextAlign.center,
                       )
                     : Text(
-                        "Level ${questionProvider.currentLevel}",
+                        "Level ${questionProvider.currentLevel + 1}",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 50.sp,
