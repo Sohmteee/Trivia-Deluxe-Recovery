@@ -28,7 +28,6 @@ showExitDialog(BuildContext context) {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             ZoomTapAnimation(
-
               onTap: () {
                 playTap(context);
                 SystemNavigator.pop();
@@ -44,13 +43,12 @@ showExitDialog(BuildContext context) {
                 child: Text(
                   "Yeah",
                   style: TextStyle(
-                    fontSize: 15.sp,
+                    fontSize: 18.sp,
                   ),
                 ),
               ),
             ),
             ZoomTapAnimation(
-
               onTap: () {
                 playTap(context);
                 Navigator.pop(context);
@@ -66,7 +64,7 @@ showExitDialog(BuildContext context) {
                 child: Text(
                   "Nah",
                   style: TextStyle(
-                    fontSize: 15.sp,
+                    fontSize: 18.sp,
                   ),
                 ),
               ),
