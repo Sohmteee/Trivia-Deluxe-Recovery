@@ -67,6 +67,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
         "score": doc["score"],
         "avatar": doc["avatar"],
         "time": doc["time"],
+        "id": doc["id"],
       };
     }).where((player) {
       Timestamp timestamp = player["time"];
@@ -786,7 +787,6 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                                     // Find the index of the player with the specified device_id, if it exists.
                                                                     int index = snapshot
                                                                         .data
-                                                                        .where((profile) => profile["device_id"] == deviceID)
                                                                         .indexWhere((profile) =>
                                                                             profile["device_id"] ==
                                                                             deviceID);
