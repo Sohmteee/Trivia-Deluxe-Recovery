@@ -161,10 +161,13 @@ class _SelectScreenState extends State<SelectScreen> {
               )
             : null, */
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 40.h),
+          padding: EdgeInsets.symmetric(vertical: 40.h),
           child: Column(
             children: [
-              const GameStats(),
+              Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.w),
+                  child: const GameStats(),),
               const Spacer(flex: 4),
               Text(
                 "Choose a category",
@@ -181,6 +184,7 @@ class _SelectScreenState extends State<SelectScreen> {
                     builder: (context, selectProvider, _) {
                   return PageView.builder(
                       itemCount: selectItems.length,
+                      
                       controller: pageController,
                       physics: const BouncingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
