@@ -33,6 +33,7 @@ class _MenuScreenState extends State<MenuScreen>
   late AnimationController rotationController;
 
   BannerAd? _bannerAd;
+  InterstitialAd? _interstitialAd;
   bool _isLoaded = false;
 
   @override
@@ -41,7 +42,7 @@ class _MenuScreenState extends State<MenuScreen>
     ToastContext().init(context);
 
     playBGAudio();
-    // _loadBannerAd();
+    _loadBannerAd();
     Future.microtask(() => initializeEffectsVolume());
 
     rotationController = AnimationController(duration: 100.seconds, vsync: this)

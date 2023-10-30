@@ -9,6 +9,7 @@ import 'package:trivia/data/box.dart';
 import 'package:trivia/main.dart';
 import 'package:trivia/models/circle_tab_indicator.dart';
 import 'package:trivia/models/dialogs/create_profile.dart';
+import 'package:trivia/models/dialogs/leaderboard_scoring.dart';
 import 'package:trivia/models/game_background.dart';
 import 'package:trivia/providers/profile.dart';
 import 'package:trivia/providers/question.dart';
@@ -129,7 +130,19 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                   ),
                   textAlign: TextAlign.center,
                 ),
-                const Spacer(flex: 2),
+                const Spacer(),
+                ZoomTapAnimation(
+                  onTap: () {
+                    playTap(context);
+                    showLeaderBoardScoringDialog(context);
+                  },
+                  child: Icon(
+                    Icons.help_outline,
+                    color: Colors.grey[200],
+                    size: 20.sp,
+                  ),
+                ),
+                const Spacer(),
               ],
             ),
             SizedBox(height: 20.h),
