@@ -753,68 +753,59 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                                         snapshot) {
                                                                   Map<String,
                                                                           dynamic>
-                                                                      getPosition() {
-                                                                    int index = snapshot.data.indexOf(snapshot
-                                                                            .data
-                                                                            .where((profile) =>
-                                                                                profile["device_id"] ==
-                                                                                deviceID)
-                                                                            .first) +
-                                                                        1;
+                                                                      Map<String, dynamic> getPosition() {
+  if (snapshot.connectionState == ConnectionState.waiting) {
+    // Data is still loading, return a default value or loading indicator.
+    return {
+      "position": "---",
+      "color": AppColor.white,
+    };
+  }
 
-                                                                    Color
-                                                                        color =
-                                                                        switch (
-                                                                            index) {
-                                                                      1 =>
-                                                                        const Color
-                                                                            .fromARGB(
-                                                                            255,
-                                                                            243,
-                                                                            165,
-                                                                            47),
-                                                                      2 => Colors
-                                                                          .grey,
-                                                                      3 =>
-                                                                        Color.fromARGB(
-                                                                            255,
-                                                                            211,
-                                                                            144,
-                                                                            120),
-                                                                      _ =>
-                                                                        AppColor
-                                                                            .white,
-                                                                    };
+  if (snapshot.hasError || snapshot.data == null || snapshot.data.isEmpty) {
+    // Handle the error state.
+    return {
+      "position": "---",
+      "color": AppColor.white,
+    };
+  }
 
-                                                                    String suffix = switch (int.parse(index
-                                                                        .toString()[index
-                                                                            .toString()
-                                                                            .length -
-                                                                        1])) {
-                                                                      1 => "st",
-                                                                      2 => "nd",
-                                                                      3 => "rd",
-                                                                      _ => "th",
-                                                                    };
+  // Find the index of the player with the specified device_id, if it exists.
+  int index = snapshot.data.indexWhere((profile) => profile["device_id"] == deviceID);
 
-                                                                    if (index >=
-                                                                        1) {
-                                                                      return {
-                                                                        "position":
-                                                                            "$index$suffix",
-                                                                        "color":
-                                                                            color,
-                                                                      };
-                                                                    }
+  if (index != -1) {
+    // Player with device_id found, adjust the index as needed.
+    index += 1;
 
-                                                                    return {
-                                                                      "position":
-                                                                          "---",
-                                                                      "color":
-                                                                          AppColor
-                                                                              .white,
-                                                                    };
-                                                                  }
+    Color color = index == 1
+        ? const Color.fromARGB(255, 243, 165, 47)
+        : index == 2
+            ? Colors.grey
+            : index == 3
+                ? Color.fromARGB(255, 211, 144, 120)
+                : AppColor.white;
+
+    String suffix = (index >= 11 && index <= 13)
+        ? "th"
+        : {
+            1: "st",
+            2: "nd",
+            3: "rd",
+          }[index % 10] ?? "th";
+
+    return {
+      "position": "$index$suffix",
+      "color": color,
+    };
+  }
+
+  // If the player with device_id is not found, you can return a default value.
+  return {
+    "position": "---",
+    "color": AppColor.white,
+  };
+}
+
 
                                                                   if (snapshot
                                                                           .data ==
