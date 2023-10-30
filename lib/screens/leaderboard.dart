@@ -1460,6 +1460,17 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                       ),
                     ),
                     const Spacer(),
+                    ZoomTapAnimation(
+                      onTap: () {
+                        playTap(context);
+                        showLeaderBoardScoringDialog(context);
+                      },
+                      child: Icon(
+                        Icons.help_outline,
+                        color: Colors.black,
+                        size: 30.sp,
+                      ),
+                    ),
                     const Spacer(),
                   ],
                 ),
