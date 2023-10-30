@@ -161,27 +161,21 @@ class _GameStatsState extends State<GameStats> {
                 end: Alignment.bottomRight,
               ),
             ),
-            child:  Center(
+            child: Center(
               child: FutureBuilder(
                 future: getLeaderBoardData(0),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  Map<String, dynamic> getPosition() {
+                  String getPosition() {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       // Data is still loading, return a default value or loading indicator.
-                      return {
-                        "position": "---",
-                        "color": AppColor.white,
-                      };
+                      return "---";
                     }
 
                     if (snapshot.hasError ||
                         snapshot.data == null ||
                         snapshot.data.isEmpty) {
                       // Handle the error state.
-                      return {
-                        "position": "---",
-                        "color": AppColor.white,
-                      };
+                      return "---";
                     }
 
                     // Find the index of the player with the specified device_id, if it exists.
@@ -192,37 +186,22 @@ class _GameStatsState extends State<GameStats> {
                       // Player with device_id found, adjust the index as needed.
                       index += 1;
 
-                      Color color = index == 1
-                          ? const Color.fromARGB(255, 243, 165, 47)
-                          : index == 2
-                              ? Colors.grey
-                              : index == 3
-                                  ? const Color.fromARGB(255, 211, 144, 120)
-                                  : AppColor.white;
-
-                      String suffix = switch(index % 10){
-                                1=> "st",
-                                2=> "nd",
-                                3=> "rd",
-                                _=> "th",
-                              }[index % 10] ??
-                              "th";
-
-                      return {
-                        "position": "$index$suffix",
-                        "color": color,
+                      String suffix = switch (index % 10) {
+                        1 => "st",
+                        2 => "nd",
+                        3 => "rd",
+                        _ => "th",
                       };
+
+                      return "$index$suffix";
                     }
 
                     // If the player with device_id is not found, you can return a default value.
-                    return {
-                      "position": "---",
-                      "color": AppColor.white,
-                    };
+                    return "---";
                   }
 
                   return Text(
-                    getPosition()["position"],
+                    getPosition(),
                     style: TextStyle(
                       color: AppColor.yellow,
                     ),
