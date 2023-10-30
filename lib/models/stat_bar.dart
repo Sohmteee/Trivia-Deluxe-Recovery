@@ -34,13 +34,17 @@ class _GameStatsState extends State<GameStats> {
 
     Future.microtask(() {
       final coins = Provider.of<MoneyProvider>(context, listen: false);
-      coins.addListener(() {
-        setState(() {
-          animateCoins = true;
-          debugPrint("Animate coins: $animateCoins");
-        });
-      });
+      coins.addListener(_handleCoinsChange);
     });
+  }
+
+  void _handleCoinsChange() {
+    if (mounted) {
+      setState(() {
+        animateCoins = true;
+        debugPrint("Animate coins: $animateCoins");
+      });
+    }
   }
 
   @override
