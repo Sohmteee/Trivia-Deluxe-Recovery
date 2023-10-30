@@ -213,7 +213,7 @@ class ProfileProvider extends ChangeNotifier {
           'correct_answers': questionProvider.correctAnswers,
           'total_questions': questionProvider.totalQuestionsAnswered,
           'average_time': questionProvider.averageTime,
-          'time': DateTime.now().to,
+          'time': Timestamp.fromDate(DateTime.now()),
         },
         SetOptions(merge: true),
       ).then((_) {
