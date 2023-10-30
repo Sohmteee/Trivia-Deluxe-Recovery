@@ -159,203 +159,280 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
             ),
             SizedBox(height: 20.h),
             Expanded(
-              child: Provider.of<ProfileProvider>(context, listen: false)
-                      .hasProfile
-                  ? Provider.of<QuestionProvider>(context)
-                              .totalQuestionsAnswered !=
-                          0
-                      ? Column(
-                          children: [
-                            Align(
-                              alignment: Alignment.center,
-                              child: TabBar(
-                                controller: tabController,
-                                isScrollable: true,
-                                labelColor: AppColor.slightlyLighterYellow,
-                                unselectedLabelColor: Colors.grey[400],
-                                indicator: CircleTabIndicator(
-                                  color: AppColor.slightlyLighterYellow,
-                                ),
-                                splashFactory: NoSplash.splashFactory,
-                                overlayColor:
-                                    MaterialStateProperty.resolveWith<Color?>(
-                                  (Set<MaterialState> states) {
-                                    return states
-                                            .contains(MaterialState.focused)
-                                        ? null
-                                        : Colors.transparent;
-                                  },
-                                ),
-                                tabs: [
-                                  Column(
-                                    children: [
-                                      ZoomTapAnimation(
-                                        child: Text(
-                                          "Daily",
-                                          style: TextStyle(
-                                            fontSize: 20.sp,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(height: 10.h),
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      ZoomTapAnimation(
-                                        child: Text(
-                                          "Weekly",
-                                          style: TextStyle(
-                                            fontSize: 20.sp,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(height: 10.h),
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      ZoomTapAnimation(
-                                        child: Text(
-                                          "Monthly",
-                                          style: TextStyle(
-                                            fontSize: 20.sp,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(height: 10.h),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(height: 20.h),
-                            Expanded(
-                              child: TabBarView(
-                                controller: tabController,
-                                physics: const BouncingScrollPhysics(),
-                                children: List.generate(
-                                  3,
-                                  (index) {
-                                    return FutureBuilder(
-                                      future: getLeaderBoardData(index),
-                                      initialData: null,
-                                      builder: (BuildContext context,
-                                          AsyncSnapshot snapshot) {
-                                        if (snapshot.data == null) {
-                                          return Center(
-                                            child: CircularProgressIndicator(
-                                              color: AppColor.yellow,
-                                            ),
-                                          );
-                                        }
-                                        if (snapshot.hasError) {
-                                          return Center(
+              child:
+                  Provider.of<ProfileProvider>(context, listen: false)
+                          .hasProfile
+                      ? Provider.of<QuestionProvider>(context)
+                                  .totalQuestionsAnswered !=
+                              0
+                          ? Column(
+                              children: [
+                                Align(
+                                  alignment: Alignment.center,
+                                  child: TabBar(
+                                    controller: tabController,
+                                    isScrollable: true,
+                                    labelColor: AppColor.slightlyLighterYellow,
+                                    unselectedLabelColor: Colors.grey[400],
+                                    indicator: CircleTabIndicator(
+                                      color: AppColor.slightlyLighterYellow,
+                                    ),
+                                    splashFactory: NoSplash.splashFactory,
+                                    overlayColor: MaterialStateProperty
+                                        .resolveWith<Color?>(
+                                      (Set<MaterialState> states) {
+                                        return states
+                                                .contains(MaterialState.focused)
+                                            ? null
+                                            : Colors.transparent;
+                                      },
+                                    ),
+                                    tabs: [
+                                      Column(
+                                        children: [
+                                          ZoomTapAnimation(
                                             child: Text(
-                                              "An error occured while fetching leaderboard data.",
+                                              "Daily",
                                               style: TextStyle(
-                                                color: AppColor.yellow,
-                                                fontSize: 25.sp,
+                                                fontSize: 20.sp,
                                               ),
-                                              textAlign: TextAlign.center,
                                             ),
-                                          );
-                                        }
-                                        if (snapshot.data == []) {
-                                          return Center(
+                                          ),
+                                          SizedBox(height: 10.h),
+                                        ],
+                                      ),
+                                      Column(
+                                        children: [
+                                          ZoomTapAnimation(
                                             child: Text(
-                                              switch (index) {
-                                                0 =>
-                                                  "No data available for today.",
-                                                1 =>
-                                                  "No data available for this week.",
-                                                2 =>
-                                                  "No data available for this month.",
-                                                _ => "No data available.",
-                                              },
+                                              "Weekly",
                                               style: TextStyle(
-                                                color: AppColor.yellow,
-                                                fontSize: 25.sp,
+                                                fontSize: 20.sp,
                                               ),
-                                              textAlign: TextAlign.center,
                                             ),
-                                          );
-                                        }
+                                          ),
+                                          SizedBox(height: 10.h),
+                                        ],
+                                      ),
+                                      Column(
+                                        children: [
+                                          ZoomTapAnimation(
+                                            child: Text(
+                                              "Monthly",
+                                              style: TextStyle(
+                                                fontSize: 20.sp,
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(height: 10.h),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(height: 20.h),
+                                Expanded(
+                                  child: TabBarView(
+                                    controller: tabController,
+                                    physics: const BouncingScrollPhysics(),
+                                    children: List.generate(
+                                      3,
+                                      (index) {
+                                        return FutureBuilder(
+                                          future: getLeaderBoardData(index),
+                                          initialData: null,
+                                          builder: (BuildContext context,
+                                              AsyncSnapshot snapshot) {
+                                            if (snapshot.data == null) {
+                                              return Center(
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  color: AppColor.yellow,
+                                                ),
+                                              );
+                                            }
+                                            if (snapshot.hasError) {
+                                              return Center(
+                                                child: Text(
+                                                  "An error occured while fetching leaderboard data.",
+                                                  style: TextStyle(
+                                                    color: AppColor.yellow,
+                                                    fontSize: 25.sp,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              );
+                                            }
+                                            if (snapshot.data == []) {
+                                              return Center(
+                                                child: Text(
+                                                  switch (index) {
+                                                    0 =>
+                                                      "No data available for today.",
+                                                    1 =>
+                                                      "No data available for this week.",
+                                                    2 =>
+                                                      "No data available for this month.",
+                                                    _ => "No data available.",
+                                                  },
+                                                  style: TextStyle(
+                                                    color: AppColor.yellow,
+                                                    fontSize: 25.sp,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              );
+                                            }
 
-                                        return snapshot.data.length >= 4 ? popsicleLeaderBoard(snapshot) : Expanded(
-                                                  child: Container(
-                                                    padding: EdgeInsets.only(
-                                                        top: 10.h),
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.vertical(
-                                                        top: Radius.circular(
-                                                            30.r),
+                                            return snapshot.data.length >= 4
+                                                ? popsicleLeaderBoard(snapshot)
+                                                : Expanded(
+                                                    child: Container(
+                                                      padding: EdgeInsets.only(
+                                                          top: 10.h),
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .vertical(
+                                                          top: Radius.circular(
+                                                              30.r),
+                                                        ),
+                                                        gradient:
+                                                            LinearGradient(
+                                                          colors: [
+                                                            AppColor.yellow,
+                                                            AppColor.darkRed,
+                                                          ],
+                                                          begin: Alignment
+                                                              .topCenter,
+                                                          end: Alignment
+                                                              .bottomCenter,
+                                                        ),
                                                       ),
-                                                      gradient: LinearGradient(
-                                                        colors: [
-                                                          AppColor.yellow,
-                                                          AppColor.darkRed,
-                                                        ],
-                                                        begin:
-                                                            Alignment.topCenter,
-                                                        end: Alignment
-                                                            .bottomCenter,
-                                                      ),
-                                                    ),
-                                                    child: Column(
-                                                      children: [
-                                                        Container(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                                  vertical: 6.h,
-                                                                  horizontal:
-                                                                      15.w),
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: Colors
-                                                                .deepOrange,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        30.r),
-                                                          ),
-                                                          child: Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .min,
-                                                            children: [
-                                                              Text(
-                                                                "Current Position",
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: AppColor
-                                                                      .white,
-                                                                  fontSize:
-                                                                      20.sp,
+                                                      child: Column(
+                                                        children: [
+                                                          Container(
+                                                            padding: EdgeInsets
+                                                                .symmetric(
+                                                                    vertical:
+                                                                        6.h,
+                                                                    horizontal:
+                                                                        15.w),
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: Colors
+                                                                  .deepOrange,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          30.r),
+                                                            ),
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .min,
+                                                              children: [
+                                                                Text(
+                                                                  "Current Position",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: AppColor
+                                                                        .white,
+                                                                    fontSize:
+                                                                        20.sp,
+                                                                  ),
                                                                 ),
-                                                              ),
-                                                              SizedBox(
-                                                                  width: 10.w),
-                                                              FutureBuilder(
-                                                                future:
-                                                                    getLeaderBoardData(
-                                                                        0),
-                                                                builder: (BuildContext
-                                                                        context,
-                                                                    AsyncSnapshot
-                                                                        snapshot) {
-                                                                  Map<String,
-                                                                          dynamic>
-                                                                      getPosition() {
-                                                                    if (snapshot
-                                                                            .connectionState ==
-                                                                        ConnectionState
-                                                                            .waiting) {
-                                                                      // Data is still loading, return a default value or loading indicator.
+                                                                SizedBox(
+                                                                    width:
+                                                                        10.w),
+                                                                FutureBuilder(
+                                                                  future:
+                                                                      getLeaderBoardData(
+                                                                          0),
+                                                                  builder: (BuildContext
+                                                                          context,
+                                                                      AsyncSnapshot
+                                                                          snapshot) {
+                                                                    Map<String,
+                                                                            dynamic>
+                                                                        getPosition() {
+                                                                      if (snapshot
+                                                                              .connectionState ==
+                                                                          ConnectionState
+                                                                              .waiting) {
+                                                                        // Data is still loading, return a default value or loading indicator.
+                                                                        return {
+                                                                          "position":
+                                                                              "---",
+                                                                          "color":
+                                                                              AppColor.white,
+                                                                        };
+                                                                      }
+
+                                                                      if (snapshot
+                                                                              .hasError ||
+                                                                          snapshot.data ==
+                                                                              null ||
+                                                                          snapshot
+                                                                              .data
+                                                                              .isEmpty) {
+                                                                        // Handle the error state.
+                                                                        return {
+                                                                          "position":
+                                                                              "---",
+                                                                          "color":
+                                                                              AppColor.white,
+                                                                        };
+                                                                      }
+
+                                                                      // Find the index of the player with the specified device_id, if it exists.
+                                                                      int index = snapshot
+                                                                          .data
+                                                                          .indexWhere((profile) =>
+                                                                              profile["device_id"] ==
+                                                                              deviceID);
+
+                                                                      if (index !=
+                                                                          -1) {
+                                                                        // Player with device_id found, adjust the index as needed.
+                                                                        index +=
+                                                                            1;
+
+                                                                        Color color = index ==
+                                                                                1
+                                                                            ? const Color.fromARGB(
+                                                                                255,
+                                                                                243,
+                                                                                165,
+                                                                                47)
+                                                                            : index == 2
+                                                                                ? Colors.grey
+                                                                                : index == 3
+                                                                                    ? Color.fromARGB(255, 211, 144, 120)
+                                                                                    : AppColor.white;
+
+                                                                        String suffix = (index >= 11 &&
+                                                                                index <= 13)
+                                                                            ? "th"
+                                                                            : {
+                                                                                  1: "st",
+                                                                                  2: "nd",
+                                                                                  3: "rd",
+                                                                                }[index % 10] ??
+                                                                                "th";
+
+                                                                        return {
+                                                                          "position":
+                                                                              "$index$suffix",
+                                                                          "color":
+                                                                              color,
+                                                                        };
+                                                                      }
+
+                                                                      // If the player with device_id is not found, you can return a default value.
                                                                       return {
                                                                         "position":
                                                                             "---",
@@ -364,125 +441,54 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                                       };
                                                                     }
 
+                                                                    if (snapshot
+                                                                            .data ==
+                                                                        null) {
+                                                                      return Center(
+                                                                        child:
+                                                                            SizedBox(
+                                                                          height:
+                                                                              25.h,
+                                                                          width:
+                                                                              25.w,
+                                                                          child:
+                                                                              CircularProgressIndicator(
+                                                                            color:
+                                                                                AppColor.yellow,
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    }
                                                                     if (snapshot
                                                                             .hasError ||
                                                                         snapshot.data ==
-                                                                            null ||
-                                                                        snapshot
-                                                                            .data
-                                                                            .isEmpty) {
-                                                                      // Handle the error state.
-                                                                      return {
-                                                                        "position":
-                                                                            "---",
-                                                                        "color":
-                                                                            AppColor.white,
-                                                                      };
-                                                                    }
-
-                                                                    // Find the index of the player with the specified device_id, if it exists.
-                                                                    int index = snapshot
-                                                                        .data
-                                                                        .indexWhere((profile) =>
-                                                                            profile["device_id"] ==
-                                                                            deviceID);
-
-                                                                    if (index !=
-                                                                        -1) {
-                                                                      // Player with device_id found, adjust the index as needed.
-                                                                      index +=
-                                                                          1;
-
-                                                                      Color color = index ==
-                                                                              1
-                                                                          ? const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              243,
-                                                                              165,
-                                                                              47)
-                                                                          : index == 2
-                                                                              ? Colors.grey
-                                                                              : index == 3
-                                                                                  ? Color.fromARGB(255, 211, 144, 120)
-                                                                                  : AppColor.white;
-
-                                                                      String suffix = (index >= 11 &&
-                                                                              index <= 13)
-                                                                          ? "th"
-                                                                          : {
-                                                                                1: "st",
-                                                                                2: "nd",
-                                                                                3: "rd",
-                                                                              }[index % 10] ??
-                                                                              "th";
-
-                                                                      return {
-                                                                        "position":
-                                                                            "$index$suffix",
-                                                                        "color":
-                                                                            color,
-                                                                      };
-                                                                    }
-
-                                                                    // If the player with device_id is not found, you can return a default value.
-                                                                    return {
-                                                                      "position":
-                                                                          "---",
-                                                                      "color":
-                                                                          AppColor
-                                                                              .white,
-                                                                    };
-                                                                  }
-
-                                                                  if (snapshot
-                                                                          .data ==
-                                                                      null) {
-                                                                    return Center(
-                                                                      child:
-                                                                          SizedBox(
-                                                                        height:
-                                                                            25.h,
-                                                                        width:
-                                                                            25.w,
+                                                                            []) {
+                                                                      return Center(
                                                                         child:
-                                                                            CircularProgressIndicator(
-                                                                          color:
-                                                                              AppColor.yellow,
+                                                                            Text(
+                                                                          "---",
+                                                                          style:
+                                                                              TextStyle(
+                                                                            color:
+                                                                                AppColor.white,
+                                                                            fontSize:
+                                                                                25.sp,
+                                                                          ),
+                                                                          textAlign:
+                                                                              TextAlign.center,
                                                                         ),
-                                                                      ),
-                                                                    );
-                                                                  }
-                                                                  if (snapshot
-                                                                          .hasError ||
-                                                                      snapshot.data ==
-                                                                          []) {
-                                                                    return Center(
-                                                                      child:
-                                                                          Text(
-                                                                        "---",
-                                                                        style:
-                                                                            TextStyle(
-                                                                          color:
-                                                                              AppColor.white,
-                                                                          fontSize:
-                                                                              25.sp,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                      ),
-                                                                    );
-                                                                  }
-                                                                  return Text(
-                                                                    getPosition()[
-                                                                        "position"],
-                                                                    style:
-                                                                        TextStyle(
-                                                                      color: getPosition()[
-                                                                          "color"],
-                                                                      fontSize:
-                                                                          30.sp,
-                                                                      /* shadows: const [
+                                                                      );
+                                                                    }
+                                                                    return Text(
+                                                                      getPosition()[
+                                                                          "position"],
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: getPosition()[
+                                                                            "color"],
+                                                                        fontSize:
+                                                                            30.sp,
+                                                                        /* shadows: const [
                                                                         Shadow(
                                                                           color:
                                                                               Colors.black,
@@ -502,124 +508,114 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                                               5,
                                                                         ),
                                                                       ], */
-                                                                    ),
-                                                                  );
-                                                                },
-                                                              ),
-                                                            ],
+                                                                      ),
+                                                                    );
+                                                                  },
+                                                                ),
+                                                              ],
+                                                            ),
                                                           ),
-                                                        ),
-                                                        if (snapshot
-                                                                .data.length >=
-                                                            4)
-                                                          Expanded(
-                                                            child: ListView
-                                                                .separated(
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .fromLTRB(
-                                                                          20.w,
-                                                                          15.h,
-                                                                          20.w,
-                                                                          0),
-                                                              itemCount: snapshot
-                                                                      .data
-                                                                      .length -
-                                                                  3,
-                                                              physics:
-                                                                  const BouncingScrollPhysics(),
-                                                              itemBuilder:
-                                                                  (BuildContext
-                                                                          context,
-                                                                      int index) {
-                                                                return Container(
-                                                                  padding: EdgeInsets.symmetric(
-                                                                      vertical:
-                                                                          10.h,
-                                                                      horizontal:
-                                                                          15.w),
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: AppColor
-                                                                        .white,
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            50.r),
-                                                                  ),
-                                                                  child: Row(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                    children: [
-                                                                      Row(
-                                                                        children: [
-                                                                          Text(
-                                                                            "${index + 3 + 1}",
+                                                          if (snapshot.data
+                                                                  .length >=
+                                                              4)
+                                                            Expanded(
+                                                              child: ListView
+                                                                  .separated(
+                                                                padding: EdgeInsets
+                                                                    .fromLTRB(
+                                                                        20.w,
+                                                                        15.h,
+                                                                        20.w,
+                                                                        0),
+                                                                itemCount: snapshot
+                                                                        .data
+                                                                        .length -
+                                                                    3,
+                                                                physics:
+                                                                    const BouncingScrollPhysics(),
+                                                                itemBuilder:
+                                                                    (BuildContext
+                                                                            context,
+                                                                        int index) {
+                                                                  return Container(
+                                                                    padding: EdgeInsets.symmetric(
+                                                                        vertical: 10
+                                                                            .h,
+                                                                        horizontal:
+                                                                            15.w),
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: AppColor
+                                                                          .white,
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              50.r),
+                                                                    ),
+                                                                    child: Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: [
+                                                                        Row(
+                                                                          children: [
+                                                                            Text(
+                                                                              "${index + 3 + 1}",
+                                                                              style: TextStyle(
+                                                                                color: AppColor.black,
+                                                                                fontSize: 18.sp,
+                                                                              ),
+                                                                            ),
+                                                                            SizedBox(width: 10.w),
+                                                                            Image.asset(
+                                                                              "assets/images/avatars/avatar_${snapshot.data[index + 3]["avatar"]}.png",
+                                                                              height: 30.h,
+                                                                            ),
+                                                                            SizedBox(width: 10.w),
+                                                                            Text(
+                                                                              "${snapshot.data[index + 3]["username"]}",
+                                                                              style: TextStyle(
+                                                                                color: AppColor.black,
+                                                                                fontSize: 20.sp,
+                                                                              ),
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                        Container(
+                                                                          padding:
+                                                                              EdgeInsets.all(15.sp),
+                                                                          decoration: BoxDecoration(
+                                                                              color: AppColor.slightlyLighterYellow.withOpacity(.8),
+                                                                              shape: BoxShape.circle),
+                                                                          child:
+                                                                              Text(
+                                                                            "${snapshot.data[index + 3]["score"]}",
                                                                             style:
                                                                                 TextStyle(
-                                                                              color: AppColor.black,
+                                                                              color: AppColor.white,
                                                                               fontSize: 18.sp,
                                                                             ),
                                                                           ),
-                                                                          SizedBox(
-                                                                              width: 10.w),
-                                                                          Image
-                                                                              .asset(
-                                                                            "assets/images/avatars/avatar_${snapshot.data[index + 3]["avatar"]}.png",
-                                                                            height:
-                                                                                30.h,
-                                                                          ),
-                                                                          SizedBox(
-                                                                              width: 10.w),
-                                                                          Text(
-                                                                            "${snapshot.data[index + 3]["username"]}",
-                                                                            style:
-                                                                                TextStyle(
-                                                                              color: AppColor.black,
-                                                                              fontSize: 20.sp,
-                                                                            ),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                      Container(
-                                                                        padding:
-                                                                            EdgeInsets.all(15.sp),
-                                                                        decoration: BoxDecoration(
-                                                                            color:
-                                                                                AppColor.slightlyLighterYellow.withOpacity(.8),
-                                                                            shape: BoxShape.circle),
-                                                                        child:
-                                                                            Text(
-                                                                          "${snapshot.data[index + 3]["score"]}",
-                                                                          style:
-                                                                              TextStyle(
-                                                                            color:
-                                                                                AppColor.white,
-                                                                            fontSize:
-                                                                                18.sp,
-                                                                          ),
                                                                         ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                );
-                                                              },
-                                                              separatorBuilder:
-                                                                  (BuildContext
-                                                                          context,
-                                                                      int index) {
-                                                                return SizedBox(
-                                                                    height:
-                                                                        10.h);
-                                                              },
+                                                                      ],
+                                                                    ),
+                                                                  );
+                                                                },
+                                                                separatorBuilder:
+                                                                    (BuildContext
+                                                                            context,
+                                                                        int index) {
+                                                                  return SizedBox(
+                                                                      height:
+                                                                          10.h);
+                                                                },
+                                                              ),
                                                             ),
-                                                          ),
-                                                      ],
+                                                        ],
+                                                      ),
                                                     ),
-                                                  ),
-                                                );
+                                                  );
 
-                                        /* return ListView.separated(
+                                            /* return ListView.separated(
                                       itemCount: snapshot.data.length,
                                       physics: const BouncingScrollPhysics(),
                                       itemBuilder:
@@ -658,14 +654,14 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                         return SizedBox(height: 10.h);
                                       },
                                     ); */
+                                          },
+                                        );
                                       },
-                                    );
-                                  },
-                                ),
-                              ),
-                            )
+                                    ),
+                                  ),
+                                )
 
-                            /* Expanded(
+                                /* Expanded(
                               child: TabBarView(
                                 controller: tabController,
                                 physics: const BouncingScrollPhysics(),
@@ -1279,100 +1275,103 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                               ),
                             )
                            */
-                          ],
-                        )
+                              ],
+                            )
+                          : Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 40.w),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Please play at least one game to see leaderboard.",
+                                    style: TextStyle(
+                                      color: AppColor.yellow,
+                                      fontSize: 25.sp,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
+                            )
                       : Padding(
                           padding: EdgeInsets.symmetric(horizontal: 40.w),
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+                              const Spacer(flex: 5),
                               Text(
-                                "Please play at least one game to see leaderboard.",
+                                "You don't have a profile",
                                 style: TextStyle(
                                   color: AppColor.yellow,
                                   fontSize: 25.sp,
                                 ),
                                 textAlign: TextAlign.center,
                               ),
-                            ],
-                          ),
-                        )
-                  : Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 40.w),
-                      child: Column(
-                        children: [
-                          const Spacer(flex: 5),
-                          Text(
-                            "You don't have a profile",
-                            style: TextStyle(
-                              color: AppColor.yellow,
-                              fontSize: 25.sp,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                          SizedBox(height: 10.h),
-                          Text(
-                            "Would you like to create one now to see the leaderboard?",
-                            style: TextStyle(
-                              color: AppColor.yellow,
-                              fontSize: 25.sp,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                          const Spacer(flex: 4),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              ZoomTapAnimation(
-                                onTap: () {
-                                  playTap(context);
-                                  Navigator.pop(context);
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(
-                                    vertical: 15.sp,
-                                    horizontal: 25.sp,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(50.r),
-                                  ),
-                                  child: Text(
-                                    "Maybe later",
-                                    style: TextStyle(
-                                      fontSize: 20.sp,
+                              SizedBox(height: 10.h),
+                              Text(
+                                "Would you like to create one now to see the leaderboard?",
+                                style: TextStyle(
+                                  color: AppColor.yellow,
+                                  fontSize: 25.sp,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              const Spacer(flex: 4),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  ZoomTapAnimation(
+                                    onTap: () {
+                                      playTap(context);
+                                      Navigator.pop(context);
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: 15.sp,
+                                        horizontal: 25.sp,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius:
+                                            BorderRadius.circular(50.r),
+                                      ),
+                                      child: Text(
+                                        "Maybe later",
+                                        style: TextStyle(
+                                          fontSize: 20.sp,
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ),
-                              ZoomTapAnimation(
-                                onTap: () {
-                                  playTap(context);
-                                  showCreateProfileDialog(context);
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(
-                                    vertical: 15.sp,
-                                    horizontal: 25.sp,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(50.r),
-                                  ),
-                                  child: Text(
-                                    "Continue",
-                                    style: TextStyle(
-                                      fontSize: 20.sp,
+                                  ZoomTapAnimation(
+                                    onTap: () {
+                                      playTap(context);
+                                      showCreateProfileDialog(context);
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: 15.sp,
+                                        horizontal: 25.sp,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius:
+                                            BorderRadius.circular(50.r),
+                                      ),
+                                      child: Text(
+                                        "Continue",
+                                        style: TextStyle(
+                                          fontSize: 20.sp,
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ),
+                                ],
                               ),
+                              const Spacer(),
                             ],
                           ),
-                          const Spacer(),
-                        ],
-                      ),
-                    ),
+                        ),
             ),
           ],
         ),
