@@ -33,7 +33,6 @@ class _MenuScreenState extends State<MenuScreen>
   late AnimationController rotationController;
 
   BannerAd? _bannerAd;
-  InterstitialAd? _interstitialAd;
   bool _isLoaded = false;
 
   @override

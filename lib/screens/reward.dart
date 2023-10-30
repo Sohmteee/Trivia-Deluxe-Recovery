@@ -5,8 +5,10 @@ import 'package:countup/countup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:trivia/ad_helper.dart';
 import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/data/controllers.dart';
 import 'package:trivia/main.dart';
@@ -26,6 +28,7 @@ class RewardScreen extends StatefulWidget {
 }
 
 class _RewardScreenState extends State<RewardScreen> {
+  InterstitialAd? _interstitialAd;
   bool receivedReward = false;
   late int score;
   late int level;
@@ -415,6 +418,29 @@ class _RewardScreenState extends State<RewardScreen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+    void _loadInterstitialAd() {
+    InterstitialAd.load(
+      adUnitId: AdHelper.interstitialAdUnitId,
+      request: AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) {
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (ad) {
+              _moveToHome();
+            },
+          );
+
+          setState(() {
+            _interstitialAd = ad;
+          });
+        },
+        onAdFailedToLoad: (err) {
+          print('Failed to load an interstitial ad: ${err.message}');
+        },
       ),
     );
   }
