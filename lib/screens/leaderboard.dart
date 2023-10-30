@@ -52,9 +52,18 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
   }
 
   Future<Stream<QueryDocumentSnapshot>> getLeaderBoardData(int index) async {
-    final fb = FirebaseFirestore.instance.collection("players");
-    final querySnapshot = await fb.orderBy("score", descending: true).get();
+     final fb = FirebaseFirestore.instance.collection("players");
 
+  Query query = fb.orderBy("score", descending: true);
+
+  Stream<QuerySnapshot> queryStream = query.snapshots();
+
+Stream<List<QueryDocumentSnapshot>> leaderBoardDataStream = queryStream.map((querySnapshot) {
+    return querySnapshot.docs;
+  });
+
+  return leaderBoardDataStream;
+  
     final leaderBoardData = querySnapshot.docs.map((doc) {
       return {
         "username": doc["username"],
