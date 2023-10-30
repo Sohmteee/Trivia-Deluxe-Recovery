@@ -174,7 +174,7 @@ class _RewardScreenState extends State<RewardScreen> {
                       Colors.purple,
                     ],
                   ),
-                  index SizedBox(
+                  level <= 29 ?  SizedBox(
                     child: Stack(
                       alignment: Alignment.center,
                       children: [
