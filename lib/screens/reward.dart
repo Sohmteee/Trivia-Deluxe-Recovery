@@ -248,7 +248,7 @@ class _RewardScreenState extends State<RewardScreen> {
                                 "Category\nCompleted!",
                                 style: TextStyle(
                                   color: AppColor.right,
-                                  fontSize: 55.sp,
+                                  fontSize: 51.sp,
                                   fontWeight: FontWeight.bold,
                                 ),
                                 textAlign: TextAlign.center,
@@ -257,7 +257,7 @@ class _RewardScreenState extends State<RewardScreen> {
                                 "Category\nCompleted!",
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 50.sp,
+                                  fontSize: 48.sp,
                                   fontWeight: FontWeight.bold,
                                 ),
                                 textAlign: TextAlign.center,
