@@ -53,21 +53,27 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
 
   Future<List<QueryDocumentSnapshot>> getLeaderBoardData(int index) async {
     DateTime constraint = switch (index) {
-      0 => DateTime.now().subtract(1)),
-      1 => DateTime.now().subtract(7)),
-      2 => DateTime.now().subtract(30)),
-      _ => DateTime.now().subtract(1)),
+      0 => DateTime.now().subtract(1.days),
+      1 => DateTime.now().subtract(7.days),
+      2 => DateTime.now().subtract(30.days),
+      _ => DateTime.now().subtract(1.days),
     };
     final fb = FirebaseFirestore.instance.collection("players");
     final querySnapshot = await fb.orderBy("score", descending: true).get();
 
-    final leaderBoardData = querySnapshot.docs.map((doc) {
-      return {
-        "username": doc["username"],
-        "score": doc["score"],
-        "avatar": doc["avatar"],
-      };
-    }).toList();
+    final leaderBoardData = querySnapshot.docs
+        .map((doc) {
+          return {
+            "username": doc["username"],
+            "score": doc["score"],
+            "avatar": doc["avatar"],
+          };
+        })
+        .toList()
+        .where((player) {
+          return DateTime.parse(player["date"]).isAfter(constraint);
+        })
+        .toList();
 
     print(leaderBoardData);
 
