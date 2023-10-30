@@ -174,7 +174,7 @@ class _RewardScreenState extends State<RewardScreen> {
                       Colors.purple,
                     ],
                   ),
-                  level <= 4
+                  level <= 28
                       ? SizedBox(
                           child: Stack(
                             alignment: Alignment.center,
@@ -488,7 +488,7 @@ class _RewardScreenState extends State<RewardScreen> {
                     if (_interstitialAd != null) {
                       _interstitialAd?.show();
                     } else {
-                      if (level <= 4) {
+                      if (level <= 28) {
                         Navigator.pushReplacementNamed(context, "/stage");
                       } else {
                         Navigator.pushReplacementNamed(context, "/select");
@@ -505,7 +505,7 @@ class _RewardScreenState extends State<RewardScreen> {
                       borderRadius: BorderRadius.circular(30.r),
                     ),
                     child: Text(
-                      level <= 4
+                      level <= 28
                           ? "Continue to Level ${level + 2}"
                           : "Select Another Category",
                       style: TextStyle(

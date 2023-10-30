@@ -220,7 +220,7 @@ class _SelectScreenState extends State<SelectScreen> {
                                   questionProvider.currentLevel = box.get(
                                       item["data"]["title"])["currentLevel"];
 
-                                  if (questionProvider.currentLevel == ) {
+                                  if (questionProvider.currentLevel == 30) {
                                     showCompletedCategoryDialog(context);
                                   } else {
                                     Future.delayed(
