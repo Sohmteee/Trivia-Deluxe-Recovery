@@ -133,7 +133,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                 BackButton(
                   color: AppColor.yellow,
                 ),
-                const Spacer(flex: 2),
+                const Spacer(),
                 Text(
                   "Leaderboard",
                   style: TextStyle(
@@ -142,19 +142,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                   ),
                   textAlign: TextAlign.center,
                 ),
-                const Spacer(),
-                ZoomTapAnimation(
-                  onTap: () {
-                    playTap(context);
-                    showLeaderBoardScoringDialog(context);
-                  },
-                  child: Icon(
-                    Icons.help_outline,
-                    color: Colors.grey[200],
-                    size: 20.sp,
-                  ),
-                ),
-                const Spacer(),
+                const Spacer(flex: 3),
               ],
             ),
             SizedBox(height: 20.h),
