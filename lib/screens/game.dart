@@ -53,6 +53,22 @@ class _GameScreenState extends State<GameScreen> {
     super.dispose();
   }
 
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    switch (state) {
+      case AppLifecycleState.resumed:
+      case AppLifecycleState.inactive:
+        playBGAudio();
+        break;
+      case AppLifecycleState.paused:
+      case AppLifecycleState.hidden:
+        pauseBGAudio();
+        break;
+      case AppLifecycleState.detached:
+        stopBGAudio();
+        break;
+    }
+  }
+
   Color stringToColor(String color) {
     switch (color) {
       case "yellow":

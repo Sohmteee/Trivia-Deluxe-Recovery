@@ -325,22 +325,8 @@ class _MenuScreenState extends State<MenuScreen>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    switch (state) {
-      case AppLifecycleState.resumed:
-      case AppLifecycleState.inactive:
-        playBGAudio();
-        break;
-      case AppLifecycleState.paused:
-      case AppLifecycleState.hidden:
-        pauseBGAudio();
-        break;
-      case AppLifecycleState.detached:
-        stopBGAudio();
-        break;
-    }
-  }
 
-  Future<void> playBGAudio() async {
+      Future<void> playBGAudio() async {
     final audioProvider = Provider.of<AudioProvider>(context, listen: false);
 
     if (audioProvider.music) {
@@ -365,6 +351,24 @@ class _MenuScreenState extends State<MenuScreen>
     debugPrint("music stopped");
   }
 
+  
+    switch (state) {
+      case AppLifecycleState.resumed:
+      case AppLifecycleState.inactive:
+        playBGAudio();
+        break;
+      case AppLifecycleState.paused:
+      case AppLifecycleState.hidden:
+        pauseBGAudio();
+        break;
+      case AppLifecycleState.detached:
+        stopBGAudio();
+        break;
+    }
+  }
+
+
+
   void initializeEffectsVolume() {
     final audioProvider = Provider.of<AudioProvider>(context, listen: false);
 
@@ -376,31 +380,4 @@ class _MenuScreenState extends State<MenuScreen>
   _loadBannerAd() {
     MobileAds.instance.updateRequestConfiguration(
       RequestConfiguration(
-        testDeviceIds: ['5C26A3D9AFFD85F566BED84A49F36278'],
-      ),
-    );
-
-    _bannerAd = BannerAd(
-      adUnitId: AdHelper.bannerAdUnitId,
-      request: const AdRequest(),
-      size: AdSize.banner,
-      listener: BannerAdListener(
-        // Called when an ad is successfully received.
-        onAdLoaded: (ad) {
-          debugPrint('$ad loaded.');
-          setState(() {
-            _isLoaded = true;
-          });
-        },
-        // Called when an ad request failed.
-        onAdFailedToLoad: (ad, err) {
-          debugPrint('BannerAd failed to load: $err');
-          // Dispose the ad here to free resources.
-          ad.dispose();
-        },
-      ),
-    )..load();
-  }
-
-
-}
+        testDeviceIds: ['5C26A3D9AFF
