@@ -111,7 +111,7 @@ class _GameStatsState extends State<GameStats> {
               ),
               child: Icon(
                 Icons.home_rounded,
-                size: 22.sp,
+                size: 25.sp,
                 color: AppColor.orange,
               ),
             ),
@@ -119,7 +119,7 @@ class _GameStatsState extends State<GameStats> {
         if (widget.showHome ?? true != false) const Spacer(flex: 4),
         Lottie.asset(
           "assets/lottie/red_award.json",
-          height: 20.h,
+          height: 25.h,
           repeat: false,
           animate: true,
         ),
@@ -129,7 +129,7 @@ class _GameStatsState extends State<GameStats> {
             playTap(context);
           },
           child: Container(
-            height: 20.h,
+            height: 25.h,
             width: 60.w,
             decoration: BoxDecoration(
               color: Colors.white,
@@ -198,7 +198,7 @@ class _GameStatsState extends State<GameStats> {
         ),
         const Spacer(flex: 6),
         Container(
-          height: 20.h,
+          height: 25.h,
           padding: EdgeInsets.all(2.sp),
           decoration: BoxDecoration(
             color: Colors.white,
@@ -226,7 +226,7 @@ class _GameStatsState extends State<GameStats> {
                 playTap(context);
               },
               child: Container(
-                height: 20.h,
+                height: 25.h,
                 width: 60.w,
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -292,7 +292,7 @@ class _GameStatsState extends State<GameStats> {
               ),
               child: Icon(
                 Icons.settings_rounded,
-                size: 22.sp,
+                size: 25.sp,
                 color: AppColor.orange,
               ),
             ),
