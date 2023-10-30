@@ -32,23 +32,23 @@ class _GameStatsState extends State<GameStats> {
   void initState() {
     super.initState();
 
-    Future.microtask(() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       final coins = Provider.of<MoneyProvider>(context, listen: false);
-      coins.addListener(_handleCoinsChange);
-    });
-  }
-
-  void _handleCoinsChange() {
-    if (mounted) {
-      setState(() {
-        animateCoins = true;
-        debugPrint("Animate coins: $animateCoins");
+      coins.addListener(() {
+        setState(() {
+          animateCoins = true;
+          debugPrint("Animate coins: $animateCoins");
+        });
       });
-    }
+    });
   }
 
   @override
   void dispose() {
+    setState(() {
+      animateCoins = false;
+      debugPrint("Animate coins: $animateCoins");
+    });
     super.dispose();
   }
 
