@@ -35,7 +35,6 @@ class _MenuScreenState extends State<MenuScreen>
   BannerAd? _bannerAd;
   bool _isLoaded = false;
 
-  
   late ImageProvider backgroundImage;
 
   @override
