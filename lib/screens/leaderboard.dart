@@ -1045,7 +1045,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
     );
   }
 
-  Column popsicleLeaderBoard(AsyncSnapshot<dynamic> snapshot) {
+  Column popsicleLeaderBoard(AsyncSnapshot<dynamic> snapshot, int index) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -1389,7 +1389,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                       ),
                       SizedBox(width: 10.w),
                       FutureBuilder(
-                        future: getLeaderBoardData(0),
+                        future: getLeaderBoardData(index),
                         builder:
                             (BuildContext context, AsyncSnapshot snapshot) {
                           Map<String, dynamic> getPosition() {
