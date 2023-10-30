@@ -71,7 +71,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
         })
         .toList()
         .where((player) {
-          return DateTime.parse(player["date"]).isBefore(constraint);
+          return DateTime.parse(player["time"]).isBefore(constraint);
         })
         .toList();
 
