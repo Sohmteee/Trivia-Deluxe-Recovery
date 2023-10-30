@@ -63,6 +63,7 @@ Average Time answering
  */
 
 class _StreaksScreeenState extends State<StreaksScreeen> {
+  int? position;
   Future<int> getLeaderBoardData(int index) async {
     final fb = FirebaseFirestore.instance.collection("players");
     final querySnapshot = await fb.orderBy("score", descending: true).get();
