@@ -51,7 +51,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
     super.dispose();
   }
 
-  Future<List<QueryDocumentSnapshot>> getLeaderBoardData(int index) async {
+  Future<List<Map<String, dynamic>>> getLeaderBoardData(int index) async {
     DateTime constraint = switch (index) {
       0 => DateTime.now().subtract(1.days),
       1 => DateTime.now().subtract(7.days),
@@ -76,7 +76,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
 
     print(leaderBoardData);
 
-    return querySnapshot.docs;
+    return leaderBoardData;
   }
 
   /* Future<List?> getLeaderBoardData(int index) async {
