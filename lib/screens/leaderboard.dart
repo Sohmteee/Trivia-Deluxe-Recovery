@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -54,16 +56,26 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
   Future<Stream<QueryDocumentSnapshot>> getLeaderBoardData(int index) async {
      final fb = FirebaseFirestore.instance.collection("players");
 
-  Query query = fb.orderBy("score", descending: true);
+    // Create a StreamController to handle the stream.
+    StreamController<List<QueryDocumentSnapshot>> controller =
+        StreamController();
 
-  Stream<QuerySnapshot> queryStream = query.snapshots();
+    // Create a stream subscription to listen for changes in the Firestore collection.
+    StreamSubscription<QuerySnapshot> subscription = fb
+        .orderBy("score", descending: true)
+        .snapshots()
+        .listen((querySnapshot) {
+      // Convert the QuerySnapshot into a list of QueryDocumentSnapshot.
+      List<QueryDocumentSnapshot> leaderBoardData = querySnapshot.docs;
 
-Stream<List<QueryDocumentSnapshot>> leaderBoardDataStream = queryStream.map((querySnapshot) {
-    return querySnapshot.docs;
-  });
+      // Add the list of documents to the stream.
+      controller.sink.add(leaderBoardData);
+    });
 
-  return leaderBoardDataStream;
-  
+    // Return the stream from the controller's stream.
+    return controller.stream;
+
+
     final leaderBoardData = querySnapshot.docs.map((doc) {
       return {
         "username": doc["username"],
