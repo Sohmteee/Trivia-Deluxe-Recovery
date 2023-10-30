@@ -1,9 +1,11 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:trivia/colors/app_color.dart';
+import 'package:trivia/data/controllers.dart';
 import 'package:trivia/main.dart';
 import 'package:trivia/models/dialogs/exhausted_questions.dart';
 import 'package:trivia/models/game_background.dart';
@@ -31,7 +33,7 @@ class _StageScreenState extends State<StageScreen> {
     super.initState();
   }
 
-    void didChangeAppLifecycleState(AppLifecycleState state) {
+  void didChangeAppLifecycleState(AppLifecycleState state) {
     Future<void> playBGAudio() async {
       final audioProvider = Provider.of<AudioProvider>(context, listen: false);
 

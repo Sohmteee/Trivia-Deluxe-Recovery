@@ -61,6 +61,47 @@ Average Time answering
  */
 
 class _StreaksScreeenState extends State<StreaksScreeen> {
+    void didChangeAppLifecycleState(AppLifecycleState state) {
+    Future<void> playBGAudio() async {
+      final audioProvider = Provider.of<AudioProvider>(context, listen: false);
+
+      if (audioProvider.music) {
+        await bgPlayer.setSource(AssetSource("audio/bg-music.mp3"));
+        await bgPlayer.resume();
+        debugPrint("music playing");
+      }
+
+      bgPlayer.onPlayerComplete.listen((_) async {
+        await bgPlayer.setSource(AssetSource("audio/bg-music.mp3"));
+        await bgPlayer.resume();
+      });
+    }
+
+    Future<void> pauseBGAudio() async {
+      await bgPlayer.pause();
+      debugPrint("music paused");
+    }
+
+    Future<void> stopBGAudio() async {
+      await bgPlayer.stop();
+      debugPrint("music stopped");
+    }
+
+    switch (state) {
+      case AppLifecycleState.resumed:
+      case AppLifecycleState.inactive:
+        playBGAudio();
+        break;
+      case AppLifecycleState.paused:
+      case AppLifecycleState.hidden:
+        pauseBGAudio();
+        break;
+      case AppLifecycleState.detached:
+        stopBGAudio();
+        break;
+    }
+  }
+  
   @override
   Widget build(BuildContext context) {
     return GameBackground(
