@@ -1361,101 +1361,107 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
             ),
             child: Column(
               children: [
-                Container(
-                  padding:
-                      EdgeInsets.symmetric(vertical: 6.h, horizontal: 15.w),
-                  decoration: BoxDecoration(
-                    color: Colors.deepOrange,
-                    borderRadius: BorderRadius.circular(30.r),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Spacer(),
-                      Text(
-                        "Current Position",
-                        style: TextStyle(
-                          color: AppColor.white,
-                          fontSize: 20.sp,
-                        ),
+                Row(
+                  children: [
+                    const Spacer(flex: 2),
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 6.h, horizontal: 15.w),
+                      decoration: BoxDecoration(
+                        color: Colors.deepOrange,
+                        borderRadius: BorderRadius.circular(30.r),
                       ),
-                      SizedBox(width: 10.w),
-                      FutureBuilder(
-                        future: getLeaderBoardData(index),
-                        builder:
-                            (BuildContext context, AsyncSnapshot snapshot) {
-                          Map<String, dynamic> getPosition() {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              // Data is still loading, return a default value or loading indicator.
-                              return {
-                                "position": "---",
-                                "color": AppColor.white,
-                              };
-                            }
-
-                            if (snapshot.hasError ||
-                                snapshot.data == null ||
-                                snapshot.data.isEmpty) {
-                              // Handle the error state.
-                              return {
-                                "position": "---",
-                                "color": AppColor.white,
-                              };
-                            }
-
-                            // Find the index of the player with the specified device_id, if it exists.
-                            int index = snapshot.data.indexWhere(
-                                (profile) => profile["device_id"] == deviceID);
-
-                            if (index != -1) {
-                              // Player with device_id found, adjust the index as needed.
-                              index += 1;
-
-                              Color color = index == 1
-                                  ? const Color.fromARGB(255, 243, 165, 47)
-                                  : index == 2
-                                      ? Colors.grey
-                                      : index == 3
-                                          ? const Color.fromARGB(
-                                              255, 211, 144, 120)
-                                          : AppColor.white;
-
-                              String suffix = (index >= 11 && index <= 13)
-                                  ? "th"
-                                  : {
-                                        1: "st",
-                                        2: "nd",
-                                        3: "rd",
-                                      }[index % 10] ??
-                                      "th";
-
-                              return {
-                                "position": "$index$suffix",
-                                "color": color,
-                              };
-                            }
-
-                            // If the player with device_id is not found, you can return a default value.
-                            return {
-                              "position": "---",
-                              "color": AppColor.white,
-                            };
-                          }
-
-                          return Text(
-                            getPosition()["position"],
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            "Current Position",
                             style: TextStyle(
-                              color: getPosition()["color"],
-                              fontSize: 30.sp,
+                              color: AppColor.white,
+                              fontSize: 20.sp,
                             ),
-                          );
-                        },
+                          ),
+                          SizedBox(width: 10.w),
+                          FutureBuilder(
+                            future: getLeaderBoardData(index),
+                            builder:
+                                (BuildContext context, AsyncSnapshot snapshot) {
+                              Map<String, dynamic> getPosition() {
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  // Data is still loading, return a default value or loading indicator.
+                                  return {
+                                    "position": "---",
+                                    "color": AppColor.white,
+                                  };
+                                }
+
+                                if (snapshot.hasError ||
+                                    snapshot.data == null ||
+                                    snapshot.data.isEmpty) {
+                                  // Handle the error state.
+                                  return {
+                                    "position": "---",
+                                    "color": AppColor.white,
+                                  };
+                                }
+
+                                // Find the index of the player with the specified device_id, if it exists.
+                                int index = snapshot.data.indexWhere(
+                                    (profile) =>
+                                        profile["device_id"] == deviceID);
+
+                                if (index != -1) {
+                                  // Player with device_id found, adjust the index as needed.
+                                  index += 1;
+
+                                  Color color = index == 1
+                                      ? const Color.fromARGB(255, 243, 165, 47)
+                                      : index == 2
+                                          ? Colors.grey
+                                          : index == 3
+                                              ? const Color.fromARGB(
+                                                  255, 211, 144, 120)
+                                              : AppColor.white;
+
+                                  String suffix = (index >= 11 && index <= 13)
+                                      ? "th"
+                                      : {
+                                            1: "st",
+                                            2: "nd",
+                                            3: "rd",
+                                          }[index % 10] ??
+                                          "th";
+
+                                  return {
+                                    "position": "$index$suffix",
+                                    "color": color,
+                                  };
+                                }
+
+                                // If the player with device_id is not found, you can return a default value.
+                                return {
+                                  "position": "---",
+                                  "color": AppColor.white,
+                                };
+                              }
+
+                              return Text(
+                                getPosition()["position"],
+                                style: TextStyle(
+                                  color: getPosition()["color"],
+                                  fontSize: 30.sp,
+                                ),
+                              );
+                            },
+                          ),
+                        ],
                       ),
-                      const Spacer(),
-                    ],
-                  ),
+                    ),
+                    const Spacer(),
+                    const Spacer(),
+                  ],
                 ),
                 if (snapshot.data.length >= 4)
                   Expanded(
