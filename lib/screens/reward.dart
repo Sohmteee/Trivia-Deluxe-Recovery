@@ -506,7 +506,7 @@ class _RewardScreenState extends State<RewardScreen> {
                     ),
                     child: Text(
                       level <= 29
-                          ? "Continue to Level ${level + 1}"
+                          ? "Continue to Level ${level + 2}"
                           : "Select Another Category",
                       style: TextStyle(
                         color: Colors.white,
