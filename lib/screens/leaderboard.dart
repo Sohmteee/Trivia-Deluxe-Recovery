@@ -1363,7 +1363,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
               children: [
                 Row(
                   children: [
-                    const Spacer(flex: 2),
+                    const Spacer(flex: 4),
                     Container(
                       padding:
                           EdgeInsets.symmetric(vertical: 6.h, horizontal: 15.w),
@@ -1467,7 +1467,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                       },
                       child: Icon(
                         Icons.help_outline,
-                        color: Colors.black,
+                        color: Colors.grey[800],
                         size: 30.sp,
                       ),
                     ),
