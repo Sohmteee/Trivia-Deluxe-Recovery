@@ -659,7 +659,7 @@ class StreaksProvider extends ChangeNotifier {
     print("Leaderboard Streak: $leaderboardStreak");
     box.put("leaderboardStreak", leaderboardStreak);
 
-    if (leaderboardStreak < permanentLeaderboardStreak) {
+    if (leaderboardStreak > permanentLeaderboardStreak) {
       if (leaderboardStreak <= 1) {
         permanentLeaderboardStreak = 1;
       }
@@ -671,8 +671,9 @@ class StreaksProvider extends ChangeNotifier {
       }
       if (leaderboardStreak <= 10) {
         permanentLeaderboardStreak = 10;
-      } 
+      }
 
+      print("Permanent Leaderboard Streak: $permanentLeaderboardStreak");
       box.put("permanentLeaderboardStreak", permanentLeaderboardStreak);
     }
 
