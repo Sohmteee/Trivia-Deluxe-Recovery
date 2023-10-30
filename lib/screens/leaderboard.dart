@@ -251,8 +251,19 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                 ),
                                               );
                                             }
-                                            if (snapshot.hasError ||
-                                                snapshot.data == []) {
+                                            if (snapshot.hasError ) {
+                                              return Center(
+                                                child: Text(
+                                                  "An error occured while fetching leaderboard data.",
+                                                  style: TextStyle(
+                                                    color: AppColor.white,
+                                                    fontSize: 25.sp,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              );
+                                            }
+                                            if (snapshot.hasError ) {
                                               return Center(
                                                 child: Text(
                                                   "An error occured while fetching leaderboard data.",
