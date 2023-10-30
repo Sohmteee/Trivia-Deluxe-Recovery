@@ -659,18 +659,15 @@ class StreaksProvider extends ChangeNotifier {
     print("Leaderboard Streak: $leaderboardStreak");
     box.put("leaderboardStreak", leaderboardStreak);
 
-    if (leaderboardStreak > permanentLeaderboardStreak) {
-      if (leaderboardStreak <= 3) {
-        permanentLeaderboardStreak = 3;
-      }
-      if (leaderboardStreak <= 5) {
-        permanentLeaderboardStreak = 5;
-      }
-      if (leaderboardStreak <= 10) {
-        permanentLeaderboardStreak = 10;
-      }
-      if (leaderboardStreak <= 1) {
+    if (leaderboardStreak < permanentLeaderboardStreak) {
+      if (leaderboardStreak == 1) {
         permanentLeaderboardStreak = 1;
+      } else if (leaderboardStreak <= 3) {
+        permanentLeaderboardStreak = 3;
+      } else if (leaderboardStreak <= 5) {
+        permanentLeaderboardStreak = 5;
+      } else if (leaderboardStreak <= 10) {
+        permanentLeaderboardStreak = 10;
       }
 
       print("Permanent Leaderboard Streak: $permanentLeaderboardStreak");
