@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -61,6 +62,19 @@ Average Time answering
  */
 
 class _StreaksScreeenState extends State<StreaksScreeen> {
+
+    Future<List<QueryDocumentSnapshot>> getLeaderBoardData(int index) async {
+    final fb = FirebaseFirestore.instance.collection("players");
+    final querySnapshot = await fb.orderBy("score", descending: true).get();
+
+    final leaderBoardPosition = querySnapshot.docs
+        .indexWhere((element) => element.id == Provider.of<ProfileProvider>(context, listen: false).) + 1;
+
+    print(leaderBoardData);
+
+    return querySnapshot.docs;
+  }
+  
   @override
   Widget build(BuildContext context) {
     return GameBackground(
