@@ -21,7 +21,6 @@ import 'package:trivia/providers/stage.dart';
 import 'package:trivia/providers/streaks.dart';
 import 'package:trivia/providers/time.dart';
 import 'package:trivia/screens/ad.dart';
-import 'package:trivia/screens/create_profile.dart';
 import 'package:trivia/screens/game.dart';
 import 'package:trivia/screens/leaderboard.dart';
 import 'package:trivia/screens/menu.dart';
@@ -100,7 +99,6 @@ class MyApp extends StatelessWidget {
               '/reward': (context) => const RewardScreen(),
               '/streaks': (context) => const StreaksScreeen(),
               '/leaderboard': (context) => const LeaderBoardScreen(),
-              '/create_profile': (context) => const CreateProfileScreen(),
             },
           );
         });

@@ -325,21 +325,6 @@ class _MenuScreenState extends State<MenuScreen>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    Future<void> playBGAudio() async {
-      final audioProvider = Provider.of<AudioProvider>(context, listen: false);
-
-      if (audioProvider.music) {
-        await bgPlayer.setSource(AssetSource("audio/bg-music.mp3"));
-        await bgPlayer.resume();
-        debugPrint("music playing");
-      }
-
-      bgPlayer.onPlayerComplete.listen((_) async {
-        await bgPlayer.setSource(AssetSource("audio/bg-music.mp3"));
-        await bgPlayer.resume();
-      });
-    }
-
     Future<void> pauseBGAudio() async {
       await bgPlayer.pause();
       debugPrint("music paused");
