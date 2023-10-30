@@ -64,7 +64,6 @@ Average Time answering
 
 class _StreaksScreeenState extends State<StreaksScreeen> {
   Future<List<QueryDocumentSnapshot>> getLeaderBoardData(int index) async {
-    
     final fb = FirebaseFirestore.instance.collection("players");
     final querySnapshot = await fb.orderBy("score", descending: true).get();
 
@@ -79,6 +78,18 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
   @override
   void initState() {
     super.initState();
+    Future.microtask(() {
+      final questionProvider =
+          Provider.of<QuestionProvider>(context, listen: false);
+      questionProvider.updateLeaderBoardScore(context);
+
+      final profileProvider =
+          Provider.of<ProfileProvider>(context, listen: false);
+      if (profileProvider.username != null) {
+        profileProvider.updatePlayer(context);
+      }
+    });
+
     getLeaderBoardData(0);
   }
 
