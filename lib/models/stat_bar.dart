@@ -196,7 +196,7 @@ class _GameStatsState extends State<GameStats> {
             ),
           ),
         ),
-        const Spacer(flex: 3),
+        const Spacer(flex: 6),
         Container(
           height: 20.h,
           padding: EdgeInsets.all(2.sp),

@@ -165,7 +165,7 @@ class _SelectScreenState extends State<SelectScreen> {
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30.w),
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: const GameStats(),
               ),
               const Spacer(flex: 4),
