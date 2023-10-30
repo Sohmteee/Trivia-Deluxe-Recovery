@@ -1,7 +1,7 @@
 Map<String, dynamic> popCultureData = {
   "title": "Pop Culture",
   "currentIndex": 0,
-  "currentLevel": 1,
+  "currentLevel": 0,
   "data": [
     {
       "question":

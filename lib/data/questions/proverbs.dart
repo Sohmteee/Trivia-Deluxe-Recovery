@@ -1,7 +1,7 @@
 Map<String, dynamic> proverbsIdiomsRiddlesData = {
   "title": "Proverbs, Idioms, and Riddles",
   "currentIndex": 0,
-  "currentLevel": 1,
+  "currentLevel": 0,
   "data": [
     {
       "question": "What has a head and a tail but no body?",

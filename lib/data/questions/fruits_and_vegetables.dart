@@ -1,7 +1,7 @@
 Map<String, dynamic> fruitsAndVegetablesData = {
   "title": "Fruits and Vegetables",
   "currentIndex": 0,
-  "currentLevel": 1,
+  "currentLevel": 0,
   "data": [
     {
       "question":

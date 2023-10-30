@@ -1,7 +1,7 @@
 Map<String, dynamic> politicsData = {
   "title": "Politics",
   "currentIndex": 0,
-  "currentLevel": 1,
+  "currentLevel": 0,
   "data": [
     {
       "question": "Who is the current Secretary-General of the United Nations?",

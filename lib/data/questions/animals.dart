@@ -1,7 +1,7 @@
 Map<String, dynamic> animalsData = {
   "title": "Animals",
   "currentIndex": 0,
-  "currentLevel": 1,
+  "currentLevel": 0,
   "data": [
     {
       "question": "Which of the following animals is a mammal?",

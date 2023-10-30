@@ -1,7 +1,7 @@
 Map<String, dynamic> geographyData = {
   "title": "Geography",
   "currentIndex": 0,
-  "currentLevel": 1,
+  "currentLevel": 0,
   "data": [
     {
       "question": "What is the capital of France?",

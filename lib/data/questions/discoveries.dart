@@ -1,7 +1,7 @@
 Map<String, dynamic> discoveriesData = {
   "title": "Discoveries",
   "currentIndex": 0,
-  "currentLevel": 1,
+  "currentLevel": 0,
   "data": [
     {
       "question": "Who is the explorer that found America in 1492?",

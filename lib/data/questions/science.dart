@@ -1,7 +1,7 @@
 Map<String, dynamic> scienceData = {
   "title": "Science",
   "currentIndex": 0,
-  "currentLevel": 1,
+  "currentLevel": 0,
   "data": [
     {
       "question":

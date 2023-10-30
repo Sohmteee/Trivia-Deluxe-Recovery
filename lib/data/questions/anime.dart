@@ -1,7 +1,7 @@
 Map<String, dynamic> animeData = {
   "title": "Anime",
   "currentIndex": 0,
-  "currentLevel": 1,
+  "currentLevel": 0,
   "data": [
     {
       "question": "Who is the protagonist in Naruto?",

@@ -1,7 +1,7 @@
 Map<String, dynamic> artsData = {
   "title": "Art",
   "currentIndex": 0,
-  "currentLevel": 1,
+  "currentLevel": 0,
   "data": [
     {
       "question": "Who painted the Mona Lisa?",
