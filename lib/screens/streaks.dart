@@ -66,11 +66,13 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
   int? position;
 
   Future<int> getLeaderBoardData(int index) async {
-    final fb = FirebaseFirestore.instance.collection("players");
-    final querySnapshot = await fb.orderBy("score", descending: true).get();
-
-    final leaderBoardPosition =
-        querySnapshot.docs.indexWhere((element) => element.id == deviceID) + 1;
+    final leaderBoardPosition = (await FirebaseFirestore.instance
+                .collection("players")
+                .orderBy("score", descending: true)
+                .get())
+            .docs
+            .indexWhere((element) => element.id == deviceID) +
+        1;
 
     print(leaderBoardPosition);
 

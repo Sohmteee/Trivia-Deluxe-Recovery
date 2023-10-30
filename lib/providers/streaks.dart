@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:trivia/data/box.dart';
 
@@ -261,317 +262,317 @@ class StreaksProvider extends ChangeNotifier {
 
   void updateStreaksData() {
     streaks = [
+      {
+        "title": "Level Streaks",
+        "image": "assets/images/level.png",
+        "streaks": [
           {
-            "title": "Level Streaks",
-            "image": "assets/images/level.png",
-            "streaks": [
-              {
-                "title": "Steady Progress",
-                "subtitle": "Complete 5 levels without failing",
-                "status": permanentLevelStreak >= 5,
-                "collected": streaks[0]["streaks"][0]["collected"],
-                "progress": permanentLevelStreak >= 5
+            "title": "Steady Progress",
+            "subtitle": "Complete 5 levels without failing",
+            "status": permanentLevelStreak >= 5,
+            "collected": streaks[0]["streaks"][0]["collected"],
+            "progress": permanentLevelStreak >= 5
+                ? 5
+                : levelStreak >= 5
                     ? 5
-                    : levelStreak >= 5
-                        ? 5
-                        : levelStreak,
-                "limit": 5,
-                "reward": 10,
-                "tapped": streaks[0]["streaks"][0]["tapped"],
-              },
-              {
-                "title": "Leveling Up",
-                "subtitle": "Complete 10 levels without failing",
-                "status": permanentLevelStreak >= 10,
-                "collected": streaks[0]["streaks"][1]["collected"],
-                "progress": permanentLevelStreak >= 10
-                    ? 10
-                    : levelStreak >= 10
-                        ? 10
-                        : levelStreak,
-                "limit": 10,
-                "reward": 20,
-                "tapped": streaks[0]["streaks"][1]["tapped"],
-              },
-              {
-                "title": "Tenacious Triumph",
-                "subtitle": "Complete 20 levels without failing",
-                "status": permanentLevelStreak >= 20,
-                "collected": streaks[0]["streaks"][2]["collected"],
-                "progress": permanentLevelStreak >= 20
-                    ? 20
-                    : levelStreak >= 20
-                        ? 20
-                        : levelStreak,
-                "limit": 20,
-                "reward": 30,
-                "tapped": streaks[0]["streaks"][2]["tapped"],
-              },
-              {
-                "title": "Masterful Streak",
-                "subtitle": "Complete 50 levels without failing",
-                "status": permanentLevelStreak >= 50,
-                "collected": streaks[0]["streaks"][3]["collected"],
-                "progress": permanentLevelStreak >= 50
-                    ? 50
-                    : levelStreak >= 50
-                        ? 50
-                        : levelStreak,
-                "limit": 50,
-                "reward": 40,
-                "tapped": streaks[0]["streaks"][3]["tapped"],
-              },
-              {
-                "title": "Unstoppable Champion",
-                "subtitle": "Complete 100 levels without failing",
-                "status": permanentLevelStreak >= 100,
-                "collected": streaks[0]["streaks"][4]["collected"],
-                "progress": permanentLevelStreak >= 100
-                    ? 100
-                    : levelStreak >= 100
-                        ? 100
-                        : levelStreak,
-                "limit": 100,
-                "reward": 50,
-                "tapped": streaks[0]["streaks"][4]["tapped"],
-              },
-            ],
+                    : levelStreak,
+            "limit": 5,
+            "reward": 10,
+            "tapped": streaks[0]["streaks"][0]["tapped"],
           },
           {
-            "title": "Coin Streaks",
-            "image": "assets/images/coins.png",
-            "streaks": [
-              {
-                "title": "Coin Collector",
-                "subtitle": "Earn 100 coins",
-                "status": permanentCoinStreak >= 100,
-                "collected": streaks[1]["streaks"][0]["collected"],
-                "progress": permanentCoinStreak >= 100
+            "title": "Leveling Up",
+            "subtitle": "Complete 10 levels without failing",
+            "status": permanentLevelStreak >= 10,
+            "collected": streaks[0]["streaks"][1]["collected"],
+            "progress": permanentLevelStreak >= 10
+                ? 10
+                : levelStreak >= 10
+                    ? 10
+                    : levelStreak,
+            "limit": 10,
+            "reward": 20,
+            "tapped": streaks[0]["streaks"][1]["tapped"],
+          },
+          {
+            "title": "Tenacious Triumph",
+            "subtitle": "Complete 20 levels without failing",
+            "status": permanentLevelStreak >= 20,
+            "collected": streaks[0]["streaks"][2]["collected"],
+            "progress": permanentLevelStreak >= 20
+                ? 20
+                : levelStreak >= 20
+                    ? 20
+                    : levelStreak,
+            "limit": 20,
+            "reward": 30,
+            "tapped": streaks[0]["streaks"][2]["tapped"],
+          },
+          {
+            "title": "Masterful Streak",
+            "subtitle": "Complete 50 levels without failing",
+            "status": permanentLevelStreak >= 50,
+            "collected": streaks[0]["streaks"][3]["collected"],
+            "progress": permanentLevelStreak >= 50
+                ? 50
+                : levelStreak >= 50
+                    ? 50
+                    : levelStreak,
+            "limit": 50,
+            "reward": 40,
+            "tapped": streaks[0]["streaks"][3]["tapped"],
+          },
+          {
+            "title": "Unstoppable Champion",
+            "subtitle": "Complete 100 levels without failing",
+            "status": permanentLevelStreak >= 100,
+            "collected": streaks[0]["streaks"][4]["collected"],
+            "progress": permanentLevelStreak >= 100
+                ? 100
+                : levelStreak >= 100
                     ? 100
-                    : coinStreak >= 100
-                        ? 100
-                        : coinStreak,
-                "limit": 100,
-                "reward": 10,
-                "tapped": streaks[1]["streaks"][0]["tapped"],
-              },
-              {
-                "title": "Coin Hoarder",
-                "subtitle": "Earn 200 coins",
-                "status": permanentCoinStreak >= 200,
-                "collected": streaks[1]["streaks"][1]["collected"],
-                "progress": permanentCoinStreak >= 200
+                    : levelStreak,
+            "limit": 100,
+            "reward": 50,
+            "tapped": streaks[0]["streaks"][4]["tapped"],
+          },
+        ],
+      },
+      {
+        "title": "Coin Streaks",
+        "image": "assets/images/coins.png",
+        "streaks": [
+          {
+            "title": "Coin Collector",
+            "subtitle": "Earn 100 coins",
+            "status": permanentCoinStreak >= 100,
+            "collected": streaks[1]["streaks"][0]["collected"],
+            "progress": permanentCoinStreak >= 100
+                ? 100
+                : coinStreak >= 100
+                    ? 100
+                    : coinStreak,
+            "limit": 100,
+            "reward": 10,
+            "tapped": streaks[1]["streaks"][0]["tapped"],
+          },
+          {
+            "title": "Coin Hoarder",
+            "subtitle": "Earn 200 coins",
+            "status": permanentCoinStreak >= 200,
+            "collected": streaks[1]["streaks"][1]["collected"],
+            "progress": permanentCoinStreak >= 200
+                ? 200
+                : coinStreak >= 200
                     ? 200
-                    : coinStreak >= 200
-                        ? 200
-                        : coinStreak,
-                "limit": 200,
-                "reward": 20,
-                "tapped": streaks[1]["streaks"][1]["tapped"],
-              },
-              {
-                "title": "Gold Gatherer",
-                "subtitle": "Earn 500 coins",
-                "status": permanentCoinStreak >= 500,
-                "collected": streaks[1]["streaks"][2]["collected"],
-                "progress": permanentCoinStreak >= 500
+                    : coinStreak,
+            "limit": 200,
+            "reward": 20,
+            "tapped": streaks[1]["streaks"][1]["tapped"],
+          },
+          {
+            "title": "Gold Gatherer",
+            "subtitle": "Earn 500 coins",
+            "status": permanentCoinStreak >= 500,
+            "collected": streaks[1]["streaks"][2]["collected"],
+            "progress": permanentCoinStreak >= 500
+                ? 500
+                : coinStreak >= 500
                     ? 500
-                    : coinStreak >= 500
-                        ? 500
-                        : coinStreak,
-                "limit": 500,
-                "reward": 30,
-                "tapped": streaks[1]["streaks"][2]["tapped"],
-              },
-              {
-                "title": "Treasure Hunter",
-                "subtitle": "Earn 1000 coins",
-                "status": permanentCoinStreak >= 1000,
-                "collected": streaks[1]["streaks"][3]["collected"],
-                "progress": permanentCoinStreak >= 1000
+                    : coinStreak,
+            "limit": 500,
+            "reward": 30,
+            "tapped": streaks[1]["streaks"][2]["tapped"],
+          },
+          {
+            "title": "Treasure Hunter",
+            "subtitle": "Earn 1000 coins",
+            "status": permanentCoinStreak >= 1000,
+            "collected": streaks[1]["streaks"][3]["collected"],
+            "progress": permanentCoinStreak >= 1000
+                ? 1000
+                : coinStreak >= 1000
                     ? 1000
-                    : coinStreak >= 1000
-                        ? 1000
-                        : coinStreak,
-                "limit": 1000,
-                "reward": 40,
-                "tapped": streaks[1]["streaks"][3]["tapped"],
-              },
-              {
-                "title": "Coin Millionaire",
-                "subtitle": "Earn 2000 coins",
-                "status": permanentCoinStreak >= 2000,
-                "collected": streaks[1]["streaks"][4]["collected"],
-                "progress": permanentCoinStreak >= 2000
+                    : coinStreak,
+            "limit": 1000,
+            "reward": 40,
+            "tapped": streaks[1]["streaks"][3]["tapped"],
+          },
+          {
+            "title": "Coin Millionaire",
+            "subtitle": "Earn 2000 coins",
+            "status": permanentCoinStreak >= 2000,
+            "collected": streaks[1]["streaks"][4]["collected"],
+            "progress": permanentCoinStreak >= 2000
+                ? 2000
+                : coinStreak >= 2000
                     ? 2000
-                    : coinStreak >= 2000
-                        ? 2000
-                        : coinStreak,
-                "limit": 2000,
-                "reward": 50,
-                "tapped": streaks[1]["streaks"][4]["tapped"],
-              },
-            ],
+                    : coinStreak,
+            "limit": 2000,
+            "reward": 50,
+            "tapped": streaks[1]["streaks"][4]["tapped"],
           },
+        ],
+      },
+      {
+        "title": "Trivia Streaks",
+        "image": "assets/images/answer.png",
+        "streaks": [
           {
-            "title": "Trivia Streaks",
-            "image": "assets/images/answer.png",
-            "streaks": [
-              {
-                "title": "Trivia Beginner",
-                "subtitle": "Answer 5 questions correctly in a row",
-                "status": permanentTriviaStreak >= 5,
-                "collected": streaks[2]["streaks"][0]["collected"],
-                "progress": permanentTriviaStreak >= 5
+            "title": "Trivia Beginner",
+            "subtitle": "Answer 5 questions correctly in a row",
+            "status": permanentTriviaStreak >= 5,
+            "collected": streaks[2]["streaks"][0]["collected"],
+            "progress": permanentTriviaStreak >= 5
+                ? 5
+                : triviaStreak >= 5
                     ? 5
-                    : triviaStreak >= 5
-                        ? 5
-                        : triviaStreak,
-                "limit": 5,
-                "reward": 10,
-                "tapped": streaks[2]["streaks"][0]["tapped"],
-              },
-              {
-                "title": "Trivia Expert",
-                "subtitle": "Answer 10 questions correctly in a row",
-                "status": permanentTriviaStreak >= 10,
-                "collected": streaks[2]["streaks"][1]["collected"],
-                "progress": permanentTriviaStreak >= 10
+                    : triviaStreak,
+            "limit": 5,
+            "reward": 10,
+            "tapped": streaks[2]["streaks"][0]["tapped"],
+          },
+          {
+            "title": "Trivia Expert",
+            "subtitle": "Answer 10 questions correctly in a row",
+            "status": permanentTriviaStreak >= 10,
+            "collected": streaks[2]["streaks"][1]["collected"],
+            "progress": permanentTriviaStreak >= 10
+                ? 10
+                : triviaStreak >= 10
                     ? 10
-                    : triviaStreak >= 10
-                        ? 10
-                        : triviaStreak,
-                "limit": 10,
-                "reward": 20,
-                "tapped": streaks[2]["streaks"][1]["tapped"],
-              },
-              {
-                "title": "Brainiac",
-                "subtitle": "Answer 20 questions correctly in a row",
-                "status": permanentTriviaStreak >= 20,
-                "collected": streaks[2]["streaks"][2]["collected"],
-                "progress": permanentTriviaStreak >= 20
+                    : triviaStreak,
+            "limit": 10,
+            "reward": 20,
+            "tapped": streaks[2]["streaks"][1]["tapped"],
+          },
+          {
+            "title": "Brainiac",
+            "subtitle": "Answer 20 questions correctly in a row",
+            "status": permanentTriviaStreak >= 20,
+            "collected": streaks[2]["streaks"][2]["collected"],
+            "progress": permanentTriviaStreak >= 20
+                ? 20
+                : triviaStreak >= 20
                     ? 20
-                    : triviaStreak >= 20
-                        ? 20
-                        : triviaStreak,
-                "limit": 20,
-                "reward": 30,
-                "tapped": streaks[2]["streaks"][2]["tapped"],
-              },
-              {
-                "title": "Trivia Grandmaster",
-                "subtitle": "Answer 50 questions correctly in a row",
-                "status": permanentTriviaStreak >= 50,
-                "collected": streaks[2]["streaks"][3]["collected"],
-                "progress": permanentTriviaStreak >= 50
+                    : triviaStreak,
+            "limit": 20,
+            "reward": 30,
+            "tapped": streaks[2]["streaks"][2]["tapped"],
+          },
+          {
+            "title": "Trivia Grandmaster",
+            "subtitle": "Answer 50 questions correctly in a row",
+            "status": permanentTriviaStreak >= 50,
+            "collected": streaks[2]["streaks"][3]["collected"],
+            "progress": permanentTriviaStreak >= 50
+                ? 50
+                : triviaStreak >= 50
                     ? 50
-                    : triviaStreak >= 50
-                        ? 50
-                        : triviaStreak,
-                "limit": 50,
-                "reward": 40,
-                "tapped": streaks[2]["streaks"][3]["tapped"],
-              },
-              {
-                "title": "Trivia Maestro",
-                "subtitle": "Answer 100 questions correctly in a row",
-                "status": permanentTriviaStreak >= 100,
-                "collected": streaks[2]["streaks"][4]["collected"],
-                "progress": permanentTriviaStreak >= 100
+                    : triviaStreak,
+            "limit": 50,
+            "reward": 40,
+            "tapped": streaks[2]["streaks"][3]["tapped"],
+          },
+          {
+            "title": "Trivia Maestro",
+            "subtitle": "Answer 100 questions correctly in a row",
+            "status": permanentTriviaStreak >= 100,
+            "collected": streaks[2]["streaks"][4]["collected"],
+            "progress": permanentTriviaStreak >= 100
+                ? 100
+                : triviaStreak >= 100
                     ? 100
-                    : triviaStreak >= 100
-                        ? 100
-                        : triviaStreak,
-                "limit": 100,
-                "reward": 50,
-                "tapped": streaks[2]["streaks"][4]["tapped"],
-              },
-            ],
+                    : triviaStreak,
+            "limit": 100,
+            "reward": 50,
+            "tapped": streaks[2]["streaks"][4]["tapped"],
+          },
+        ],
+      },
+      {
+        "title": "Leaderboard Streaks",
+        "image": "assets/images/rank.png",
+        "streaks": [
+          {
+            "title": "Achiever",
+            "subtitle": "Rank top 10 on the leaderboard",
+            "status": permanentLeaderboardStreak == 10,
+            "collected": streaks[3]["streaks"][0]["collected"],
+            "progress": permanentLeaderboardStreak == 10
+                ? 1
+                : leaderboardStreak == 10
+                    ? 1
+                    : 0,
+            "limit": 1,
+            "reward": 10,
+            "tapped": streaks[3]["streaks"][0]["tapped"],
           },
           {
-            "title": "Leaderboard Streaks",
-            "image": "assets/images/rank.png",
-            "streaks": [
-              {
-                "title": "Achiever",
-                "subtitle": "Rank top 10 on the leaderboard",
-                "status": permanentLeaderboardStreak == 10,
-                "collected": streaks[3]["streaks"][0]["collected"],
-                "progress": permanentLeaderboardStreak == 10
+            "title": "Top Ranker",
+            "subtitle": "Rank top 5 on the leaderboard",
+            "status": permanentLeaderboardStreak == 5,
+            "collected": streaks[3]["streaks"][1]["collected"],
+            "progress": permanentLeaderboardStreak == 5
+                ? 1
+                : leaderboardStreak == 5
                     ? 1
-                    : leaderboardStreak == 10
-                        ? 1
-                        : 0,
-                "limit": 1,
-                "reward": 10,
-                "tapped": streaks[3]["streaks"][0]["tapped"],
-              },
-              {
-                "title": "Top Ranker",
-                "subtitle": "Rank top 5 on the leaderboard",
-                "status": permanentLeaderboardStreak == 5,
-                "collected": streaks[3]["streaks"][1]["collected"],
-                "progress": permanentLeaderboardStreak == 5
-                    ? 1
-                    : leaderboardStreak == 5
-                        ? 1
-                        : 0,
-                "limit": 1,
-                "reward": 20,
-                "tapped": streaks[3]["streaks"][1]["tapped"],
-              },
-              {
-                "title": "Master Ranker",
-                "subtitle": "Rank top 3 on the leaderboard",
-                "status": permanentLeaderboardStreak == 3,
-                "collected": streaks[3]["streaks"][2]["collected"],
-                "progress": permanentLeaderboardStreak == 3
-                    ? 1
-                    : leaderboardStreak == 3
-                        ? 1
-                        : 0,
-                "limit": 1,
-                "reward": 50,
-                "tapped": streaks[3]["streaks"][2]["tapped"],
-              },
-              {
-                "title": "Leaderboard Champion",
-                "subtitle": "Rank first on the leaderboard",
-                "status": permanentLeaderboardStreak == 1,
-                "collected": streaks[3]["streaks"][3]["collected"],
-                "progress": permanentLeaderboardStreak == 1
-                    ? 1
-                    : leaderboardStreak == 1
-                        ? 1
-                        : 0,
-                "limit": 1,
-                "reward": 100,
-                "tapped": streaks[3]["streaks"][3]["tapped"],
-              },
-            ],
+                    : 0,
+            "limit": 1,
+            "reward": 20,
+            "tapped": streaks[3]["streaks"][1]["tapped"],
           },
           {
-            "title": "Ultimate Achievement",
-            "image": "assets/images/goal.png",
-            "streaks": [
-              {
-                "title": "Ultimate Achiever",
-                "subtitle": "Finish all streaks",
-                "status": ultimateStreak >= 19,
-                "collected": streaks[4]["streaks"][0]["collected"],
-                "progress": ultimateStreak >= 19
+            "title": "Master Ranker",
+            "subtitle": "Rank top 3 on the leaderboard",
+            "status": permanentLeaderboardStreak == 3,
+            "collected": streaks[3]["streaks"][2]["collected"],
+            "progress": permanentLeaderboardStreak == 3
+                ? 1
+                : leaderboardStreak == 3
+                    ? 1
+                    : 0,
+            "limit": 1,
+            "reward": 50,
+            "tapped": streaks[3]["streaks"][2]["tapped"],
+          },
+          {
+            "title": "Leaderboard Champion",
+            "subtitle": "Rank first on the leaderboard",
+            "status": permanentLeaderboardStreak == 1,
+            "collected": streaks[3]["streaks"][3]["collected"],
+            "progress": permanentLeaderboardStreak == 1
+                ? 1
+                : leaderboardStreak == 1
+                    ? 1
+                    : 0,
+            "limit": 1,
+            "reward": 100,
+            "tapped": streaks[3]["streaks"][3]["tapped"],
+          },
+        ],
+      },
+      {
+        "title": "Ultimate Achievement",
+        "image": "assets/images/goal.png",
+        "streaks": [
+          {
+            "title": "Ultimate Achiever",
+            "subtitle": "Finish all streaks",
+            "status": ultimateStreak >= 19,
+            "collected": streaks[4]["streaks"][0]["collected"],
+            "progress": ultimateStreak >= 19
+                ? 19
+                : ultimateStreak >= 19
                     ? 19
-                    : ultimateStreak >= 19
-                        ? 19
-                        : ultimateStreak,
-                "limit": 19,
-                "reward": 200,
-                "tapped": streaks[4]["streaks"][0]["tapped"],
-              },
-            ],
+                    : ultimateStreak,
+            "limit": 19,
+            "reward": 200,
+            "tapped": streaks[4]["streaks"][0]["tapped"],
           },
-        ];
+        ],
+      },
+    ];
     box.put("streaks", streaks);
     notifyListeners();
   }
@@ -645,8 +646,16 @@ class StreaksProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateLeaderboardStreak(bool correct) {
+  Future<void> updateLeaderboardStreak(bool correct) async {
     int index = permanentLeaderboardStreakList.indexOf(leaderboardStreak);
+
+    final leaderBoardPosition = (await FirebaseFirestore.instance
+                .collection("players")
+                .orderBy("score", descending: true)
+                .get())
+            .docs
+            .indexWhere((element) => element.id == deviceID) +
+        1;
 
     if (correct) {
       leaderboardStreak = permanentLeaderboardStreakList[index + 1];
