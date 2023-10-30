@@ -35,8 +35,7 @@ class _StageScreenState extends State<StageScreen> {
         Provider.of<QuestionProvider>(context, listen: false);
     questionProvider.initQuestionProvider(context);
 
-    if (questionProvider.questionIndex ==
-        questionProvider.questions.length - 1) {
+    if (questionProvider.questionIndex == 5) {
       showExhaustedQuestionsDialog(context);
     }
   }
