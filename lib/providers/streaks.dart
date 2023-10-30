@@ -660,18 +660,18 @@ class StreaksProvider extends ChangeNotifier {
     box.put("leaderboardStreak", leaderboardStreak);
 
     if (leaderboardStreak < permanentLeaderboardStreak) {
-      if (leaderboardStreak <= 10) {
-        permanentLeaderboardStreak = 10;
-      } 
-      if (leaderboardStreak <= 5) {
-        permanentLeaderboardStreak = 5;
+      if (leaderboardStreak <= 1) {
+        permanentLeaderboardStreak = 1;
       }
       if (leaderboardStreak <= 3) {
         permanentLeaderboardStreak = 3;
       }
-      if (leaderboardStreak <= 1) {
-        permanentLeaderboardStreak = 1;
+      if (leaderboardStreak <= 5) {
+        permanentLeaderboardStreak = 5;
       }
+      if (leaderboardStreak <= 10) {
+        permanentLeaderboardStreak = 10;
+      } 
 
       box.put("permanentLeaderboardStreak", permanentLeaderboardStreak);
     }
