@@ -108,101 +108,9 @@ class _MenuScreenState extends State<MenuScreen>
               child: Center(
                 child: Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.all(20.sp),
-                          child: ZoomTapAnimation(
-                            onTap: () {
-                              playTap(context);
-                              showExitDialog(context);
-                            },
-                            child: Container(
-                              padding: EdgeInsets.all(5.sp),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: AppColor.lightRed,
-                                  width: 2.sp,
-                                ),
-                                gradient: LinearGradient(
-                                  colors: [
-                                    AppColor.lightRed,
-                                    AppColor.darkRed,
-                                  ],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                ),
-                              ),
-                              child: Icon(
-                                Icons.close_rounded,
-                                size: 25.sp,
-                                color: AppColor.orange,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(20.sp),
-                          child: ZoomTapAnimation(
-                            onTap: () {
-                              playTap(context);
-                              showSettingsDialog(context);
-                            },
-                            child: Container(
-                              padding: EdgeInsets.all(5.sp),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: AppColor.lightRed,
-                                  width: 2.sp,
-                                ),
-                                gradient: LinearGradient(
-                                  colors: [
-                                    AppColor.lightRed,
-                                    AppColor.darkRed,
-                                  ],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                ),
-                              ),
-                              child: Icon(
-                                Icons.settings_rounded,
-                                size: 25.sp,
-                                color: AppColor.orange,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    topButtons(context),
                     const Spacer(flex: 3),
-                    Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Text(
-                          "TRIVIA\nDELUXE",
-                          style: TextStyle(
-                            color: HexColor("#A30F35"),
-                            fontSize: 90.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        Text(
-                          "TRIVIA\nDELUXE",
-                          style: TextStyle(
-                            color: AppColor.white,
-                            fontSize: 80.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    )
+                    gameTitle()
                         .animate(
                           onPlay: (controller) => controller.repeat(),
                         )
@@ -211,111 +119,7 @@ class _MenuScreenState extends State<MenuScreen>
                           duration: 1.seconds,
                         ),
                     const Spacer(flex: 2),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        SizedBox(
-                          height: 60.h,
-                          child: ZoomTapAnimation(
-                            onTap: () {
-                              playTap(context);
-                              Navigator.pushNamed(context, "/leaderboard");
-                            },
-                            child: Lottie.asset(
-                              "assets/lottie/red_award.json",
-                              repeat: false,
-                              animate: true,
-                            ),
-                          ),
-                        ),
-                        Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            RotationTransition(
-                              turns: rotationAnimation,
-                              child: CustomPaint(
-                                painter: CircleBorderPainter(
-                                  color: HexColor("#FF8BA2")
-                                      .withOpacity(1), //#FF9FB9
-                                  radius: 46.sp,
-                                  angle: 1.8 * pi,
-                                  strokeWidth: 2.sp,
-                                ),
-                              ),
-                            ),
-                            RotationTransition(
-                              turns: reverseRotationAnimation,
-                              child: CustomPaint(
-                                painter: CircleBorderPainter(
-                                  color: const Color.fromARGB(255, 255, 153, 0)
-                                      .withOpacity(.9),
-                                  radius: 51.sp,
-                                  angle: -1.5 * pi,
-                                  strokeWidth: 6.sp,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 70.w,
-                              child: ZoomTapAnimation(
-                                onTap: () {
-                                  playTap(context);
-                                  Navigator.pushNamed(context, "/select");
-                                },
-                                child: Image.asset("assets/images/play.png"),
-                              ),
-                            )
-                                .animate(
-                                  onPlay: (controller) => controller.repeat(),
-                                )
-                                .then()
-                                .scaleXY(
-                                  curve: Curves.easeOutSine,
-                                  delay: 2.seconds,
-                                  duration: .2.seconds,
-                                  begin: 1,
-                                  end: .8,
-                                )
-                                .then()
-                                .scaleXY(
-                                  curve: Curves.easeOutSine,
-                                  duration: .4.seconds,
-                                  begin: .8,
-                                  end: 1.2,
-                                )
-                                .then()
-                                .scaleXY(
-                                  curve: Curves.bounceOut,
-                                  duration: .4.seconds,
-                                  begin: 1.2,
-                                  end: 1,
-                                ),
-                          ],
-                        ),
-                        Container(
-                          height: 50.h,
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: AppColor.yellow.withOpacity(.5),
-                                blurRadius: 20.sp,
-                                offset: const Offset(0, 5),
-                              ),
-                            ],
-                          ),
-                          child: ZoomTapAnimation(
-                            onTap: () {
-                              playTap(context);
-                              Navigator.pushNamed(context, "/streaks");
-                            },
-                            // child: Image.asset("assets/images/streak.png"),
-                            child: Lottie.asset(
-                              "assets/lottie/fire.json",
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    bottomButtons(context),
                     const Spacer(),
                   ],
                 ),
@@ -325,6 +129,214 @@ class _MenuScreenState extends State<MenuScreen>
         ),
       ),
     );
+  }
+
+  Row bottomButtons(BuildContext context) {
+    return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      SizedBox(
+                        height: 60.h,
+                        child: ZoomTapAnimation(
+                          onTap: () {
+                            playTap(context);
+                            Navigator.pushNamed(context, "/leaderboard");
+                          },
+                          child: Lottie.asset(
+                            "assets/lottie/red_award.json",
+                            repeat: false,
+                            animate: true,
+                          ),
+                        ),
+                      ),
+                      Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          RotationTransition(
+                            turns: rotationAnimation,
+                            child: CustomPaint(
+                              painter: CircleBorderPainter(
+                                color: HexColor("#FF8BA2")
+                                    .withOpacity(1), //#FF9FB9
+                                radius: 46.sp,
+                                angle: 1.8 * pi,
+                                strokeWidth: 2.sp,
+                              ),
+                            ),
+                          ),
+                          RotationTransition(
+                            turns: reverseRotationAnimation,
+                            child: CustomPaint(
+                              painter: CircleBorderPainter(
+                                color: const Color.fromARGB(255, 255, 153, 0)
+                                    .withOpacity(.9),
+                                radius: 51.sp,
+                                angle: -1.5 * pi,
+                                strokeWidth: 6.sp,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 70.w,
+                            child: ZoomTapAnimation(
+                              onTap: () {
+                                playTap(context);
+                                Navigator.pushNamed(context, "/select");
+                              },
+                              child: Image.asset("assets/images/play.png"),
+                            ),
+                          )
+                              .animate(
+                                onPlay: (controller) => controller.repeat(),
+                              )
+                              .then()
+                              .scaleXY(
+                                curve: Curves.easeOutSine,
+                                delay: 2.seconds,
+                                duration: .2.seconds,
+                                begin: 1,
+                                end: .8,
+                              )
+                              .then()
+                              .scaleXY(
+                                curve: Curves.easeOutSine,
+                                duration: .4.seconds,
+                                begin: .8,
+                                end: 1.2,
+                              )
+                              .then()
+                              .scaleXY(
+                                curve: Curves.bounceOut,
+                                duration: .4.seconds,
+                                begin: 1.2,
+                                end: 1,
+                              ),
+                        ],
+                      ),
+                      Container(
+                        height: 50.h,
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColor.yellow.withOpacity(.5),
+                              blurRadius: 20.sp,
+                              offset: const Offset(0, 5),
+                            ),
+                          ],
+                        ),
+                        child: ZoomTapAnimation(
+                          onTap: () {
+                            playTap(context);
+                            Navigator.pushNamed(context, "/streaks");
+                          },
+                          // child: Image.asset("assets/images/streak.png"),
+                          child: Lottie.asset(
+                            "assets/lottie/fire.json",
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+  }
+
+  Stack gameTitle() {
+    return Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Text(
+                        "TRIVIA\nDELUXE",
+                        style: TextStyle(
+                          color: HexColor("#A30F35"),
+                          fontSize: 90.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        "TRIVIA\nDELUXE",
+                        style: TextStyle(
+                          color: AppColor.white,
+                          fontSize: 80.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  );
+  }
+
+  Row topButtons(BuildContext context) {
+    return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.all(20.sp),
+                        child: ZoomTapAnimation(
+                          onTap: () {
+                            playTap(context);
+                            showExitDialog(context);
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(5.sp),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: AppColor.lightRed,
+                                width: 2.sp,
+                              ),
+                              gradient: LinearGradient(
+                                colors: [
+                                  AppColor.lightRed,
+                                  AppColor.darkRed,
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                            ),
+                            child: Icon(
+                              Icons.close_rounded,
+                              size: 25.sp,
+                              color: AppColor.orange,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(20.sp),
+                        child: ZoomTapAnimation(
+                          onTap: () {
+                            playTap(context);
+                            showSettingsDialog(context);
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(5.sp),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: AppColor.lightRed,
+                                width: 2.sp,
+                              ),
+                              gradient: LinearGradient(
+                                colors: [
+                                  AppColor.lightRed,
+                                  AppColor.darkRed,
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                            ),
+                            child: Icon(
+                              Icons.settings_rounded,
+                              size: 25.sp,
+                              color: AppColor.orange,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
   }
 
   @override
