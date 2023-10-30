@@ -251,7 +251,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                 ),
                                               );
                                             }
-                                            if (snapshot.hasError ) {
+                                            if (snapshot.hasError) {
                                               return Center(
                                                 child: Text(
                                                   "An error occured while fetching leaderboard data.",
@@ -263,10 +263,11 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                                                 ),
                                               );
                                             }
-                                            if (snapshot.hasError ) {
+                                            if (snapshot.data == []) {
                                               return Center(
                                                 child: Text(
-                                                  "An error occured while fetching leaderboard data.",
+                                                  switch()
+                                                  "No data available.",
                                                   style: TextStyle(
                                                     color: AppColor.white,
                                                     fontSize: 25.sp,
