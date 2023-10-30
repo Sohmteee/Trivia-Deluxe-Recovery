@@ -26,6 +26,7 @@ class GameStats extends StatefulWidget {
 }
 
 class _GameStatsState extends State<GameStats> {
+  bool animateCoins = false;
 
   @override
   void initState() {
@@ -44,9 +45,11 @@ class _GameStatsState extends State<GameStats> {
 
   @override
   void dispose() {
-    setState(() {
-      animateCoins = false;
-      debugPrint("Animate coins: $animateCoins");
+    Provider.of<MoneyProvider>(context, listen: false).removeListener(() {
+      setState(() {
+        animateCoins = false;
+        debugPrint("Animate coins: $animateCoins");
+      });
     });
     super.dispose();
   }
