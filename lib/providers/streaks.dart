@@ -647,6 +647,7 @@ class StreaksProvider extends ChangeNotifier {
   }
 
   Future<void> updateLeaderboardStreak() async {
+    if (FutureBuilder.debugRethrowError) {}
     final leaderBoardPosition = (await FirebaseFirestore.instance
                 .collection("players")
                 .orderBy("score", descending: true)
