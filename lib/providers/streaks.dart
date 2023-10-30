@@ -659,7 +659,7 @@ class StreaksProvider extends ChangeNotifier {
     print("Leaderboard Streak: $leaderboardStreak");
     box.put("leaderboardStreak", leaderboardStreak);
 
-    if (permanentLeaderboardStreakList.contains(leaderboardStreak)) {
+    if (leaderboardStreak >= 10) {
       if (leaderboardStreak <= 10) {
         permanentLeaderboardStreak = 10;
       } 
