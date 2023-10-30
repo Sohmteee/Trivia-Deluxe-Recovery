@@ -164,40 +164,7 @@ class _RewardScreenState extends State<RewardScreen> {
                   ),
               const Spacer(flex: 3),
               if (receivedReward)
-                ZoomTapAnimation(
-                  onTap: () {
-                    playTap(context);
-                    if (_interstitialAd != null) {
-                      _interstitialAd?.show();
-                    } else {
-                      if (level <= 28) {
-                        Navigator.pushReplacementNamed(context, "/stage");
-                      } else {
-                        Navigator.pushReplacementNamed(context, "/select");
-                      }
-                    }
-                  },
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                      vertical: 15.h,
-                      horizontal: 30.w,
-                    ),
-                    decoration: BoxDecoration(
-                      color: AppColor.right,
-                      borderRadius: BorderRadius.circular(30.r),
-                    ),
-                    child: Text(
-                      level <= 28
-                          ? "Continue to Level ${level + 2}"
-                          : "Select Another Category",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25.sp,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                )
+                rewardButton(context)
                     .animate()
                     .slideY(
                       delay: 1.5.seconds,
@@ -216,6 +183,43 @@ class _RewardScreenState extends State<RewardScreen> {
         ),
       ),
     );
+  }
+
+  ZoomTapAnimation rewardButton(BuildContext context) {
+    return ZoomTapAnimation(
+                onTap: () {
+                  playTap(context);
+                  if (_interstitialAd != null) {
+                    _interstitialAd?.show();
+                  } else {
+                    if (level <= 28) {
+                      Navigator.pushReplacementNamed(context, "/stage");
+                    } else {
+                      Navigator.pushReplacementNamed(context, "/select");
+                    }
+                  }
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 15.h,
+                    horizontal: 30.w,
+                  ),
+                  decoration: BoxDecoration(
+                    color: AppColor.right,
+                    borderRadius: BorderRadius.circular(30.r),
+                  ),
+                  child: Text(
+                    level <= 28
+                        ? "Continue to Level ${level + 2}"
+                        : "Select Another Category",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25.sp,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              );
   }
 
   SizedBox chestBox(BuildContext context) {

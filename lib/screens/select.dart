@@ -153,13 +153,7 @@ class _SelectScreenState extends State<SelectScreen> {
         return true;
       },
       child: GameBackground(
-        /* bottomNavigationBar: (_bannerAd != null)
-            ? SizedBox(
-                width: _bannerAd!.size.width.toDouble(),
-                height: _bannerAd!.size.height.toDouble(),
-                child: AdWidget(ad: _bannerAd!),
-              )
-            : null, */
+        
         body: Padding(
           padding: EdgeInsets.symmetric(vertical: 40.h),
           child: Column(
