@@ -67,7 +67,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
         "score": doc["score"],
         "avatar": doc["avatar"],
         "time": doc["time"],
-        "id": doc["id"],
+        "device_id": doc["device_id"],
       };
     }).where((player) {
       Timestamp timestamp = player["time"];
