@@ -68,6 +68,7 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
   int? position;
 
   BannerAd? _bannerAd;
+  bool _isLoaded = false;
 
   Future<int> getLeaderBoardData(int index) async {
     final leaderBoardPosition = (await FirebaseFirestore.instance
@@ -109,6 +110,13 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
   @override
   Widget build(BuildContext context) {
     return GameBackground(
+      bottomNavigationBar: (_isLoaded)
+          ? SizedBox(
+              width: _bannerAd!.size.width.toDouble(),
+              height: _bannerAd!.size.height.toDouble(),
+              child: AdWidget(ad: _bannerAd!),
+            )
+          : null,
       body: Consumer<StreaksProvider>(builder: (context, streaksProvider, _) {
         return Padding(
           padding: EdgeInsets.fromLTRB(20.w, 20.h, 20.w, 0),
@@ -142,13 +150,14 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
                                 Stack(
                                   alignment: Alignment.center,
                                   children: [
-                                    SizedBox(
-                                      width: 100.w,
-                                      height: 100.h,
-                                      child: Chart(
-                                        duration: const Duration(seconds: 2),
-                                        layers: [
-                                          ChartGroupPieLayer(
+                            
+                SizedBox(
+                                        width: 100.w,
+                                        height: 100.h,
+                                        child: Chart(
+                                          duration: const Duration(seconds: 2),
+                                          layers: [
+                                            ChartGroupPieLayer(
                                             items: [
                                               [
                                                 if (questionProvider
@@ -631,11 +640,6 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
                   },
                 ),
               ),
-              SizedBox(
-                width: _bannerAd!.size.width.toDouble(),
-                height: _bannerAd!.size.height.toDouble(),
-                child: AdWidget(ad: _bannerAd!),
-              ),
             ],
           ),
         );
@@ -644,6 +648,12 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
   }
 
   _loadBannerAd() {
+    MobileAds.instance.updateRequestConfiguration(
+      RequestConfiguration(
+        testDeviceIds: ['5C26A3D9AFFD85F566BED84A49F36278'],
+      ),
+    );
+
     _bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
       request: const AdRequest(),
@@ -652,6 +662,9 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
         // Called when an ad is successfully received.
         onAdLoaded: (ad) {
           debugPrint('$ad loaded.');
+          setState(() {
+            _isLoaded = true;
+          });
         },
         // Called when an ad request failed.
         onAdFailedToLoad: (ad, err) {
