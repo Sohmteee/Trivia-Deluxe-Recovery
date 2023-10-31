@@ -64,17 +64,13 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (_) => StreaksProvider()),
         ChangeNotifierProvider(create: (_) => ProfileProvider()),
       ],
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
 
-// ignore: must_be_immutable
 class MyApp extends StatelessWidget {
-   MyApp({super.key});
-
-  AppOpenAd? appOpenAd;
-  bool isLoaded = false;
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -75,6 +75,33 @@ class _MenuScreenState extends State<MenuScreen>
   }
 
   @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    Future<void> pauseBGAudio() async {
+      await bgPlayer.pause();
+      debugPrint("music paused");
+    }
+
+    Future<void> stopBGAudio() async {
+      await bgPlayer.stop();
+      debugPrint("music stopped");
+    }
+
+    switch (state) {
+      case AppLifecycleState.resumed:
+      case AppLifecycleState.inactive:
+        playBGAudio();
+        break;
+      case AppLifecycleState.paused:
+      case AppLifecycleState.hidden:
+        pauseBGAudio();
+        break;
+      case AppLifecycleState.detached:
+        stopBGAudio();
+        break;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
@@ -331,33 +358,6 @@ class _MenuScreenState extends State<MenuScreen>
         ),
       ],
     );
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    Future<void> pauseBGAudio() async {
-      await bgPlayer.pause();
-      debugPrint("music paused");
-    }
-
-    Future<void> stopBGAudio() async {
-      await bgPlayer.stop();
-      debugPrint("music stopped");
-    }
-
-    switch (state) {
-      case AppLifecycleState.resumed:
-      case AppLifecycleState.inactive:
-        playBGAudio();
-        break;
-      case AppLifecycleState.paused:
-      case AppLifecycleState.hidden:
-        pauseBGAudio();
-        break;
-      case AppLifecycleState.detached:
-        stopBGAudio();
-        break;
-    }
   }
 
   Future<void> playBGAudio() async {
