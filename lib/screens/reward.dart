@@ -30,9 +30,9 @@ class RewardScreen extends StatefulWidget {
   State<RewardScreen> createState() => _RewardScreenState();
 }
 
+  InterstitialAd? interstitialAd;
 class _RewardScreenState extends State<RewardScreen> {
   BannerAd? _bannerAd;
-  InterstitialAd? _interstitialAd;
   bool receivedReward = false;
   late int score;
   late int level;
@@ -197,9 +197,9 @@ class _RewardScreenState extends State<RewardScreen> {
     return ZoomTapAnimation(
       onTap: () {
         playTap(context);
-        if (_interstitialAd != null) {
+        if (interstitialAd != null) {
           pauseBGAudio();
-          _interstitialAd?.show();
+          interstitialAd?.show();
         } else {
           if (level <= 28) {
             Navigator.pushReplacementNamed(context, "/stage");
@@ -597,7 +597,7 @@ class _RewardScreenState extends State<RewardScreen> {
           );
 
           setState(() {
-            _interstitialAd = ad;
+            interstitialAd = ad;
           });
         },
         onAdFailedToLoad: (err) {

@@ -18,6 +18,7 @@ import 'package:trivia/models/dialogs/exit.dart';
 import 'package:trivia/models/dialogs/low_cash.dart';
 import 'package:trivia/models/dialogs/settings.dart';
 import 'package:trivia/providers/audio.dart';
+import 'package:trivia/screens/reward.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -85,7 +86,7 @@ class _MenuScreenState extends State<MenuScreen>
         /* if (_appOpenIsLoaded) {
           _appOpenAd!.show();
         } */
-        if (rewardedAd == null) {
+        if (rewardedAd == null || interstitialAd == null) {
           playBGAudio(context);
         }
         break;
