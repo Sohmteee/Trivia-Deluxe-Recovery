@@ -113,6 +113,7 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
       bottomNavigationBar: (_isLoaded)
           ? Container(
               color: AppColor.darkRed,
+              padding: EdgeInsets.symmetric(vertical: 10.h),
               width: _bannerAd!.size.width.toDouble(),
               height: _bannerAd!.size.height.toDouble(),
               child: AdWidget(ad: _bannerAd!),
