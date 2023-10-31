@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:trivia/ad_helper.dart';
 import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/main.dart';
 import 'package:trivia/models/dialogs/exhausted_questions.dart';
@@ -21,9 +23,13 @@ class StageScreen extends StatefulWidget {
 }
 
 class _StageScreenState extends State<StageScreen> {
+  BannerAd? _bannerAd;
+  bool _isLoaded = false;
+
   @override
   void initState() {
     playLevel(context);
+    _loadBannerAd();
     Future.microtask(() {
       checkExhausted();
     });
@@ -49,6 +55,13 @@ class _StageScreenState extends State<StageScreen> {
         return true;
       },
       child: GameBackground(
+        bottomNavigationBar: (_isLoaded)
+            ? SizedBox(
+                width: _bannerAd!.size.width.toDouble(),
+                height: _bannerAd!.size.height.toDouble(),
+                child: AdWidget(ad: _bannerAd!),
+              )
+            : null,
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 40.w, vertical: 40.h),
           child: Column(
@@ -67,51 +80,79 @@ class _StageScreenState extends State<StageScreen> {
     );
   }
 
+  _loadBannerAd() {
+    MobileAds.instance.updateRequestConfiguration(
+      RequestConfiguration(
+        testDeviceIds: ['5C26A3D9AFFD85F566BED84A49F36278'],
+      ),
+    );
+
+    _bannerAd = BannerAd(
+      adUnitId: AdHelper.bannerAdUnitId,
+      request: const AdRequest(),
+      size: AdSize.banner,
+      listener: BannerAdListener(
+        // Called when an ad is successfully received.
+        onAdLoaded: (ad) {
+          debugPrint('$ad loaded.');
+          setState(() {
+            _isLoaded = true;
+          });
+        },
+        // Called when an ad request failed.
+        onAdFailedToLoad: (ad, err) {
+          debugPrint('BannerAd failed to load: $err');
+          // Dispose the ad here to free resources.
+          ad.dispose();
+        },
+      ),
+    )..load();
+  }
+
   Consumer<StageProvider> playButton() {
     return Consumer<StageProvider>(builder: (context, stageProvider, _) {
-              return (stageProvider.completedStage != 3)
-                  ? SizedBox(
-                      height: 60.h,
-                      child: ZoomTapAnimation(
-                        onTap: () {
-                          playTap(context);
-                          Navigator.pushReplacementNamed(context, "/game");
-                        },
-                        child: Image.asset("assets/images/play.png"),
-                      ),
-                    )
-                  : const SizedBox();
-            });
+      return (stageProvider.completedStage != 3)
+          ? SizedBox(
+              height: 60.h,
+              child: ZoomTapAnimation(
+                onTap: () {
+                  playTap(context);
+                  Navigator.pushReplacementNamed(context, "/game");
+                },
+                child: Image.asset("assets/images/play.png"),
+              ),
+            )
+          : const SizedBox();
+    });
   }
 
   Consumer<QuestionProvider> levelTitle() {
-    return Consumer<QuestionProvider>(
-                builder: (context, questionProvider, _) {
-              final stageProvider = Provider.of<StageProvider>(context);
+    return Consumer<QuestionProvider>(builder: (context, questionProvider, _) {
+      final stageProvider = Provider.of<StageProvider>(context);
 
-              return stageProvider.completedStage != 0
-                  ? Text(
-                      "Level ${questionProvider.currentLevel + 1}",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 50.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center,
-                    )
-                  : Text(
-                      "Level ${questionProvider.currentLevel + 1}",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 50.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center,
-                    ).animate().slideX(
-                        duration: 1.seconds,
-                        begin: 10.h,
-                      );
-            });
+      return stageProvider.completedStage != 0
+          ? Text(
+              "Level ${questionProvider.currentLevel + 1}",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 50.sp,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            )
+          : Text(
+              "Level ${questionProvider.currentLevel + 1}",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 50.sp,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ).animate().slideX(
+                duration: 1.seconds,
+                begin: 10.h,
+              );
+    });
   }
 
   Stack buildLevel() {
