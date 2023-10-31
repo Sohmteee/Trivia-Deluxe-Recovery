@@ -386,6 +386,11 @@ class _MenuScreenState extends State<MenuScreen>
     }
   }
 
+  void _loadAppOpenAd() {
+    MobileAds.instance.initialize().then((InitializationStatus status) {
+      _appOpenAd = 
+    });
+  }
   _loadBannerAd() {
     MobileAds.instance.updateRequestConfiguration(
       RequestConfiguration(
