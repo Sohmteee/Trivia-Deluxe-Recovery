@@ -12,7 +12,7 @@ import 'game.dart';
 
 RewardedAd? _rewardedAd;
 
-_loadRewardedAd() {
+_loadRewardedAd(BuildContext context) {
   RewardedAd.load(
     adUnitId: AdHelper.rewardedAdUnitId,
     request: const AdRequest(),
@@ -22,7 +22,7 @@ _loadRewardedAd() {
           onAdDismissedFullScreenContent: (ad) {
             ad.dispose();
             _rewardedAd = null;
-            _loadRewardedAd();
+            _loadRewardedAd(context);
           },
         );
 
@@ -30,13 +30,14 @@ _loadRewardedAd() {
       },
       onAdFailedToLoad: (err) {
         print('Failed to load a rewarded ad: ${err.message}');
+        Navigator.pushReplacementNamed(context, "/stage");
       },
     ),
   );
 }
 
 showLowCashDialog(BuildContext context) {
-  _loadRewardedAd();
+  _loadRewardedAd(context);
 
   showGameDialog(
     context,
