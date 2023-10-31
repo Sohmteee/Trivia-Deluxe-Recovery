@@ -22,7 +22,7 @@ Map<String, dynamic> animalsData = {
       "dialog": {
         "title": "Elephant",
         "content":
-            "Elephants are the largest land animals, known for their enormous size and distinctive trunk and ears. \nThey are iconic and culturally significant animals, revered in many cultures around the world. \nTheir preservation is crucial for maintaining biodiversity and the health of their ecosystems."
+            "Elephants are the largest land animals, known for their enormous size and distinctive trunk and ears. \nThey are iconic and culturally significant animals, revered in many cultures around the world."
       },
       "options": [
         {"text": "Lion", "value": false, "color": "yellow"},
