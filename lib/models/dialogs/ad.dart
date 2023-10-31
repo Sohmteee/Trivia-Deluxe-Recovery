@@ -17,13 +17,13 @@ showAdDialog(BuildContext context) {
         onAdLoaded: (ad) {
           ad.fullScreenContentCallback = FullScreenContentCallback(
             onAdDismissedFullScreenContent: (ad) {
-                ad.dispose();
-                _rewardedAd = null;
+              ad.dispose();
+              _rewardedAd = null;
               _loadRewardedAd();
             },
           );
 
-            _rewardedAd = ad;
+          _rewardedAd = ad;
         },
         onAdFailedToLoad: (err) {
           print('Failed to load a rewarded ad: ${err.message}');
@@ -32,8 +32,6 @@ showAdDialog(BuildContext context) {
     );
   }
 
-  
-  
   _loadRewardedAd();
 
   showGameDialog(
@@ -69,6 +67,7 @@ showAdDialog(BuildContext context) {
             Navigator.pop(context);
             _rewardedAd?.show(
               onUserEarnedReward: (_, reward) {
+                Navigator.pop(context);
               },
             );
           },
