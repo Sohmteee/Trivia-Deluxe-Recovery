@@ -14,6 +14,7 @@ RewardedAd? _rewardedAd;
 
 void _loadRewardedAd() {
   print("Loading a rewarded ad...");
+
   RewardedAd.load(
     adUnitId: AdHelper.rewardedAdUnitId,
     request: const AdRequest(),
