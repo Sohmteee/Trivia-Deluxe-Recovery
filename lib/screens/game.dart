@@ -6,6 +6,7 @@ import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/data/controllers.dart';
@@ -29,11 +30,16 @@ class _GameScreenState extends State<GameScreen> {
   int iterationCount = 30;
   late Timer timer;
   bool answered = false;
+  
+  BannerAd? _bannerAd;
+  bool _isLoaded = false;
 
   @override
   void initState() {
     final questionProvider =
         Provider.of<QuestionProvider>(context, listen: false);
+        
+    _loadBannerAd();
 
     confettiController = ConfettiController(duration: 1.5.seconds);
     Future.microtask(() => questionProvider.initQuestionProvider(context));
@@ -74,6 +80,13 @@ class _GameScreenState extends State<GameScreen> {
         return true;
       },
       child: GameBackground(
+        bottomNavigationBar: (_isLoaded)
+            ? SizedBox(
+                width: _bannerAd!.size.width.toDouble(),
+                height: _bannerAd!.size.height.toDouble(),
+                child: AdWidget(ad: _bannerAd!),
+              )
+            : null,
         body: Consumer<QuestionProvider>(
           builder: (context, questionProvider, _) {
             return Stack(
