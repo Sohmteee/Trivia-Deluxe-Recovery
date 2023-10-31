@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:trivia/ad_helper.dart';
 import 'package:trivia/main.dart';
 import 'package:trivia/providers/stage.dart';
 import 'package:trivia/screens/ad.dart';
@@ -10,6 +12,33 @@ import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 import 'game.dart';
 
 showLowCashDialog(BuildContext context) {
+  RewardedAd? _rewardedAd;
+
+  void _loadRewardedAd() {
+    RewardedAd.load(
+      adUnitId: AdHelper.rewardedAdUnitId,
+      request: const AdRequest(),
+      rewardedAdLoadCallback: RewardedAdLoadCallback(
+        onAdLoaded: (ad) {
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (ad) {
+              ad.dispose();
+              _rewardedAd = null;
+              _loadRewardedAd();
+            },
+          );
+
+          _rewardedAd = ad;
+        },
+        onAdFailedToLoad: (err) {
+          print('Failed to load a rewarded ad: ${err.message}');
+        },
+      ),
+    );
+  }
+
+  _loadRewardedAd();
+  
   showGameDialog(
     context,
     child: Builder(builder: (dialogContext) {
