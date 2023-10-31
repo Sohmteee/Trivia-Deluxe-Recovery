@@ -85,7 +85,7 @@ class _MenuScreenState extends State<MenuScreen>
         /* if (_appOpenIsLoaded) {
           _appOpenAd!.show();
         } */
-        if (rewardedAd != null) {
+        if (rewardedAd == null) {
           playBGAudio(context);
         }
         break;
