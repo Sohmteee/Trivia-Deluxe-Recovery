@@ -36,7 +36,8 @@ class AdHelper {
 
   static String get appOpenUnitID {
     if (Platform.isAndroid) {
-      return "ca-app-pub-3940256099942544/3419835294";
+      return "ca-app-pub-4696224049420135/6814510778";
+      // return "ca-app-pub-3940256099942544/3419835294";
     } else if (Platform.isIOS) {
       return "ca-app-pub-3940256099942544/5662855259";
     } else {
