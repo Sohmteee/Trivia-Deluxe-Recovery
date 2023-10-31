@@ -81,13 +81,6 @@ class _GameScreenState extends State<GameScreen> {
         return true;
       },
       child: GameBackground(
-        bottomNavigationBar: (_isLoaded)
-            ? SizedBox(
-                width: _bannerAd!.size.width.toDouble(),
-                height: _bannerAd!.size.height.toDouble(),
-                child: AdWidget(ad: _bannerAd!),
-              )
-            : null,
         body: Consumer<QuestionProvider>(
           builder: (context, questionProvider, _) {
             return Stack(
@@ -135,11 +128,6 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   _loadBannerAd() {
-    MobileAds.instance.updateRequestConfiguration(
-      RequestConfiguration(
-        testDeviceIds: ['5C26A3D9AFFD85F566BED84A49F36278'],
-      ),
-    );
 
     _bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
@@ -149,9 +137,6 @@ class _GameScreenState extends State<GameScreen> {
         // Called when an ad is successfully received.
         onAdLoaded: (ad) {
           debugPrint('$ad loaded.');
-          setState(() {
-            _isLoaded = true;
-          });
         },
         // Called when an ad request failed.
         onAdFailedToLoad: (ad, err) {

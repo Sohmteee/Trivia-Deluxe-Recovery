@@ -396,9 +396,6 @@ class _MenuScreenState extends State<MenuScreen>
         // Called when an ad is successfully received.
         onAdLoaded: (ad) {
           debugPrint('$ad loaded.');
-          setState(() {
-            _bannerIsLoaded = true;
-          });
         },
         // Called when an ad request failed.
         onAdFailedToLoad: (ad, err) {
