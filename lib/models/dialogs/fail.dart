@@ -194,11 +194,10 @@ showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
                         } else {
                           ToastContext().init(context);
                           Toast.show(
-                            "Ad is not ready yet!",
+                            "Ad is not ready yet. Try again after a while.",
                             textStyle: TextStyle(
                               color: Colors.white,
                               fontSize: 20.sp,
-                            
                             ),
                             duration: Toast.lengthLong,
                             gravity: Toast.bottom,
