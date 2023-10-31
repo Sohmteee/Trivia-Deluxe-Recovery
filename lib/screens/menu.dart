@@ -33,9 +33,9 @@ class _MenuScreenState extends State<MenuScreen>
   late AnimationController rotationController;
 
   BannerAd? _bannerAd;
-  AppOpenAd? _appOpenAd;
+  // AppOpenAd? _appOpenAd;
   bool _bannerIsLoaded = false;
-  bool _appOpenIsLoaded = false;
+  // bool _appOpenIsLoaded = false;
 
   @override
   void initState() {
@@ -389,7 +389,7 @@ class _MenuScreenState extends State<MenuScreen>
     }
   }
 
-  void _loadAppOpenAd() {
+  /* void _loadAppOpenAd() {
     MobileAds.instance.initialize().then((InitializationStatus status) {
       AppOpenAd.load(
         adUnitId: AdHelper.appOpenUnitID,
@@ -413,7 +413,7 @@ class _MenuScreenState extends State<MenuScreen>
         ),
       );
     });
-  }
+  } */
 
   _loadBannerAd() {
     _bannerAd = BannerAd(
