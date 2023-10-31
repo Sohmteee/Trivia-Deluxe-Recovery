@@ -12,6 +12,7 @@ import 'package:trivia/ad_helper.dart';
 import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/data/controllers.dart';
 import 'package:trivia/main.dart';
+import 'package:trivia/models/dialogs/low_cash.dart';
 import 'package:trivia/models/game_background.dart';
 import 'package:trivia/models/stat_bar.dart';
 import 'package:trivia/providers/question.dart';
@@ -40,6 +41,7 @@ class _GameScreenState extends State<GameScreen> {
         Provider.of<QuestionProvider>(context, listen: false);
 
     _loadBannerAd();
+    loadRewardedAd(context);
 
     confettiController = ConfettiController(duration: 1.5.seconds);
     Future.microtask(() => questionProvider.initQuestionProvider(context));
@@ -132,7 +134,6 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   _loadBannerAd() {
-
     _bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
       request: const AdRequest(),

@@ -13,8 +13,6 @@ import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 import 'game.dart';
 
 showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
-  loadRewardedAd(context);
-
   final questionProvider =
       Provider.of<QuestionProvider>(context, listen: false);
 
@@ -185,11 +183,9 @@ showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
                         pauseBGAudio();
                         rewardedAd?.show(
                           onUserEarnedReward: (_, reward) {
-                            Provider.of<MoneyProvider>(context,
-                                    listen: false)
+                            Provider.of<MoneyProvider>(context, listen: false)
                                 .increaseCoins(5);
-                            Navigator.pushReplacementNamed(
-                                context, "/stage");
+                            Navigator.pushReplacementNamed(context, "/stage");
                             playBGAudio(context);
                           },
                         );
