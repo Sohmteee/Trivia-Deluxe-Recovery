@@ -13,6 +13,8 @@ class MoneyProvider extends ChangeNotifier {
   int _reward = 0;
   int get reward => _reward;
 
+  bool animateCoins = false;
+
   /* 
   10 coins = 100 cash
   20 coins = 200 cash
@@ -30,6 +32,10 @@ class MoneyProvider extends ChangeNotifier {
   10,000 cash = 50,000 naira
 
    */
+
+  toggleAnimateCoins(value) {
+    
+  }
 
   increaseCash(int value) {
     if (cash + value <= 5000) {
