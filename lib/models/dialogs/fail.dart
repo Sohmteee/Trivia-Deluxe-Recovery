@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:toast/toast.dart';
 import 'package:trivia/main.dart';
 import 'package:trivia/models/dialogs/low_cash.dart';
 import 'package:trivia/providers/money.dart';
@@ -179,16 +180,30 @@ showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
                   builder: (context, moneyProvider, _) {
                     return ZoomTapAnimation(
                       onTap: () {
-                        pauseBGAudio();
                         playTap(context);
-                        rewardedAd?.show(
-                          onUserEarnedReward: (_, reward) {
-                            Provider.of<MoneyProvider>(context, listen: false)
-                                .increaseCoins(5);
-                            Navigator.pushReplacementNamed(context, "/stage");
-                            playBGAudio(context);
-                          },
-                        );
+                        if (rewardedAd != null) {
+                          pauseBGAudio();
+                          rewardedAd?.show(
+                            onUserEarnedReward: (_, reward) {
+                              Provider.of<MoneyProvider>(context, listen: false)
+                                  .increaseCoins(5);
+                              Navigator.pushReplacementNamed(context, "/stage");
+                              playBGAudio(context);
+                            },
+                          );
+                        } else {
+                          ToastContext().init(context);
+                          Toast.show(
+                            "Ad is not ready yet!",
+                            textStyle: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.sp,
+                            
+                            ),
+                            duration: Toast.lengthLong,
+                            gravity: Toast.bottom,
+                          );
+                        }
                       },
                       child: Container(
                         padding: EdgeInsets.symmetric(
