@@ -74,10 +74,6 @@ class _MenuScreenState extends State<MenuScreen>
     super.dispose();
   }
 
-  Future<InitializationStatus> _initGoogleMobileAds() {
-    return MobileAds.instance.initialize();
-  }
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
