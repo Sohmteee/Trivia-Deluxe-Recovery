@@ -14,6 +14,7 @@ import 'game.dart';
 RewardedAd? _rewardedAd;
 
 void _loadRewardedAd() {
+  
   RewardedAd.load(
     adUnitId: AdHelper.rewardedAdUnitId,
     request: const AdRequest(),
