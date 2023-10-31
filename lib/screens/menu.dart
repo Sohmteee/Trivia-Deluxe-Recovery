@@ -92,6 +92,9 @@ class _MenuScreenState extends State<MenuScreen>
     switch (state) {
       case AppLifecycleState.resumed:
       case AppLifecycleState.inactive:
+        if (_appOpenIsLoaded) {
+          _appOpenAd!.show();
+        }
         playBGAudio();
         break;
       case AppLifecycleState.paused:
@@ -411,6 +414,7 @@ class _MenuScreenState extends State<MenuScreen>
       );
     });
   }
+
   _loadBannerAd() {
     MobileAds.instance.updateRequestConfiguration(
       RequestConfiguration(
