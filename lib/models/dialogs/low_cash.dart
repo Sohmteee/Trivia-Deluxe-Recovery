@@ -33,7 +33,6 @@ loadRewardedAd(BuildContext context) {
       onAdFailedToLoad: (err) {
         print('Failed to load a rewarded ad: ${err.message}');
         Navigator.pushReplacementNamed(context, "/stage");
-        playBGAudio(context);
       },
     ),
   );
