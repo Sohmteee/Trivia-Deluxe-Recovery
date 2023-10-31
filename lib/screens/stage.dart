@@ -54,33 +54,31 @@ class _StageScreenState extends State<StageScreen> {
         return true;
       },
       child: GameBackground(
-        body: Column(
-          children: [
-            Column(
-              children: [
-                const GameStats(),
-                const Spacer(),
-                levelTitle(),
-                const Spacer(),
-                buildLevel(),
-                const Spacer(flex: 3),
-                playButton(),
-              ],
-            ),
-            SizedBox(height: 20.h),
-            SizedBox(
-              width: _bannerAd!.size.width.toDouble(),
-              height: _bannerAd!.size.height.toDouble(),
-              child: AdWidget(ad: _bannerAd!),
-            ),
-          ],
+        body: Padding(
+          padding: EdgeInsets.fromLTRB(40.w, 40.h, 40.w, 0),
+          child: Column(
+            children: [
+              const GameStats(),
+              const Spacer(),
+              levelTitle(),
+              const Spacer(),
+              buildLevel(),
+              const Spacer(flex: 3),
+              playButton(),
+              SizedBox(height: 20.h),
+              SizedBox(
+                width: _bannerAd!.size.width.toDouble(),
+                height: _bannerAd!.size.height.toDouble(),
+                child: AdWidget(ad: _bannerAd!),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
   _loadBannerAd() {
-    
     _bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
       request: const AdRequest(),
