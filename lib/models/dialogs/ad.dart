@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:trivia/ad_helper.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 import 'game.dart';
@@ -11,22 +12,18 @@ showAdDialog(BuildContext context) {
   void _loadRewardedAd() {
     RewardedAd.load(
       adUnitId: AdHelper.rewardedAdUnitId,
-      request: AdRequest(),
+      request: const AdRequest(),
       rewardedAdLoadCallback: RewardedAdLoadCallback(
         onAdLoaded: (ad) {
           ad.fullScreenContentCallback = FullScreenContentCallback(
             onAdDismissedFullScreenContent: (ad) {
-              setState(() {
                 ad.dispose();
                 _rewardedAd = null;
-              });
               _loadRewardedAd();
             },
           );
 
-          setState(() {
             _rewardedAd = ad;
-          });
         },
         onAdFailedToLoad: (err) {
           print('Failed to load a rewarded ad: ${err.message}');
@@ -34,7 +31,7 @@ showAdDialog(BuildContext context) {
       ),
     );
   }
-  
+
   showGameDialog(
     context,
     isExitable: true,
