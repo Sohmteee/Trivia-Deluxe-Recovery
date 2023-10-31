@@ -187,369 +187,367 @@ class _RewardScreenState extends State<RewardScreen> {
 
   ZoomTapAnimation rewardButton(BuildContext context) {
     return ZoomTapAnimation(
-                onTap: () {
-                  playTap(context);
-                  if (_interstitialAd != null) {
-                    _interstitialAd?.show();
-                  } else {
-                    if (level <= 28) {
-                      Navigator.pushReplacementNamed(context, "/stage");
-                    } else {
-                      Navigator.pushReplacementNamed(context, "/select");
-                    }
-                  }
-                },
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 15.h,
-                    horizontal: 30.w,
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColor.right,
-                    borderRadius: BorderRadius.circular(30.r),
-                  ),
-                  child: Text(
-                    level <= 28
-                        ? "Continue to Level ${level + 2}"
-                        : "Select Another Category",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25.sp,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              );
+      onTap: () {
+        playTap(context);
+        if (_interstitialAd != null) {
+          _interstitialAd?.show();
+        } else {
+          if (level <= 28) {
+            Navigator.pushReplacementNamed(context, "/stage");
+          } else {
+            Navigator.pushReplacementNamed(context, "/select");
+          }
+        }
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          vertical: 15.h,
+          horizontal: 30.w,
+        ),
+        decoration: BoxDecoration(
+          color: AppColor.right,
+          borderRadius: BorderRadius.circular(30.r),
+        ),
+        child: Text(
+          level <= 28
+              ? "Continue to Level ${level + 2}"
+              : "Select Another Category",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 25.sp,
+          ),
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
   }
 
   SizedBox chestBox(BuildContext context) {
     return SizedBox(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  !claimReward
-                      ? Text(
-                          "You earned",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 30.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ).animate().fadeOut(
-                            delay: 7.seconds,
-                            duration: .5.seconds,
-                            begin: 1,
-                          )
-                      : const Spacer(),
-                  const SizedBox(width: 10),
-                  !claimReward
-                      ? SizedBox(
-                          child: countUp
-                              ? Countup(
-                                  begin: 0,
-                                  end: score.toDouble(),
-                                  duration: 1.seconds,
-                                  style: TextStyle(
-                                    color: AppColor.right,
-                                    fontSize: 30.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                )
-                              : Text(
-                                  "0",
-                                  style: TextStyle(
-                                    color: AppColor.right,
-                                    fontSize: 30.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                        )
-                          .animate(
-                            onComplete: (controller) {
-                              Future.delayed(1.seconds, () {
-                                setState(() {
-                                  claimReward = true;
-                                  final moneyProvider =
-                                      Provider.of<MoneyProvider>(context,
-                                          listen: false);
-                                  final streaksProvider =
-                                      Provider.of<StreaksProvider>(context,
-                                          listen: false);
-                                  final questionProvider =
-                                      Provider.of<QuestionProvider>(context,
-                                          listen: false);
-
-                                  Future.delayed(2.seconds, () {
-                                    playCoinUp(context);
-                                    moneyProvider.increaseCoins(score);
-                                    streaksProvider.updateCoinStreak(
-                                        moneyProvider.coins);
-                                    questionProvider
-                                        .updateLeaderBoardScore(context);
-
-                                    final profileProvider =
-                                        Provider.of<ProfileProvider>(context,
-                                            listen: false);
-                                    if (profileProvider.username != null) {
-                                      profileProvider.updatePlayer(context);
-                                    }
-                                  });
-                                });
-                              });
-                            },
-                          )
-                          .slideX(
-                            duration: .5.seconds,
-                            begin: -20.w,
-                            end: 0,
-                          )
-                          .then()
-                          .slideX(
-                            delay: 6.5.seconds,
-                            duration: .5.seconds,
-                            begin: 0,
-                            end: -1.w,
-                          )
-                          .slideY(
-                            delay: 6.5.seconds,
-                            duration: .5.seconds,
-                            begin: 0,
-                            end: 1.w,
-                          )
-                      : Stack(
-                          alignment: Alignment.center,
-                          clipBehavior: Clip.none,
-                          children: [
-                            Stack(
-                              children: List.generate(
-                                score,
-                                (index) => SizedBox(
-                                  width: 30.w,
-                                  child:
-                                      Image.asset("assets/images/coin.png"),
-                                ),
-                              )
-                                  .animate(
-                                      interval: 100.milliseconds,
-                                      onPlay: (controller) {},
-                                      onComplete: (controller) {
-                                        setState(() {
-                                          receivedReward = true;
-                                          if (!playedCoinUp) {
-                                            setState(() {
-                                              playedCoinUp = true;
-                                            });
-                                          }
-                                        });
-                                      })
-                                  .followPath(
-                                    path: path,
-                                    delay: 1.seconds,
-                                    duration: .6.seconds,
-                                  )
-                                  .fadeOut(
-                                    delay: 1.seconds,
-                                    duration: .7.seconds,
-                                  ),
-                            ),
-                            SizedBox(
-                              height: 200.h,
-                              width: 200.w,
-                              child: Lottie.asset(
-                                "assets/lottie/chest.json",
-                                repeat: false,
-                              ),
-                            ),
-                          ],
-                        ).animate().fadeIn(
-                            duration: .5.seconds,
-                            begin: 0,
-                          ),
-                  const SizedBox(width: 10),
-                  !claimReward
-                      ? Text(
-                          "coins",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 30.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ).animate().fadeOut(
-                            delay: 7.seconds,
-                            duration: .5.seconds,
-                            begin: 1,
-                          )
-                      : const Spacer(),
-                ],
-              )
-                  .animate(
-                    onPlay: (controller) => controller.repeat(),
-                  )
-                  .shimmer(
-                    delay: 2.seconds,
-                    duration: 1.seconds,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          !claimReward
+              ? Text(
+                  "You earned",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 30.sp,
+                    fontWeight: FontWeight.bold,
                   ),
-            );
+                ).animate().fadeOut(
+                    delay: 7.seconds,
+                    duration: .5.seconds,
+                    begin: 1,
+                  )
+              : const Spacer(),
+          const SizedBox(width: 10),
+          !claimReward
+              ? SizedBox(
+                  child: countUp
+                      ? Countup(
+                          begin: 0,
+                          end: score.toDouble(),
+                          duration: 1.seconds,
+                          style: TextStyle(
+                            color: AppColor.right,
+                            fontSize: 30.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )
+                      : Text(
+                          "0",
+                          style: TextStyle(
+                            color: AppColor.right,
+                            fontSize: 30.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                )
+                  .animate(
+                    onComplete: (controller) {
+                      Future.delayed(1.seconds, () {
+                        setState(() {
+                          claimReward = true;
+                          final moneyProvider = Provider.of<MoneyProvider>(
+                              context,
+                              listen: false);
+                          final streaksProvider = Provider.of<StreaksProvider>(
+                              context,
+                              listen: false);
+                          final questionProvider =
+                              Provider.of<QuestionProvider>(context,
+                                  listen: false);
+
+                          Future.delayed(2.seconds, () {
+                            playCoinUp(context);
+                            moneyProvider.increaseCoins(score);
+                            streaksProvider
+                                .updateCoinStreak(moneyProvider.coins);
+                            questionProvider.updateLeaderBoardScore(context);
+
+                            final profileProvider =
+                                Provider.of<ProfileProvider>(context,
+                                    listen: false);
+                            if (profileProvider.username != null) {
+                              profileProvider.updatePlayer(context);
+                            }
+                          });
+                        });
+                      });
+                    },
+                  )
+                  .slideX(
+                    duration: .5.seconds,
+                    begin: -20.w,
+                    end: 0,
+                  )
+                  .then()
+                  .slideX(
+                    delay: 6.5.seconds,
+                    duration: .5.seconds,
+                    begin: 0,
+                    end: -1.w,
+                  )
+                  .slideY(
+                    delay: 6.5.seconds,
+                    duration: .5.seconds,
+                    begin: 0,
+                    end: 1.w,
+                  )
+              : Stack(
+                  alignment: Alignment.center,
+                  clipBehavior: Clip.none,
+                  children: [
+                    Stack(
+                      children: List.generate(
+                        score,
+                        (index) => SizedBox(
+                          width: 30.w,
+                          child: Image.asset("assets/images/coin.png"),
+                        ),
+                      )
+                          .animate(
+                              interval: 100.milliseconds,
+                              onPlay: (controller) {},
+                              onComplete: (controller) {
+                                setState(() {
+                                  receivedReward = true;
+                                  if (!playedCoinUp) {
+                                    setState(() {
+                                      playedCoinUp = true;
+                                    });
+                                  }
+                                });
+                              })
+                          .followPath(
+                            path: path,
+                            delay: 1.seconds,
+                            duration: .6.seconds,
+                          )
+                          .fadeOut(
+                            delay: 1.seconds,
+                            duration: .7.seconds,
+                          ),
+                    ),
+                    SizedBox(
+                      height: 200.h,
+                      width: 200.w,
+                      child: Lottie.asset(
+                        "assets/lottie/chest.json",
+                        repeat: false,
+                      ),
+                    ),
+                  ],
+                ).animate().fadeIn(
+                    duration: .5.seconds,
+                    begin: 0,
+                  ),
+          const SizedBox(width: 10),
+          !claimReward
+              ? Text(
+                  "coins",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 30.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ).animate().fadeOut(
+                    delay: 7.seconds,
+                    duration: .5.seconds,
+                    begin: 1,
+                  )
+              : const Spacer(),
+        ],
+      )
+          .animate(
+            onPlay: (controller) => controller.repeat(),
+          )
+          .shimmer(
+            delay: 2.seconds,
+            duration: 1.seconds,
+          ),
+    );
   }
 
   Row rewardTitle() {
     return Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ConfettiWidget(
-                  confettiController: vitoryConfettiController,
-                  blastDirection: 0,
-                  emissionFrequency: 0.6,
-                  minimumSize: const Size(10, 10),
-                  maximumSize: const Size(10, 10),
-                  numberOfParticles: 5,
-                  gravity: .3,
-                  colors: const [
-                    Colors.green,
-                    Colors.blue,
-                    Colors.pink,
-                    Colors.orange,
-                    Colors.purple,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ConfettiWidget(
+          confettiController: vitoryConfettiController,
+          blastDirection: 0,
+          emissionFrequency: 0.6,
+          minimumSize: const Size(10, 10),
+          maximumSize: const Size(10, 10),
+          numberOfParticles: 5,
+          gravity: .3,
+          colors: const [
+            Colors.green,
+            Colors.blue,
+            Colors.pink,
+            Colors.orange,
+            Colors.purple,
+          ],
+        ),
+        level <= 28
+            ? SizedBox(
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Lottie.asset(
+                      "assets/lottie/celebration.json",
+                      width: 200,
+                      height: 200,
+                      fit: BoxFit.fill,
+                    ),
+                    Text(
+                      "Level\nPassed!",
+                      style: TextStyle(
+                        color: AppColor.right,
+                        fontSize: 55.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      "Level\nPassed!",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 50.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ],
-                ),
-                level <= 28
-                    ? SizedBox(
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Lottie.asset(
-                              "assets/lottie/celebration.json",
-                              width: 200,
-                              height: 200,
-                              fit: BoxFit.fill,
-                            ),
-                            Text(
-                              "Level\nPassed!",
-                              style: TextStyle(
-                                color: AppColor.right,
-                                fontSize: 55.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            Text(
-                              "Level\nPassed!",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 50.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        )
-                            .animate(
-                              onPlay: (controller) => controller.repeat(),
-                            )
-                            .shimmer(
-                              delay: 2.seconds,
-                              duration: 1.seconds,
-                            ),
-                      )
-                        .animate(
-                          onPlay: (controller) => Future.delayed(
-                            1.seconds,
-                            () => vitoryConfettiController.play(),
-                          ),
-                        )
-                        .scaleXY(
-                          delay: .3.seconds,
-                          duration: 1.seconds,
-                          curve: Curves.bounceOut,
-                          begin: 0,
-                          end: 1.4,
-                        )
-                        .then()
-                        .scaleXY(
-                          delay: 2.seconds,
-                          curve: Curves.bounceOut,
-                          duration: .3.seconds,
-                          begin: 1.4,
-                          end: 1,
-                        )
-                    : SizedBox(
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Lottie.asset(
-                              "assets/lottie/celebration.json",
-                              width: 200,
-                              height: 200,
-                              fit: BoxFit.fill,
-                            ),
-                            Text(
-                              "Category\nCompleted!",
-                              style: TextStyle(
-                                color: AppColor.right,
-                                fontSize: 51.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            Text(
-                              "Category\nCompleted!",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 48.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        )
-                            .animate(
-                              onPlay: (controller) => controller.repeat(),
-                            )
-                            .shimmer(
-                              delay: 2.seconds,
-                              duration: 1.seconds,
-                            ),
-                      )
-                        .animate(
-                          onPlay: (controller) => Future.delayed(
-                            1.seconds,
-                            () => vitoryConfettiController.play(),
-                          ),
-                        )
-                        .scaleXY(
-                          delay: .3.seconds,
-                          duration: 1.seconds,
-                          curve: Curves.bounceOut,
-                          begin: 0,
-                          end: 1.4,
-                        )
-                        .then()
-                        .scaleXY(
-                          delay: 2.seconds,
-                          curve: Curves.bounceOut,
-                          duration: .3.seconds,
-                          begin: 1.4,
-                          end: 1,
-                        ),
-                ConfettiWidget(
-                  confettiController: vitoryConfettiController,
-                  blastDirection: pi,
-                  emissionFrequency: 0.6,
-                  minimumSize: const Size(10, 10),
-                  maximumSize: const Size(10, 10),
-                  numberOfParticles: 5,
-                  gravity: .3,
-                  colors: const [
-                    Colors.green,
-                    Colors.blue,
-                    Colors.pink,
-                    Colors.orange,
-                    Colors.purple,
+                )
+                    .animate(
+                      onPlay: (controller) => controller.repeat(),
+                    )
+                    .shimmer(
+                      delay: 2.seconds,
+                      duration: 1.seconds,
+                    ),
+              )
+                .animate(
+                  onPlay: (controller) => Future.delayed(
+                    1.seconds,
+                    () => vitoryConfettiController.play(),
+                  ),
+                )
+                .scaleXY(
+                  delay: .3.seconds,
+                  duration: 1.seconds,
+                  curve: Curves.bounceOut,
+                  begin: 0,
+                  end: 1.4,
+                )
+                .then()
+                .scaleXY(
+                  delay: 2.seconds,
+                  curve: Curves.bounceOut,
+                  duration: .3.seconds,
+                  begin: 1.4,
+                  end: 1,
+                )
+            : SizedBox(
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Lottie.asset(
+                      "assets/lottie/celebration.json",
+                      width: 200,
+                      height: 200,
+                      fit: BoxFit.fill,
+                    ),
+                    Text(
+                      "Category\nCompleted!",
+                      style: TextStyle(
+                        color: AppColor.right,
+                        fontSize: 51.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      "Category\nCompleted!",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 48.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ],
+                )
+                    .animate(
+                      onPlay: (controller) => controller.repeat(),
+                    )
+                    .shimmer(
+                      delay: 2.seconds,
+                      duration: 1.seconds,
+                    ),
+              )
+                .animate(
+                  onPlay: (controller) => Future.delayed(
+                    1.seconds,
+                    () => vitoryConfettiController.play(),
+                  ),
+                )
+                .scaleXY(
+                  delay: .3.seconds,
+                  duration: 1.seconds,
+                  curve: Curves.bounceOut,
+                  begin: 0,
+                  end: 1.4,
+                )
+                .then()
+                .scaleXY(
+                  delay: 2.seconds,
+                  curve: Curves.bounceOut,
+                  duration: .3.seconds,
+                  begin: 1.4,
+                  end: 1,
                 ),
-              ],
-            );
+        ConfettiWidget(
+          confettiController: vitoryConfettiController,
+          blastDirection: pi,
+          emissionFrequency: 0.6,
+          minimumSize: const Size(10, 10),
+          maximumSize: const Size(10, 10),
+          numberOfParticles: 5,
+          gravity: .3,
+          colors: const [
+            Colors.green,
+            Colors.blue,
+            Colors.pink,
+            Colors.orange,
+            Colors.purple,
+          ],
+        ),
+      ],
+    );
   }
 
   void _loadInterstitialAd() {
