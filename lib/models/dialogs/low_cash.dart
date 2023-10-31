@@ -16,26 +16,20 @@ void _loadRewardedAd() {
   print("Loading a rewarded ad...");
 
   RewardedAd.load(
-    adUnitId: AdHelper.rewardedAdUnitId,
-    request: const AdRequest(),
-    rewardedAdLoadCallback: RewardedAdLoadCallback(
-      onAdLoaded: (ad) {
-        print("Ad loaded.");
-        ad.fullScreenContentCallback = FullScreenContentCallback(
-          onAdDismissedFullScreenContent: (ad) {
-            ad.dispose();
-            _rewardedAd = null;
-            _loadRewardedAd();
-          },
-        );
-
-        _rewardedAd = ad;
-      },
-      onAdFailedToLoad: (err) {
-        print('Failed to load a rewarded ad: ${err.message}');
-      },
-    ),
-  );
+      adUnitId: adUnitId,
+      request: const AdRequest(),
+      adLoadCallback: RewardedAdLoadCallback(
+        // Called when an ad is successfully received.
+        onAdLoaded: (ad) {
+          debugPrint('$ad loaded.');
+          // Keep a reference to the ad so you can show it later.
+          _rewardedAd = ad;
+        },
+        // Called when an ad request failed.
+        onAdFailedToLoad: (LoadAdError error) {
+          debugPrint('RewardedAd failed to load: $error');
+        },
+      ));
 }
 
 showLowCashDialog(BuildContext context) {
