@@ -33,6 +33,7 @@ loadRewardedAd(BuildContext context) {
       onAdFailedToLoad: (err) {
         print('Failed to load a rewarded ad: ${err.message}');
         Navigator.pushReplacementNamed(context, "/stage");
+        playBGAudio(context);
       },
     ),
   );
@@ -89,6 +90,7 @@ showLowCashDialog(BuildContext context) {
                     Provider.of<MoneyProvider>(dialogContext, listen: false)
                         .increaseCoins(5);
                     Navigator.pushReplacementNamed(dialogContext, "/stage");
+                    playBGAudio(dialogContext);
                   },
                 );
               } else {
