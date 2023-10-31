@@ -83,7 +83,6 @@ showLowCashDialog(BuildContext context) {
                 onUserEarnedReward: (_, reward) {
                   Provider.of<MoneyProvider>(dialogContext, listen: false)
                       .increaseCoins(5);
-
                   Navigator.pushReplacementNamed(dialogContext, "/stage");
                 },
               );
