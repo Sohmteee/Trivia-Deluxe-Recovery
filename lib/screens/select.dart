@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/data/box.dart';
@@ -39,7 +40,8 @@ class SelectScreen extends StatefulWidget {
 }
 
 class _SelectScreenState extends State<SelectScreen> {
-  // BannerAd? _bannerAd;
+  BannerAd? _bannerAd;
+  bool _isLoaded = false;
   late PageController pageController;
 
   List<List<Map<String, dynamic>>> selectItems = [
@@ -126,6 +128,8 @@ class _SelectScreenState extends State<SelectScreen> {
         }
       }
     }
+    
+    _loadBannerAd();
 
     final selectProvider = Provider.of<SelectProvider>(context, listen: false);
     pageController = PageController(initialPage: selectProvider.pageIndex);
