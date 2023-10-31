@@ -19,10 +19,12 @@ loadRewardedAd(BuildContext context) {
     request: const AdRequest(),
     rewardedAdLoadCallback: RewardedAdLoadCallback(
       onAdLoaded: (ad) {
+        pauseBGAudio();
         ad.fullScreenContentCallback = FullScreenContentCallback(
           onAdDismissedFullScreenContent: (ad) {
             ad.dispose();
             rewardedAd = null;
+            playBGAudio(context);
             loadRewardedAd(context);
           },
         );
@@ -82,13 +84,11 @@ showLowCashDialog(BuildContext context) {
           ZoomTapAnimation(
             onTap: () {
               playTap(dialogContext);
-              pauseBGAudio();
               rewardedAd?.show(
                 onUserEarnedReward: (_, reward) {
                   Provider.of<MoneyProvider>(dialogContext, listen: false)
                       .increaseCoins(5);
                   Navigator.pushReplacementNamed(dialogContext, "/stage");
-                  playBGAudio(dialogContext);
                 },
               );
             },
