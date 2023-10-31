@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
+import 'package:trivia/ad_helper.dart';
 import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/data/box.dart';
 import 'package:trivia/data/questions/anime.dart';
@@ -128,7 +129,7 @@ class _SelectScreenState extends State<SelectScreen> {
         }
       }
     }
-    
+
     _loadBannerAd();
 
     final selectProvider = Provider.of<SelectProvider>(context, listen: false);
@@ -151,6 +152,13 @@ class _SelectScreenState extends State<SelectScreen> {
         return true;
       },
       child: GameBackground(
+        bottomNavigationBar: (_isLoaded)
+            ? SizedBox(
+                width: _bannerAd!.size.width.toDouble(),
+                height: _bannerAd!.size.height.toDouble(),
+                child: AdWidget(ad: _bannerAd!),
+              )
+            : null,
         body: Padding(
           padding: EdgeInsets.symmetric(vertical: 40.h),
           child: Column(
@@ -159,7 +167,7 @@ class _SelectScreenState extends State<SelectScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: const GameStats(),
               ),
-              const Spacer(flex: 4),
+              const Spacer(flex: 7),
               Text(
                 "Choose a category",
                 style: TextStyle(
@@ -168,9 +176,9 @@ class _SelectScreenState extends State<SelectScreen> {
                 ),
                 textAlign: TextAlign.center,
               ),
-              const Spacer(flex: 2),
+              const Spacer(flex: 6),
               buildCategories(),
-              const Spacer(flex: 2),
+              const Spacer(flex: 3),
               categoriesIndicators(context),
               const Spacer(),
             ],
@@ -178,6 +186,35 @@ class _SelectScreenState extends State<SelectScreen> {
         ),
       ),
     );
+  }
+
+  _loadBannerAd() {
+    MobileAds.instance.updateRequestConfiguration(
+      RequestConfiguration(
+        testDeviceIds: ['5C26A3D9AFFD85F566BED84A49F36278'],
+      ),
+    );
+
+    _bannerAd = BannerAd(
+      adUnitId: AdHelper.bannerAdUnitId,
+      request: const AdRequest(),
+      size: AdSize.banner,
+      listener: BannerAdListener(
+        // Called when an ad is successfully received.
+        onAdLoaded: (ad) {
+          debugPrint('$ad loaded.');
+          setState(() {
+            _isLoaded = true;
+          });
+        },
+        // Called when an ad request failed.
+        onAdFailedToLoad: (ad, err) {
+          debugPrint('BannerAd failed to load: $err');
+          // Dispose the ad here to free resources.
+          ad.dispose();
+        },
+      ),
+    )..load();
   }
 
   Row categoriesIndicators(BuildContext context) {

@@ -150,13 +150,14 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
                                 Stack(
                                   alignment: Alignment.center,
                                   children: [
-                                    SizedBox(
-                                      width: 100.w,
-                                      height: 100.h,
-                                      child: Chart(
-                                        duration: const Duration(seconds: 2),
-                                        layers: [
-                                          ChartGroupPieLayer(
+                            
+                SizedBox(
+                                        width: 100.w,
+                                        height: 100.h,
+                                        child: Chart(
+                                          duration: const Duration(seconds: 2),
+                                          layers: [
+                                            ChartGroupPieLayer(
                                             items: [
                                               [
                                                 if (questionProvider
