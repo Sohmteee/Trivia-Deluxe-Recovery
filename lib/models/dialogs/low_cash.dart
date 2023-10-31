@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:toast/toast.dart';
 import 'package:trivia/ad_helper.dart';
 import 'package:trivia/main.dart';
 import 'package:trivia/providers/money.dart';
@@ -92,6 +93,10 @@ showLowCashDialog(BuildContext context) {
                     playBGAudio(dialogContext);
                   },
                 );
+              } else {
+                ToastContext().init(context);
+                Toast.show("Ad is not ready yet!",
+                    duration: Toast.lengthLong, gravity: Toast.bottom);
               }
             },
             child: Container(
