@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:trivia/ad_helper.dart';
 import 'package:trivia/main.dart';
 import 'package:trivia/providers/money.dart';
-import 'package:trivia/providers/stage.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 import 'game.dart';
@@ -14,7 +13,7 @@ import 'game.dart';
 RewardedAd? _rewardedAd;
 
 void _loadRewardedAd() {
-  
+  print("Loading a rewarded ad...");
   RewardedAd.load(
     adUnitId: AdHelper.rewardedAdUnitId,
     request: const AdRequest(),
@@ -116,43 +115,6 @@ showLowCashDialog(BuildContext context) {
               ),
             ),
           ),
-          SizedBox(height: 10.h),
-          Consumer<StageProvider>(builder: (context, stageProvider, _) {
-            return ZoomTapAnimation(
-              onTap: () {
-                playTap(context);
-                Navigator.of(dialogContext).pop();
-                stageProvider.resetCompletedStage();
-                Navigator.popAndPushNamed(dialogContext, "/select");
-              },
-              child: Container(
-                width: double.maxFinite,
-                padding:
-                    EdgeInsets.symmetric(horizontal: 20.sp, vertical: 10.sp),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20.r),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Nah, I'll pass",
-                      style: TextStyle(
-                        fontSize: 15.sp,
-                      ),
-                    ),
-                    SizedBox(width: 10.w),
-                    SizedBox(
-                      height: 20.h,
-                      child: Image.asset("assets/images/laugh.png"),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          }),
         ],
       );
     }),
