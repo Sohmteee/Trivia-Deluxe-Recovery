@@ -151,7 +151,7 @@ class _RewardScreenState extends State<RewardScreen> {
       },
       child: GameBackground(
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 40.w, vertical: 40.h),
+          padding: EdgeInsets.fromLTRB(40.w, 40.h, 40.w, 0),
           child: Column(
             children: [
               const GameStats(),
@@ -179,7 +179,7 @@ class _RewardScreenState extends State<RewardScreen> {
                       delay: 1.9.seconds,
                       duration: 1.seconds,
                     ),
-              const Spacer(flex: 3),
+              const Spacer(flex: 1),
               SizedBox(
                 width: _bannerAd!.size.width.toDouble(),
                 height: _bannerAd!.size.height.toDouble(),
