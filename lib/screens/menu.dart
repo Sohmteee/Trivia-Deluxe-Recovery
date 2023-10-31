@@ -15,6 +15,7 @@ import 'package:trivia/data/controllers.dart';
 import 'package:trivia/main.dart';
 import 'package:trivia/models/circle_border.dart';
 import 'package:trivia/models/dialogs/exit.dart';
+import 'package:trivia/models/dialogs/low_cash.dart';
 import 'package:trivia/models/dialogs/settings.dart';
 import 'package:trivia/providers/audio.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
@@ -84,7 +85,12 @@ class _MenuScreenState extends State<MenuScreen>
         /* if (_appOpenIsLoaded) {
           _appOpenAd!.show();
         } */
-        playBGAudio(context);
+        if (rewardedAd != null) {
+          if (rewardedAd!.) {
+            rewardedAd!.show();
+          }
+          playBGAudio(context);
+        }
         break;
       case AppLifecycleState.paused:
       case AppLifecycleState.hidden:
