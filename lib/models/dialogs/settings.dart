@@ -15,6 +15,7 @@ showSettingsDialog(BuildContext context) {
   showGameDialog(
     context,
     isExitable: true,
+    margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 40.h),
     padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 40.h),
     child: Column(
       mainAxisSize: MainAxisSize.min,
