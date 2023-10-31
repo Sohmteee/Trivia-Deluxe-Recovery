@@ -651,17 +651,8 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
       );
     }
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        leaderboardHeads(),
-        leaderboardBody(index),
-      ],
-    );
-  }
-
-  Expanded leaderboardBody(int index) {
-    return Expanded(
+    Expanded leaderboardBody(int index) {
+      return Expanded(
         child: Container(
           width: double.maxFinite,
           padding: EdgeInsets.only(top: 10.h),
@@ -727,9 +718,8 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                               }
 
                               // Find the index of the player with the specified device_id, if it exists.
-                              int index = snapshot.data.indexWhere(
-                                  (profile) =>
-                                      profile["device_id"] == deviceID);
+                              int index = snapshot.data.indexWhere((profile) =>
+                                  profile["device_id"] == deviceID);
 
                               if (index != -1) {
                                 // Player with device_id found, adjust the index as needed.
@@ -861,5 +851,14 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
           ),
         ),
       );
+    }
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        leaderboardHeads(),
+        leaderboardBody(index),
+      ],
+    );
   }
 }
