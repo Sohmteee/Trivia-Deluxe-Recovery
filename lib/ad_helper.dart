@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 class AdHelper {
   static String get bannerAdUnitId {
     if (Platform.isAndroid) {
-      if(kDebugMode) {
+      if (kDebugMode) {
         return 'ca-app-pub-3940256099942544/6300978111';
       } else {
         return 'ca-app-pub-4696224049420135/8371135025';
@@ -33,7 +33,7 @@ class AdHelper {
 
   static String get rewardedAdUnitId {
     if (Platform.isAndroid) {
-      if(kDebugMode) {
+      if (kDebugMode) {
         return 'ca-app-pub-3940256099942544/5224354917';
       } else {
         return 'ca-app-pub-4696224049420135/1450503454';
