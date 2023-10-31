@@ -8,6 +8,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
+import 'package:trivia/ad_helper.dart';
 import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/data/controllers.dart';
 import 'package:trivia/main.dart';
@@ -30,7 +31,7 @@ class _GameScreenState extends State<GameScreen> {
   int iterationCount = 30;
   late Timer timer;
   bool answered = false;
-  
+
   BannerAd? _bannerAd;
   bool _isLoaded = false;
 
@@ -38,7 +39,7 @@ class _GameScreenState extends State<GameScreen> {
   void initState() {
     final questionProvider =
         Provider.of<QuestionProvider>(context, listen: false);
-        
+
     _loadBannerAd();
 
     confettiController = ConfettiController(duration: 1.5.seconds);
@@ -131,6 +132,35 @@ class _GameScreenState extends State<GameScreen> {
         ),
       ),
     );
+  }
+
+  _loadBannerAd() {
+    MobileAds.instance.updateRequestConfiguration(
+      RequestConfiguration(
+        testDeviceIds: ['5C26A3D9AFFD85F566BED84A49F36278'],
+      ),
+    );
+
+    _bannerAd = BannerAd(
+      adUnitId: AdHelper.bannerAdUnitId,
+      request: const AdRequest(),
+      size: AdSize.banner,
+      listener: BannerAdListener(
+        // Called when an ad is successfully received.
+        onAdLoaded: (ad) {
+          debugPrint('$ad loaded.');
+          setState(() {
+            _isLoaded = true;
+          });
+        },
+        // Called when an ad request failed.
+        onAdFailedToLoad: (ad, err) {
+          debugPrint('BannerAd failed to load: $err');
+          // Dispose the ad here to free resources.
+          ad.dispose();
+        },
+      ),
+    )..load();
   }
 
   Expanded buildOptions(QuestionProvider questionProvider) {
