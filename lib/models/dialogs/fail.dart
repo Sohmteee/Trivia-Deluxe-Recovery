@@ -175,6 +175,94 @@ showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
                         );
                   },
                 ),
+                SizedBox(height: 20.h),
+                Consumer<MoneyProvider>(
+                  builder: (context, moneyProvider, _) {
+                    return ZoomTapAnimation(
+                      onTap: () {
+                        playTap(context);
+                        pauseBGAudio();
+                        rewardedAd?.show(
+                          onUserEarnedReward: (_, reward) {
+                            Provider.of<MoneyProvider>(dialogContext,
+                                    listen: false)
+                                .increaseCoins(5);
+                            Navigator.pushReplacementNamed(
+                                dialogContext, "/stage");
+                            playBGAudio(dialogContext);
+                          },
+                        );
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 20.sp, vertical: 10.sp),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20.r),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              "Revive",
+                              style: TextStyle(
+                                fontSize: 25.sp,
+                              ),
+                            ),
+                            SizedBox(width: 10.w),
+                            Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                SizedBox(
+                                  height: 20.h,
+                                  child: Image.asset("assets/images/coin.png"),
+                                ),
+                                Positioned(
+                                  top: -5,
+                                  right: -10,
+                                  child: Text(
+                                    "\u00d720",
+                                    style: TextStyle(
+                                      fontSize: 20.sp,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                        .animate(
+                          onPlay: (controller) => controller.repeat(),
+                        )
+                        .shimmer(
+                          delay: 2.seconds,
+                          duration: .7.seconds,
+                        )
+                        .scaleXY(
+                          curve: Curves.easeOutSine,
+                          delay: 2.seconds,
+                          duration: .1.seconds,
+                          begin: 1,
+                          end: .8,
+                        )
+                        .then()
+                        .scaleXY(
+                          curve: Curves.easeOutSine,
+                          duration: .4.seconds,
+                          begin: .8,
+                          end: 1.2,
+                        )
+                        .then()
+                        .scaleXY(
+                          curve: Curves.bounceOut,
+                          duration: .2.seconds,
+                          begin: 1.2,
+                          end: 1,
+                        );
+                  },
+                ),
               ],
             ),
             if (showAnim) Lottie.asset("assets/lottie/coin-spent.json"),
