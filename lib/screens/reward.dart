@@ -196,11 +196,11 @@ class _RewardScreenState extends State<RewardScreen> {
   ZoomTapAnimation rewardButton(BuildContext context) {
     return ZoomTapAnimation(
       onTap: () {
-        playTap(context);
         if (interstitialAd != null) {
           pauseBGAudio();
           interstitialAd?.show();
         } else {
+        playTap(context);
           if (level <= 28) {
             Navigator.pushReplacementNamed(context, "/stage");
           } else {
