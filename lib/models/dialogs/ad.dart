@@ -32,6 +32,10 @@ showAdDialog(BuildContext context) {
     );
   }
 
+  
+  
+  _loadRewardedAd();
+
   showGameDialog(
     context,
     isExitable: true,
@@ -63,7 +67,10 @@ showAdDialog(BuildContext context) {
         ZoomTapAnimation(
           onTap: () {
             Navigator.pop(context);
-            Navigator.pushNamed(context, "/ad");
+            _rewardedAd?.show(
+              onUserEarnedReward: (_, reward) {
+              },
+            );
           },
           child: Container(
             width: double.maxFinite,
