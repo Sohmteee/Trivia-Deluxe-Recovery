@@ -12,6 +12,8 @@ import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 import 'game.dart';
 
 showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
+  loadRewardedAd(context);
+
   final questionProvider =
       Provider.of<QuestionProvider>(context, listen: false);
 
@@ -74,103 +76,105 @@ showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
                     ],
                   ),
                 SizedBox(height: 20.h),
-                Consumer<MoneyProvider>(builder: (context, moneyProvider, _) {
-                  return ZoomTapAnimation(
-                    onTap: () {
-                      if (moneyProvider.coins - 20 >= 0) {
-                        playCoinDown(context);
-                        setState(() {
-                          showAnim = true;
-                        });
-                        Future.delayed(
-                          2.seconds,
-                          () => setState(() {
-                            showAnim = false;
-                          }),
-                        );
-                        moneyProvider.decreaseCoins(20);
-                        Future.delayed(
-                          2.seconds,
-                          () {
-                            return Navigator.pushReplacementNamed(
-                                context, "/stage");
-                          },
-                        );
-                      } else {
-                        playTap(context);
-                        Navigator.pop(context);
-                        showLowCashDialog(context);
-                      }
-                    },
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 20.sp, vertical: 10.sp),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20.r),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            "Revive",
-                            style: TextStyle(
-                              fontSize: 25.sp,
-                            ),
-                          ),
-                          SizedBox(width: 10.w),
-                          Stack(
-                            clipBehavior: Clip.none,
-                            children: [
-                              SizedBox(
-                                height: 20.h,
-                                child: Image.asset("assets/images/coin.png"),
+                Consumer<MoneyProvider>(
+                  builder: (context, moneyProvider, _) {
+                    return ZoomTapAnimation(
+                      onTap: () {
+                        if (moneyProvider.coins - 20 >= 0) {
+                          playCoinDown(context);
+                          setState(() {
+                            showAnim = true;
+                          });
+                          Future.delayed(
+                            2.seconds,
+                            () => setState(() {
+                              showAnim = false;
+                            }),
+                          );
+                          moneyProvider.decreaseCoins(20);
+                          Future.delayed(
+                            2.seconds,
+                            () {
+                              return Navigator.pushReplacementNamed(
+                                  context, "/stage");
+                            },
+                          );
+                        } else {
+                          playTap(context);
+                          Navigator.pop(context);
+                          showLowCashDialog(context);
+                        }
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 20.sp, vertical: 10.sp),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20.r),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              "Revive",
+                              style: TextStyle(
+                                fontSize: 25.sp,
                               ),
-                              Positioned(
-                                top: -5,
-                                right: -10,
-                                child: Text(
-                                  "\u00d720",
-                                  style: TextStyle(
-                                    fontSize: 20.sp,
+                            ),
+                            SizedBox(width: 10.w),
+                            Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                SizedBox(
+                                  height: 20.h,
+                                  child: Image.asset("assets/images/coin.png"),
+                                ),
+                                Positioned(
+                                  top: -5,
+                                  right: -10,
+                                  child: Text(
+                                    "\u00d720",
+                                    style: TextStyle(
+                                      fontSize: 20.sp,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  )
-                      .animate(
-                        onPlay: (controller) => controller.repeat(),
-                      )
-                      .shimmer(
-                        delay: 2.seconds,
-                        duration: .7.seconds,
-                      )
-                      .scaleXY(
-                        curve: Curves.easeOutSine,
-                        delay: 2.seconds,
-                        duration: .1.seconds,
-                        begin: 1,
-                        end: .8,
-                      )
-                      .then()
-                      .scaleXY(
-                        curve: Curves.easeOutSine,
-                        duration: .4.seconds,
-                        begin: .8,
-                        end: 1.2,
-                      )
-                      .then()
-                      .scaleXY(
-                        curve: Curves.bounceOut,
-                        duration: .2.seconds,
-                        begin: 1.2,
-                        end: 1,
-                      );
-                }),
+                    )
+                        .animate(
+                          onPlay: (controller) => controller.repeat(),
+                        )
+                        .shimmer(
+                          delay: 2.seconds,
+                          duration: .7.seconds,
+                        )
+                        .scaleXY(
+                          curve: Curves.easeOutSine,
+                          delay: 2.seconds,
+                          duration: .1.seconds,
+                          begin: 1,
+                          end: .8,
+                        )
+                        .then()
+                        .scaleXY(
+                          curve: Curves.easeOutSine,
+                          duration: .4.seconds,
+                          begin: .8,
+                          end: 1.2,
+                        )
+                        .then()
+                        .scaleXY(
+                          curve: Curves.bounceOut,
+                          duration: .2.seconds,
+                          begin: 1.2,
+                          end: 1,
+                        );
+                  },
+                ),
               ],
             ),
             if (showAnim) Lottie.asset("assets/lottie/coin-spent.json"),
