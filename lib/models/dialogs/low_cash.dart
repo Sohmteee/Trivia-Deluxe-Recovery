@@ -7,7 +7,6 @@ import 'package:trivia/ad_helper.dart';
 import 'package:trivia/main.dart';
 import 'package:trivia/providers/money.dart';
 import 'package:trivia/providers/stage.dart';
-import 'package:trivia/screens/ad.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 import 'game.dart';
