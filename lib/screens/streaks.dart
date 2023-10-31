@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:mrx_charts/mrx_charts.dart';
 import 'package:provider/provider.dart';
 import 'package:trivia/colors/app_color.dart';
@@ -64,6 +65,9 @@ Average Time answering
 
 class _StreaksScreeenState extends State<StreaksScreeen> {
   int? position;
+  
+  BannerAd? _bannerAd;
+  bool _isLoaded = false;
 
   Future<int> getLeaderBoardData(int index) async {
     final leaderBoardPosition = (await FirebaseFirestore.instance
@@ -82,6 +86,7 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
   @override
   void initState() {
     super.initState();
+    _loadBannerAd();
     Future.microtask(() {
       final questionProvider =
           Provider.of<QuestionProvider>(context, listen: false);
