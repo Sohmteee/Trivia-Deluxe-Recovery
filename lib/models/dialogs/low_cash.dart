@@ -82,15 +82,17 @@ showLowCashDialog(BuildContext context) {
           ZoomTapAnimation(
             onTap: () {
               playTap(dialogContext);
-              pauseBGAudio();
-              rewardedAd?.show(
-                onUserEarnedReward: (_, reward) {
-                  Provider.of<MoneyProvider>(dialogContext, listen: false)
-                      .increaseCoins(5);
-                  Navigator.pushReplacementNamed(dialogContext, "/stage");
-                  playBGAudio(dialogContext);
-                },
-              );
+              if (rewardedAd != null) {
+                pauseBGAudio();
+                rewardedAd?.show(
+                  onUserEarnedReward: (_, reward) {
+                    Provider.of<MoneyProvider>(dialogContext, listen: false)
+                        .increaseCoins(5);
+                    Navigator.pushReplacementNamed(dialogContext, "/stage");
+                    playBGAudio(dialogContext);
+                  },
+                );
+              }
             },
             child: Container(
               width: double.maxFinite,
