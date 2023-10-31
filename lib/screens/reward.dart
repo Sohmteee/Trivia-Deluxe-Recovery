@@ -30,6 +30,7 @@ class RewardScreen extends StatefulWidget {
 }
 
 class _RewardScreenState extends State<RewardScreen> {
+  BannerAd? _bannerAd;
   InterstitialAd? _interstitialAd;
   bool receivedReward = false;
   late int score;
@@ -46,6 +47,7 @@ class _RewardScreenState extends State<RewardScreen> {
   @override
   void initState() {
     playVictory(context);
+    _loadBannerAd();
     _loadInterstitialAd();
     Future.delayed(.5.seconds, () {
       bgPlayer.pause();
@@ -178,7 +180,11 @@ class _RewardScreenState extends State<RewardScreen> {
                       duration: 1.seconds,
                     ),
               const Spacer(flex: 3),
-              
+              SizedBox(
+                width: _bannerAd!.size.width.toDouble(),
+                height: _bannerAd!.size.height.toDouble(),
+                child: AdWidget(ad: _bannerAd!),
+              ),
             ],
           ),
         ),
