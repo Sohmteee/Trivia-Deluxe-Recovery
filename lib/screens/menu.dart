@@ -42,7 +42,7 @@ class _MenuScreenState extends State<MenuScreen>
     WidgetsBinding.instance.addObserver(this);
     ToastContext().init(context);
 
-    playBGAudio();
+    playBGAudio(context);
     // _loadAppOpenAd();
     _loadBannerAd();
     Future.microtask(() => initializeEffectsVolume());
@@ -85,7 +85,7 @@ class _MenuScreenState extends State<MenuScreen>
         /* if (_appOpenIsLoaded) {
           _appOpenAd!.show();
         } */
-        playBGAudio();
+        playBGAudio(context);
         break;
       case AppLifecycleState.paused:
       case AppLifecycleState.hidden:
@@ -356,30 +356,6 @@ class _MenuScreenState extends State<MenuScreen>
     );
   }
 
-  Future<void> playBGAudio() async {
-    final audioProvider = Provider.of<AudioProvider>(context, listen: false);
-
-    if (audioProvider.music) {
-      await bgPlayer.setSource(AssetSource("audio/bg-music.mp3"));
-      await bgPlayer.resume();
-      debugPrint("music playing");
-    }
-
-    bgPlayer.onPlayerComplete.listen((_) async {
-      await bgPlayer.setSource(AssetSource("audio/bg-music.mp3"));
-      await bgPlayer.resume();
-    });
-  }
-
-  Future<void> pauseBGAudio() async {
-    await bgPlayer.pause();
-    debugPrint("music paused");
-  }
-
-  Future<void> stopBGAudio() async {
-    await bgPlayer.stop();
-    debugPrint("music stopped");
-  }
 
   void initializeEffectsVolume() {
     final audioProvider = Provider.of<AudioProvider>(context, listen: false);
@@ -438,3 +414,29 @@ class _MenuScreenState extends State<MenuScreen>
     )..load();
   }
 }
+
+Future<void> playBGAudio(context) async {
+  final audioProvider = Provider.of<AudioProvider>(context, listen: false);
+
+  if (audioProvider.music) {
+    await bgPlayer.setSource(AssetSource("audio/bg-music.mp3"));
+    await bgPlayer.resume();
+    debugPrint("music playing");
+  }
+
+  bgPlayer.onPlayerComplete.listen((_) async {
+    await bgPlayer.setSource(AssetSource("audio/bg-music.mp3"));
+    await bgPlayer.resume();
+  });
+}
+
+Future<void> pauseBGAudio() async {
+  await bgPlayer.pause();
+  debugPrint("music paused");
+}
+
+Future<void> stopBGAudio() async {
+  await bgPlayer.stop();
+  debugPrint("music stopped");
+}
+

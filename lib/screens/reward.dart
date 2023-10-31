@@ -20,6 +20,7 @@ import 'package:trivia/providers/money.dart';
 import 'package:trivia/providers/profile.dart';
 import 'package:trivia/providers/question.dart';
 import 'package:trivia/providers/streaks.dart';
+import 'package:trivia/screens/menu.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class RewardScreen extends StatefulWidget {
@@ -559,7 +560,7 @@ class _RewardScreenState extends State<RewardScreen> {
         onAdLoaded: (ad) {
           ad.fullScreenContentCallback = FullScreenContentCallback(
             onAdDismissedFullScreenContent: (ad) {
-              play
+              playBGAudio(context);
               if (level <= 28) {
                 Navigator.pushReplacementNamed(context, "/stage");
               } else {
@@ -575,8 +576,6 @@ class _RewardScreenState extends State<RewardScreen> {
         onAdFailedToLoad: (err) {
           print('Failed to load an interstitial ad: ${err.message}');
         },
-
-        
       ),
     );
   }
