@@ -65,6 +65,11 @@ class _StageScreenState extends State<StageScreen> {
               buildLevel(),
               const Spacer(flex: 3),
               playButton(),
+              SizedBox(
+                width: _bannerAd!.size.width.toDouble(),
+                height: _bannerAd!.size.height.toDouble(),
+                child: AdWidget(ad: _bannerAd!),
+              ),
             ],
           ),
         ),

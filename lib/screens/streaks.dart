@@ -109,13 +109,6 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
   @override
   Widget build(BuildContext context) {
     return GameBackground(
-      bottomNavigationBar: (_isLoaded)
-          ? SizedBox(
-              width: _bannerAd!.size.width.toDouble(),
-              height: _bannerAd!.size.height.toDouble(),
-              child: AdWidget(ad: _bannerAd!),
-            )
-          : null,
       body: Consumer<StreaksProvider>(builder: (context, streaksProvider, _) {
         return Padding(
           padding: EdgeInsets.fromLTRB(20.w, 20.h, 20.w, 0),
@@ -637,6 +630,11 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
                     return SizedBox(height: 20.h);
                   },
                 ),
+              ),
+              SizedBox(
+                width: _bannerAd!.size.width.toDouble(),
+                height: _bannerAd!.size.height.toDouble(),
+                child: AdWidget(ad: _bannerAd!),
               ),
             ],
           ),
