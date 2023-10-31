@@ -180,7 +180,6 @@ showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
                   builder: (context, moneyProvider, _) {
                     return ZoomTapAnimation(
                       onTap: () {
-                        playTap(context);
                         if (rewardedAd != null) {
                           pauseBGAudio();
                           rewardedAd?.show(
@@ -192,6 +191,7 @@ showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
                             },
                           );
                         } else {
+                          playTap(context);
                           ToastContext().init(context);
                           Toast.show(
                             "Ad is not ready yet. Try again after a while.",
