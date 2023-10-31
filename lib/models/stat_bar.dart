@@ -26,7 +26,6 @@ class GameStats extends StatefulWidget {
 }
 
 class _GameStatsState extends State<GameStats> {
-  bool animateCoins = false;
 
   @override
   void initState() {
@@ -36,8 +35,8 @@ class _GameStatsState extends State<GameStats> {
       final moneyProvider = Provider.of<MoneyProvider>(context, listen: false);
       moneyProvider.addListener(() {
         setState(() {
-          animateCoins = true;
-          debugPrint("Animate coins: $animateCoins");
+          moneyProvider.toggleAnimateCoins(true);
+          debugPrint("Animate coins: ${moneyProvider.animateCoins}");
         });
       });
     });
