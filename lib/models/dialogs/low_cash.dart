@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:trivia/ad_helper.dart';
 import 'package:trivia/main.dart';
 import 'package:trivia/providers/money.dart';
+import 'package:trivia/screens/menu.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 import 'game.dart';
@@ -80,6 +81,7 @@ showLowCashDialog(BuildContext context) {
           ZoomTapAnimation(
             onTap: () {
               playTap(dialogContext);
+              pauseBGAudio();
               _rewardedAd?.show(
                 onUserEarnedReward: (_, reward) {
                   Provider.of<MoneyProvider>(dialogContext, listen: false)
