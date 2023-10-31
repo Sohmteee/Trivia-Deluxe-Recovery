@@ -26,7 +26,6 @@ class GameStats extends StatefulWidget {
 }
 
 class _GameStatsState extends State<GameStats> {
-
   @override
   void initState() {
     super.initState();
@@ -44,10 +43,9 @@ class _GameStatsState extends State<GameStats> {
 
   @override
   void dispose() {
-    
     final moneyProvider = Provider.of<MoneyProvider>(context, listen: false);
-      moneyProvider.toggleAnimateCoins(false);
-      debugPrint("Animate coins: ${moneyProvider.animateCoins}");
+    moneyProvider.toggleAnimateCoins(false);
+    debugPrint("Animate coins: ${moneyProvider.animateCoins}");
     super.dispose();
   }
 
@@ -253,7 +251,7 @@ class _GameStatsState extends State<GameStats> {
                   ),
                 ),
                 child: Center(
-                  child: animateCoins
+                  child: Provider.of<MoneyProvider>(context).animateCoins
                       ? Countup(
                           begin: moneyProvider.previousCoins.toDouble(),
                           end: moneyProvider.coins.toDouble(),
