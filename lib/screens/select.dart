@@ -152,7 +152,7 @@ class _SelectScreenState extends State<SelectScreen> {
       },
       child: GameBackground(
         body: Padding(
-          padding: EdgeInsets.symmetric(vertical: 40.h),
+          padding: EdgeInsets.only(top: 40.h),
           child: Column(
             children: [
               Padding(
@@ -171,6 +171,7 @@ class _SelectScreenState extends State<SelectScreen> {
               const Spacer(flex: 6),
               buildCategories(),
               categoriesIndicators(context),
+              const Spacer(flex: 1),
               SizedBox(
                 width: _bannerAd!.size.width.toDouble(),
                 height: _bannerAd!.size.height.toDouble(),
