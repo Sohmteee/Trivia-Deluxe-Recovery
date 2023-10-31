@@ -70,6 +70,8 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
+  AppOpenAd? appOpenAd;
+  bool isLoaded = false;
   const MyApp({super.key});
 
   @override
