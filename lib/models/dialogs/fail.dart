@@ -117,7 +117,7 @@ showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              "Revive",
+                              "Revive with coins",
                               style: TextStyle(
                                 fontSize: 25.sp,
                               ),
