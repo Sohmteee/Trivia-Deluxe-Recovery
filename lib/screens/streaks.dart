@@ -111,7 +111,8 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
   Widget build(BuildContext context) {
     return GameBackground(
       bottomNavigationBar: (_isLoaded)
-          ? SizedBox(
+          ? Container(
+              color: AppColor.darkRed,
               width: _bannerAd!.size.width.toDouble(),
               height: _bannerAd!.size.height.toDouble(),
               child: AdWidget(ad: _bannerAd!),
