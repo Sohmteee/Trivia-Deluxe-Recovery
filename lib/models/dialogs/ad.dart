@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:provider/provider.dart';
 import 'package:trivia/ad_helper.dart';
+import 'package:trivia/providers/question.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 import 'game.dart';
@@ -68,6 +70,7 @@ showAdDialog(BuildContext context) {
             _rewardedAd?.show(
               onUserEarnedReward: (_, reward) {
                 Navigator.pop(context);
+                Provider.of<QuestionProvider>(context, listen: false).addCoins(5);
               },
             );
           },
