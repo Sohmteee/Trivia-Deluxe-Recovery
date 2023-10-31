@@ -388,7 +388,27 @@ class _MenuScreenState extends State<MenuScreen>
 
   void _loadAppOpenAd() {
     MobileAds.instance.initialize().then((InitializationStatus status) {
-      _appOpenAd = 
+      AppOpenAd.load(
+        adUnitId: AdHelper.appOpenUnitID,
+        request: const AdRequest(),
+        orientation: ,
+        adLoadCallback: InterstitialAdLoadCallback(
+          onAdLoaded: (ad) {
+            ad.fullScreenContentCallback = FullScreenContentCallback(
+              onAdDismissedFullScreenContent: (ad) {
+                Navigator.pushReplacementNamed(context, "/stage");
+              },
+            );
+
+            setState(() {
+              _interstitialAd = ad;
+            });
+          },
+          onAdFailedToLoad: (err) {
+            print('Failed to load an interstitial ad: ${err.message}');
+          },
+        ),
+      );
     });
   }
   _loadBannerAd() {
