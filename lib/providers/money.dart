@@ -34,7 +34,8 @@ class MoneyProvider extends ChangeNotifier {
    */
 
   toggleAnimateCoins(value) {
-    
+    animateCoins = value;
+    notifyListeners();
   }
 
   increaseCash(int value) {
