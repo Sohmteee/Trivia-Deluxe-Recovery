@@ -77,7 +77,7 @@ showLowCashDialog(BuildContext context) {
           ZoomTapAnimation(
             onTap: () {
               playTap(context);
-              Navigator.pop(context);
+              Navigator.pushReplacementNamed(context, "/stage");
               _rewardedAd?.show(
                 onUserEarnedReward: (_, reward) {
                   Provider.of<MoneyProvider>(context, listen: false)
