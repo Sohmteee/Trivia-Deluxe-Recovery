@@ -182,9 +182,9 @@ showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
                       onTap: () {
                         playTap(context);
                         if (rewardedAd != null) {
-                          pauseBGAudio();
                           rewardedAd?.show(
                             onUserEarnedReward: (_, reward) {
+                              pauseBGAudio();
                               Provider.of<MoneyProvider>(context, listen: false)
                                   .increaseCoins(5);
                               Navigator.pushReplacementNamed(context, "/stage");
