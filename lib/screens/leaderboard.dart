@@ -180,6 +180,8 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
         },
       ),
     )..load();
+
+    _bannerAd = 
   }
 
   Padding createProfilePrompt(BuildContext context) {
