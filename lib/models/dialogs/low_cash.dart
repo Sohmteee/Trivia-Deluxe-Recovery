@@ -12,32 +12,32 @@ import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 import 'game.dart';
 
+RewardedAd? _rewardedAd;
+
+void _loadRewardedAd() {
+  RewardedAd.load(
+    adUnitId: AdHelper.rewardedAdUnitId,
+    request: const AdRequest(),
+    rewardedAdLoadCallback: RewardedAdLoadCallback(
+      onAdLoaded: (ad) {
+        ad.fullScreenContentCallback = FullScreenContentCallback(
+          onAdDismissedFullScreenContent: (ad) {
+            ad.dispose();
+            _rewardedAd = null;
+            _loadRewardedAd();
+          },
+        );
+
+        _rewardedAd = ad;
+      },
+      onAdFailedToLoad: (err) {
+        print('Failed to load a rewarded ad: ${err.message}');
+      },
+    ),
+  );
+}
+
 showLowCashDialog(BuildContext context) {
-  RewardedAd? _rewardedAd;
-
-  void _loadRewardedAd() {
-    RewardedAd.load(
-      adUnitId: AdHelper.rewardedAdUnitId,
-      request: const AdRequest(),
-      rewardedAdLoadCallback: RewardedAdLoadCallback(
-        onAdLoaded: (ad) {
-          ad.fullScreenContentCallback = FullScreenContentCallback(
-            onAdDismissedFullScreenContent: (ad) {
-              ad.dispose();
-              _rewardedAd = null;
-              _loadRewardedAd();
-            },
-          );
-
-          _rewardedAd = ad;
-        },
-        onAdFailedToLoad: (err) {
-          print('Failed to load a rewarded ad: ${err.message}');
-        },
-      ),
-    );
-  }
-
   _loadRewardedAd();
 
   showGameDialog(
