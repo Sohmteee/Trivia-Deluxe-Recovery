@@ -7,6 +7,7 @@ import 'package:trivia/main.dart';
 import 'package:trivia/models/dialogs/low_cash.dart';
 import 'package:trivia/providers/money.dart';
 import 'package:trivia/providers/question.dart';
+import 'package:trivia/screens/menu.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 import 'game.dart';
@@ -184,12 +185,12 @@ showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
                         pauseBGAudio();
                         rewardedAd?.show(
                           onUserEarnedReward: (_, reward) {
-                            Provider.of<MoneyProvider>(dialogContext,
+                            Provider.of<MoneyProvider>(context,
                                     listen: false)
                                 .increaseCoins(5);
                             Navigator.pushReplacementNamed(
-                                dialogContext, "/stage");
-                            playBGAudio(dialogContext);
+                                context, "/stage");
+                            playBGAudio(context);
                           },
                         );
                       },
@@ -204,30 +205,15 @@ showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              "Revive",
+                              "Revive with an ad",
                               style: TextStyle(
                                 fontSize: 25.sp,
                               ),
                             ),
                             SizedBox(width: 10.w),
-                            Stack(
-                              clipBehavior: Clip.none,
-                              children: [
-                                SizedBox(
-                                  height: 20.h,
-                                  child: Image.asset("assets/images/coin.png"),
-                                ),
-                                Positioned(
-                                  top: -5,
-                                  right: -10,
-                                  child: Text(
-                                    "\u00d720",
-                                    style: TextStyle(
-                                      fontSize: 20.sp,
-                                    ),
-                                  ),
-                                ),
-                              ],
+                            SizedBox(
+                              height: 20.h,
+                              child: Image.asset("assets/images/youtube.png"),
                             ),
                           ],
                         ),
