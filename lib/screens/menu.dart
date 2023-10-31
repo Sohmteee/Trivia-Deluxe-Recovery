@@ -34,7 +34,6 @@ class _MenuScreenState extends State<MenuScreen>
 
   BannerAd? _bannerAd;
   // AppOpenAd? _appOpenAd;
-  bool _bannerIsLoaded = false;
   // bool _appOpenIsLoaded = false;
 
   @override
@@ -133,13 +132,11 @@ class _MenuScreenState extends State<MenuScreen>
                     const Spacer(flex: 3),
                     bottomButtons(context),
                     const Spacer(),
-                    (_bannerIsLoaded)
-                        ? SizedBox(
-                            width: _bannerAd!.size.width.toDouble(),
-                            height: _bannerAd!.size.height.toDouble(),
-                            child: AdWidget(ad: _bannerAd!),
-                          )
-                        : null,
+                    SizedBox(
+                      width: _bannerAd!.size.width.toDouble(),
+                      height: _bannerAd!.size.height.toDouble(),
+                      child: AdWidget(ad: _bannerAd!),
+                    ),
                   ],
                 ),
               ),
@@ -356,7 +353,6 @@ class _MenuScreenState extends State<MenuScreen>
     );
   }
 
-
   void initializeEffectsVolume() {
     final audioProvider = Provider.of<AudioProvider>(context, listen: false);
 
@@ -439,4 +435,3 @@ Future<void> stopBGAudio() async {
   await bgPlayer.stop();
   debugPrint("music stopped");
 }
-
