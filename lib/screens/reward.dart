@@ -178,6 +178,7 @@ class _RewardScreenState extends State<RewardScreen> {
                       duration: 1.seconds,
                     ),
               const Spacer(flex: 3),
+              
             ],
           ),
         ),
@@ -548,6 +549,26 @@ class _RewardScreenState extends State<RewardScreen> {
         ),
       ],
     );
+  }
+
+  _loadBannerAd() {
+    _bannerAd = BannerAd(
+      adUnitId: AdHelper.bannerAdUnitId,
+      request: const AdRequest(),
+      size: AdSize.banner,
+      listener: BannerAdListener(
+        // Called when an ad is successfully received.
+        onAdLoaded: (ad) {
+          debugPrint('$ad loaded.');
+        },
+        // Called when an ad request failed.
+        onAdFailedToLoad: (ad, err) {
+          debugPrint('BannerAd failed to load: $err');
+          // Dispose the ad here to free resources.
+          ad.dispose();
+        },
+      ),
+    )..load();
   }
 
   void _loadInterstitialAd() {
