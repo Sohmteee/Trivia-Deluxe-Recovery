@@ -43,8 +43,8 @@ class _MenuScreenState extends State<MenuScreen>
     ToastContext().init(context);
 
     playBGAudio();
-    _loadBannerAd();
     _loadAppOpenAd();
+    _loadBannerAd();
     Future.microtask(() => initializeEffectsVolume());
 
     rotationController = AnimationController(duration: 100.seconds, vsync: this)
@@ -391,21 +391,21 @@ class _MenuScreenState extends State<MenuScreen>
       AppOpenAd.load(
         adUnitId: AdHelper.appOpenUnitID,
         request: const AdRequest(),
-        orientation: ,
-        adLoadCallback: InterstitialAdLoadCallback(
+        orientation: AppOpenAd.orientationPortrait,
+        adLoadCallback: AppOpenAdLoadCallback(
           onAdLoaded: (ad) {
             ad.fullScreenContentCallback = FullScreenContentCallback(
               onAdDismissedFullScreenContent: (ad) {
-                Navigator.pushReplacementNamed(context, "/stage");
+                Navigator.pushReplacementNamed(context, "/menu");
               },
             );
 
             setState(() {
-              _interstitialAd = ad;
+              _appOpenAd = ad;
             });
           },
           onAdFailedToLoad: (err) {
-            print('Failed to load an interstitial ad: ${err.message}');
+            print('Failed to load an app open ad: ${err.message}');
           },
         ),
       );
