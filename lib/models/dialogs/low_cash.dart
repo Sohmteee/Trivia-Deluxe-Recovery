@@ -5,6 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:trivia/ad_helper.dart';
 import 'package:trivia/main.dart';
+import 'package:trivia/providers/money.dart';
 import 'package:trivia/providers/stage.dart';
 import 'package:trivia/screens/ad.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
@@ -38,7 +39,7 @@ showLowCashDialog(BuildContext context) {
   }
 
   _loadRewardedAd();
-  
+
   showGameDialog(
     context,
     child: Builder(builder: (dialogContext) {
@@ -80,15 +81,12 @@ showLowCashDialog(BuildContext context) {
           ZoomTapAnimation(
             onTap: () {
               playTap(context);
-              Navigator.push(
-                dialogContext,
-                MaterialPageRoute(
-                  builder: (dialogContext) => AdScreen(
-                    onComplete: () {
-                      Navigator.pushReplacementNamed(dialogContext, "/stage");
-                    },
-                  ),
-                ),
+              _rewardedAd?.show(
+                onUserEarnedReward: (_, reward) {
+                  Navigator.pop(context);
+                  Provider.of<MoneyProvider>(context, listen: false)
+                      .increaseCoins(5);
+                },
               );
             },
             child: Container(
