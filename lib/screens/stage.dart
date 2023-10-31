@@ -24,7 +24,6 @@ class StageScreen extends StatefulWidget {
 
 class _StageScreenState extends State<StageScreen> {
   BannerAd? _bannerAd;
-  bool _isLoaded = false;
 
   @override
   void initState() {
@@ -55,13 +54,6 @@ class _StageScreenState extends State<StageScreen> {
         return true;
       },
       child: GameBackground(
-        bottomNavigationBar: (_isLoaded)
-            ? SizedBox(
-                width: _bannerAd!.size.width.toDouble(),
-                height: _bannerAd!.size.height.toDouble(),
-                child: AdWidget(ad: _bannerAd!),
-              )
-            : null,
         body: Padding(
           padding: EdgeInsets.fromLTRB(40.w, 40.h, 40.w, 20.h),
           child: Column(
@@ -89,9 +81,6 @@ class _StageScreenState extends State<StageScreen> {
         // Called when an ad is successfully received.
         onAdLoaded: (ad) {
           debugPrint('$ad loaded.');
-          setState(() {
-            _isLoaded = true;
-          });
         },
         // Called when an ad request failed.
         onAdFailedToLoad: (ad, err) {

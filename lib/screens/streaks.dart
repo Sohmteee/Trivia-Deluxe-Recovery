@@ -68,7 +68,6 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
   int? position;
 
   BannerAd? _bannerAd;
-  bool _isLoaded = false;
 
   Future<int> getLeaderBoardData(int index) async {
     final leaderBoardPosition = (await FirebaseFirestore.instance
@@ -655,9 +654,6 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
         // Called when an ad is successfully received.
         onAdLoaded: (ad) {
           debugPrint('$ad loaded.');
-          setState(() {
-            _isLoaded = true;
-          });
         },
         // Called when an ad request failed.
         onAdFailedToLoad: (ad, err) {

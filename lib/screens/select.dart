@@ -42,7 +42,6 @@ class SelectScreen extends StatefulWidget {
 
 class _SelectScreenState extends State<SelectScreen> {
   BannerAd? _bannerAd;
-  bool _isLoaded = false;
   late PageController pageController;
 
   List<List<Map<String, dynamic>>> selectItems = [
@@ -152,13 +151,6 @@ class _SelectScreenState extends State<SelectScreen> {
         return true;
       },
       child: GameBackground(
-        bottomNavigationBar: (_isLoaded)
-            ? SizedBox(
-                width: _bannerAd!.size.width.toDouble(),
-                height: _bannerAd!.size.height.toDouble(),
-                child: AdWidget(ad: _bannerAd!),
-              )
-            : null,
         body: Padding(
           padding: EdgeInsets.symmetric(vertical: 40.h),
           child: Column(
@@ -200,9 +192,6 @@ class _SelectScreenState extends State<SelectScreen> {
         // Called when an ad is successfully received.
         onAdLoaded: (ad) {
           debugPrint('$ad loaded.');
-          setState(() {
-            _isLoaded = true;
-          });
         },
         // Called when an ad request failed.
         onAdFailedToLoad: (ad, err) {
