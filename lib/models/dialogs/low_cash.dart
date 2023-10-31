@@ -84,7 +84,6 @@ showLowCashDialog(BuildContext context) {
               Navigator.pop(context);
               _rewardedAd?.show(
                 onUserEarnedReward: (_, reward) {
-                  Navigator.pop(context);
                   Provider.of<MoneyProvider>(context, listen: false)
                       .increaseCoins(5);
                 },
