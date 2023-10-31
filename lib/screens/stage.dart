@@ -79,6 +79,7 @@ class _StageScreenState extends State<StageScreen> {
   }
 
   _loadBannerAd() {
+    
     _bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
       request: const AdRequest(),
