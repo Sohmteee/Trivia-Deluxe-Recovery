@@ -79,8 +79,6 @@ class _MenuScreenState extends State<MenuScreen>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    
-
     switch (state) {
       case AppLifecycleState.resumed:
       case AppLifecycleState.inactive:
@@ -373,7 +371,7 @@ class _MenuScreenState extends State<MenuScreen>
     });
   }
 
-Future<void> pauseBGAudio() async {
+  Future<void> pauseBGAudio() async {
     await bgPlayer.pause();
     debugPrint("music paused");
   }
@@ -382,6 +380,7 @@ Future<void> pauseBGAudio() async {
     await bgPlayer.stop();
     debugPrint("music stopped");
   }
+
   void initializeEffectsVolume() {
     final audioProvider = Provider.of<AudioProvider>(context, listen: false);
 

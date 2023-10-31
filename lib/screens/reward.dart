@@ -190,6 +190,7 @@ class _RewardScreenState extends State<RewardScreen> {
       onTap: () {
         playTap(context);
         if (_interstitialAd != null) {
+          pauseBGAudio();
           _interstitialAd?.show();
         } else {
           if (level <= 28) {
@@ -569,6 +570,8 @@ class _RewardScreenState extends State<RewardScreen> {
         onAdFailedToLoad: (err) {
           print('Failed to load an interstitial ad: ${err.message}');
         },
+
+        on
       ),
     );
   }
