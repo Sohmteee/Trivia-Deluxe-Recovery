@@ -24,7 +24,7 @@ loadRewardedAd(BuildContext context) {
           onAdDismissedFullScreenContent: (ad) {
             ad.dispose();
             rewardedAd = null;
-            loadRewardedAd(context);
+            // loadRewardedAd(context);
           },
         );
 
