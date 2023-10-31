@@ -11,9 +11,9 @@ import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 import 'game.dart';
 
-RewardedAd? _rewardedAd;
+RewardedAd? rewardedAd;
 
-_loadRewardedAd(BuildContext context) {
+loadRewardedAd(BuildContext context) {
   RewardedAd.load(
     adUnitId: AdHelper.rewardedAdUnitId,
     request: const AdRequest(),
@@ -22,12 +22,12 @@ _loadRewardedAd(BuildContext context) {
         ad.fullScreenContentCallback = FullScreenContentCallback(
           onAdDismissedFullScreenContent: (ad) {
             ad.dispose();
-            _rewardedAd = null;
-            _loadRewardedAd(context);
+            rewardedAd = null;
+            loadRewardedAd(context);
           },
         );
 
-        _rewardedAd = ad;
+        rewardedAd = ad;
       },
       onAdFailedToLoad: (err) {
         print('Failed to load a rewarded ad: ${err.message}');
@@ -39,7 +39,7 @@ _loadRewardedAd(BuildContext context) {
 }
 
 showLowCashDialog(BuildContext context) {
-  _loadRewardedAd(context);
+  loadRewardedAd(context);
 
   showGameDialog(
     context,
@@ -83,7 +83,7 @@ showLowCashDialog(BuildContext context) {
             onTap: () {
               playTap(dialogContext);
               pauseBGAudio();
-              _rewardedAd?.show(
+              rewardedAd?.show(
                 onUserEarnedReward: (_, reward) {
                   Provider.of<MoneyProvider>(dialogContext, listen: false)
                       .increaseCoins(5);
