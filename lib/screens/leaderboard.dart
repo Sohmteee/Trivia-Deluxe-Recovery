@@ -106,8 +106,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
             ),
             SizedBox(height: 20.h),
             Expanded(
-              child: Provider.of<ProfileProvider>(context, listen: false)
-                      .hasProfile
+              child: Provider.of<ProfileProvider>(context).hasProfile
                   ? Provider.of<QuestionProvider>(context)
                               .totalQuestionsAnswered !=
                           0
