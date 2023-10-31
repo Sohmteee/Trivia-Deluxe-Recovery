@@ -12,22 +12,24 @@ import 'game.dart';
 
 RewardedAd? _rewardedAd;
 
-void _loadRewardedAd() {
-  print("Loading a rewarded ad...");
-
+_loadRewardedAd() {
   RewardedAd.load(
     adUnitId: AdHelper.rewardedAdUnitId,
     request: const AdRequest(),
     rewardedAdLoadCallback: RewardedAdLoadCallback(
-      // Called when an ad is successfully received.
       onAdLoaded: (ad) {
-        debugPrint('$ad loaded.');
-        // Keep a reference to the ad so you can show it later.
+        ad.fullScreenContentCallback = FullScreenContentCallback(
+          onAdDismissedFullScreenContent: (ad) {
+            ad.dispose();
+            _rewardedAd = null;
+            _loadRewardedAd();
+          },
+        );
+
         _rewardedAd = ad;
       },
-      // Called when an ad request failed.
-      onAdFailedToLoad: (LoadAdError error) {
-        debugPrint('RewardedAd failed to load: $error');
+      onAdFailedToLoad: (err) {
+        print('Failed to load a rewarded ad: ${err.message}');
       },
     ),
   );
@@ -81,7 +83,7 @@ showLowCashDialog(BuildContext context) {
                 onUserEarnedReward: (_, reward) {
                   Provider.of<MoneyProvider>(dialogContext, listen: false)
                       .increaseCoins(5);
-                      
+
                   Navigator.pushReplacementNamed(dialogContext, "/stage");
                 },
               );
