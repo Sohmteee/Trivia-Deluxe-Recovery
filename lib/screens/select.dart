@@ -179,6 +179,11 @@ class _SelectScreenState extends State<SelectScreen> {
               const Spacer(flex: 6),
               buildCategories(),
               categoriesIndicators(context),
+              SizedBox(
+                width: _bannerAd!.size.width.toDouble(),
+                height: _bannerAd!.size.height.toDouble(),
+                child: AdWidget(ad: _bannerAd!),
+              ),
             ],
           ),
         ),
@@ -187,12 +192,6 @@ class _SelectScreenState extends State<SelectScreen> {
   }
 
   _loadBannerAd() {
-    MobileAds.instance.updateRequestConfiguration(
-      RequestConfiguration(
-        testDeviceIds: ['5C26A3D9AFFD85F566BED84A49F36278'],
-      ),
-    );
-
     _bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
       request: const AdRequest(),

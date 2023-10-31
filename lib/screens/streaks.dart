@@ -150,14 +150,13 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
                                 Stack(
                                   alignment: Alignment.center,
                                   children: [
-                            
-                SizedBox(
-                                        width: 100.w,
-                                        height: 100.h,
-                                        child: Chart(
-                                          duration: const Duration(seconds: 2),
-                                          layers: [
-                                            ChartGroupPieLayer(
+                                    SizedBox(
+                                      width: 100.w,
+                                      height: 100.h,
+                                      child: Chart(
+                                        duration: const Duration(seconds: 2),
+                                        layers: [
+                                          ChartGroupPieLayer(
                                             items: [
                                               [
                                                 if (questionProvider
@@ -648,12 +647,6 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
   }
 
   _loadBannerAd() {
-    MobileAds.instance.updateRequestConfiguration(
-      RequestConfiguration(
-        testDeviceIds: ['5C26A3D9AFFD85F566BED84A49F36278'],
-      ),
-    );
-
     _bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
       request: const AdRequest(),

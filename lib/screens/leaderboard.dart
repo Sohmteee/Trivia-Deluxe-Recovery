@@ -87,13 +87,6 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
   @override
   Widget build(BuildContext context) {
     return GameBackground(
-      bottomNavigationBar: (_isLoaded)
-          ? SizedBox(
-              width: _bannerAd!.size.width.toDouble(),
-              height: _bannerAd!.size.height.toDouble(),
-              child: AdWidget(ad: _bannerAd!),
-            )
-          : null,
       body: Padding(
         padding: EdgeInsets.only(top: 20.h),
         child: Column(
@@ -167,9 +160,6 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
         // Called when an ad is successfully received.
         onAdLoaded: (ad) {
           debugPrint('$ad loaded.');
-          setState(() {
-            _isLoaded = true;
-          });
         },
         // Called when an ad request failed.
         onAdFailedToLoad: (ad, err) {
