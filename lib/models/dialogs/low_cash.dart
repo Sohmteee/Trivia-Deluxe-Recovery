@@ -91,7 +91,9 @@ showLowCashDialog(BuildContext context) {
                         .increaseCoins(5);
                     Navigator.pushReplacementNamed(dialogContext, "/stage");
                   },
+                  
                 );
+                
                 playBGAudio(dialogContext);
               } else {
                 ToastContext().init(context);
