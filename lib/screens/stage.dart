@@ -63,7 +63,7 @@ class _StageScreenState extends State<StageScreen> {
               )
             : null,
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 40.w, vertical: 40.h),
+          padding: EdgeInsets.fromLTRB(40.w, 40.h, 40.w, 20.h),
           child: Column(
             children: [
               const GameStats(),
