@@ -55,7 +55,7 @@ class _StageScreenState extends State<StageScreen> {
       },
       child: GameBackground(
         body: Padding(
-          padding: EdgeInsets.fromLTRB(40.w, 40.h, 40.w, 20.h),
+          padding: EdgeInsets.fromLTRB(40.w, 40.h, 40.w, 0),
           child: Column(
             children: [
               const GameStats(),
@@ -65,6 +65,7 @@ class _StageScreenState extends State<StageScreen> {
               buildLevel(),
               const Spacer(flex: 3),
               playButton(),
+              SizedBox(height: 20.h),
               SizedBox(
                 width: _bannerAd!.size.width.toDouble(),
                 height: _bannerAd!.size.height.toDouble(),

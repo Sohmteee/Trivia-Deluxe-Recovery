@@ -171,7 +171,7 @@ class _SelectScreenState extends State<SelectScreen> {
               const Spacer(flex: 6),
               buildCategories(),
               categoriesIndicators(context),
-              const Spacer(flex: 1),
+              const Spacer(flex: 3),
               SizedBox(
                 width: _bannerAd!.size.width.toDouble(),
                 height: _bannerAd!.size.height.toDouble(),
