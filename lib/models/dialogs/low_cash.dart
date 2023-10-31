@@ -78,12 +78,7 @@ showLowCashDialog(BuildContext context) {
             onTap: () {
               playTap(context);
               Navigator.pushReplacementNamed(context, "/stage");
-              _rewardedAd?.show(
-                onUserEarnedReward: (_, reward) {
-                  Provider.of<MoneyProvider>(context, listen: false)
-                      .increaseCoins(5);
-                },
-              );
+              
             },
             child: Container(
               width: double.maxFinite,
