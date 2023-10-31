@@ -20,7 +20,6 @@ import 'package:trivia/providers/select.dart';
 import 'package:trivia/providers/stage.dart';
 import 'package:trivia/providers/streaks.dart';
 import 'package:trivia/providers/time.dart';
-import 'package:trivia/screens/ad.dart';
 import 'package:trivia/screens/game.dart';
 import 'package:trivia/screens/leaderboard.dart';
 import 'package:trivia/screens/menu.dart';
@@ -95,7 +94,7 @@ class MyApp extends StatelessWidget {
               '/game': (context) => const GameScreen(),
               '/stage': (context) => const StageScreen(),
               '/select': (context) => const SelectScreen(),
-              '/ad': (context) => AdScreen(),
+              // '/ad': (context) => AdScreen(),
               '/reward': (context) => const RewardScreen(),
               '/streaks': (context) => const StreaksScreeen(),
               '/leaderboard': (context) => const LeaderBoardScreen(),
