@@ -827,7 +827,9 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                 Expanded(
                   child: ListView.separated(
                     padding: EdgeInsets.fromLTRB(20.w, 15.h, 20.w, 0),
-                    itemCount: 97,
+                    itemCount: snapshot.data.length - 3 >= 97
+                        ? 97
+                        : snapshot.data.length - 3,
                     physics: const BouncingScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {
                       return Container(
