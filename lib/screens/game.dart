@@ -33,7 +33,6 @@ class _GameScreenState extends State<GameScreen> {
   bool answered = false;
 
   BannerAd? _bannerAd;
-  bool _isLoaded = false;
 
   @override
   void initState() {
@@ -100,6 +99,11 @@ class _GameScreenState extends State<GameScreen> {
                     ),
                     buildQuestion(),
                     buildOptions(questionProvider),
+                    SizedBox(
+                      width: _bannerAd!.size.width.toDouble(),
+                      height: _bannerAd!.size.height.toDouble(),
+                      child: AdWidget(ad: _bannerAd!),
+                    ),
                   ],
                 ),
                 ConfettiWidget(

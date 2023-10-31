@@ -29,7 +29,6 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
   late TabController tabController;
   var storage = FirebaseStorage.instance;
   BannerAd? _bannerAd;
-  bool _isLoaded = false;
 
   @override
   void initState() {
@@ -147,6 +146,11 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                         )
                   : createProfilePrompt(context),
             ),
+            SizedBox(
+              width: _bannerAd!.size.width.toDouble(),
+              height: _bannerAd!.size.height.toDouble(),
+              child: AdWidget(ad: _bannerAd!),
+            ),
           ],
         ),
       ),
@@ -154,11 +158,6 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
   }
 
   _loadBannerAd() {
-    MobileAds.instance.updateRequestConfiguration(
-      RequestConfiguration(
-        testDeviceIds: ['5C26A3D9AFFD85F566BED84A49F36278'],
-      ),
-    );
 
     _bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
