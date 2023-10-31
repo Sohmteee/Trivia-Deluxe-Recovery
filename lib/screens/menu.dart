@@ -43,7 +43,7 @@ class _MenuScreenState extends State<MenuScreen>
     ToastContext().init(context);
 
     playBGAudio();
-    _loadAppOpenAd();
+    // _loadAppOpenAd();
     _loadBannerAd();
     Future.microtask(() => initializeEffectsVolume());
 
@@ -92,9 +92,9 @@ class _MenuScreenState extends State<MenuScreen>
     switch (state) {
       case AppLifecycleState.resumed:
       case AppLifecycleState.inactive:
-        if (_appOpenIsLoaded) {
+        /* if (_appOpenIsLoaded) {
           _appOpenAd!.show();
-        }
+        } */
         playBGAudio();
         break;
       case AppLifecycleState.paused:
