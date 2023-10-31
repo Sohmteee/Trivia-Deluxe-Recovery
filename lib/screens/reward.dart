@@ -191,7 +191,6 @@ class _RewardScreenState extends State<RewardScreen> {
       onTap: () {
         playTap(context);
         if (_interstitialAd != null) {
-          pauseBGAudio();
           _interstitialAd?.show();
         } else {
           if (level <= 28) {
