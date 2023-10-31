@@ -44,10 +44,10 @@ class _GameStatsState extends State<GameStats> {
 
   @override
   void dispose() {
-    setState(() {
-      animateCoins = false;
-      debugPrint("Animate coins: $animateCoins");
-    });
+    
+    final moneyProvider = Provider.of<MoneyProvider>(context, listen: false);
+      moneyProvider.toggleAnimateCoins(false);
+      debugPrint("Animate coins: ${moneyProvider.animateCoins}");
     super.dispose();
   }
 
