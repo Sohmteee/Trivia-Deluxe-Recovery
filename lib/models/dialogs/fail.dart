@@ -179,8 +179,8 @@ showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
                   builder: (context, moneyProvider, _) {
                     return ZoomTapAnimation(
                       onTap: () {
-                        playTap(context);
                         pauseBGAudio();
+                        playTap(context);
                         rewardedAd?.show(
                           onUserEarnedReward: (_, reward) {
                             Provider.of<MoneyProvider>(context, listen: false)
