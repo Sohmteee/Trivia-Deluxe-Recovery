@@ -587,7 +587,7 @@ class _RewardScreenState extends State<RewardScreen> {
         onAdLoaded: (ad) {
           ad.fullScreenContentCallback = FullScreenContentCallback(
             onAdDismissedFullScreenContent: (ad) {
-              playBGAudio();
+              playBGAudio(context);
               if (level <= 28) {
                 Navigator.pushReplacementNamed(context, "/stage");
               } else {
