@@ -33,7 +33,9 @@ class _MenuScreenState extends State<MenuScreen>
   late AnimationController rotationController;
 
   BannerAd? _bannerAd;
-  bool _isLoaded = false;
+  AppOpenAd? _appOpenAd;
+  bool _bannerIsLoaded = false;
+  bool _appOpenIsLoaded = false;
 
   @override
   void initState() {
@@ -42,6 +44,7 @@ class _MenuScreenState extends State<MenuScreen>
 
     playBGAudio();
     _loadBannerAd();
+    _loadAppOpenAd();
     Future.microtask(() => initializeEffectsVolume());
 
     rotationController = AnimationController(duration: 100.seconds, vsync: this)
@@ -110,7 +113,7 @@ class _MenuScreenState extends State<MenuScreen>
       },
       child: SafeArea(
         child: Scaffold(
-          bottomNavigationBar: (_isLoaded)
+          bottomNavigationBar: (_bannerIsLoaded)
               ? SizedBox(
                   width: _bannerAd!.size.width.toDouble(),
                   height: _bannerAd!.size.height.toDouble(),
@@ -399,7 +402,7 @@ class _MenuScreenState extends State<MenuScreen>
         onAdLoaded: (ad) {
           debugPrint('$ad loaded.');
           setState(() {
-            _isLoaded = true;
+            _bannerIsLoaded = true;
           });
         },
         // Called when an ad request failed.
