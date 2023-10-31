@@ -559,7 +559,12 @@ class _RewardScreenState extends State<RewardScreen> {
         onAdLoaded: (ad) {
           ad.fullScreenContentCallback = FullScreenContentCallback(
             onAdDismissedFullScreenContent: (ad) {
-              Navigator.pushReplacementNamed(context, "/stage");
+              play
+              if (level <= 28) {
+                Navigator.pushReplacementNamed(context, "/stage");
+              } else {
+                Navigator.pushReplacementNamed(context, "/select");
+              }
             },
           );
 
@@ -571,7 +576,7 @@ class _RewardScreenState extends State<RewardScreen> {
           print('Failed to load an interstitial ad: ${err.message}');
         },
 
-        on
+        
       ),
     );
   }
