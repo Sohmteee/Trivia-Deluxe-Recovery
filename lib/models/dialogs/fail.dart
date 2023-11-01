@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
+import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/main.dart';
 import 'package:trivia/models/dialogs/low_cash.dart';
 import 'package:trivia/providers/money.dart';
@@ -208,6 +209,7 @@ showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
                             ),
                             duration: Toast.lengthLong,
                             gravity: Toast.bottom,
+                            backgroundColor: AppColor.slightlyLighterYellow,
                           );
                         }
                       },

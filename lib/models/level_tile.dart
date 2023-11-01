@@ -89,6 +89,7 @@ class _LevelTileState extends State<LevelTile> {
                     "Please go to Level ${stageProvider.completedStage + 1}",
                     duration: 2,
                     gravity: 1,
+                    backgroundColor: AppColor.slightlyLighterYellow,
                     textStyle: TextStyle(
                       color: Colors.white,
                       fontSize: 20.sp,
