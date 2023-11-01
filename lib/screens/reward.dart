@@ -601,6 +601,12 @@ class _RewardScreenState extends State<RewardScreen> {
               }
             },
             onAdDismissedFullScreenContent: (ad) {
+              playBGAudio(context);
+              if (level <= 28) {
+                Navigator.pushReplacementNamed(context, "/stage");
+              } else {
+                Navigator.pushReplacementNamed(context, "/select");
+              }
               ad.dispose();
               interstitialAd = null;
               _loadInterstitialAd();
