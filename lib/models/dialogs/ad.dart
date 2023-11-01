@@ -78,7 +78,7 @@ showAdDialog(BuildContext context) {
               rewardedAd?.show(
                 onUserEarnedReward: (_, reward) {
                   Provider.of<MoneyProvider>(context, listen: false)
-                      .increaseCoins(5);
+                      .increaseCoins(25);
                   Navigator.pushReplacementNamed(context, "/stage");
                   playBGAudio(context);
                 },
@@ -87,11 +87,11 @@ showAdDialog(BuildContext context) {
               playTap(context);
               ToastContext().init(context);
               Toast.show(
-                "Ad is not ready yet!",
+                "Ad is not ready yet, try again after some time.",
                 duration: Toast.lengthLong,
                 gravity: Toast.bottom,
                 textStyle: TextStyle(
-                  fontSize: 15.sp,
+                  fontSize: 25.sp,
                   color: Colors.white,
                 ),
               );
