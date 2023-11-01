@@ -16,6 +16,7 @@ import 'package:trivia/models/game_background.dart';
 import 'package:trivia/providers/profile.dart';
 import 'package:trivia/providers/question.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
+import 'package:http/http.dart' as http;
 
 class LeaderBoardScreen extends StatefulWidget {
   const LeaderBoardScreen({super.key});
@@ -79,7 +80,12 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
       return playerTime.isAfter(constraint);
     }).toList();
 
-    
+    var url = Uri.https('http://cbtportal.linkskool.com/api/get_leaderboard.php?game_type=triviaD&period={index}');
+    await http.get(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+      },);
 
     print(leaderBoardData);
 
