@@ -91,7 +91,7 @@ showAdDialog(BuildContext context) {
                 duration: Toast.lengthLong,
                 gravity: Toast.bottom,
                 textStyle: TextStyle(
-                  fontSize: 25.sp,
+                  fontSize: 20.sp,
                   color: Colors.white,
                 ),
               );
@@ -110,7 +110,7 @@ showAdDialog(BuildContext context) {
                 Text(
                   "Okay I'll watch it",
                   style: TextStyle(
-                    fontSize: 15.sp,
+                    fontSize: 20.sp,
                   ),
                 ),
                 SizedBox(width: 10.w),
