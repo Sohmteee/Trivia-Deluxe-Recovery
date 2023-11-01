@@ -3,7 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:trivia/ad_helper.dart';
+import 'package:trivia/main.dart';
+import 'package:trivia/models/dialogs/low_cash.dart';
 import 'package:trivia/providers/money.dart';
+import 'package:trivia/screens/menu.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 import 'game.dart';
@@ -66,15 +69,15 @@ showAdDialog(BuildContext context) {
         SizedBox(height: 20.h),
         ZoomTapAnimation(
           onTap: () {
-            playTap(dialogContext);
+            playTap(context);
             if (rewardedAd != null) {
               pauseBGAudio();
               rewardedAd?.show(
                 onUserEarnedReward: (_, reward) {
-                  Provider.of<MoneyProvider>(dialogContext, listen: false)
+                  Provider.of<MoneyProvider>(context, listen: false)
                       .increaseCoins(5);
-                  Navigator.pushReplacementNamed(dialogContext, "/stage");
-                  playBGAudio(dialogContext);
+                  Navigator.pushReplacementNamed(context, "/stage");
+                  playBGAudio(context);
                 },
               );
             } else {
