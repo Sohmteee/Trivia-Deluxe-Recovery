@@ -592,7 +592,7 @@ class _RewardScreenState extends State<RewardScreen> {
             onAdShowedFullScreenContent: (ad) {
               pauseBGAudio();
             },
-            onAdDismissedFullScreenContent: (ad) {
+            onAdWillDismissFullScreenContent: (ad) {
               playBGAudio(context);
               if (level <= 28) {
                 Navigator.pushReplacementNamed(context, "/stage");
@@ -600,7 +600,11 @@ class _RewardScreenState extends State<RewardScreen> {
                 Navigator.pushReplacementNamed(context, "/select");
               }
             },
-            
+            onAdDismissedFullScreenContent: (ad) {
+              ad.dispose();
+              interstitialAd = null;
+              _loadInterstitialAd();
+            },
           );
         },
         onAdFailedToLoad: (err) {
