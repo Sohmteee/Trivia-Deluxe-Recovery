@@ -405,10 +405,6 @@ class _MenuScreenState extends State<MenuScreen>
             _bannerAd = ad as BannerAd?;
           });
         },
-        onAdClosed: (ad) {
-          debugPrint('$ad closed.');
-          
-        },
         // Called when an ad request failed.
         onAdFailedToLoad: (ad, err) {
           debugPrint('BannerAd failed to load: $err');
