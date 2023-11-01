@@ -393,6 +393,12 @@ class _MenuScreenState extends State<MenuScreen>
   } */
 
   _loadBannerAd() {
+    BannerAd(
+      adUnitId: AdHelper.bannerAdUnitId,
+      request: const AdRequest(),
+      size: AdSize.banner,
+    );
+
     _bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
       request: const AdRequest(),
