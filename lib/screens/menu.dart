@@ -393,7 +393,22 @@ class _MenuScreenState extends State<MenuScreen>
   } */
 
   _loadBannerAd() {
-    _bannerAd = BannerAdd.
+    _bannerAd = BannerAd(
+      adUnitId: AdHelper.bannerAdUnitId,
+      request: const AdRequest(),
+      size: AdSize.banner,
+      listener: BannerAdListener(
+        // Called when an ad is successfully received.
+        onAdLoaded: (ad) {
+          debugPrint('$ad loaded.');
+        },
+        // Called when an ad request failed.
+        onAdFailedToLoad: (ad, err) {
+          debugPrint('BannerAd failed to load: $err');
+          _loadBannerAd();
+        },
+      ),
+    )..load();
   }
 }
 
