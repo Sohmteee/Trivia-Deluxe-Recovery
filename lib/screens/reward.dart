@@ -30,7 +30,8 @@ class RewardScreen extends StatefulWidget {
   State<RewardScreen> createState() => _RewardScreenState();
 }
 
-  InterstitialAd? interstitialAd;
+InterstitialAd? interstitialAd;
+
 class _RewardScreenState extends State<RewardScreen> {
   BannerAd? _bannerAd;
   bool receivedReward = false;
@@ -200,7 +201,7 @@ class _RewardScreenState extends State<RewardScreen> {
           pauseBGAudio();
           interstitialAd?.show();
         } else {
-        playTap(context);
+          playTap(context);
           if (level <= 28) {
             Navigator.pushReplacementNamed(context, "/stage");
           } else {
@@ -585,9 +586,12 @@ class _RewardScreenState extends State<RewardScreen> {
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) {
+          setState(() {
+            interstitialAd = ad;
+          });
           ad.fullScreenContentCallback = FullScreenContentCallback(
             onAdShowedFullScreenContent: (ad) {
-              pause
+              pauseBGAudio();
             },
             onAdDismissedFullScreenContent: (ad) {
               playBGAudio(context);
@@ -598,10 +602,6 @@ class _RewardScreenState extends State<RewardScreen> {
               }
             },
           );
-
-          setState(() {
-            interstitialAd = ad;
-          });
         },
         onAdFailedToLoad: (err) {
           print('Failed to load an interstitial ad: ${err.message}');
