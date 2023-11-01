@@ -130,6 +130,7 @@ class _GameStatsState extends State<GameStats> {
         ZoomTapAnimation(
           onTap: () {
             playTap(context);
+            Navigator.pushNamed(context, "/leaderboard");
           },
           child: Container(
             height: 20.h,
