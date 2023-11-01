@@ -163,7 +163,7 @@ class ProfileProvider extends ChangeNotifier {
           );
         });
       }
-      var url = Uri.https('example.com', 'whatsit/create');
+      var url = Uri.https('http://', 'whatsit/create');
       var response =
           await http.post(url, body: {'name': 'doodle', 'color': 'blue'});
       print('Response status: ${response.statusCode}');
