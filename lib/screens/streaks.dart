@@ -612,7 +612,7 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
   }
 
   _loadBannerAd() {
-    _bannerAd = BannerAd(
+    BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
       request: const AdRequest(),
       size: AdSize.banner,
@@ -620,6 +620,9 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
         // Called when an ad is successfully received.
         onAdLoaded: (ad) {
           debugPrint('$ad loaded.');
+          setState(() {
+            _bannerAd = ad as BannerAd?;
+          });
         },
         // Called when an ad request failed.
         onAdFailedToLoad: (ad, err) {
@@ -627,6 +630,6 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
           _loadBannerAd();
         },
       ),
-    )..load();
+    ).load();
   }
 }

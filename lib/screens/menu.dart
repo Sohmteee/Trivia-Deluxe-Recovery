@@ -138,8 +138,8 @@ class _MenuScreenState extends State<MenuScreen>
                     bottomButtons(context),
                     const Spacer(),
                     SizedBox(
-                      width: _bannerAd!.size.width.toDouble(),
-                      height: _bannerAd!.size.height.toDouble(),
+                      width: _bannerAd?.size.width.toDouble(),
+                      height: _bannerAd?.size.height.toDouble(),
                       child: AdWidget(ad: _bannerAd!),
                     ),
                   ],
