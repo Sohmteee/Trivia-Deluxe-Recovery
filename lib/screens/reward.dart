@@ -600,6 +600,7 @@ class _RewardScreenState extends State<RewardScreen> {
                 Navigator.pushReplacementNamed(context, "/select");
               }
             },
+            
           );
         },
         onAdFailedToLoad: (err) {
