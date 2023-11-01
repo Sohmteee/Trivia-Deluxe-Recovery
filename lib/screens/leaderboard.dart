@@ -80,15 +80,6 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
       return playerTime.isAfter(constraint);
     }).toList();
 
-    var url = Uri.https(
-        'http://cbtportal.linkskool.com/api/get_leaderboard.php?triviaD=triviaD&period=daily');
-    await http.get(
-      url,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    );
-
     print(leaderBoardData);
 
     return leaderBoardData;
