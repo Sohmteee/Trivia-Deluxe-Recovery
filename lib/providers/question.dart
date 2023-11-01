@@ -8,6 +8,7 @@ import 'package:trivia/providers/money.dart';
 import 'package:trivia/providers/profile.dart';
 import 'package:trivia/providers/stage.dart';
 
+
 class QuestionProvider extends ChangeNotifier {
   Map data = {};
   List questions = [];
