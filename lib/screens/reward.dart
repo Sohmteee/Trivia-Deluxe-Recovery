@@ -587,14 +587,6 @@ class _RewardScreenState extends State<RewardScreen> {
             onAdShowedFullScreenContent: (ad) {
               pauseBGAudio();
             },
-            onAdWillDismissFullScreenContent: (ad) {
-              playBGAudio(context);
-              if (level <= 28) {
-                Navigator.pushReplacementNamed(context, "/stage");
-              } else {
-                Navigator.pushReplacementNamed(context, "/select");
-              }
-            },
             onAdDismissedFullScreenContent: (ad) {
               playBGAudio(context);
               if (level <= 28) {
