@@ -1,20 +1,14 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/data/box.dart';
-import 'package:trivia/main.dart';
 import 'package:trivia/models/dialogs/game.dart';
 import 'package:trivia/providers/question.dart';
-import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class ProfileProvider extends ChangeNotifier {
   String? username = box.get("username", defaultValue: null);
