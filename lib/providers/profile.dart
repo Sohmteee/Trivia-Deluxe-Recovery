@@ -197,9 +197,8 @@ class ProfileProvider extends ChangeNotifier {
       );
     });
 
-    
     var url = Uri.https('http://cbtportal.linkskool.com/api/post_score.php');
-    var response = await http.post(
+    await http.post(
       url,
       headers: {
         'Content-Type': 'application/json',
@@ -213,8 +212,6 @@ class ProfileProvider extends ChangeNotifier {
         'mode': 0
       },
     );
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
 
     notifyListeners();
   }
@@ -274,7 +271,7 @@ class ProfileProvider extends ChangeNotifier {
     });
 
     var url = Uri.https('http://cbtportal.linkskool.com/api/post_score.php');
-    var response = await http.post(
+    await http.post(
       url,
       headers: {
         'Content-Type': 'application/json',
@@ -287,14 +284,11 @@ class ProfileProvider extends ChangeNotifier {
         'mode': 0
       },
     );
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
-
 
     notifyListeners();
   }
 
-  createPlayer(BuildContext context,
+  /* createPlayer(BuildContext context,
       {required String username,
       required int avatar,
       required bool isCreatePlayer}) async {
@@ -461,4 +455,5 @@ class ProfileProvider extends ChangeNotifier {
 
     notifyListeners();
   }
+ */
 }
