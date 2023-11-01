@@ -60,7 +60,7 @@ showAdDialog(BuildContext context) {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.w),
           child: Text(
-            "This would give you 25 coins",
+            "This will give you 5 coins",
             style: TextStyle(
               color: Colors.grey[400],
               fontSize: 20.sp,
@@ -76,7 +76,7 @@ showAdDialog(BuildContext context) {
               rewardedAd?.show(
                 onUserEarnedReward: (_, reward) {
                   Provider.of<MoneyProvider>(context, listen: false)
-                      .increaseCoins(25);
+                      .increaseCoins(5);
                   Navigator.pushReplacementNamed(context, "/stage");
                   playBGAudio(context);
                 },
