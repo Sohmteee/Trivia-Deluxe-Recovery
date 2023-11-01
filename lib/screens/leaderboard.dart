@@ -204,8 +204,8 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                 },
                 child: Container(
                   padding: EdgeInsets.symmetric(
-                    vertical: 15.sp,
-                    horizontal: 25.sp,
+                    vertical: 10.sp,
+                    horizontal: 15.sp,
                   ),
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -227,7 +227,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                 child: Container(
                   padding: EdgeInsets.symmetric(
                     vertical: 15.sp,
-                    horizontal: 25.sp,
+                    horizontal: 15.sp,
                   ),
                   decoration: BoxDecoration(
                     color: Colors.white,
