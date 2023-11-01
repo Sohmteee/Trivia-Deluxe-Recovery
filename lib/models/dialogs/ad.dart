@@ -55,7 +55,7 @@ showAdDialog(BuildContext context) {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.w),
           child: Text(
-            "This would give you 5 coins",
+            "This would give you 25 coins",
             style: TextStyle(
               color: Colors.grey[400],
               fontSize: 20.sp,
@@ -66,14 +66,22 @@ showAdDialog(BuildContext context) {
         SizedBox(height: 20.h),
         ZoomTapAnimation(
           onTap: () {
-            Navigator.pop(context);
-            _rewardedAd?.show(
-              onUserEarnedReward: (_, reward) {
-                Navigator.pop(context);
-                Provider.of<MoneyProvider>(context, listen: false)
-                    .increaseCoins(5);
-              },
-            );
+            playTap(dialogContext);
+            if (rewardedAd != null) {
+              pauseBGAudio();
+              rewardedAd?.show(
+                onUserEarnedReward: (_, reward) {
+                  Provider.of<MoneyProvider>(dialogContext, listen: false)
+                      .increaseCoins(5);
+                  Navigator.pushReplacementNamed(dialogContext, "/stage");
+                  playBGAudio(dialogContext);
+                },
+              );
+            } else {
+              ToastContext().init(context);
+              Toast.show("Ad is not ready yet!",
+                  duration: Toast.lengthLong, gravity: Toast.bottom);
+            }
           },
           child: Container(
             width: double.maxFinite,
