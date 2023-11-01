@@ -146,7 +146,7 @@ class _GameScreenState extends State<GameScreen> {
         // Called when an ad request failed.
         onAdFailedToLoad: (ad, err) {
           debugPrint('BannerAd failed to load: $err');
-_loadBannerAd
+          _loadBannerAd();
         },
       ),
     )..load();

@@ -624,7 +624,7 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
         // Called when an ad request failed.
         onAdFailedToLoad: (ad, err) {
           debugPrint('BannerAd failed to load: $err');
-_loadBannerAd
+          _loadBannerAd();
         },
       ),
     )..load();
