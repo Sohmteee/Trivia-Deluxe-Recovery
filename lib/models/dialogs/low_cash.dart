@@ -19,7 +19,6 @@ loadRewardedAd(BuildContext context) {
     adUnitId: AdHelper.rewardedAdUnitId,
     request: const AdRequest(),
     rewardedAdLoadCallback: RewardedAdLoadCallback(
-      
       onAdLoaded: (ad) {
         ad.fullScreenContentCallback = FullScreenContentCallback(
           onAdShowedFullScreenContent: (ad) {

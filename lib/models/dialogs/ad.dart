@@ -28,7 +28,6 @@ showAdDialog(BuildContext context) {
               playBGAudio(context);
               ad.dispose();
               rewardedAd = null;
-              loadRewardedAd();
             },
           );
 
