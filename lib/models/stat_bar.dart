@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/data/box.dart';
 import 'package:trivia/main.dart';
+import 'package:trivia/models/dialogs/ad.dart';
 import 'package:trivia/models/dialogs/settings.dart';
 import 'package:trivia/providers/money.dart';
 import 'package:trivia/providers/profile.dart';
@@ -167,8 +168,9 @@ class _GameStatsState extends State<GameStats> {
                     }
 
                     if (Provider.of<QuestionProvider>(context)
-                            .totalQuestionsAnswered ==
-                        0 || !Provider.of<ProfileProvider>(context).hasProfile) {
+                                .totalQuestionsAnswered ==
+                            0 ||
+                        !Provider.of<ProfileProvider>(context).hasProfile) {
                       return "---";
                     }
 
@@ -234,6 +236,7 @@ class _GameStatsState extends State<GameStats> {
             return ZoomTapAnimation(
               onTap: () {
                 playTap(context);
+                showAdDialog(context);
               },
               child: Container(
                 height: 20.h,
