@@ -27,8 +27,10 @@ loadRewardedAd(BuildContext context, {bool isStatBar = false}) {
           onAdDismissedFullScreenContent: (ad) {
             ad.dispose();
             rewardedAd = null;
-            Navigator.pushReplacementNamed(context, "/stage");
-            playBGAudio(context);
+            if (!isStatBar) {
+              Navigator.pushReplacementNamed(context, "/stage");
+              playBGAudio(context);
+            }
 
             // loadRewardedAd(context);
           },

@@ -41,7 +41,7 @@ showAdDialog(BuildContext context) {
     );
   } */
 
-  loadRewardedAd(context);
+  loadRewardedAd(context, isStatBar: true);
 
   showGameDialog(
     context,
