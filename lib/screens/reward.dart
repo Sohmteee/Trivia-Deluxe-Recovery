@@ -603,6 +603,12 @@ class _RewardScreenState extends State<RewardScreen> {
         onAdFailedToLoad: (err) {
           print('Failed to load an interstitial ad: ${err.message}');
           _loadInterstitialAd();
+
+          if (level <= 28) {
+            Navigator.pushReplacementNamed(context, "/stage");
+          } else {
+            Navigator.pushReplacementNamed(context, "/select");
+          }
         },
       ),
     );
