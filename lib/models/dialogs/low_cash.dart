@@ -90,7 +90,6 @@ showLowCashDialog(BuildContext context) {
           SizedBox(height: 20.h),
           ZoomTapAnimation(
             onTap: () {
-              playTap(dialogContext);
               if (rewardedAd != null) {
                 Navigator.pop(context);
                 pauseBGAudio();
