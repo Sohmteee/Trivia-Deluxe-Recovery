@@ -586,6 +586,9 @@ class _RewardScreenState extends State<RewardScreen> {
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) {
           ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdShowedFullScreenContent: (ad) {
+              pause
+            },
             onAdDismissedFullScreenContent: (ad) {
               playBGAudio(context);
               if (level <= 28) {
