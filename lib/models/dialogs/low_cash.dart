@@ -14,7 +14,7 @@ import 'game.dart';
 
 RewardedAd? rewardedAd;
 
-loadRewardedAd(BuildContext context, {bool isStatBar = false}) {
+loadRewardedAd(BuildContext context, {bool? isStatBar}) {
   RewardedAd.load(
     adUnitId: AdHelper.rewardedAdUnitId,
     request: const AdRequest(),
@@ -27,7 +27,8 @@ loadRewardedAd(BuildContext context, {bool isStatBar = false}) {
           onAdDismissedFullScreenContent: (ad) {
             ad.dispose();
             rewardedAd = null;
-            if (!isStatBar) {
+            isStatBar ?? false;
+            if (!isStatBar!) {
               Navigator.pushReplacementNamed(context, "/stage");
               playBGAudio(context);
             }
