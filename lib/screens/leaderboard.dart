@@ -81,7 +81,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
     }).toList();
 
     var url = Uri.https(
-        'http://cbtportal.linkskool.com/api/get_leaderboard.php?game_type=triviaD&period=daily');
+        'http://cbtportal.linkskool.com/api/get_leaderboard.php?triviaD=triviaD&period=daily');
     await http.get(
       url,
       headers: {
