@@ -163,15 +163,15 @@ class ProfileProvider extends ChangeNotifier {
           );
         });
       }
-      var url = Uri.https('http://', 'whatsit/create');
-      var response =
-          await http.post(url, body: {'name': 'doodle', 'color': 'blue'});
+      var url = Uri.https('http://cbtportal.linkskool.com/api/post_score.php');
+      var response = await http.post(url, body: {
+        'username': username,
+        'avatar': avatar,
+        'device_id': deviceID,
+      });
       print('Response status: ${response.statusCode}');
       print('Response body: ${response.body}');
-    }
-    
-    
-    ).catchError((error) {
+    }).catchError((error) {
       print("Error checking player existence: $error");
 
       showGameDialog(
