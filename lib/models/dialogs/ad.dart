@@ -78,8 +78,6 @@ showAdDialog(BuildContext context) {
                 onUserEarnedReward: (_, reward) {
                   Provider.of<MoneyProvider>(context, listen: false)
                       .increaseCoins(5);
-                  Navigator.pushReplacementNamed(context, "/stage");
-                  playBGAudio(context);
                 },
               );
             } else {
