@@ -73,6 +73,7 @@ showAdDialog(BuildContext context) {
         ZoomTapAnimation(
           onTap: () {
             if (rewardedAd != null) {
+              Navigator.pop(context);
               pauseBGAudio();
               rewardedAd?.show(
                 onUserEarnedReward: (_, reward) {

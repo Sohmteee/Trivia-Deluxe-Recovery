@@ -91,19 +91,27 @@ showLowCashDialog(BuildContext context) {
             onTap: () {
               playTap(dialogContext);
               if (rewardedAd != null) {
+                Navigator.pop(context);
                 pauseBGAudio();
                 rewardedAd?.show(
                   onUserEarnedReward: (_, reward) {
-                    Provider.of<MoneyProvider>(dialogContext, listen: false)
+                    Provider.of<MoneyProvider>(context, listen: false)
                         .increaseCoins(5);
-                    Navigator.pushReplacementNamed(dialogContext, "/stage");
-                    playBGAudio(dialogContext);
                   },
                 );
               } else {
+                playTap(context);
                 ToastContext().init(context);
-                Toast.show("Ad is not ready yet!",
-                    duration: Toast.lengthLong, gravity: Toast.bottom);
+                Toast.show(
+                  "Ad is not ready yet, try again after some time.",
+                  duration: Toast.lengthLong,
+                  backgroundColor: AppColor.slightlyLighterYellow,
+                  gravity: Toast.bottom,
+                  textStyle: TextStyle(
+                    fontSize: 16.sp,
+                    color: Colors.black,
+                  ),
+                );
               }
             },
             child: Container(
