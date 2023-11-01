@@ -163,21 +163,6 @@ class ProfileProvider extends ChangeNotifier {
           );
         });
       }
-
-      var url = Uri.https('http://cbtportal.linkskool.com/api/post_score.php');
-      var response = await http.post(
-        url,
-        body: {
-          'username': username,
-          'avatar': avatar,
-          'device_id': deviceID,
-          'game_type': 'triviaD',
-          'score': questionProvider.leaderboardScore.round(),
-          'mode': 0
-        },
-      );
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
     }).catchError((error) {
       print("Error checking player existence: $error");
 
@@ -211,6 +196,22 @@ class ProfileProvider extends ChangeNotifier {
         ),
       );
     });
+
+    
+    var url = Uri.https('http://cbtportal.linkskool.com/api/post_score.php');
+    var response = await http.post(
+      url,
+      body: {
+        'username': username,
+        'avatar': avatar,
+        'device_id': deviceID,
+        'game_type': 'triviaD',
+        'score': questionProvider.leaderboardScore.round(),
+        'mode': 0
+      },
+    );
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
 
     notifyListeners();
   }
