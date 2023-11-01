@@ -91,7 +91,7 @@ showAdDialog(BuildContext context) {
                 duration: Toast.lengthLong,
                 gravity: Toast.bottom,
                 textStyle: TextStyle(
-                  fontSize: 20.sp,
+                  fontSize: 16.sp,
                   color: Colors.white,
                 ),
               );
