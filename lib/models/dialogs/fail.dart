@@ -24,6 +24,7 @@ showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
 
   showGameDialog(
     context,
+    margin: EdgeInsets.symmetric(horizontal: 40.w),
     child: StatefulBuilder(
       builder: (context, setState) {
         return Stack(
