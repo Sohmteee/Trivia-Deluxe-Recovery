@@ -240,6 +240,8 @@ class ProfileProvider extends ChangeNotifier {
       }).catchError((error) {
         print("Error: $error");
 
+        isLoading = false;
+
         showGameDialog(
           context,
           isExitable: true,
