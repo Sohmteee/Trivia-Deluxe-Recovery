@@ -98,6 +98,7 @@ showLowCashDialog(BuildContext context) {
                   onUserEarnedReward: (_, reward) {
                     Provider.of<MoneyProvider>(context, listen: false)
                         .increaseCoins(5);
+                        Provider.of<
                   },
                 );
               } else {
