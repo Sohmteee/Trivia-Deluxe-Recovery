@@ -10,6 +10,7 @@ import 'package:trivia/data/box.dart';
 import 'package:trivia/main.dart';
 import 'package:trivia/models/dialogs/settings.dart';
 import 'package:trivia/providers/money.dart';
+import 'package:trivia/providers/profile.dart';
 import 'package:trivia/providers/question.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
@@ -167,7 +168,7 @@ class _GameStatsState extends State<GameStats> {
 
                     if (Provider.of<QuestionProvider>(context)
                             .totalQuestionsAnswered ==
-                        0 || ) {
+                        0 || !Provider.of<ProfileProvider>(context).hasProfile) {
                       return "---";
                     }
 
