@@ -167,7 +167,7 @@ class _GameStatsState extends State<GameStats> {
 
                     if (Provider.of<QuestionProvider>(context)
                             .totalQuestionsAnswered ==
-                        0) {
+                        0 || ) {
                       return "---";
                     }
 
