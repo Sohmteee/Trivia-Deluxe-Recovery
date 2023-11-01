@@ -201,6 +201,9 @@ class ProfileProvider extends ChangeNotifier {
     var url = Uri.https('http://cbtportal.linkskool.com/api/post_score.php');
     var response = await http.post(
       url,
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: {
         'username': username,
         'avatar': avatar,
@@ -269,6 +272,7 @@ class ProfileProvider extends ChangeNotifier {
         );
       });
     });
+
 
     notifyListeners();
   }
