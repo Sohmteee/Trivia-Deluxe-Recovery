@@ -50,7 +50,7 @@ showAdDialog(BuildContext context) {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          "Watch an ad to top up?",
+          "Watch an AD to Top Up?",
           style: TextStyle(
             color: Colors.white,
             fontSize: 25.sp,
@@ -70,7 +70,7 @@ showAdDialog(BuildContext context) {
             textAlign: TextAlign.center,
           ),
         ),
-        SizedBox(height: 20.h),
+        SizedBox(height: 30.h),
         ZoomTapAnimation(
           onTap: () {
             playTap(context);
@@ -91,7 +91,6 @@ showAdDialog(BuildContext context) {
             }
           },
           child: Container(
-            width: double.maxFinite,
             padding: EdgeInsets.symmetric(horizontal: 20.sp, vertical: 10.sp),
             decoration: BoxDecoration(
               color: Colors.white,
@@ -111,37 +110,6 @@ showAdDialog(BuildContext context) {
                 SizedBox(
                   height: 20.h,
                   child: Image.asset("assets/images/youtube.png"),
-                ),
-              ],
-            ),
-          ),
-        ),
-        SizedBox(height: 10.h),
-        ZoomTapAnimation(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Container(
-            width: double.maxFinite,
-            padding: EdgeInsets.symmetric(horizontal: 20.sp, vertical: 10.sp),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20.r),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Omo I dey manage my data",
-                  style: TextStyle(
-                    fontSize: 15.sp,
-                  ),
-                ),
-                SizedBox(width: 10.w),
-                SizedBox(
-                  height: 20.h,
-                  child: Image.asset("assets/images/laugh.png"),
                 ),
               ],
             ),
