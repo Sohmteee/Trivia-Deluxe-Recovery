@@ -2,6 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
@@ -43,37 +44,42 @@ class ProfileProvider extends ChangeNotifier {
         hasProfile = true;
         box.put("hasProfile", hasProfile);
 
+        isLoading = false;
+
         notifyListeners();
 
-        showGameDialog(
-          context,
-          isExitable: true,
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-          margin: EdgeInsets.symmetric(horizontal: 60.w, vertical: 24.h),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                "Profile Already Exists",
-                style: TextStyle(
-                  color: AppColor.yellow,
-                  fontSize: 25.sp,
-                  fontWeight: FontWeight.bold,
+        Future.delayed(.5.seconds, () {
+          showGameDialog(
+            context,
+            isExitable: true,
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+            margin: EdgeInsets.symmetric(horizontal: 60.w, vertical: 24.h),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "Profile Already Exists",
+                  style: TextStyle(
+                    color: AppColor.yellow,
+                    fontSize: 25.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: 10.h),
-              Text(
-                "Your profile already exists. Your data has now been synced as ${profile["username"]}",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18.sp,
+                SizedBox(height: 10.h),
+                Text(
+                  "Your profile already exists. Your data has now been synced as ${profile["username"]}",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18.sp,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
-        );
+              ],
+            ),
+          );
+      
+        });
       } else {
         print("Player does not exist.");
 
