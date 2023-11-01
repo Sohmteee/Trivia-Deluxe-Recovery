@@ -556,7 +556,7 @@ class _RewardScreenState extends State<RewardScreen> {
   }
 
   _loadBannerAd() {
-    BannerAd(
+    _bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
       request: const AdRequest(),
       size: AdSize.banner,
@@ -564,9 +564,6 @@ class _RewardScreenState extends State<RewardScreen> {
         // Called when an ad is successfully received.
         onAdLoaded: (ad) {
           debugPrint('$ad loaded.');
-          setState(() {
-            _bannerAd = ad as BannerAd?;
-          });
         },
         // Called when an ad request failed.
         onAdFailedToLoad: (ad, err) {
@@ -574,7 +571,7 @@ class _RewardScreenState extends State<RewardScreen> {
           _loadBannerAd();
         },
       ),
-    ).load();
+    )..load();
   }
 
   void _loadInterstitialAd() {

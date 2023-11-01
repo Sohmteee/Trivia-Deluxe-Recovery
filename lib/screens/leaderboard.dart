@@ -150,8 +150,8 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
     );
   }
 
- _loadBannerAd() {
-    BannerAd(
+  _loadBannerAd() {
+    _bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
       request: const AdRequest(),
       size: AdSize.banner,
@@ -159,9 +159,6 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
         // Called when an ad is successfully received.
         onAdLoaded: (ad) {
           debugPrint('$ad loaded.');
-          setState(() {
-            _bannerAd = ad as BannerAd?;
-          });
         },
         // Called when an ad request failed.
         onAdFailedToLoad: (ad, err) {
@@ -169,7 +166,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
           _loadBannerAd();
         },
       ),
-    ).load();
+    )..load();
   }
 
   Padding createProfilePrompt(BuildContext context) {

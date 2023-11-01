@@ -79,7 +79,7 @@ class _StageScreenState extends State<StageScreen> {
   }
 
   _loadBannerAd() {
-    BannerAd(
+    _bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
       request: const AdRequest(),
       size: AdSize.banner,
@@ -87,9 +87,6 @@ class _StageScreenState extends State<StageScreen> {
         // Called when an ad is successfully received.
         onAdLoaded: (ad) {
           debugPrint('$ad loaded.');
-          setState(() {
-            _bannerAd = ad as BannerAd?;
-          });
         },
         // Called when an ad request failed.
         onAdFailedToLoad: (ad, err) {
@@ -97,7 +94,7 @@ class _StageScreenState extends State<StageScreen> {
           _loadBannerAd();
         },
       ),
-    ).load();
+    )..load();
   }
 
   Consumer<StageProvider> playButton() {

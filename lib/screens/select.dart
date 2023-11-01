@@ -185,7 +185,7 @@ class _SelectScreenState extends State<SelectScreen> {
   }
 
   _loadBannerAd() {
-    BannerAd(
+    _bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
       request: const AdRequest(),
       size: AdSize.banner,
@@ -193,9 +193,6 @@ class _SelectScreenState extends State<SelectScreen> {
         // Called when an ad is successfully received.
         onAdLoaded: (ad) {
           debugPrint('$ad loaded.');
-          setState(() {
-            _bannerAd = ad as BannerAd?;
-          });
         },
         // Called when an ad request failed.
         onAdFailedToLoad: (ad, err) {
@@ -203,7 +200,7 @@ class _SelectScreenState extends State<SelectScreen> {
           _loadBannerAd();
         },
       ),
-    ).load();
+    )..load();
   }
 
   Row categoriesIndicators(BuildContext context) {

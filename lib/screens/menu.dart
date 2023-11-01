@@ -138,8 +138,8 @@ class _MenuScreenState extends State<MenuScreen>
                     bottomButtons(context),
                     const Spacer(),
                     SizedBox(
-                      width: _bannerAd?.size.width.toDouble(),
-                      height: _bannerAd?.size.height.toDouble(),
+                      width: _bannerAd!.size.width.toDouble(),
+                      height: _bannerAd!.size.height.toDouble(),
                       child: AdWidget(ad: _bannerAd!),
                     ),
                   ],
@@ -412,6 +412,23 @@ class _MenuScreenState extends State<MenuScreen>
         },
       ),
     ).load();
+
+    _bannerAd = BannerAd(
+      adUnitId: AdHelper.bannerAdUnitId,
+      request: const AdRequest(),
+      size: AdSize.banner,
+      listener: BannerAdListener(
+        // Called when an ad is successfully received.
+        onAdLoaded: (ad) {
+          debugPrint('$ad loaded.');
+        },
+        // Called when an ad request failed.
+        onAdFailedToLoad: (ad, err) {
+          debugPrint('BannerAd failed to load: $err');
+          _loadBannerAd();
+        },
+      ),
+    )..load();
   }
 }
 
