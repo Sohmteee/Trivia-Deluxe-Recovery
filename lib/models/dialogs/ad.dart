@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
@@ -67,13 +68,15 @@ showAdDialog(BuildContext context) {
         ZoomTapAnimation(
           onTap: () {
             Navigator.pop(context);
-            _rewardedAd?.show(
+            Future.delayed(.5.seconds. () {
+              _rewardedAd?.show(
               onUserEarnedReward: (_, reward) {
                 Navigator.pop(context);
                 Provider.of<MoneyProvider>(context, listen: false)
                     .increaseCoins(5);
               },
             );
+            });
           },
           child: Container(
             width: double.maxFinite,

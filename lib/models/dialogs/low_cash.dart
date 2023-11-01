@@ -23,7 +23,7 @@ loadRewardedAd(BuildContext context) {
       onAdLoaded: (ad) {
         ad.fullScreenContentCallback = FullScreenContentCallback(
           onAdShowedFullScreenContent: (ad) {
-            Future.delayed(.5)
+            pauseBGAudio();
           },
           onAdDismissedFullScreenContent: (ad) {
             ad.dispose();
