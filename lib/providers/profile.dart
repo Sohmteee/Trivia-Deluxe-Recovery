@@ -138,6 +138,7 @@ class ProfileProvider extends ChangeNotifier {
           print("Error: $error");
 
           isLoading = false;
+          notifyListeners();
 
           showGameDialog(
             context,
@@ -174,6 +175,7 @@ class ProfileProvider extends ChangeNotifier {
       print("Error checking player existence: $error");
 
       isLoading = false;
+      notifyListeners();
 
       showGameDialog(
         context,
@@ -250,6 +252,7 @@ class ProfileProvider extends ChangeNotifier {
         print("Error: $error");
 
         isLoading = false;
+        notifyListeners();
 
         showGameDialog(
           context,
