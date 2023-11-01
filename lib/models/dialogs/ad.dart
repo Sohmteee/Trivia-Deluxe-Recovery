@@ -73,7 +73,6 @@ showAdDialog(BuildContext context) {
         SizedBox(height: 30.h),
         ZoomTapAnimation(
           onTap: () {
-            playTap(context);
             if (rewardedAd != null) {
               pauseBGAudio();
               rewardedAd?.show(
@@ -85,9 +84,17 @@ showAdDialog(BuildContext context) {
                 },
               );
             } else {
+              playTap(context);
               ToastContext().init(context);
-              Toast.show("Ad is not ready yet!",
-                  duration: Toast.lengthLong, gravity: Toast.bottom);
+              Toast.show(
+                "Ad is not ready yet!",
+                duration: Toast.lengthLong,
+                gravity: Toast.bottom,
+                textStyle: TextStyle(
+                  fontSize: 15.sp,
+                  color: Colors.white,
+                ),
+              );
             }
           },
           child: Container(
