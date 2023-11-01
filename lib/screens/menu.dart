@@ -82,6 +82,10 @@ class _MenuScreenState extends State<MenuScreen>
   void didChangeAppLifecycleState(AppLifecycleState state) {
     switch (state) {
       case AppLifecycleState.resumed:
+        if (rewardedAd == null || interstitialAd == null) {
+          playBGAudio(context);
+        }
+        break;
       case AppLifecycleState.inactive:
         /* if (_appOpenIsLoaded) {
           _appOpenAd!.show();
