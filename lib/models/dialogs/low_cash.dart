@@ -23,11 +23,14 @@ loadRewardedAd(BuildContext context) {
       onAdLoaded: (ad) {
         ad.fullScreenContentCallback = FullScreenContentCallback(
           onAdShowedFullScreenContent: (ad) {
-            pauseBGAudio();
+            Future.delayed(.5)
           },
           onAdDismissedFullScreenContent: (ad) {
             ad.dispose();
             rewardedAd = null;
+            Navigator.pushReplacementNamed(context, "/stage");
+            playBGAudio(context);
+
             // loadRewardedAd(context);
           },
         );
