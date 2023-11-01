@@ -200,15 +200,8 @@ class _RewardScreenState extends State<RewardScreen> {
         if (interstitialAd != null) {
           pauseBGAudio();
           interstitialAd?.show();
-          playBGAudio(context);
         } else {
           playTap(context);
-        }
-
-        if (level <= 28) {
-          Navigator.pushReplacementNamed(context, "/stage");
-        } else {
-          Navigator.pushReplacementNamed(context, "/select");
         }
       },
       child: Container(
