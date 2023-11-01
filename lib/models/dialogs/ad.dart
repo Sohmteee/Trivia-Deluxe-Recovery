@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 import 'package:trivia/ad_helper.dart';
 import 'package:trivia/main.dart';
-import 'package:trivia/models/dialogs/low_cash.dart';
 import 'package:trivia/providers/money.dart';
 import 'package:trivia/screens/menu.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
@@ -13,9 +12,9 @@ import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 import 'game.dart';
 
 showAdDialog(BuildContext context) {
-  RewardedAd? _rewardedAd;
+  RewardedAd? rewardedAd;
 
-  void _loadRewardedAd() {
+  void loadRewardedAd() {
     RewardedAd.load(
       adUnitId: AdHelper.rewardedAdUnitId,
       request: const AdRequest(),
@@ -28,12 +27,12 @@ showAdDialog(BuildContext context) {
             onAdDismissedFullScreenContent: (ad) {
               playBGAudio(context);
               ad.dispose();
-              _rewardedAd = null;
-              _loadRewardedAd();
+              rewardedAd = null;
+              loadRewardedAd();
             },
           );
 
-          _rewardedAd = ad;
+          rewardedAd = ad;
         },
         onAdFailedToLoad: (err) {
           print('Failed to load a rewarded ad: ${err.message}');
@@ -42,7 +41,7 @@ showAdDialog(BuildContext context) {
     );
   }
 
-  _loadRewardedAd();
+  loadRewardedAd();
 
   showGameDialog(
     context,
