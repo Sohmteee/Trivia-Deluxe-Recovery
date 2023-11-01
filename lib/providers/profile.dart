@@ -281,7 +281,6 @@ class ProfileProvider extends ChangeNotifier {
       },
       body: {
         'username': username,
-        'avatar': avatar,
         'device_id': deviceID,
         'game_type': 'triviaD',
         'score': questionProvider.leaderboardScore.round(),
