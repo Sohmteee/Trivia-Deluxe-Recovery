@@ -10,13 +10,15 @@ Future<bool> onWillPop(context, isExitable) async {
   }
   playUnavailable(context);
   ToastContext().init(context);
-  Toast.show("You can't go back at the moment",
-      duration: 2,
-      gravity: Toast.bottom,
-      backgroundColor: AppColor.slightlyLighterYellow,
-      textStyle: TextStyle(
-        color: Colors.white,
-        fontSize: 20.sp,
-      ));
+  Toast.show(
+    "You can't go back at the moment",
+    duration: 2,
+    gravity: Toast.bottom,
+    backgroundColor: AppColor.slightlyLighterYellow,
+    textStyle: TextStyle(
+      color: Colors.white,
+      fontSize: 20.sp,
+    ),
+  );
   return false;
 }

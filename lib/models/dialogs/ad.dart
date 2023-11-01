@@ -91,7 +91,7 @@ showAdDialog(BuildContext context) {
               playTap(context);
               ToastContext().init(context);
               Toast.show(
-                "Ad is not ready yet, try again after some time.",
+                "Ad is not ready yet. Try again after some time.",
                 duration: Toast.lengthLong,
                 backgroundColor: AppColor.slightlyLighterYellow,
                 gravity: Toast.bottom,
