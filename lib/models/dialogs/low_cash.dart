@@ -37,7 +37,7 @@ loadRewardedAd(BuildContext context, {bool? isStatBar}) {
           onAdDismissedFullScreenContent: (ad) {
             ad.dispose();
             rewardedAd = null;
-            // loadRewardedAd(context);
+            loadRewardedAd(context);
           },
         );
 
