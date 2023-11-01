@@ -94,7 +94,7 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
 
       final profileProvider =
           Provider.of<ProfileProvider>(context, listen: false);
-      if (profileProvider.username != null) {
+      if (profileProvider.hasProfile) {
         profileProvider.updatePlayer(context);
       }
 
@@ -451,7 +451,7 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
                             final profileProvider =
                                 Provider.of<ProfileProvider>(context,
                                     listen: false);
-                            if (profileProvider.username != null) {
+                            if (profileProvider.hasProfile) {
                               profileProvider.updatePlayer(context);
                             }
 
