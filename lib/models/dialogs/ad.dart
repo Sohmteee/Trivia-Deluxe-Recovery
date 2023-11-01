@@ -87,6 +87,7 @@ showAdDialog(BuildContext context) {
               Toast.show(
                 "Ad is not ready yet, try again after some time.",
                 duration: Toast.lengthLong,
+                
                 gravity: Toast.bottom,
                 textStyle: TextStyle(
                   fontSize: 16.sp,
