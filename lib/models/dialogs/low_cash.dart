@@ -25,6 +25,7 @@ loadRewardedAd(BuildContext context, {bool? isStatBar}) {
           onAdShowedFullScreenContent: (ad) {
             pauseBGAudio();
           },
+          on
           onAdDismissedFullScreenContent: (ad) {
             ad.dispose();
             rewardedAd = null;
