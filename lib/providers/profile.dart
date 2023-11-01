@@ -128,6 +128,8 @@ class ProfileProvider extends ChangeNotifier {
         }).catchError((error) {
           print("Error: $error");
 
+          isLoading = false;
+
           showGameDialog(
             context,
             isExitable: true,
@@ -161,6 +163,8 @@ class ProfileProvider extends ChangeNotifier {
       }
     }).catchError((error) {
       print("Error checking player existence: $error");
+
+      isLoading = false;
 
       showGameDialog(
         context,
@@ -217,6 +221,8 @@ class ProfileProvider extends ChangeNotifier {
         Provider.of<QuestionProvider>(context, listen: false);
 
     final fb = FirebaseFirestore.instance.collection("players");
+
+    isLoading = true;
 
     fb.doc(deviceID).get().then((DocumentSnapshot snapshot) async {
       fb.doc(deviceID).set(
