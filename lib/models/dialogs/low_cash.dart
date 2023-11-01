@@ -14,7 +14,7 @@ import 'game.dart';
 
 RewardedAd? rewardedAd;
 
-loadRewardedAd(BuildContext context) {
+loadRewardedAd(BuildContext context, {bool isStatBar = false}) {
   RewardedAd.load(
     adUnitId: AdHelper.rewardedAdUnitId,
     request: const AdRequest(),

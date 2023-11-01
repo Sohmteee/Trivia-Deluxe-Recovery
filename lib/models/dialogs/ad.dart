@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 import 'package:trivia/ad_helper.dart';
 import 'package:trivia/main.dart';
+import 'package:trivia/models/dialogs/low_cash.dart';
 import 'package:trivia/providers/money.dart';
 import 'package:trivia/screens/menu.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
@@ -13,7 +13,7 @@ import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 import 'game.dart';
 
 showAdDialog(BuildContext context) {
-  RewardedAd? rewardedAd;
+/*   RewardedAd? rewardedAd;
 
   void loadRewardedAd() {
     RewardedAd.load(
@@ -39,9 +39,9 @@ showAdDialog(BuildContext context) {
         },
       ),
     );
-  }
+  } */
 
-  loadRewardedAd();
+  loadRewardedAd(context);
 
   showGameDialog(
     context,
@@ -75,16 +75,14 @@ showAdDialog(BuildContext context) {
           onTap: () {
             if (rewardedAd != null) {
               pauseBGAudio();
-              Future.delayed(.5.seconds, () {
-                rewardedAd?.show(
-                  onUserEarnedReward: (_, reward) {
-                    Provider.of<MoneyProvider>(context, listen: false)
-                        .increaseCoins(25);
-                    Navigator.pushReplacementNamed(context, "/stage");
-                    playBGAudio(context);
-                  },
-                );
-              });
+              rewardedAd?.show(
+                onUserEarnedReward: (_, reward) {
+                  Provider.of<MoneyProvider>(context, listen: false)
+                      .increaseCoins(25);
+                  Navigator.pushReplacementNamed(context, "/stage");
+                  playBGAudio(context);
+                },
+              );
             } else {
               playTap(context);
               ToastContext().init(context);
