@@ -25,16 +25,16 @@ loadRewardedAd(BuildContext context, {bool? isStatBar}) {
           onAdShowedFullScreenContent: (ad) {
             pauseBGAudio();
           },
-          on
-          onAdDismissedFullScreenContent: (ad) {
-            ad.dispose();
-            rewardedAd = null;
+          onAdWillDismissFullScreenContent: (ad) {
             isStatBar ?? false;
             if (!isStatBar!) {
               Navigator.pushReplacementNamed(context, "/stage");
               playBGAudio(context);
             }
-
+          },
+          onAdDismissedFullScreenContent: (ad) {
+            ad.dispose();
+            rewardedAd = null;
             // loadRewardedAd(context);
           },
         );
