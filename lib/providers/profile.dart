@@ -78,7 +78,6 @@ class ProfileProvider extends ChangeNotifier {
               ],
             ),
           );
-      
         });
       } else {
         print("Player does not exist.");
@@ -100,37 +99,41 @@ class ProfileProvider extends ChangeNotifier {
           hasProfile = true;
           box.put("hasProfile", hasProfile);
 
+          isLoading = false;
+
           notifyListeners();
 
-          showGameDialog(
-            context,
-            isExitable: true,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-            margin: EdgeInsets.symmetric(horizontal: 60.w, vertical: 24.h),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  "Profile Created Successfully",
-                  style: TextStyle(
-                    color: AppColor.yellow,
-                    fontSize: 25.sp,
-                    fontWeight: FontWeight.bold,
+          Future.delayed(.5.seconds, () {
+            showGameDialog(
+              context,
+              isExitable: true,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+              margin: EdgeInsets.symmetric(horizontal: 60.w, vertical: 24.h),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    "Profile Created Successfully",
+                    style: TextStyle(
+                      color: AppColor.yellow,
+                      fontSize: 25.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(height: 20.h),
-                Text(
-                  "Your profile has been created successfully. Your can now view your progress on the leaderboard.",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18.sp,
+                  SizedBox(height: 20.h),
+                  Text(
+                    "Your profile has been created successfully. Your can now view your progress on the leaderboard.",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.sp,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
-          );
+                ],
+              ),
+            );
+          });
         }).catchError((error) {
           print("Error: $error");
 
