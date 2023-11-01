@@ -80,12 +80,14 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
       return playerTime.isAfter(constraint);
     }).toList();
 
-    var url = Uri.https('http://cbtportal.linkskool.com/api/get_leaderboard.php?game_type=triviaD&period={index}');
+    var url = Uri.https(
+        'http://cbtportal.linkskool.com/api/get_leaderboard.php?game_type=triviaD&period=daily');
     await http.get(
       url,
       headers: {
         'Content-Type': 'application/json',
-      },);
+      },
+    );
 
     print(leaderBoardData);
 
@@ -159,7 +161,6 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
   }
 
   _loadBannerAd() {
-
     _bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
       request: const AdRequest(),
