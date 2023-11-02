@@ -187,8 +187,6 @@ showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
                           pauseBGAudio();
                           rewardedAd?.show(
                             onUserEarnedReward: (_, reward) {
-                              Provider.of<MoneyProvider>(context, listen: false)
-                                  .increaseCoins(5);
                               Provider.of<QuestionProvider>(context,
                                       listen: false)
                                   .updateLeaderBoardScore(context);

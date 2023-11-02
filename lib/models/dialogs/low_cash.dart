@@ -98,8 +98,6 @@ showLowCashDialog(BuildContext context) {
                 pauseBGAudio();
                 rewardedAd?.show(
                   onUserEarnedReward: (_, reward) {
-                    Provider.of<MoneyProvider>(context, listen: false)
-                        .increaseCoins(5);
                     Provider.of<QuestionProvider>(context, listen: false)
                         .updateLeaderBoardScore(context);
                     Provider.of<ProfileProvider>(context, listen: false)
