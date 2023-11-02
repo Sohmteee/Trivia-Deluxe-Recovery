@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:trivia/colors/app_color.dart';
@@ -12,7 +11,6 @@ import 'package:trivia/models/level_tile.dart';
 import 'package:trivia/models/stat_bar.dart';
 import 'package:trivia/providers/question.dart';
 import 'package:trivia/providers/stage.dart';
-import 'package:trivia/screens/menu.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class StageScreen extends StatefulWidget {
@@ -23,8 +21,6 @@ class StageScreen extends StatefulWidget {
 }
 
 class _StageScreenState extends State<StageScreen> {
-  BannerAd? _bannerAd;
-
   @override
   void initState() {
     playLevel(context);
@@ -67,9 +63,7 @@ class _StageScreenState extends State<StageScreen> {
               playButton(),
               SizedBox(height: 20.h),
               SizedBox(
-                width: _bannerAd!.size.width.toDouble(),
-                height: _bannerAd!.size.height.toDouble(),
-                child: AdWidget(ad: _bannerAd!),
+                height: 60.h,
               ),
             ],
           ),
