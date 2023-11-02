@@ -31,7 +31,6 @@ class _GameScreenState extends State<GameScreen> {
   late Timer timer;
   bool answered = false;
 
-
   @override
   void initState() {
     final questionProvider =
@@ -98,9 +97,6 @@ class _GameScreenState extends State<GameScreen> {
                     ),
                     buildQuestion(),
                     buildOptions(questionProvider),
-                    SizedBox(
-                      height: 60.h,
-                    ),
                   ],
                 ),
                 ConfettiWidget(

@@ -64,7 +64,6 @@ Average Time answering
 class _StreaksScreeenState extends State<StreaksScreeen> {
   int? position;
 
-
   Future<int> getLeaderBoardData(int index) async {
     final leaderBoardPosition = (await FirebaseFirestore.instance
                 .collection("players")
@@ -136,9 +135,6 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
               ),
               SizedBox(height: 20.h),
               streakList(streaksProvider),
-                    SizedBox(
-                      height: 60.h,
-                    ),
             ],
           ),
         );
