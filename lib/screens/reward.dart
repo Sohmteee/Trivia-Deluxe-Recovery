@@ -49,7 +49,7 @@ class _RewardScreenState extends State<RewardScreen> {
   @override
   void initState() {
     playVictory(context);
-    _loadBannerAd();
+    loadBannerAd();
     _loadInterstitialAd();
     Future.delayed(.5.seconds, () {
       bgPlayer.pause();
@@ -558,27 +558,6 @@ class _RewardScreenState extends State<RewardScreen> {
         ),
       ],
     );
-  }
-
-  _loadBannerAd() {
-    _bannerAd = BannerAd(
-      adUnitId: AdHelper.bannerAdUnitId,
-      request: const AdRequest(),
-      size: AdSize.banner,
-      listener: BannerAdListener(
-        // Called when an ad is successfully received.
-        onAdLoaded: (ad) {
-          debugPrint('$ad loaded.');
-        },
-        // Called when an ad request failed.
-        onAdFailedToLoad: (ad, err) {
-          debugPrint('BannerAd failed to load: $err');
-          setState(() {
-            _bannerAd = null;
-          });
-        },
-      ),
-    )..load();
   }
 
   void _loadInterstitialAd() {

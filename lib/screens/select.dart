@@ -129,7 +129,7 @@ class _SelectScreenState extends State<SelectScreen> {
       }
     }
 
-    _loadBannerAd();
+    loadBannerAd();
 
     final selectProvider = Provider.of<SelectProvider>(context, listen: false);
     pageController = PageController(initialPage: selectProvider.pageIndex);
@@ -182,27 +182,6 @@ class _SelectScreenState extends State<SelectScreen> {
         ),
       ),
     );
-  }
-
-  _loadBannerAd() {
-    _bannerAd = BannerAd(
-      adUnitId: AdHelper.bannerAdUnitId,
-      request: const AdRequest(),
-      size: AdSize.banner,
-      listener: BannerAdListener(
-        // Called when an ad is successfully received.
-        onAdLoaded: (ad) {
-          debugPrint('$ad loaded.');
-        },
-        // Called when an ad request failed.
-        onAdFailedToLoad: (ad, err) {
-          debugPrint('BannerAd failed to load: $err');
-          setState(() {
-            _bannerAd = null;
-          });
-        },
-      ),
-    )..load();
   }
 
   Row categoriesIndicators(BuildContext context) {
