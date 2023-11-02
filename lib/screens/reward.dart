@@ -566,9 +566,7 @@ class _RewardScreenState extends State<RewardScreen> {
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) {
-          setState(() {
             interstitialAd = ad;
-          });
           ad.fullScreenContentCallback = FullScreenContentCallback(
             onAdShowedFullScreenContent: (ad) {
               pauseBGAudio();
