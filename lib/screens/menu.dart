@@ -28,8 +28,6 @@ class MenuScreen extends StatefulWidget {
   State<MenuScreen> createState() => _MenuScreenState();
 }
 
-BannerAd? _bannerAd;
-
 class _MenuScreenState extends State<MenuScreen>
     with WidgetsBindingObserver, TickerProviderStateMixin {
   late Animation<double> rotationAnimation;
@@ -75,7 +73,6 @@ class _MenuScreenState extends State<MenuScreen>
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     rotationController.dispose();
-    _bannerAd?.dispose();
     super.dispose();
   }
 
@@ -138,11 +135,6 @@ class _MenuScreenState extends State<MenuScreen>
                     const Spacer(flex: 3),
                     bottomButtons(context),
                     const Spacer(),
-                    SizedBox(
-                      width: _bannerAd!.size.width.toDouble(),
-                      height: _bannerAd!.size.height.toDouble(),
-                      child: AdWidget(ad: _bannerAd!),
-                    ),
                   ],
                 ),
               ),
@@ -394,24 +386,7 @@ class _MenuScreenState extends State<MenuScreen>
   } */
 }
 
-loadBannerAd() {
-  _bannerAd = BannerAd(
-    adUnitId: AdHelper.bannerAdUnitId,
-    request: const AdRequest(),
-    size: AdSize.banner,
-    listener: BannerAdListener(
-      // Called when an ad is successfully received.
-      onAdLoaded: (ad) {
-        debugPrint('$ad loaded.');
-      },
-      // Called when an ad request failed.
-      onAdFailedToLoad: (ad, err) {
-        debugPrint('BannerAd failed to load: $err');
-        // loadBannerAd();
-      },
-    ),
-  )..load();
-}
+
 
 Future<void> playBGAudio(context) async {
   final audioProvider = Provider.of<AudioProvider>(context, listen: false);
