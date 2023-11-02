@@ -49,7 +49,7 @@ class _RewardScreenState extends State<RewardScreen> {
   @override
   void initState() {
     playVictory(context);
-    loadBannerAd();
+    // loadBannerAd();
     _loadInterstitialAd();
     Future.delayed(.5.seconds, () {
       bgPlayer.pause();

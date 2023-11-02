@@ -85,7 +85,7 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
   @override
   void initState() {
     super.initState();
-    loadBannerAd();
+    // loadBannerAd();
     Future.microtask(() {
       final questionProvider =
           Provider.of<QuestionProvider>(context, listen: false);

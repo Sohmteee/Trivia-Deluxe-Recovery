@@ -40,7 +40,7 @@ class _GameScreenState extends State<GameScreen> {
     final questionProvider =
         Provider.of<QuestionProvider>(context, listen: false);
 
-    loadBannerAd();
+    // loadBannerAd();
     loadRewardedAd(context);
 
     confettiController = ConfettiController(duration: 1.5.seconds);

@@ -129,7 +129,7 @@ class _SelectScreenState extends State<SelectScreen> {
       }
     }
 
-    loadBannerAd();
+    // loadBannerAd();
 
     final selectProvider = Provider.of<SelectProvider>(context, listen: false);
     pageController = PageController(initialPage: selectProvider.pageIndex);

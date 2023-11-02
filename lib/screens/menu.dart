@@ -407,7 +407,7 @@ loadBannerAd() {
       // Called when an ad request failed.
       onAdFailedToLoad: (ad, err) {
         debugPrint('BannerAd failed to load: $err');
-        loadBannerAd();
+        // loadBannerAd();
       },
     ),
   )..load();
