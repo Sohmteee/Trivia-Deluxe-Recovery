@@ -45,7 +45,7 @@ class _MenuScreenState extends State<MenuScreen>
 
     playBGAudio(context);
     // _loadAppOpenAd();
-    _loadBannerAd();
+    loadBannerAd();
     Future.microtask(() => initializeEffectsVolume());
 
     rotationController = AnimationController(duration: 100.seconds, vsync: this)
@@ -392,7 +392,7 @@ class _MenuScreenState extends State<MenuScreen>
     });
   } */
 
-  _loadBannerAd() {
+  loadBannerAd() {
     _bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
       request: const AdRequest(),
@@ -405,7 +405,7 @@ class _MenuScreenState extends State<MenuScreen>
         // Called when an ad request failed.
         onAdFailedToLoad: (ad, err) {
           debugPrint('BannerAd failed to load: $err');
-          _loadBannerAd();
+          loadBannerAd();
         },
       ),
     )..load();
