@@ -408,6 +408,9 @@ class _MenuScreenState extends State<MenuScreen>
         // Called when an ad request failed.
         onAdFailedToLoad: (ad, err) {
           debugPrint('BannerAd failed to load: $err');
+          setState(() {
+            _bannerAd = null;
+          });
         },
       ),
     ).load();
@@ -424,6 +427,9 @@ class _MenuScreenState extends State<MenuScreen>
         // Called when an ad request failed.
         onAdFailedToLoad: (ad, err) {
           debugPrint('BannerAd failed to load: $err');
+          setState(() {
+            _bannerAd = null;
+          });
         },
       ),
     )..load();

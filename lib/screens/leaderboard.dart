@@ -163,6 +163,9 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
         // Called when an ad request failed.
         onAdFailedToLoad: (ad, err) {
           debugPrint('BannerAd failed to load: $err');
+          setState(() {
+            _bannerAd = null;
+          });
         },
       ),
     )..load();
