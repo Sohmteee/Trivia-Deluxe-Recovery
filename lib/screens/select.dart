@@ -149,7 +149,7 @@ class _SelectScreenState extends State<SelectScreen> {
       },
       child: GameBackground(
         body: Padding(
-          padding: EdgeInsets.only(top: 40.h),
+          padding: EdgeInsets.only(top: 40.h, bottom: 20.h),
           child: Column(
             children: [
               Padding(
