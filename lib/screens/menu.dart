@@ -46,7 +46,7 @@ class _MenuScreenState extends State<MenuScreen>
 
     playBGAudio(context);
     // _loadAppOpenAd();
-    loadBannerAd();
+    // loadBannerAd();
     Future.microtask(() => initializeEffectsVolume());
 
     rotationController = AnimationController(duration: 100.seconds, vsync: this)

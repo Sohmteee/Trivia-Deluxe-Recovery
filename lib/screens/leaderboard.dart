@@ -34,7 +34,6 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
   void initState() {
     super.initState();
     tabController = TabController(length: 3, vsync: this);
-    loadBannerAd();
 
     Future.microtask(() {
       final questionProvider =
