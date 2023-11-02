@@ -22,7 +22,7 @@ if (flutterVersionName == null) {
     flutterVersionName = '2.2.84'
 }
 
-def keystoreProperties = new Properties()
+def keystadb uninstall com.digitaldreamsng.triviadeluxeoreProperties = new Properties()
 def keystorePropertiesFile = rootProject.file('key.properties')
 if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
