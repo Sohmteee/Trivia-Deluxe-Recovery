@@ -4,11 +4,9 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
-import 'package:trivia/ad_helper.dart';
 import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/colors/hex_color.dart';
 import 'package:trivia/data/controllers.dart';
@@ -134,7 +132,7 @@ class _MenuScreenState extends State<MenuScreen>
                         ),
                     const Spacer(flex: 3),
                     bottomButtons(context),
-                    const Spacer(),
+                    const Spacer(flex: 2),
                   ],
                 ),
               ),

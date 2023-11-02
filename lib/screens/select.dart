@@ -26,7 +26,6 @@ import 'package:trivia/models/stat_bar.dart';
 import 'package:trivia/providers/question.dart';
 import 'package:trivia/providers/select.dart';
 import 'package:trivia/providers/stage.dart';
-import 'package:trivia/screens/menu.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
@@ -41,7 +40,6 @@ class SelectScreen extends StatefulWidget {
 }
 
 class _SelectScreenState extends State<SelectScreen> {
-  BannerAd? _bannerAd;
   late PageController pageController;
 
   List<List<Map<String, dynamic>>> selectItems = [
@@ -173,9 +171,7 @@ class _SelectScreenState extends State<SelectScreen> {
               categoriesIndicators(context),
               const Spacer(flex: 3),
               SizedBox(
-                width: _bannerAd!.size.width.toDouble(),
-                height: _bannerAd!.size.height.toDouble(),
-                child: AdWidget(ad: _bannerAd!),
+                height: 60.h,
               ),
             ],
           ),

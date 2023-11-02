@@ -6,7 +6,6 @@ import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/data/controllers.dart';
@@ -16,7 +15,6 @@ import 'package:trivia/models/game_background.dart';
 import 'package:trivia/models/stat_bar.dart';
 import 'package:trivia/providers/question.dart';
 import 'package:trivia/providers/streaks.dart';
-import 'package:trivia/screens/menu.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class GameScreen extends StatefulWidget {
@@ -33,7 +31,6 @@ class _GameScreenState extends State<GameScreen> {
   late Timer timer;
   bool answered = false;
 
-  BannerAd? _bannerAd;
 
   @override
   void initState() {
@@ -102,9 +99,7 @@ class _GameScreenState extends State<GameScreen> {
                     buildQuestion(),
                     buildOptions(questionProvider),
                     SizedBox(
-                      width: _bannerAd!.size.width.toDouble(),
-                      height: _bannerAd!.size.height.toDouble(),
-                      child: AdWidget(ad: _bannerAd!),
+                      height: 60.h,
                     ),
                   ],
                 ),
