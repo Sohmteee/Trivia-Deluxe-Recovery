@@ -62,9 +62,6 @@ class _StageScreenState extends State<StageScreen> {
               const Spacer(flex: 3),
               playButton(),
               SizedBox(height: 20.h),
-              SizedBox(
-                height: 60.h,
-              ),
             ],
           ),
         ),
