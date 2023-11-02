@@ -169,9 +169,6 @@ class _SelectScreenState extends State<SelectScreen> {
               buildCategories(),
               categoriesIndicators(context),
               const Spacer(flex: 3),
-              SizedBox(
-                height: 60.h,
-              ),
             ],
           ),
         ),

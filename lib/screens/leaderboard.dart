@@ -135,9 +135,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                         )
                   : createProfilePrompt(context),
             ),
-            SizedBox(
-              height: 60.h,
-            ),
+            
           ],
         ),
       ),

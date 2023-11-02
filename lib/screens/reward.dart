@@ -33,7 +33,6 @@ class RewardScreen extends StatefulWidget {
 InterstitialAd? interstitialAd;
 
 class _RewardScreenState extends State<RewardScreen> {
-  BannerAd? _bannerAd;
   bool receivedReward = false;
   late int score;
   late int level;
@@ -182,11 +181,7 @@ class _RewardScreenState extends State<RewardScreen> {
                       duration: 1.seconds,
                     ),
               const Spacer(flex: 1),
-              SizedBox(
-                width: _bannerAd!.size.width.toDouble(),
-                height: _bannerAd!.size.height.toDouble(),
-                child: AdWidget(ad: _bannerAd!),
-              ),
+              
             ],
           ),
         ),
