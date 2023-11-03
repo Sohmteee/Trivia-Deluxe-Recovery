@@ -170,13 +170,17 @@ class _GameScreenState extends State<GameScreen> {
                 color: stringToColor(questionProvider.options[index]["color"]),
                 borderRadius: BorderRadius.circular(10.r),
               ),
-              child: Text(
-                "${optionLetter(index)}:  ${questionProvider.options[index]["text"]}",
-                style: TextStyle(
-                  color: AppColor.white,
-                  fontSize: 20.sp,
-                ),
-                textAlign: TextAlign.start,
+              child: Row(
+                children: [
+                  Text(
+                    "${optionLetter(index)}:  ${questionProvider.options[index]["text"]}",
+                    style: TextStyle(
+                      color: AppColor.white,
+                      fontSize: 20.sp,
+                    ),
+                    textAlign: TextAlign.start,
+                  ),
+                ],
               ),
             ),
           ).animate().slideY(
