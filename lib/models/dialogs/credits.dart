@@ -232,12 +232,18 @@ showCreditsDialog(BuildContext context) {
                 ),
                 value.show
                     ? Positioned(
-                        child: RotatedBox(
-                          quarterTurns: 3,
-                          child: Icon(
-                            Icons.arrow_back,
-                            color: AppColor.yellow,
-                            size: 25.sp,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(.2),
+                            borderRadius: BorderRadius.circular(100.r),
+                          ),
+                          child: RotatedBox(
+                            quarterTurns: 1,
+                            child: Icon(
+                              Icons.chevron_right,
+                              color: AppColor.yellow,
+                              size: 25.sp,
+                            ),
                           ),
                         ),
                       )
