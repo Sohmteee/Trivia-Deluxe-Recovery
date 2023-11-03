@@ -232,7 +232,16 @@ showCreditsDialog(BuildContext context) {
                   ),
                 ),
               ),
-            ).animate().moveY(
+            )
+                .animate()
+                .moveY(
+                  duration: .5.seconds,
+                  begin: 0,
+                  end: -10.h,
+                )
+                .then()
+                .moveY(
+                  curve: Curves.bounceOut,
                   duration: .3.seconds,
                   begin: 0,
                   end: 10.h,
