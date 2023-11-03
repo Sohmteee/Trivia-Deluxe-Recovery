@@ -233,8 +233,11 @@ showCreditsDialog(BuildContext context) {
                 ),
               ),
             )
-                .animate()
+                .animate(onPlay: (controller) {
+                  controller.repeat();
+                })
                 .moveY(
+                  delay: 2.seconds,
                   duration: .5.seconds,
                   begin: 0,
                   end: -10.h,
