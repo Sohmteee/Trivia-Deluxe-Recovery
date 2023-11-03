@@ -4,7 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trivia/models/dialogs/game.dart';
 
 showCreditsDialog(BuildContext context) {
-  
+  final scrollController = ScrollController();
+
   showGameDialog(
     context,
     isExitable: true,
@@ -28,6 +29,7 @@ showCreditsDialog(BuildContext context) {
             SizedBox(
               height: 200.h,
               child: SingleChildScrollView(
+                controller: scrollController,
                 physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [
@@ -218,18 +220,27 @@ showCreditsDialog(BuildContext context) {
             Positioned(
               bottom: 0,
               right: -30.w,
-              child: Container(
-                padding: EdgeInsets.all(1.sp),
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.yellow,
-                ),
-                child: RotatedBox(
-                  quarterTurns: 1,
-                  child: Icon(
-                    Icons.chevron_right,
-                    color: Colors.black,
-                    size: 20.sp,
+              child: GestureDetector(
+                onTap: () {
+                  scrollController.animateTo(
+                    scrollController.position.maxScrollExtent,
+                    duration: .5.seconds,
+                    curve: Curves.easeInOut,
+                  );
+                },
+                child: Container(
+                  padding: EdgeInsets.all(1.sp),
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.yellow,
+                  ),
+                  child: RotatedBox(
+                    quarterTurns: 1,
+                    child: Icon(
+                      Icons.chevron_right,
+                      color: Colors.black,
+                      size: 20.sp,
+                    ),
                   ),
                 ),
               ),
