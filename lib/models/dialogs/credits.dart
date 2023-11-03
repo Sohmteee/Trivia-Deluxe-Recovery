@@ -219,7 +219,7 @@ showCreditsDialog(BuildContext context) {
               ),
             ),
             SizedBox(width: 10.w),
-            scrollController.position.scr
+            scrollController.position.pixels ==
                     scrollController.position.maxScrollExtent
                 ? SizedBox(width: 20.w)
                 : GestureDetector(
