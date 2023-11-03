@@ -242,7 +242,7 @@ showCreditsDialog(BuildContext context) {
                             quarterTurns: 1,
                             child: Icon(
                               Icons.chevron_right,
-                              color: AppColor.yellow,
+                              color: AppColor.slightlyLighterYellow,
                               size: 25.sp,
                             ),
                           ),
