@@ -216,9 +216,8 @@ showCreditsDialog(BuildContext context) {
               ),
             ),
             Positioned(
-              top: -1,
               child: Container(
-                height: 40.h,
+                height: 20.h,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
