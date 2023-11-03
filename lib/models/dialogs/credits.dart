@@ -219,26 +219,16 @@ showCreditsDialog(BuildContext context) {
               ),
             ),
             SizedBox(width: 10.w),
-            GestureDetector(
+            scrollController.position == scrollController.position.maxScrollExtent ? SizedBox(width: 20,) GestureDetector(
               onTap: () {
-                if (scrollController.position ==
-                    scrollController.position.maxScrollExtent) {
-                  scrollController.animateTo(
-                    scrollController.position.minScrollExtent + 20,
-                    duration: .5.seconds,
-                    curve: Curves.easeInOut,
-                  );
-                } else {
-                  scrollController.animateTo(
-                    scrollController.position.maxScrollExtent + 20,
-                    duration: .5.seconds,
-                    curve: Curves.easeInOut,
-                  );
-                }
+                
+                scrollController.animateTo(
+                  scrollController.position.maxScrollExtent + 20,
+                  duration: .5.seconds,
+                  curve: Curves.easeInOut,
+                );
               },
               child: Container(
-                margin: EdgeInsets.only(right: 0.w),
-                padding: EdgeInsets.all(1.sp),
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.yellow,
