@@ -40,7 +40,7 @@ showCreditsDialog(BuildContext context) {
               alignment: Alignment.bottomRight,
               children: [
                 SizedBox(
-                  height: 200.h,
+                  height: 300.h,
                   child: SingleChildScrollView(
                     controller: scrollController,
                     physics: const BouncingScrollPhysics(),
@@ -242,14 +242,14 @@ showCreditsDialog(BuildContext context) {
                         child: Container(
                           margin: EdgeInsets.only(bottom: 10.h),
                           decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(.4),
+                            color: Colors.yellow,
                             borderRadius: BorderRadius.circular(100.r),
                           ),
                           child: RotatedBox(
                             quarterTurns: 1,
                             child: Icon(
                               Icons.chevron_right,
-                              color: AppColor.slightlyLighterYellow,
+                              color: AppColor.white,
                               size: 25.sp,
                             ),
                           ),
