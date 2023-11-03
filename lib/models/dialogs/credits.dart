@@ -21,6 +21,7 @@ showCreditsDialog(BuildContext context) {
         ),
         SizedBox(height: 20.h),
         Stack(
+          clipBehavior: Clip.none,
           children: [
             SizedBox(
               height: 200.h,
@@ -214,7 +215,7 @@ showCreditsDialog(BuildContext context) {
             ),
             Positioned(
               bottom: 0,
-              right: 0,
+              right: -30.w,
               child: Container(
                 padding: EdgeInsets.all(1.sp),
                 decoration: const BoxDecoration(
