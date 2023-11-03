@@ -228,6 +228,7 @@ showCreditsDialog(BuildContext context) {
                 );
               },
               child: Container(
+                padding: EdgeInsets.all(5.sp),
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.yellow,
