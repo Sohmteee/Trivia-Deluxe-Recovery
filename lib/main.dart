@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 import 'package:trivia/data/box.dart';
 import 'package:trivia/data/controllers.dart';
 import 'package:trivia/firebase_options.dart';
+import 'package:trivia/models/dialogs/credits.dart';
 import 'package:trivia/providers/audio.dart';
 import 'package:trivia/providers/money.dart';
 import 'package:trivia/providers/profile.dart';
@@ -62,6 +63,7 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (_) => SelectProvider()),
         ChangeNotifierProvider(create: (_) => StreaksProvider()),
         ChangeNotifierProvider(create: (_) => ProfileProvider()),
+        ChangeNotifierProvider(create: (_) => ShowProvider()),
       ],
       child: const MyApp(),
     ),
