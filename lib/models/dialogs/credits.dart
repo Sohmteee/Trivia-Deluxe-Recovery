@@ -9,7 +9,7 @@ showCreditsDialog(BuildContext context) {
   showGameDialog(
     context,
     isExitable: true,
-    padding: const EdgeInsets.fromLTRB(20, 40, 20, 40),
+    padding: const EdgeInsets.fromLTRB(20, 40, 20, 30),
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -244,14 +244,14 @@ showCreditsDialog(BuildContext context) {
                         child: Container(
                           margin: EdgeInsets.only(bottom: 10.h),
                           decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(.4),
+                            color: Colors.white.withOpacity(.8),
                             borderRadius: BorderRadius.circular(100.r),
                           ),
                           child: RotatedBox(
                             quarterTurns: 1,
                             child: Icon(
                               Icons.chevron_right,
-                              color: AppColor.yellow,
+                              color: AppColor.slightlyLighterYellow,
                               size: 25.sp,
                             ),
                           ),
