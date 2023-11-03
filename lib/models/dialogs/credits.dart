@@ -27,7 +27,7 @@ showCreditsDialog(BuildContext context) {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             SizedBox(
-              height: 200.h,
+              height: 300.h,
               child: SingleChildScrollView(
                 controller: scrollController,
                 physics: const BouncingScrollPhysics(),
@@ -217,6 +217,7 @@ showCreditsDialog(BuildContext context) {
                 ),
               ),
             ),
+            SizedBox(width: 10.w),
             GestureDetector(
               onTap: () {
                 scrollController.animateTo(
