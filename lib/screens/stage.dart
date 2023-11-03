@@ -159,7 +159,7 @@ class _StageScreenState extends State<StageScreen> {
         ),
         Positioned(
           bottom: -40.h,
-          right: 75.w,
+          right: 80.w,
           child: SizedBox(
             height: 150.h,
             child: Lottie.asset(
