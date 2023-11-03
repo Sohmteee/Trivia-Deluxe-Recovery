@@ -25,6 +25,7 @@ showCreditsDialog(BuildContext context) {
         SizedBox(height: 20.h),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             SizedBox(
               height: 300.h,
@@ -221,7 +222,7 @@ showCreditsDialog(BuildContext context) {
             GestureDetector(
               onTap: () {
                 scrollController.animateTo(
-                  scrollController.position.maxScrollExtent,
+                  scrollController.position.maxScrollExtent + 20,
                   duration: .5.seconds,
                   curve: Curves.easeInOut,
                 );
