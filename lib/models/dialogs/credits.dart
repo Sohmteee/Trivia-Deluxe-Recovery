@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/models/dialogs/game.dart';
 
 showCreditsDialog(BuildContext context) {
@@ -216,9 +217,15 @@ showCreditsDialog(BuildContext context) {
             ),
             Positioned(
               child: Container(
+                height: 100.h,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    
+                    colors: [
+                      AppColor.lightRed,
+                      AppColor.lightRed.withOpacity(.5),
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
                   ),
                 ),
               ),
