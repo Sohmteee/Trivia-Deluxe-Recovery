@@ -215,6 +215,15 @@ showCreditsDialog(BuildContext context) {
               ),
             ),
             Positioned(
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
               bottom: 0,
               right: -30.w,
               child: Container(
