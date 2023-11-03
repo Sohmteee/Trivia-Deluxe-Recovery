@@ -14,62 +14,6 @@ class StreaksProvider extends ChangeNotifier {
     "streaks",
     defaultValue: [
       {
-        "title": "Level Streaks",
-        "image": "assets/images/level.png",
-        "streaks": [
-          {
-            "title": "Steady Progress",
-            "subtitle": "Complete 5 levels without failing",
-            "status": false,
-            "collected": false,
-            "progress": 0,
-            "limit": 5,
-            "reward": 10,
-            "tapped": false,
-          },
-          {
-            "title": "Leveling Up",
-            "subtitle": "Complete 10 levels without failing",
-            "status": false,
-            "collected": false,
-            "progress": 0,
-            "limit": 10,
-            "reward": 20,
-            "tapped": false,
-          },
-          {
-            "title": "Tenacious Triumph",
-            "subtitle": "Complete 20 levels without failing",
-            "status": false,
-            "collected": false,
-            "progress": 0,
-            "limit": 20,
-            "reward": 30,
-            "tapped": false,
-          },
-          {
-            "title": "Masterful Streak",
-            "subtitle": "Complete 50 levels without failing",
-            "status": false,
-            "collected": false,
-            "progress": 0,
-            "limit": 50,
-            "reward": 40,
-            "tapped": false,
-          },
-          {
-            "title": "Unstoppable Champion",
-            "subtitle": "Complete 100 levels without failing",
-            "status": false,
-            "collected": false,
-            "progress": 0,
-            "limit": 100,
-            "reward": 50,
-            "tapped": false,
-          },
-        ],
-      },
-      {
         "title": "Coin Streaks",
         "image": "assets/images/coins.png",
         "streaks": [
@@ -182,6 +126,62 @@ class StreaksProvider extends ChangeNotifier {
         ],
       },
       {
+        "title": "Level Streaks",
+        "image": "assets/images/level.png",
+        "streaks": [
+          {
+            "title": "Steady Progress",
+            "subtitle": "Complete 5 levels without failing",
+            "status": false,
+            "collected": false,
+            "progress": 0,
+            "limit": 5,
+            "reward": 10,
+            "tapped": false,
+          },
+          {
+            "title": "Leveling Up",
+            "subtitle": "Complete 10 levels without failing",
+            "status": false,
+            "collected": false,
+            "progress": 0,
+            "limit": 10,
+            "reward": 20,
+            "tapped": false,
+          },
+          {
+            "title": "Tenacious Triumph",
+            "subtitle": "Complete 20 levels without failing",
+            "status": false,
+            "collected": false,
+            "progress": 0,
+            "limit": 20,
+            "reward": 30,
+            "tapped": false,
+          },
+          {
+            "title": "Masterful Streak",
+            "subtitle": "Complete 50 levels without failing",
+            "status": false,
+            "collected": false,
+            "progress": 0,
+            "limit": 50,
+            "reward": 40,
+            "tapped": false,
+          },
+          {
+            "title": "Unstoppable Champion",
+            "subtitle": "Complete 100 levels without failing",
+            "status": false,
+            "collected": false,
+            "progress": 0,
+            "limit": 100,
+            "reward": 50,
+            "tapped": false,
+          },
+        ],
+      },
+      {
         "title": "Leaderboard Streaks",
         "image": "assets/images/rank.png",
         "streaks": [
@@ -262,7 +262,6 @@ class StreaksProvider extends ChangeNotifier {
 
   void updateStreaksData() {
     streaks = [
-      
       {
         "title": "Coin Streaks",
         "image": "assets/images/coins.png",
