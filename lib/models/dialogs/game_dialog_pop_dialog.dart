@@ -28,7 +28,7 @@ bool showGameDialogPopDialog(BuildContext context) {
         ZoomTapAnimation(
           onTap: () {
             playTap(context);
-            Navigtor.push
+            Navigator.pushReplacementNamed(context, "/select");
             return true;
           },
           child: Container(
@@ -52,6 +52,7 @@ bool showGameDialogPopDialog(BuildContext context) {
         ZoomTapAnimation(
           onTap: () {
             playTap(context);
+            Navigator.pushReplacementNamed(context, "/menu");
             return true;
           },
           child: Container(
@@ -64,7 +65,7 @@ bool showGameDialogPopDialog(BuildContext context) {
               borderRadius: BorderRadius.circular(20.r),
             ),
             child: Text(
-              "Categories",
+              "Main Manu",
               style: TextStyle(
                 fontSize: 20.sp,
               ),
@@ -75,6 +76,7 @@ bool showGameDialogPopDialog(BuildContext context) {
         ZoomTapAnimation(
           onTap: () {
             playTap(context);
+            Navigator.pushReplacementNamed(context, "/stage");
             return true;
           },
           child: Container(
@@ -87,7 +89,7 @@ bool showGameDialogPopDialog(BuildContext context) {
               borderRadius: BorderRadius.circular(20.r),
             ),
             child: Text(
-              "Categories",
+              "Stage",
               style: TextStyle(
                 fontSize: 20.sp,
               ),
