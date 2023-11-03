@@ -30,10 +30,8 @@ showCreditsDialog(BuildContext context) {
               if (scrollController.offset <
                   scrollController.position.maxScrollExtent) {
                 value.setShow(true);
-                print("Show is true");
               } else {
                 value.setShow(false);
-                print("Show is false");
               }
             });
 
@@ -234,7 +232,7 @@ showCreditsDialog(BuildContext context) {
                 value.show
                     ? Positioned(
                         bottom: 0,
-                        right: -30.w,
+                        right: 0.w,
                         child: RotatedBox(
                           quarterTurns: 3,
                           child: Icon(
