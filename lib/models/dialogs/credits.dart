@@ -130,7 +130,7 @@ showCreditsDialog(BuildContext context) {
                           textAlign: TextAlign.center,
                         ),
                         Text(
-                          "Vincent ",
+                          "Vincent Ugwuagba",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20.sp,
@@ -138,7 +138,7 @@ showCreditsDialog(BuildContext context) {
                           textAlign: TextAlign.center,
                         ),
                         Text(
-                          "Emmanuela",
+                          "Emmanuela Chinweogbu",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20.sp,
@@ -154,7 +154,7 @@ showCreditsDialog(BuildContext context) {
                           textAlign: TextAlign.center,
                         ),
                         Text(
-                          "Chioma",
+                          "Chioma Chidi",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20.sp,
