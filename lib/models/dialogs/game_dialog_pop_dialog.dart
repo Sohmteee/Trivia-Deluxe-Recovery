@@ -96,6 +96,14 @@ bool showGameDialogPopDialog(BuildContext context) {
             ),
           ),
         ),
+        
+        SizedBox(height: 10.h),
+        Text(
+          "Stage",
+          style: TextStyle(
+            fontSize: 20.sp,
+          ),
+        ),
       ],
     ),
   );
