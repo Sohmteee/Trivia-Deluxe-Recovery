@@ -11,7 +11,6 @@ import 'package:trivia/models/dialogs/low_cash.dart';
 import 'package:trivia/providers/money.dart';
 import 'package:trivia/providers/profile.dart';
 import 'package:trivia/providers/question.dart';
-import 'package:trivia/screens/menu.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 import 'game.dart';
