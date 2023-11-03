@@ -24,7 +24,10 @@ showCreditsDialog(BuildContext context) {
         SizedBox(height: 20.h),
         StatefulBuilder(builder: (context, setState) {
           final scrollController = ScrollController();
-          bool show = true
+          bool show = true;
+
+          scrollController.addListener((value));
+
           return Stack(
             clipBehavior: Clip.none,
             children: [
@@ -219,34 +222,36 @@ showCreditsDialog(BuildContext context) {
                   ),
                 ),
               ),
-              Positioned(
-                bottom: 0,
-                right: -30.w,
-                child: RotatedBox(
-                  quarterTurns: 3,
-                  child: Icon(
-                    Icons.arrow_back,
-                    color: AppColor.yellow,
-                    size: 25.sp,
-                  ),
-                ),
-              )
-                  .animate(onPlay: (controller) {
-                    controller.repeat();
-                  })
-                  .moveY(
-                    delay: 2.seconds,
-                    duration: .5.seconds,
-                    begin: 0,
-                    end: -10.h,
-                  )
-                  .then()
-                  .moveY(
-                    curve: Curves.bounceOut,
-                    duration: .3.seconds,
-                    begin: 0,
-                    end: 10.h,
-                  ),
+              show
+                  ? Positioned(
+                      bottom: 0,
+                      right: -30.w,
+                      child: RotatedBox(
+                        quarterTurns: 3,
+                        child: Icon(
+                          Icons.arrow_back,
+                          color: AppColor.yellow,
+                          size: 25.sp,
+                        ),
+                      ),
+                    )
+                      .animate(onPlay: (controller) {
+                        controller.repeat();
+                      })
+                      .moveY(
+                        delay: 2.seconds,
+                        duration: .5.seconds,
+                        begin: 0,
+                        end: -10.h,
+                      )
+                      .then()
+                      .moveY(
+                        curve: Curves.bounceOut,
+                        duration: .3.seconds,
+                        begin: 0,
+                        end: 10.h,
+                      )
+                  : const SizedBox(),
             ],
           );
         }),
