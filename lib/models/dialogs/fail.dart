@@ -125,7 +125,7 @@ showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
                             Text(
                               "Revive with coins",
                               style: TextStyle(
-                                fontSize: 25.sp,
+                                fontSize: 20.sp,
                               ),
                             ),
                             SizedBox(width: 10.w),
@@ -232,7 +232,7 @@ showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
                             Text(
                               "Revive with an ad",
                               style: TextStyle(
-                                fontSize: 25.sp,
+                                fontSize: 20.sp,
                               ),
                             ),
                             SizedBox(width: 10.w),
