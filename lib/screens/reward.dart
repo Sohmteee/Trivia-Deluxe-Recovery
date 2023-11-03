@@ -180,8 +180,7 @@ class _RewardScreenState extends State<RewardScreen> {
                       delay: 1.9.seconds,
                       duration: 1.seconds,
                     ),
-              const Spacer(flex: 2),
-              
+              const Spacer(flex: 3),
             ],
           ),
         ),
@@ -561,7 +560,7 @@ class _RewardScreenState extends State<RewardScreen> {
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) {
-            interstitialAd = ad;
+          interstitialAd = ad;
           ad.fullScreenContentCallback = FullScreenContentCallback(
             onAdShowedFullScreenContent: (ad) {
               pauseBGAudio();
