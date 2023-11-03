@@ -242,14 +242,14 @@ showCreditsDialog(BuildContext context) {
                         child: Container(
                           margin: EdgeInsets.only(bottom: 10.h),
                           decoration: BoxDecoration(
-                            color: Colors.yellow,
+                            color: Colors.white.withOpacity(.7),
                             borderRadius: BorderRadius.circular(100.r),
                           ),
                           child: RotatedBox(
                             quarterTurns: 1,
                             child: Icon(
                               Icons.chevron_right,
-                              color: AppColor.white,
+                              color: AppColor.yellow,
                               size: 25.sp,
                             ),
                           ),
