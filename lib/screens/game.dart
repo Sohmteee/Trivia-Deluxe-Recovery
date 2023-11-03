@@ -173,7 +173,7 @@ class _GameScreenState extends State<GameScreen> {
               child: Row(
                 children: [
                   AutoSizeText(
-                    minSize
+                    minFontSize: 15.sp,
                     "${optionLetter(index)}:",
                     style: TextStyle(
                       color: AppColor.white,
@@ -184,7 +184,7 @@ class _GameScreenState extends State<GameScreen> {
                   SizedBox(width: 10.w),
                   Expanded(
                     child: AutoSizeText(
-                      minSize
+                      minFontSize: 15.sp,
                       "${questionProvider.options[index]["text"]}",
                       style: TextStyle(
                         color: AppColor.white,
