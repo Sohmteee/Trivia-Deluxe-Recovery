@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/models/dialogs/game.dart';
 
 showCreditsDialog(BuildContext context) {
+  
   showGameDialog(
     context,
     isExitable: true,
@@ -212,21 +212,6 @@ showCreditsDialog(BuildContext context) {
                       textAlign: TextAlign.center,
                     ),
                   ],
-                ),
-              ),
-            ),
-            Positioned(
-              child: Container(
-                height: 20.h,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      AppColor.lightRed,
-                      AppColor.lightRed.withOpacity(.1),
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                  ),
                 ),
               ),
             ),
