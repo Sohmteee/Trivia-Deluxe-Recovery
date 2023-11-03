@@ -23,9 +23,8 @@ showCreditsDialog(BuildContext context) {
           textAlign: TextAlign.center,
         ),
         SizedBox(height: 20.h),
-        Stack(
-          clipBehavior: Clip.none,
-          alignment: Alignment.centerRight,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             SizedBox(
               height: 200.h,
@@ -218,49 +217,47 @@ showCreditsDialog(BuildContext context) {
                 ),
               ),
             ),
-            Positioned(
-              child: GestureDetector(
-                onTap: () {
-                  scrollController.animateTo(
-                    scrollController.position.maxScrollExtent,
-                    duration: .5.seconds,
-                    curve: Curves.easeInOut,
-                  );
-                },
-                child: Container(
-                  margin: EdgeInsets.only(right: 0.w),
-                  padding: EdgeInsets.all(1.sp),
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.yellow,
-                  ),
-                  child: RotatedBox(
-                    quarterTurns: 1,
-                    child: Icon(
-                      Icons.chevron_right,
-                      color: Colors.black,
-                      size: 20.sp,
-                    ),
+            GestureDetector(
+              onTap: () {
+                scrollController.animateTo(
+                  scrollController.position.maxScrollExtent,
+                  duration: .5.seconds,
+                  curve: Curves.easeInOut,
+                );
+              },
+              child: Container(
+                margin: EdgeInsets.only(right: 0.w),
+                padding: EdgeInsets.all(1.sp),
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.yellow,
+                ),
+                child: RotatedBox(
+                  quarterTurns: 1,
+                  child: Icon(
+                    Icons.chevron_right,
+                    color: Colors.black,
+                    size: 20.sp,
                   ),
                 ),
-              )
-                  .animate(onPlay: (controller) {
-                    controller.repeat();
-                  })
-                  .moveY(
-                    delay: 2.seconds,
-                    duration: .5.seconds,
-                    begin: 0,
-                    end: -10.h,
-                  )
-                  .then()
-                  .moveY(
-                    curve: Curves.bounceOut,
-                    duration: .3.seconds,
-                    begin: 0,
-                    end: 10.h,
-                  ),
-            ),
+              ),
+            )
+                .animate(onPlay: (controller) {
+                  controller.repeat();
+                })
+                .moveY(
+                  delay: 2.seconds,
+                  duration: .5.seconds,
+                  begin: 0,
+                  end: -10.h,
+                )
+                .then()
+                .moveY(
+                  curve: Curves.bounceOut,
+                  duration: .3.seconds,
+                  begin: 0,
+                  end: 10.h,
+                ),
           ],
         ),
         SizedBox(height: 30.h),
