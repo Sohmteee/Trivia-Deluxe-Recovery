@@ -69,7 +69,15 @@ showCreditsDialog(BuildContext context) {
         ),
         SizedBox(height: 2.h),
         Text(
-          "Victor Anya",
+          "Victor Anya (Team Lead)",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20.sp,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        Text(
+          "Somtochukwu Obi",
           style: TextStyle(
             color: Colors.white,
             fontSize: 20.sp,
