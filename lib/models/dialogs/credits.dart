@@ -218,8 +218,7 @@ showCreditsDialog(BuildContext context) {
                 ),
               ),
             ),
-            Postioned(
-              right: 0,
+            Positioned(
               child: GestureDetector(
                 onTap: () {
                   scrollController.animateTo(
