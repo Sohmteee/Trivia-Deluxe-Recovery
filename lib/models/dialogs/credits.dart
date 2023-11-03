@@ -37,7 +37,7 @@ showCreditsDialog(BuildContext context) {
 
             return Stack(
               clipBehavior: Clip.none,
-              alignment: Alignment.bottomCenter,
+              alignment: Alignment.bottomRight,
               children: [
                 SizedBox(
                   height: 200.h,
@@ -231,7 +231,14 @@ showCreditsDialog(BuildContext context) {
                   ),
                 ),
                 value.show
-                    ? Positioned(
+                    ? GestureDetector(
+                        onTap: () {
+                          scrollController.animateTo(
+                            scrollController.position.maxScrollExtent,
+                            duration: .5.seconds,
+                            curve: Curves.easeInOut,
+                          );
+                        },
                         child: Container(
                           margin: EdgeInsets.only(bottom: 10.h),
                           decoration: BoxDecoration(
