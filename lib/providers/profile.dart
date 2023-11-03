@@ -84,10 +84,10 @@ class ProfileProvider extends ChangeNotifier {
         await fb.doc(deviceID).set(
           {
             'username': username.trim(),
-            'avatar': avatar,
-            'device_id': deviceID,
             'score': questionProvider.leaderboardScore,
+            'avatar': avatar,
             'time': Timestamp.fromDate(DateTime.now()),
+            'device_id': deviceID,
           },
           SetOptions(merge: true),
         ).then((_) {
