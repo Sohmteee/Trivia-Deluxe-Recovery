@@ -96,7 +96,39 @@ showCreditsDialog(BuildContext context) {
         ),
         SizedBox(height: 2.h),
         Text(
-          "Harrison Illodiuba",
+          "Raphael",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20.sp,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        Text(
+          "Vincent",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20.sp,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        Text(
+          "Emmanuela",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20.sp,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        Text(
+          "",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20.sp,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        Text(
+          "Raphael",
           style: TextStyle(
             color: Colors.white,
             fontSize: 20.sp,
