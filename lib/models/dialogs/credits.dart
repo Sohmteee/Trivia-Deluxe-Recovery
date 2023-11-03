@@ -233,8 +233,9 @@ showCreditsDialog(BuildContext context) {
                 value.show
                     ? Positioned(
                         child: Container(
+                          margin: EdgeInsets.only(bottom: 10.h),
                           decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(.2),
+                            color: Colors.white.withOpacity(.4),
                             borderRadius: BorderRadius.circular(100.r),
                           ),
                           child: RotatedBox(
