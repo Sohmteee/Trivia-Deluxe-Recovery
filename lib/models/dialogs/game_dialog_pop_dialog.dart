@@ -28,54 +28,6 @@ bool showGameDialogPopDialog(BuildContext context) {
         ZoomTapAnimation(
           onTap: () {
             playTap(context);
-            Navigator.pushReplacementNamed(context, "/select");
-            return true;
-          },
-          child: Container(
-            padding: EdgeInsets.symmetric(
-              vertical: 10.sp,
-              horizontal: 20.sp,
-            ),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20.r),
-            ),
-            child: Text(
-              "Categories",
-              style: TextStyle(
-                fontSize: 20.sp,
-              ),
-            ),
-          ),
-        ),
-        SizedBox(height: 10.h),
-        ZoomTapAnimation(
-          onTap: () {
-            playTap(context);
-            Navigator.pushReplacementNamed(context, "/menu");
-            return true;
-          },
-          child: Container(
-            padding: EdgeInsets.symmetric(
-              vertical: 10.sp,
-              horizontal: 20.sp,
-            ),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20.r),
-            ),
-            child: Text(
-              "Main Manu",
-              style: TextStyle(
-                fontSize: 20.sp,
-              ),
-            ),
-          ),
-        ),
-        SizedBox(height: 10.h),
-        ZoomTapAnimation(
-          onTap: () {
-            playTap(context);
             Navigator.pushReplacementNamed(context, "/stage");
             return true;
           },
@@ -96,9 +48,32 @@ bool showGameDialogPopDialog(BuildContext context) {
             ),
           ),
         ),
+        ZoomTapAnimation(
+          onTap: () {
+            playTap(context);
+            Navigator.pushReplacementNamed(context, "/select");
+            return true;
+          },
+          child: Container(
+            padding: EdgeInsets.symmetric(
+              vertical: 10.sp,
+              horizontal: 20.sp,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20.r),
+            ),
+            child: Text(
+              "Categories",
+              style: TextStyle(
+                fontSize: 20.sp,
+              ),
+            ),
+          ),
+        ),
         SizedBox(height: 30.h),
         Text(
-          "20 coins will still be deducted from you.",
+          "20 coins will still be deducted from you if you have up to that.",
           style: TextStyle(
             fontSize: 20.sp,
             color: Colors.white,
