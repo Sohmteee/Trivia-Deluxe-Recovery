@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trivia/models/dialogs/game.dart';
 
@@ -231,7 +232,11 @@ showCreditsDialog(BuildContext context) {
                   ),
                 ),
               ),
-            ),
+            ).animate().moveY(
+                  duration: .3.seconds,
+                  begin: 0,
+                  end: 10.h,
+                ),
           ],
         ),
         SizedBox(height: 30.h),
