@@ -173,12 +173,23 @@ class _GameScreenState extends State<GameScreen> {
               child: Row(
                 children: [
                   Text(
-                    "${optionLetter(index)}:  ${questionProvider.options[index]["text"]}",
+                    "${optionLetter(index)}:",
                     style: TextStyle(
                       color: AppColor.white,
                       fontSize: 20.sp,
                     ),
                     textAlign: TextAlign.start,
+                  ),
+                  SizedBox(width: 10.w),
+                  Expanded(
+                    child: Text(
+                      "${questionProvider.options[index]["text"]}",
+                      style: TextStyle(
+                        color: AppColor.white,
+                        fontSize: 20.sp,
+                      ),
+                      textAlign: TextAlign.start,
+                    ),
                   ),
                 ],
               ),
