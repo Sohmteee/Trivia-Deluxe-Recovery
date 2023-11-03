@@ -221,11 +221,20 @@ showCreditsDialog(BuildContext context) {
             SizedBox(width: 10.w),
             GestureDetector(
               onTap: () {
-                scrollController.animateTo(
-                  scrollController.position.maxScrollExtent + 20,
-                  duration: .5.seconds,
-                  curve: Curves.easeInOut,
-                );
+                if (scrollController.position ==
+                    scrollController.position.maxScrollExtent) {
+                  scrollController.animateTo(
+                    scrollController.position.minScrollExtent + 20,
+                    duration: .5.seconds,
+                    curve: Curves.easeInOut,
+                  );
+                } else {
+                  scrollController.animateTo(
+                    scrollController.position.maxScrollExtent + 20,
+                    duration: .5.seconds,
+                    curve: Curves.easeInOut,
+                  );
+                }
               },
               child: Container(
                 margin: EdgeInsets.only(right: 0.w),
