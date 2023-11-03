@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/models/dialogs/game.dart';
 
 showCreditsDialog(BuildContext context) {
-final scrollController = ScrollController();
-
-
   showGameDialog(
     context,
     isExitable: true,
@@ -30,7 +28,6 @@ final scrollController = ScrollController();
             SizedBox(
               height: 200.h,
               child: SingleChildScrollView(
-                controller: scrollController,
                 physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [
@@ -219,25 +216,36 @@ final scrollController = ScrollController();
               ),
             ),
             Positioned(
+              bottom: 0.h,
+              child: Container(
+                height: 20.h,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      AppColor.lightRed.withOpacity(.1),
+                      AppColor.lightRed,
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
               bottom: 0,
               right: -30.w,
-              child: GestureDetector(
-                onTap: () {
-                  
-                },
-                child: Container(
-                  padding: EdgeInsets.all(1.sp),
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.yellow,
-                  ),
-                  child: RotatedBox(
-                    quarterTurns: 1,
-                    child: Icon(
-                      Icons.chevron_right,
-                      color: Colors.black,
-                      size: 20.sp,
-                    ),
+              child: Container(
+                padding: EdgeInsets.all(1.sp),
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.yellow,
+                ),
+                child: RotatedBox(
+                  quarterTurns: 1,
+                  child: Icon(
+                    Icons.chevron_right,
+                    color: Colors.black,
+                    size: 20.sp,
                   ),
                 ),
               ),
