@@ -122,7 +122,7 @@ showCreditsDialog(BuildContext context) {
                         ),
                         SizedBox(height: 2.h),
                         Text(
-                          "Raphael",
+                          "Raphael Anichebe",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20.sp,
@@ -130,7 +130,7 @@ showCreditsDialog(BuildContext context) {
                           textAlign: TextAlign.center,
                         ),
                         Text(
-                          "Vincent",
+                          "Vincent ",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20.sp,
