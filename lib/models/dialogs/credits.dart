@@ -219,48 +219,45 @@ showCreditsDialog(BuildContext context) {
               ),
             ),
             SizedBox(width: 10.w),
-            scrollController.position.pixels ==
-                    scrollController.position.maxScrollExtent
-                ? SizedBox(width: 20.w)
-                : GestureDetector(
-                    onTap: () {
-                      scrollController.animateTo(
-                        scrollController.position.maxScrollExtent + 20,
-                        duration: .5.seconds,
-                        curve: Curves.easeInOut,
-                      );
-                    },
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.yellow,
-                      ),
-                      child: RotatedBox(
-                        quarterTurns: 1,
-                        child: Icon(
-                          Icons.chevron_right,
-                          color: Colors.black,
-                          size: 20.sp,
-                        ),
-                      ),
-                    ),
-                  )
-                    .animate(onPlay: (controller) {
-                      controller.repeat();
-                    })
-                    .moveY(
-                      delay: 2.seconds,
-                      duration: .5.seconds,
-                      begin: 0,
-                      end: -10.h,
-                    )
-                    .then()
-                    .moveY(
-                      curve: Curves.bounceOut,
-                      duration: .3.seconds,
-                      begin: 0,
-                      end: 10.h,
-                    ),
+            GestureDetector(
+              onTap: () {
+                scrollController.animateTo(
+                  scrollController.position.maxScrollExtent + 20,
+                  duration: .5.seconds,
+                  curve: Curves.easeInOut,
+                );
+              },
+              child: Container(
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.yellow,
+                ),
+                child: RotatedBox(
+                  quarterTurns: 1,
+                  child: Icon(
+                    Icons.chevron_right,
+                    color: Colors.black,
+                    size: 20.sp,
+                  ),
+                ),
+              ),
+            )
+                .animate(onPlay: (controller) {
+                  controller.repeat();
+                })
+                .moveY(
+                  delay: 2.seconds,
+                  duration: .5.seconds,
+                  begin: 0,
+                  end: -10.h,
+                )
+                .then()
+                .moveY(
+                  curve: Curves.bounceOut,
+                  duration: .3.seconds,
+                  begin: 0,
+                  end: 10.h,
+                ),
           ],
         ),
         SizedBox(height: 30.h),
