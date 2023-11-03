@@ -180,7 +180,7 @@ class _RewardScreenState extends State<RewardScreen> {
                       delay: 1.9.seconds,
                       duration: 1.seconds,
                     ),
-              const Spacer(flex: 1),
+              const Spacer(flex: 2),
               
             ],
           ),
