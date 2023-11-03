@@ -6,7 +6,7 @@ import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 import 'game.dart';
 
-showGameDialogPopDialog(BuildContext context) {
+Future<bool> showGameDialogPopDialog(BuildContext context) {
   showGameDialog(
     context,
     isExitable: true,

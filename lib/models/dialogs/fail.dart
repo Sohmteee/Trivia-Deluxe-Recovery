@@ -28,8 +28,8 @@ showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
     context,
     margin: EdgeInsets.symmetric(horizontal: 40.w),
     onWillExit: () async {
-      
-      return true;
+
+      return show;
     },
     child: StatefulBuilder(
       builder: (context, setState) {
