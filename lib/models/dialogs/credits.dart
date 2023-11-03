@@ -50,7 +50,7 @@ showCreditsDialog(BuildContext context) {
         ),
         SizedBox(height: 2.h),
         Text(
-          "Chux Edoga \n(CEO of Digital Dreams LTD)",
+          "Chux Edoga",
           style: TextStyle(
             color: Colors.white,
             fontSize: 20.sp,
@@ -59,7 +59,7 @@ showCreditsDialog(BuildContext context) {
         ),
         SizedBox(height: 20.h),
         Text(
-          "TEAM LEAD",
+          "GAME TEAM",
           style: TextStyle(
             color: Colors.yellow,
             fontSize: 20.sp,
