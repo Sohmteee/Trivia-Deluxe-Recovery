@@ -16,7 +16,7 @@ Future<bool> showGameDialogPopDialog(BuildContext context) {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          "Hurray!",
+          "Where do you want to go? ",
           style: TextStyle(
             color: AppColor.yellow,
             fontSize: 25.sp,

@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/main.dart';
+import 'package:trivia/models/dialogs/game_dialog_pop_dialog.dart';
 import 'package:trivia/models/dialogs/low_cash.dart';
 import 'package:trivia/providers/money.dart';
 import 'package:trivia/providers/profile.dart';
@@ -28,8 +29,7 @@ showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
     context,
     margin: EdgeInsets.symmetric(horizontal: 40.w),
     onWillExit: () async {
-
-      return show;
+      return showGameDialogPopDialog(context);
     },
     child: StatefulBuilder(
       builder: (context, setState) {
