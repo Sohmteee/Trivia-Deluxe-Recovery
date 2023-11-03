@@ -87,6 +87,7 @@ class ProfileProvider extends ChangeNotifier {
             'avatar': avatar,
             'device_id': deviceID,
             'score': questionProvider.leaderboardScore,
+            'time': Timestamp.fromDate(DateTime.now()),
           },
           SetOptions(merge: true),
         ).then((_) {
