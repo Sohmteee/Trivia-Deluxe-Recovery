@@ -21,7 +21,7 @@ showCreditsDialog(BuildContext context) {
           ),
           textAlign: TextAlign.center,
         ),
-        SizedBox(height: 20.h),
+        SizedBox(height: 10.h),
         Consumer<ShowProvider>(
           builder: (context, value, _) {
             final scrollController = ScrollController();
@@ -44,6 +44,7 @@ showCreditsDialog(BuildContext context) {
                   child: SingleChildScrollView(
                     controller: scrollController,
                     physics: const BouncingScrollPhysics(),
+                    padding: EdgeInsets.symmetric(vertical: 10.h),
                     child: Column(
                       children: [
                         Text(
