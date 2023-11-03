@@ -26,7 +26,18 @@ showCreditsDialog(BuildContext context) {
           final scrollController = ScrollController();
           bool show = true;
 
-          scrollController.addListener((value));
+          scrollController.addListener(() {
+            if (scrollController.offset <
+                scrollController.position.maxScrollExtent) {
+              setState(() {
+                show = true;
+              });
+            } else {
+              setState(() {
+                show = false;
+              });
+            }
+          });
 
           return Stack(
             clipBehavior: Clip.none,
