@@ -264,14 +264,14 @@ showCreditsDialog(BuildContext context) {
                           delay: 2.seconds,
                           duration: .5.seconds,
                           begin: 0,
-                          end: -10.h,
+                          end: -20.h,
                         )
                         .then()
                         .moveY(
                           curve: Curves.bounceOut,
                           duration: .3.seconds,
                           begin: 0,
-                          end: 10.h,
+                          end: 20.h,
                         )
                     : const SizedBox(),
               ],
