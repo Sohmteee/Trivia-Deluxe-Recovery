@@ -99,8 +99,9 @@ showLowCashDialog(BuildContext context) {
                   onUserEarnedReward: (_, reward) {
                     Provider.of<QuestionProvider>(context, listen: false)
                         .updateLeaderBoardScore(context);
-                    Provider.of<ProfileProvider>(context, listen: false)
-                        .updatePlayer(context);
+                    if (Provider.of<ProfileProvider>(context, listen: false).hasProfile) {
+                        Provider.of<ProfileProvider>(context, listen: false).updatePlayer(context);
+                      }
                   },
                 );
               } else {

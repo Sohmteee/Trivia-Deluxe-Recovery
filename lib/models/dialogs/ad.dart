@@ -83,8 +83,10 @@ showAdDialog(BuildContext context) {
                       .increaseCoins(5);
                   Provider.of<QuestionProvider>(context, listen: false)
                       .updateLeaderBoardScore(context);
-                  Provider.of<ProfileProvider>(context, listen: false)
-                      .updatePlayer(context);
+
+                      if (Provider.of<ProfileProvider>(context, listen: false).hasProfile) {
+                        Provider.of<ProfileProvider>(context, listen: false).updatePlayer(context);
+                      }
                 },
               );
             } else {

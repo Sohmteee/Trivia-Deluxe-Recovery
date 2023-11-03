@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/data/box.dart';
@@ -208,7 +207,7 @@ class ProfileProvider extends ChangeNotifier {
       );
     });
 
-    var url = Uri.https('http://cbtportal.linkskool.com/api/post_score.php');
+/*     var url = Uri.https('http://cbtportal.linkskool.com/api/post_score.php');
     await http.post(
       url,
       headers: {
@@ -223,7 +222,7 @@ class ProfileProvider extends ChangeNotifier {
         'mode': 0
       },
     );
-
+ */
     notifyListeners();
   }
 
@@ -285,21 +284,6 @@ class ProfileProvider extends ChangeNotifier {
         );
       });
     });
-
-    var url = Uri.https('http://cbtportal.linkskool.com/api/post_score.php');
-    await http.post(
-      url,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: {
-        'username': username,
-        'device_id': deviceID,
-        'game_type': 'triviaD',
-        'score': questionProvider.leaderboardScore.round(),
-        'mode': 0
-      },
-    );
 
     notifyListeners();
   }
