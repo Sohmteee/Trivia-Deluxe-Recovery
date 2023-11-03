@@ -216,13 +216,14 @@ showCreditsDialog(BuildContext context) {
               ),
             ),
             Positioned(
+              top: -1,
               child: Container(
-                height: 100.h,
+                height: 40.h,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
                       AppColor.lightRed,
-                      AppColor.lightRed.withOpacity(.5),
+                      AppColor.lightRed.withOpacity(.1),
                     ],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
