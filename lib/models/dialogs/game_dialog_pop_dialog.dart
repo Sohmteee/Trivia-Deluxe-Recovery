@@ -24,16 +24,31 @@ Future<bool> showGameDialogPopDialog(BuildContext context) {
           ),
           textAlign: TextAlign.center,
         ),
-        SizedBox(height: 20.h),
-        Text(
-          "You have completed all the levels in this category.",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 18.sp,
-          ),
-          textAlign: TextAlign.center,
-        ),
         SizedBox(height: 30.h),
+        ZoomTapAnimation(
+          onTap: () {
+            playTap(context);
+            return 
+            Navigator.pop(context);
+          },
+          child: Container(
+            padding: EdgeInsets.symmetric(
+              vertical: 10.sp,
+              horizontal: 20.sp,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20.r),
+            ),
+            child: Text(
+              "Categories",
+              style: TextStyle(
+                fontSize: 20.sp,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 10.h),
         ZoomTapAnimation(
           onTap: () {
             playTap(context);
@@ -49,13 +64,36 @@ Future<bool> showGameDialogPopDialog(BuildContext context) {
               borderRadius: BorderRadius.circular(20.r),
             ),
             child: Text(
-              "Okay",
+              "Categories",
               style: TextStyle(
                 fontSize: 20.sp,
               ),
             ),
           ),
-        )
+        ),
+        SizedBox(height: 10.h),
+        ZoomTapAnimation(
+          onTap: () {
+            playTap(context);
+            Navigator.pop(context);
+          },
+          child: Container(
+            padding: EdgeInsets.symmetric(
+              vertical: 10.sp,
+              horizontal: 20.sp,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20.r),
+            ),
+            child: Text(
+              "Categories",
+              style: TextStyle(
+                fontSize: 20.sp,
+              ),
+            ),
+          ),
+        ),
       ],
     ),
   );
