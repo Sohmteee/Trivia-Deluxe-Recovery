@@ -188,7 +188,6 @@ showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
                     return ZoomTapAnimation(
                       onTap: () {
                         if (rewardedAd != null) {
-                          pauseBGAudio();
                           rewardedAd?.show(
                             onUserEarnedReward: (_, reward) {
                               Provider.of<QuestionProvider>(context,
