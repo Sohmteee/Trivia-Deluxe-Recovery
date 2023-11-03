@@ -20,9 +20,10 @@ showCreditsDialog(BuildContext context) {
           textAlign: TextAlign.center,
         ),
         SizedBox(height: 20.h),
-        SingleChildScrollView(
-          child: SizedBox(
-            height: 100.h,
+        SizedBox(
+          height: 200.h,
+          child: SingleChildScrollView(
+            physics: cons,
             child: Column(
               children: [
                 Text(
