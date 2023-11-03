@@ -132,7 +132,7 @@ class _MenuScreenState extends State<MenuScreen>
                         ),
                     const Spacer(flex: 3),
                     bottomButtons(context),
-                    const Spacer(flex: 2),
+                    const Spacer(flex: 1),
                   ],
                 ),
               ),
