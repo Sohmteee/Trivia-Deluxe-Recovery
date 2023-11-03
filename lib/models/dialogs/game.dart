@@ -9,7 +9,7 @@ showGameDialog(
   bool? isExitable,
   EdgeInsetsGeometry? padding,
   EdgeInsets? margin,
-  Future<bool> Function()? onWillExit,
+  Future<bool>? onWillExit,
 
 }) {
   showDialog(
@@ -20,7 +20,7 @@ showGameDialog(
             dialogBackgroundColor: Colors.transparent,
           ),
           child: WillPopScope(
-            onWillPop: () => onW onWillPop(context, isExitable ?? false),
+            onWillPop: () => onWillExit ?? onWillPop(context, isExitable ?? false),
             child: Dialog(
               elevation: 0,
               shadowColor: Colors.transparent,

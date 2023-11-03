@@ -27,6 +27,9 @@ showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
   showGameDialog(
     context,
     margin: EdgeInsets.symmetric(horizontal: 40.w),
+    onWillExit:  async{
+      return true;
+    },
     child: StatefulBuilder(
       builder: (context, setState) {
         return Stack(
@@ -190,9 +193,13 @@ showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
                               Provider.of<QuestionProvider>(context,
                                       listen: false)
                                   .updateLeaderBoardScore(context);
-                              if (Provider.of<ProfileProvider>(context, listen: false).hasProfile) {
-                        Provider.of<ProfileProvider>(context, listen: false).updatePlayer(context);
-                      }
+                              if (Provider.of<ProfileProvider>(context,
+                                      listen: false)
+                                  .hasProfile) {
+                                Provider.of<ProfileProvider>(context,
+                                        listen: false)
+                                    .updatePlayer(context);
+                              }
                               Navigator.pushReplacementNamed(context, "/stage");
                             },
                           );
