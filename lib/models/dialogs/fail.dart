@@ -27,7 +27,8 @@ showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
   showGameDialog(
     context,
     margin: EdgeInsets.symmetric(horizontal: 40.w),
-    onWillExit:  async{
+    onWillExit: () async {
+      
       return true;
     },
     child: StatefulBuilder(
