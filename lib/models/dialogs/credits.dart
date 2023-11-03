@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/models/dialogs/game.dart';
 
 showCreditsDialog(BuildContext context) {
@@ -217,19 +218,12 @@ showCreditsDialog(BuildContext context) {
             Positioned(
               bottom: 0,
               right: -30.w,
-              child: Container(
-                padding: EdgeInsets.all(1.sp),
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.yellow,
-                ),
-                child: RotatedBox(
-                  quarterTurns: 3,
-                  child: Icon(
-                    Icons.arrow_back,
-                    color: Colors.black,
-                    size: 20.sp,
-                  ),
+              child: RotatedBox(
+                quarterTurns: 3,
+                child: Icon(
+                  Icons.arrow_back,
+                  color: AppColor.yellow,
+                  size: 25.sp,
                 ),
               ),
             )
