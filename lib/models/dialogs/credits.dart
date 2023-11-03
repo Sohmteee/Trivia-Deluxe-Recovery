@@ -30,10 +30,12 @@ showCreditsDialog(BuildContext context) {
             if (scrollController.offset <
                 scrollController.position.maxScrollExtent) {
               setState(() {
+                print("Show is true");
                 show = true;
               });
             } else {
               setState(() {
+                print("Show is false");
                 show = false;
               });
             }
