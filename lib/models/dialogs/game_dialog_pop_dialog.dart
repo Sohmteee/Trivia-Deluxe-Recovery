@@ -96,13 +96,14 @@ bool showGameDialogPopDialog(BuildContext context) {
             ),
           ),
         ),
-        
-        SizedBox(height: 10.h),
+        SizedBox(height: 30.h),
         Text(
-          "Stage",
+          "20 coins will still be deducted from you.",
           style: TextStyle(
             fontSize: 20.sp,
+            color: Colors.white,
           ),
+          textAlign: TextAlign.center,
         ),
       ],
     ),
