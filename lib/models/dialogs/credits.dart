@@ -9,6 +9,7 @@ showCreditsDialog(BuildContext context) {
   showGameDialog(
     context,
     isExitable: true,
+    padding: const EdgeInsets.fromLTRB(20, 40, 20, 40),
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
