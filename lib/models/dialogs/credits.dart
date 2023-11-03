@@ -120,7 +120,7 @@ showCreditsDialog(BuildContext context) {
           textAlign: TextAlign.center,
         ),
         Text(
-          "",
+          "Izuchukwu",
           style: TextStyle(
             color: Colors.white,
             fontSize: 20.sp,
@@ -128,7 +128,7 @@ showCreditsDialog(BuildContext context) {
           textAlign: TextAlign.center,
         ),
         Text(
-          "Raphael",
+          "Chioma",
           style: TextStyle(
             color: Colors.white,
             fontSize: 20.sp,
