@@ -6,7 +6,7 @@ import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 import 'game.dart';
 
-Future<bool> showGameDialogPopDialog(BuildContext context) {
+bool showGameDialogPopDialog(BuildContext context) {
   showGameDialog(
     context,
     isExitable: true,
@@ -28,8 +28,8 @@ Future<bool> showGameDialogPopDialog(BuildContext context) {
         ZoomTapAnimation(
           onTap: () {
             playTap(context);
-            return 
-            Navigator.pop(context);
+            Navigtor.push
+            return true;
           },
           child: Container(
             padding: EdgeInsets.symmetric(
@@ -52,7 +52,7 @@ Future<bool> showGameDialogPopDialog(BuildContext context) {
         ZoomTapAnimation(
           onTap: () {
             playTap(context);
-            Navigator.pop(context);
+            return true;
           },
           child: Container(
             padding: EdgeInsets.symmetric(
@@ -75,7 +75,7 @@ Future<bool> showGameDialogPopDialog(BuildContext context) {
         ZoomTapAnimation(
           onTap: () {
             playTap(context);
-            Navigator.pop(context);
+            return true;
           },
           child: Container(
             padding: EdgeInsets.symmetric(
@@ -97,4 +97,6 @@ Future<bool> showGameDialogPopDialog(BuildContext context) {
       ],
     ),
   );
+
+  return false;
 }
