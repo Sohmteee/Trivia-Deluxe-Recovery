@@ -20,185 +20,194 @@ showCreditsDialog(BuildContext context) {
           textAlign: TextAlign.center,
         ),
         SizedBox(height: 20.h),
-        Text(
-          "DEVELOPER",
-          style: TextStyle(
-            color: Colors.yellow,
-            fontSize: 20.sp,
-            fontWeight: FontWeight.bold,
+        SingleChildScrollView(
+          child: SizedBox(
+            height: 100.h,
+            child: Column(
+              children: [
+                Text(
+                  "DEVELOPER",
+                  style: TextStyle(
+                    color: Colors.yellow,
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 2.h),
+                Text(
+                  "Somtochukwu Ukaegbe",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.sp,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 20.h),
+                Text(
+                  "PROJECT MANAGER",
+                  style: TextStyle(
+                    color: Colors.yellow,
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 2.h),
+                Text(
+                  "Chux Edoga",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.sp,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 20.h),
+                Text(
+                  "GAME TEAM",
+                  style: TextStyle(
+                    color: Colors.yellow,
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 2.h),
+                Text(
+                  "Victor Anya (Team Lead)",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.sp,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  "Somtochukwu Obi",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.sp,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 20.h),
+                Text(
+                  "CONTENT CREATORS",
+                  style: TextStyle(
+                    color: Colors.yellow,
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 2.h),
+                Text(
+                  "Raphael",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.sp,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  "Vincent",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.sp,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  "Emmanuela",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.sp,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  "Izuchukwu",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.sp,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  "Chioma",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.sp,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 20.h),
+                Text(
+                  "GRAPHICS / UI DESIGN",
+                  style: TextStyle(
+                    color: Colors.yellow,
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 2.h),
+                Text(
+                  "Harrison Illodiuba",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.sp,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 20.h),
+                Text(
+                  "ANIMATIONS",
+                  style: TextStyle(
+                    color: Colors.yellow,
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 2.h),
+                Text(
+                  "Somtochukwu Ukaegbe",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.sp,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 20.h),
+                Text(
+                  "MUSIC / SOUND EFFECTS",
+                  style: TextStyle(
+                    color: Colors.yellow,
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 2.h),
+                Text(
+                  "Art of Silence - Uniq",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.sp,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  "Sound Effects from Pixabay",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.sp,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
           ),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(height: 2.h),
-        Text(
-          "Somtochukwu Ukaegbe",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20.sp,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(height: 20.h),
-        Text(
-          "PROJECT MANAGER",
-          style: TextStyle(
-            color: Colors.yellow,
-            fontSize: 20.sp,
-            fontWeight: FontWeight.bold,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(height: 2.h),
-        Text(
-          "Chux Edoga",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20.sp,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(height: 20.h),
-        Text(
-          "GAME TEAM",
-          style: TextStyle(
-            color: Colors.yellow,
-            fontSize: 20.sp,
-            fontWeight: FontWeight.bold,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(height: 2.h),
-        Text(
-          "Victor Anya (Team Lead)",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20.sp,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        Text(
-          "Somtochukwu Obi",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20.sp,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(height: 20.h),
-        Text(
-          "CONTENT CREATORS",
-          style: TextStyle(
-            color: Colors.yellow,
-            fontSize: 20.sp,
-            fontWeight: FontWeight.bold,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(height: 2.h),
-        Text(
-          "Raphael",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20.sp,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        Text(
-          "Vincent",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20.sp,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        Text(
-          "Emmanuela",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20.sp,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        Text(
-          "Izuchukwu",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20.sp,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        Text(
-          "Chioma",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20.sp,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(height: 20.h),
-        Text(
-          "GRAPHICS / UI DESIGN",
-          style: TextStyle(
-            color: Colors.yellow,
-            fontSize: 20.sp,
-            fontWeight: FontWeight.bold,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(height: 2.h),
-        Text(
-          "Harrison Illodiuba",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20.sp,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(height: 20.h),
-        Text(
-          "ANIMATIONS",
-          style: TextStyle(
-            color: Colors.yellow,
-            fontSize: 20.sp,
-            fontWeight: FontWeight.bold,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(height: 2.h),
-        Text(
-          "Somtochukwu Ukaegbe",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20.sp,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(height: 20.h),
-        Text(
-          "MUSIC / SOUND EFFECTS",
-          style: TextStyle(
-            color: Colors.yellow,
-            fontSize: 20.sp,
-            fontWeight: FontWeight.bold,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(height: 2.h),
-        Text(
-          "Art of Silence - Uniq",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20.sp,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        Text(
-          "Sound Effects from Pixabay",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20.sp,
-          ),
-          textAlign: TextAlign.center,
         ),
         SizedBox(height: 30.h),
         Row(
