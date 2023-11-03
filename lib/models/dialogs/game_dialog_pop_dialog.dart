@@ -30,8 +30,10 @@ bool showGameDialogPopDialog(BuildContext context) {
         ZoomTapAnimation(
           onTap: () {
             playTap(context);
-            if (Provider.of<MoneyProvider>(context).coins >= 20) {
-              Provider.of<MoneyProvider>(context).decreaseCoins(20);
+            if (Provider.of<MoneyProvider>(context, listen: false).coins >=
+                20) {
+              Provider.of<MoneyProvider>(context, listen: false)
+                  .decreaseCoins(20);
             }
             Navigator.pushReplacementNamed(context, "/stage");
             return true;
@@ -57,8 +59,10 @@ bool showGameDialogPopDialog(BuildContext context) {
         ZoomTapAnimation(
           onTap: () {
             playTap(context);
-            if (Provider.of<MoneyProvider>(context).coins >= 20) {
-              Provider.of<MoneyProvider>(context).decreaseCoins(20);
+            if (Provider.of<MoneyProvider>(context, listen: false).coins >=
+                20) {
+              Provider.of<MoneyProvider>(context, listen: false)
+                  .decreaseCoins(20);
             }
             Navigator.pushReplacementNamed(context, "/select");
             return true;
@@ -84,8 +88,10 @@ bool showGameDialogPopDialog(BuildContext context) {
         ZoomTapAnimation(
           onTap: () {
             playTap(context);
-            if (Provider.of<MoneyProvider>(context).coins >= 20) {
-              Provider.of<MoneyProvider>(context).decreaseCoins(20);
+            if (Provider.of<MoneyProvider>(context, listen: false).coins >=
+                20) {
+              Provider.of<MoneyProvider>(context, listen: false)
+                  .decreaseCoins(20);
             }
             Navigator.pushReplacementNamed(context, "/menu");
             return true;
