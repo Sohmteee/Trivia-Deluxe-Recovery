@@ -262,82 +262,7 @@ class StreaksProvider extends ChangeNotifier {
 
   void updateStreaksData() {
     streaks = [
-      {
-        "title": "Level Streaks",
-        "image": "assets/images/level.png",
-        "streaks": [
-          {
-            "title": "Steady Progress",
-            "subtitle": "Complete 5 levels without failing",
-            "status": permanentLevelStreak >= 5,
-            "collected": streaks[0]["streaks"][0]["collected"],
-            "progress": permanentLevelStreak >= 5
-                ? 5
-                : levelStreak >= 5
-                    ? 5
-                    : levelStreak,
-            "limit": 5,
-            "reward": 10,
-            "tapped": streaks[0]["streaks"][0]["tapped"],
-          },
-          {
-            "title": "Leveling Up",
-            "subtitle": "Complete 10 levels without failing",
-            "status": permanentLevelStreak >= 10,
-            "collected": streaks[0]["streaks"][1]["collected"],
-            "progress": permanentLevelStreak >= 10
-                ? 10
-                : levelStreak >= 10
-                    ? 10
-                    : levelStreak,
-            "limit": 10,
-            "reward": 20,
-            "tapped": streaks[0]["streaks"][1]["tapped"],
-          },
-          {
-            "title": "Tenacious Triumph",
-            "subtitle": "Complete 20 levels without failing",
-            "status": permanentLevelStreak >= 20,
-            "collected": streaks[0]["streaks"][2]["collected"],
-            "progress": permanentLevelStreak >= 20
-                ? 20
-                : levelStreak >= 20
-                    ? 20
-                    : levelStreak,
-            "limit": 20,
-            "reward": 30,
-            "tapped": streaks[0]["streaks"][2]["tapped"],
-          },
-          {
-            "title": "Masterful Streak",
-            "subtitle": "Complete 50 levels without failing",
-            "status": permanentLevelStreak >= 50,
-            "collected": streaks[0]["streaks"][3]["collected"],
-            "progress": permanentLevelStreak >= 50
-                ? 50
-                : levelStreak >= 50
-                    ? 50
-                    : levelStreak,
-            "limit": 50,
-            "reward": 40,
-            "tapped": streaks[0]["streaks"][3]["tapped"],
-          },
-          {
-            "title": "Unstoppable Champion",
-            "subtitle": "Complete 100 levels without failing",
-            "status": permanentLevelStreak >= 100,
-            "collected": streaks[0]["streaks"][4]["collected"],
-            "progress": permanentLevelStreak >= 100
-                ? 100
-                : levelStreak >= 100
-                    ? 100
-                    : levelStreak,
-            "limit": 100,
-            "reward": 50,
-            "tapped": streaks[0]["streaks"][4]["tapped"],
-          },
-        ],
-      },
+      
       {
         "title": "Coin Streaks",
         "image": "assets/images/coins.png",
@@ -487,6 +412,82 @@ class StreaksProvider extends ChangeNotifier {
             "limit": 100,
             "reward": 50,
             "tapped": streaks[2]["streaks"][4]["tapped"],
+          },
+        ],
+      },
+      {
+        "title": "Level Streaks",
+        "image": "assets/images/level.png",
+        "streaks": [
+          {
+            "title": "Steady Progress",
+            "subtitle": "Complete 5 levels without failing",
+            "status": permanentLevelStreak >= 5,
+            "collected": streaks[0]["streaks"][0]["collected"],
+            "progress": permanentLevelStreak >= 5
+                ? 5
+                : levelStreak >= 5
+                    ? 5
+                    : levelStreak,
+            "limit": 5,
+            "reward": 10,
+            "tapped": streaks[0]["streaks"][0]["tapped"],
+          },
+          {
+            "title": "Leveling Up",
+            "subtitle": "Complete 10 levels without failing",
+            "status": permanentLevelStreak >= 10,
+            "collected": streaks[0]["streaks"][1]["collected"],
+            "progress": permanentLevelStreak >= 10
+                ? 10
+                : levelStreak >= 10
+                    ? 10
+                    : levelStreak,
+            "limit": 10,
+            "reward": 20,
+            "tapped": streaks[0]["streaks"][1]["tapped"],
+          },
+          {
+            "title": "Tenacious Triumph",
+            "subtitle": "Complete 20 levels without failing",
+            "status": permanentLevelStreak >= 20,
+            "collected": streaks[0]["streaks"][2]["collected"],
+            "progress": permanentLevelStreak >= 20
+                ? 20
+                : levelStreak >= 20
+                    ? 20
+                    : levelStreak,
+            "limit": 20,
+            "reward": 30,
+            "tapped": streaks[0]["streaks"][2]["tapped"],
+          },
+          {
+            "title": "Masterful Streak",
+            "subtitle": "Complete 50 levels without failing",
+            "status": permanentLevelStreak >= 50,
+            "collected": streaks[0]["streaks"][3]["collected"],
+            "progress": permanentLevelStreak >= 50
+                ? 50
+                : levelStreak >= 50
+                    ? 50
+                    : levelStreak,
+            "limit": 50,
+            "reward": 40,
+            "tapped": streaks[0]["streaks"][3]["tapped"],
+          },
+          {
+            "title": "Unstoppable Champion",
+            "subtitle": "Complete 100 levels without failing",
+            "status": permanentLevelStreak >= 100,
+            "collected": streaks[0]["streaks"][4]["collected"],
+            "progress": permanentLevelStreak >= 100
+                ? 100
+                : levelStreak >= 100
+                    ? 100
+                    : levelStreak,
+            "limit": 100,
+            "reward": 50,
+            "tapped": streaks[0]["streaks"][4]["tapped"],
           },
         ],
       },
