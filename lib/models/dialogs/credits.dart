@@ -86,6 +86,25 @@ showCreditsDialog(BuildContext context) {
         ),
         SizedBox(height: 20.h),
         Text(
+          "CONTENT CREATORS",
+          style: TextStyle(
+            color: Colors.yellow,
+            fontSize: 20.sp,
+            fontWeight: FontWeight.bold,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(height: 2.h),
+        Text(
+          "Harrison Illodiuba",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20.sp,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(height: 20.h),
+        Text(
           "GRAPHICS / UI DESIGN",
           style: TextStyle(
             color: Colors.yellow,
