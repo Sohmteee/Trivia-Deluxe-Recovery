@@ -4,13 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trivia/models/dialogs/game.dart';
 
 showCreditsDialog(BuildContext context) {
-  final scrollController = ScrollController();
+final scrollController = ScrollController();
+
 
   showGameDialog(
     context,
     isExitable: true,
-    padding: EdgeInsets.fromLTRB(20.w, 40.h, 10.w, 30.h),
-    margin: EdgeInsets.symmetric(horizontal: 20.w),
+    padding: EdgeInsets.fromLTRB(20.w, 40.h, 20.w, 30.h),
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -24,12 +24,11 @@ showCreditsDialog(BuildContext context) {
           textAlign: TextAlign.center,
         ),
         SizedBox(height: 20.h),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.end,
+        Stack(
+          clipBehavior: Clip.none,
           children: [
             SizedBox(
-              height: 300.h,
+              height: 200.h,
               child: SingleChildScrollView(
                 controller: scrollController,
                 physics: const BouncingScrollPhysics(),
@@ -219,27 +218,26 @@ showCreditsDialog(BuildContext context) {
                 ),
               ),
             ),
-            SizedBox(width: 10.w),
-            GestureDetector(
-              onTap: () {
-                scrollController.animateTo(
-                  scrollController.position.maxScrollExtent + 20,
-                  duration: .5.seconds,
-                  curve: Curves.easeInOut,
-                );
-              },
-              child: Container(
-                padding: EdgeInsets.all(5.sp),
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.yellow,
-                ),
-                child: RotatedBox(
-                  quarterTurns: 1,
-                  child: Icon(
-                    Icons.chevron_right,
-                    color: Colors.black,
-                    size: 20.sp,
+            Positioned(
+              bottom: 0,
+              right: -30.w,
+              child: GestureDetector(
+                onTap: () {
+                  
+                },
+                child: Container(
+                  padding: EdgeInsets.all(1.sp),
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.yellow,
+                  ),
+                  child: RotatedBox(
+                    quarterTurns: 1,
+                    child: Icon(
+                      Icons.chevron_right,
+                      color: Colors.black,
+                      size: 20.sp,
+                    ),
                   ),
                 ),
               ),
