@@ -23,252 +23,249 @@ showCreditsDialog(BuildContext context) {
           textAlign: TextAlign.center,
         ),
         SizedBox(height: 20.h),
-        Consumer<(builder: (context, setState) {
-          final scrollController = ScrollController();
-          bool show = true;
+        Consumer<ShowProvider>(
+          builder: (context, value, _) {
+            final scrollController = ScrollController();
 
-          scrollController.addListener(() {
-            if (scrollController.offset <
-                scrollController.position.maxScrollExtent) {
-              setState(() {
+            scrollController.addListener(() {
+              if (scrollController.offset <
+                  scrollController.position.maxScrollExtent) {
+                value.setShow(true);
                 print("Show is true");
-                show = true;
-              });
-            } else {
-              setState(() {
+              } else {
+                value.setShow(false);
                 print("Show is false");
-                show = false;
-              });
-            }
-          });
+              }
+            });
 
-          return Stack(
-            clipBehavior: Clip.none,
-            children: [
-              SizedBox(
-                height: 200.h,
-                child: SingleChildScrollView(
-                  controller: scrollController,
-                  physics: const BouncingScrollPhysics(),
-                  child: Column(
-                    children: [
-                      Text(
-                        "DEVELOPER",
-                        style: TextStyle(
-                          color: Colors.yellow,
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.bold,
+            return Stack(
+              clipBehavior: Clip.none,
+              children: [
+                SizedBox(
+                  height: 200.h,
+                  child: SingleChildScrollView(
+                    controller: scrollController,
+                    physics: const BouncingScrollPhysics(),
+                    child: Column(
+                      children: [
+                        Text(
+                          "DEVELOPER",
+                          style: TextStyle(
+                            color: Colors.yellow,
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: 2.h),
-                      Text(
-                        "Somtochukwu Ukaegbe",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.sp,
+                        SizedBox(height: 2.h),
+                        Text(
+                          "Somtochukwu Ukaegbe",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.sp,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: 20.h),
-                      Text(
-                        "PROJECT MANAGER",
-                        style: TextStyle(
-                          color: Colors.yellow,
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.bold,
+                        SizedBox(height: 20.h),
+                        Text(
+                          "PROJECT MANAGER",
+                          style: TextStyle(
+                            color: Colors.yellow,
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: 2.h),
-                      Text(
-                        "Chux Edoga",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.sp,
+                        SizedBox(height: 2.h),
+                        Text(
+                          "Chux Edoga",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.sp,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: 20.h),
-                      Text(
-                        "GAME TEAM",
-                        style: TextStyle(
-                          color: Colors.yellow,
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.bold,
+                        SizedBox(height: 20.h),
+                        Text(
+                          "GAME TEAM",
+                          style: TextStyle(
+                            color: Colors.yellow,
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: 2.h),
-                      Text(
-                        "Victor Anya (Team Lead)",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.sp,
+                        SizedBox(height: 2.h),
+                        Text(
+                          "Victor Anya (Team Lead)",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.sp,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      Text(
-                        "Somtochukwu Obi",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.sp,
+                        Text(
+                          "Somtochukwu Obi",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.sp,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: 20.h),
-                      Text(
-                        "CONTENT CREATORS",
-                        style: TextStyle(
-                          color: Colors.yellow,
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.bold,
+                        SizedBox(height: 20.h),
+                        Text(
+                          "CONTENT CREATORS",
+                          style: TextStyle(
+                            color: Colors.yellow,
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: 2.h),
-                      Text(
-                        "Raphael",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.sp,
+                        SizedBox(height: 2.h),
+                        Text(
+                          "Raphael",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.sp,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      Text(
-                        "Vincent",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.sp,
+                        Text(
+                          "Vincent",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.sp,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      Text(
-                        "Emmanuela",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.sp,
+                        Text(
+                          "Emmanuela",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.sp,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      Text(
-                        "Izuchukwu",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.sp,
+                        Text(
+                          "Izuchukwu",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.sp,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      Text(
-                        "Chioma",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.sp,
+                        Text(
+                          "Chioma",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.sp,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: 20.h),
-                      Text(
-                        "GRAPHICS / UI DESIGN",
-                        style: TextStyle(
-                          color: Colors.yellow,
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.bold,
+                        SizedBox(height: 20.h),
+                        Text(
+                          "GRAPHICS / UI DESIGN",
+                          style: TextStyle(
+                            color: Colors.yellow,
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: 2.h),
-                      Text(
-                        "Harrison Illodiuba",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.sp,
+                        SizedBox(height: 2.h),
+                        Text(
+                          "Harrison Illodiuba",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.sp,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: 20.h),
-                      Text(
-                        "ANIMATIONS",
-                        style: TextStyle(
-                          color: Colors.yellow,
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.bold,
+                        SizedBox(height: 20.h),
+                        Text(
+                          "ANIMATIONS",
+                          style: TextStyle(
+                            color: Colors.yellow,
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: 2.h),
-                      Text(
-                        "Somtochukwu Ukaegbe",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.sp,
+                        SizedBox(height: 2.h),
+                        Text(
+                          "Somtochukwu Ukaegbe",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.sp,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: 20.h),
-                      Text(
-                        "MUSIC / SOUND EFFECTS",
-                        style: TextStyle(
-                          color: Colors.yellow,
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.bold,
+                        SizedBox(height: 20.h),
+                        Text(
+                          "MUSIC / SOUND EFFECTS",
+                          style: TextStyle(
+                            color: Colors.yellow,
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: 2.h),
-                      Text(
-                        "Art of Silence - Uniq",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.sp,
+                        SizedBox(height: 2.h),
+                        Text(
+                          "Art of Silence - Uniq",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.sp,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      Text(
-                        "Sound Effects from Pixabay",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.sp,
+                        Text(
+                          "Sound Effects from Pixabay",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.sp,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              show
-                  ? Positioned(
-                      bottom: 0,
-                      right: -30.w,
-                      child: RotatedBox(
-                        quarterTurns: 3,
-                        child: Icon(
-                          Icons.arrow_back,
-                          color: AppColor.yellow,
-                          size: 25.sp,
+                value.show
+                    ? Positioned(
+                        bottom: 0,
+                        right: -30.w,
+                        child: RotatedBox(
+                          quarterTurns: 3,
+                          child: Icon(
+                            Icons.arrow_back,
+                            color: AppColor.yellow,
+                            size: 25.sp,
+                          ),
                         ),
-                      ),
-                    )
-                      .animate(onPlay: (controller) {
-                        controller.repeat();
-                      })
-                      .moveY(
-                        delay: 2.seconds,
-                        duration: .5.seconds,
-                        begin: 0,
-                        end: -10.h,
                       )
-                      .then()
-                      .moveY(
-                        curve: Curves.bounceOut,
-                        duration: .3.seconds,
-                        begin: 0,
-                        end: 10.h,
-                      )
-                  : const SizedBox(),
-            ],
-          );
-        }),
+                        .animate(onPlay: (controller) {
+                          controller.repeat();
+                        })
+                        .moveY(
+                          delay: 2.seconds,
+                          duration: .5.seconds,
+                          begin: 0,
+                          end: -10.h,
+                        )
+                        .then()
+                        .moveY(
+                          curve: Curves.bounceOut,
+                          duration: .3.seconds,
+                          begin: 0,
+                          end: 10.h,
+                        )
+                    : const SizedBox(),
+              ],
+            );
+          },
+        ),
         SizedBox(height: 30.h),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
