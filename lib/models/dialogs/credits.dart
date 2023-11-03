@@ -37,6 +37,7 @@ showCreditsDialog(BuildContext context) {
 
             return Stack(
               clipBehavior: Clip.none,
+              alignment: Alignment.bottomCenter,
               children: [
                 SizedBox(
                   height: 200.h,
@@ -231,8 +232,6 @@ showCreditsDialog(BuildContext context) {
                 ),
                 value.show
                     ? Positioned(
-                        bottom: 0,
-                        right: 0.w,
                         child: RotatedBox(
                           quarterTurns: 3,
                           child: Icon(
