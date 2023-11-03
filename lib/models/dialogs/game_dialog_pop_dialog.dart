@@ -34,7 +34,7 @@ bool showGameDialogPopDialog(BuildContext context) {
           child: Container(
             padding: EdgeInsets.symmetric(
               vertical: 10.sp,
-              horizontal: 20.sp,
+              horizontal: 35.sp,
             ),
             decoration: BoxDecoration(
               color: Colors.white,
@@ -48,6 +48,31 @@ bool showGameDialogPopDialog(BuildContext context) {
             ),
           ),
         ),
+        SizedBox(height: 10.h),
+        ZoomTapAnimation(
+          onTap: () {
+            playTap(context);
+            Navigator.pushReplacementNamed(context, "/menu");
+            return true;
+          },
+          child: Container(
+            padding: EdgeInsets.symmetric(
+              vertical: 10.sp,
+              horizontal: 20.sp,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20.r),
+            ),
+            child: Text(
+              "Main Manu",
+              style: TextStyle(
+                fontSize: 20.sp,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 10.h),
         ZoomTapAnimation(
           onTap: () {
             playTap(context);
