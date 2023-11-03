@@ -217,21 +217,29 @@ showCreditsDialog(BuildContext context) {
                 ),
               ),
             ),
-            Positioned(
-              bottom: 0,
-              right: -30.w,
-              child: Container(
-                padding: EdgeInsets.all(1.sp),
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.yellow,
-                ),
-                child: RotatedBox(
-                  quarterTurns: 1,
-                  child: Icon(
-                    Icons.chevron_right,
-                    color: Colors.black,
-                    size: 20.sp,
+            Align(
+              alignment: Alignment.centerRight,
+              child: GestureDetector(
+                onTap: () {
+                  scrollController.animateTo(
+                    scrollController.position.maxScrollExtent,
+                    duration: .5.seconds,
+                    curve: Curves.easeInOut,
+                  );
+                },
+                child: Container(
+                  padding: EdgeInsets.all(1.sp),
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.yellow,
+                  ),
+                  child: RotatedBox(
+                    quarterTurns: 1,
+                    child: Icon(
+                      Icons.chevron_right,
+                      color: Colors.black,
+                      size: 20.sp,
+                    ),
                   ),
                 ),
               ),
