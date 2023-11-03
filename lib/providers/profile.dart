@@ -86,7 +86,7 @@ class ProfileProvider extends ChangeNotifier {
             'username': username.trim(),
             'avatar': avatar,
             'device_id': deviceID,
-            'score': questionProvider.leaderboardScore.round(),
+            'score': questionProvider.leaderboardScore,
           },
           SetOptions(merge: true),
         ).then((_) {
@@ -218,7 +218,7 @@ class ProfileProvider extends ChangeNotifier {
         'avatar': avatar,
         'device_id': deviceID,
         'game_type': 'triviaD',
-        'score': questionProvider.leaderboardScore.round(),
+        'score': questionProvider.leaderboardScore,
         'mode': 0
       },
     );
@@ -237,7 +237,7 @@ class ProfileProvider extends ChangeNotifier {
     fb.doc(deviceID).get().then((DocumentSnapshot snapshot) async {
       fb.doc(deviceID).set(
         {
-          'score': questionProvider.leaderboardScore.round(),
+          'score': questionProvider.leaderboardScore,
           'correct_answers': questionProvider.correctAnswers,
           'total_questions': questionProvider.totalQuestionsAnswered,
           'average_time': questionProvider.averageTime,
@@ -312,7 +312,7 @@ class ProfileProvider extends ChangeNotifier {
           'username': username,
           'avatar': avatar,
           'device_id': deviceID + 127.toString(),
-          'score': questionProvider.leaderboardScore.round(),
+          'score': questionProvider.leaderboardScore,
           'mode': 1,
         }),
       );

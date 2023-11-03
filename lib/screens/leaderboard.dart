@@ -64,7 +64,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
     final leaderBoardData = querySnapshot.docs.map((doc) {
       return {
         "username": doc["username"],
-        "score": doc["score"],
+        "score": doc["score"].round(),
         "avatar": doc["avatar"],
         "time": doc["time"],
         "device_id": doc["device_id"],
