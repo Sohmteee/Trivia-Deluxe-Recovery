@@ -90,7 +90,6 @@ class ProfileProvider extends ChangeNotifier {
           print("Success adding player!");
 
           box.put("deviceID", deviceID);
-
           hasProfile = true;
           box.put("hasprofile", hasProfile);
 
