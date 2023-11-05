@@ -16,7 +16,7 @@ showRestartDialog(BuildContext context) {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          "A new patch is available!",
+          "Some changes have been made in the game",
           style: TextStyle(
             color: AppColor.yellow,
             fontSize: 25.sp,
@@ -26,8 +26,7 @@ showRestartDialog(BuildContext context) {
         ),
         SizedBox(height: 20.h),
         Text(
-          "Your average time is calculated by dividing the total time for correctly answered questions by the number of those questions."
-          "\nTime spent on questions you failed is not included in the calculation.",
+          "Do you wish to restart the game now? ",
           style: TextStyle(
             color: Colors.white,
             fontSize: 18.sp,
