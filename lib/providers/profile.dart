@@ -39,7 +39,7 @@ class ProfileProvider extends ChangeNotifier {
 
         box.put("deviceID", deviceID);
         this.username = profile["username"];
-        box.put("username", username);
+
         hasProfile = true;
         box.put("hasprofile", hasProfile);
 
@@ -95,7 +95,7 @@ class ProfileProvider extends ChangeNotifier {
 
           box.put("deviceID", deviceID);
           this.username = username;
-          box.put("username", username);
+
           hasProfile = true;
           box.put("hasprofile", hasProfile);
 
@@ -329,7 +329,7 @@ class ProfileProvider extends ChangeNotifier {
 
         if (isCreatePlayer) {
           this.username = username;
-          box.put("username", username);
+          
           hasProfile = true;
           box.put("hasprofile", hasProfile);
 
