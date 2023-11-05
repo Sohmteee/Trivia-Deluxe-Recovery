@@ -43,7 +43,7 @@ class _MenuScreenState extends State<MenuScreen>
     WidgetsBinding.instance.addObserver(this);
     ToastContext().init(context);
 
-    _checkForUpdates();
+    _checkForUpdates(context);
 
     playBGAudio(context);
     // _loadAppOpenAd();
@@ -414,11 +414,13 @@ Future<void> stopBGAudio() async {
   debugPrint("music stopped");
 }
 
-Future<void> _checkForUpdates() async {
+Future<void> _checkForUpdates(BuildContext context) async {
   final isUpdateAvailable =
       await shorebirdCodePush.isNewPatchAvailableForDownload();
 
   if (isUpdateAvailable) {
     await shorebirdCodePush.downloadUpdateIfAvailable();
+
+    showRestartDialog(context);
   }
 }
