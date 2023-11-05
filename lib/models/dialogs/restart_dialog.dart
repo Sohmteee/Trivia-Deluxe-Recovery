@@ -26,7 +26,7 @@ showRestartDialog(BuildContext context) {
         ),
         SizedBox(height: 20.h),
         Text(
-          "Do you wish to restart the game now? ",
+          "Do you wish to restart the game now?",
           style: TextStyle(
             color: Colors.white,
             fontSize: 18.sp,
@@ -37,7 +37,7 @@ showRestartDialog(BuildContext context) {
         ZoomTapAnimation(
           onTap: () {
             playTap(context);
-            Navigator.pop(context);
+            Restart.restartApp();
           },
           child: Container(
             padding: EdgeInsets.symmetric(
