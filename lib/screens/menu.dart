@@ -14,6 +14,7 @@ import 'package:trivia/main.dart';
 import 'package:trivia/models/circle_border.dart';
 import 'package:trivia/models/dialogs/exit.dart';
 import 'package:trivia/models/dialogs/low_cash.dart';
+import 'package:trivia/models/dialogs/restart_dialog.dart';
 import 'package:trivia/models/dialogs/settings.dart';
 import 'package:trivia/providers/audio.dart';
 import 'package:trivia/screens/reward.dart';
@@ -420,7 +421,6 @@ Future<void> _checkForUpdates(BuildContext context) async {
 
   if (isUpdateAvailable) {
     await shorebirdCodePush.downloadUpdateIfAvailable();
-
     showRestartDialog(context);
   }
 }

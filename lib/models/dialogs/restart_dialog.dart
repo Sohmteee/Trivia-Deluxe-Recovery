@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:restart_app/restart_app.dart';
 import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/main.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
@@ -49,13 +50,36 @@ showRestartDialog(BuildContext context) {
               borderRadius: BorderRadius.circular(20.r),
             ),
             child: Text(
-              "Okay",
+              "Restart now",
               style: TextStyle(
                 fontSize: 20.sp,
               ),
             ),
           ),
-        )
+        ),
+        SizedBox(height: 30.h),
+        ZoomTapAnimation(
+          onTap: () {
+            playTap(context);
+            Navigator.pop(context);
+          },
+          child: Container(
+            padding: EdgeInsets.symmetric(
+              vertical: 10.sp,
+              horizontal: 20.sp,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20.r),
+            ),
+            child: Text(
+              "I'll do that later",
+              style: TextStyle(
+                fontSize: 20.sp,
+              ),
+            ),
+          ),
+        ),
       ],
     ),
   );
