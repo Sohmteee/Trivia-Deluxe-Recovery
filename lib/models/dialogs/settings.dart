@@ -172,7 +172,32 @@ showSettingsDialog(BuildContext context) {
                       color: Colors.grey[200],
                       size: 20.sp,
                     ),
-                  ),
+                  )
+                      .animate(
+                        onPlay: (controller) => controller.repeat(),
+                      )
+                      .then()
+                      .scaleXY(
+                        curve: Curves.easeOutSine,
+                        delay: 2.seconds,
+                        duration: .2.seconds,
+                        begin: 1,
+                        end: .8,
+                      )
+                      .then()
+                      .scaleXY(
+                        curve: Curves.easeOutSine,
+                        duration: .4.seconds,
+                        begin: .8,
+                        end: 1.2,
+                      )
+                      .then()
+                      .scaleXY(
+                        curve: Curves.bounceOut,
+                        duration: .4.seconds,
+                        begin: 1.2,
+                        end: 1,
+                      ),
                 ],
               ),
               SizedBox(height: 30.h),
