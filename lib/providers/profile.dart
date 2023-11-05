@@ -11,7 +11,6 @@ import 'package:trivia/models/dialogs/game.dart';
 import 'package:trivia/providers/question.dart';
 
 class ProfileProvider extends ChangeNotifier {
-  String? username;
   bool hasProfile = box.get("hasprofile", defaultValue: false);
   bool isLoading = false;
 
@@ -34,12 +33,9 @@ class ProfileProvider extends ChangeNotifier {
         print("Player exists!");
 
         var profile = snapshot.data() as Map<String, dynamic>;
-
         print(profile);
 
         box.put("deviceID", deviceID);
-        this.username = profile["username"];
-
         hasProfile = true;
         box.put("hasprofile", hasProfile);
 
@@ -94,7 +90,6 @@ class ProfileProvider extends ChangeNotifier {
           print("Success adding player!");
 
           box.put("deviceID", deviceID);
-          this.username = username;
 
           hasProfile = true;
           box.put("hasprofile", hasProfile);
