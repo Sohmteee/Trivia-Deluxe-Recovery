@@ -11,7 +11,7 @@ import 'package:trivia/models/dialogs/game.dart';
 import 'package:trivia/providers/question.dart';
 
 class ProfileProvider extends ChangeNotifier {
-  String? username = box.get("username", defaultValue: null);
+  String? username;
   bool hasProfile = box.get("hasprofile", defaultValue: false);
   bool isLoading = false;
 
