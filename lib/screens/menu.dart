@@ -18,6 +18,7 @@ import 'package:trivia/models/dialogs/settings.dart';
 import 'package:trivia/providers/audio.dart';
 import 'package:trivia/screens/reward.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
+import 'package:shorebird_code_push/shorebird_code_push.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
@@ -25,6 +26,8 @@ class MenuScreen extends StatefulWidget {
   @override
   State<MenuScreen> createState() => _MenuScreenState();
 }
+
+final shorebirdCodePush = ShorebirdCodePush();
 
 class _MenuScreenState extends State<MenuScreen>
     with WidgetsBindingObserver, TickerProviderStateMixin {
@@ -39,6 +42,8 @@ class _MenuScreenState extends State<MenuScreen>
   void initState() {
     WidgetsBinding.instance.addObserver(this);
     ToastContext().init(context);
+
+    _checkForUpdates();
 
     playBGAudio(context);
     // _loadAppOpenAd();
@@ -407,4 +412,13 @@ Future<void> pauseBGAudio() async {
 Future<void> stopBGAudio() async {
   await bgPlayer.stop();
   debugPrint("music stopped");
+}
+
+Future<void> _checkForUpdates() async {
+  final isUpdateAvailable =
+      await shorebirdCodePush.isNewPatchAvailableForDownload();
+
+  if (isUpdateAvailable) {
+    await shorebirdCodePush.downloadUpdateIfAvailable();
+  }
 }

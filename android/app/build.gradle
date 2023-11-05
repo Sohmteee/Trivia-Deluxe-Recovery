@@ -14,12 +14,12 @@ if (localPropertiesFile.exists()) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '23'
+    flutterVersionCode = '25'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '2.2.87'
+    flutterVersionName = '2.2.89'
 }
 
 def keystoreProperties = new Properties()
@@ -53,8 +53,8 @@ android {
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
-        versionCode 23
-        versionName "2.2.87"
+        versionCode 25
+        versionName "2.2.89"
         multiDexEnabled true
     }
 

@@ -181,28 +181,16 @@ class _SelectScreenState extends State<SelectScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         for (int i = 0; i < selectItems.length; i++)
-          ZoomTapAnimation(
-            onTap: () {
-              final selectProvider =
-                  Provider.of<SelectProvider>(context, listen: false);
-              pageController.animateToPage(
-                i,
-                duration: .3.seconds,
-                curve: Curves.easeOut,
-              );
-              selectProvider.pageIndex = i;
-            },
-            child: AnimatedContainer(
-              duration: .3.seconds,
-              margin: EdgeInsets.symmetric(horizontal: 5.sp),
-              width: 15.sp,
-              height: 15.sp,
-              decoration: BoxDecoration(
-                color: (Provider.of<SelectProvider>(context).pageIndex == i)
-                    ? AppColor.yellow
-                    : AppColor.lightRed.withOpacity(.5),
-                borderRadius: BorderRadius.circular(50.r),
-              ),
+          AnimatedContainer(
+            duration: .3.seconds,
+            margin: EdgeInsets.symmetric(horizontal: 5.sp),
+            width: 15.sp,
+            height: 15.sp,
+            decoration: BoxDecoration(
+              color: (Provider.of<SelectProvider>(context).pageIndex == i)
+                  ? AppColor.yellow
+                  : AppColor.lightRed.withOpacity(.5),
+              borderRadius: BorderRadius.circular(50.r),
             ),
           ),
       ],

@@ -113,7 +113,7 @@ showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
                       },
                       child: Container(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 20.sp, vertical: 10.sp),
+                            horizontal: 15.w, vertical: 10.h),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20.r),
@@ -122,30 +122,15 @@ showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              "Revive with coins",
+                              "Revive with 20 coins",
                               style: TextStyle(
                                 fontSize: 20.sp,
                               ),
                             ),
                             SizedBox(width: 10.w),
-                            Stack(
-                              clipBehavior: Clip.none,
-                              children: [
-                                SizedBox(
-                                  height: 20.h,
-                                  child: Image.asset("assets/images/coin.png"),
-                                ),
-                                Positioned(
-                                  top: -5,
-                                  right: -10,
-                                  child: Text(
-                                    "\u00d720",
-                                    style: TextStyle(
-                                      fontSize: 20.sp,
-                                    ),
-                                  ),
-                                ),
-                              ],
+                            SizedBox(
+                              height: 20.h,
+                              child: Image.asset("assets/images/coin.png"),
                             ),
                           ],
                         ),
@@ -219,7 +204,7 @@ showFailedDialog(BuildContext context, questionIndex, bool timeUp) {
                       },
                       child: Container(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 20.sp, vertical: 10.sp),
+                            horizontal: 20.w, vertical: 10.h),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20.r),
