@@ -12,7 +12,7 @@ import 'package:trivia/providers/question.dart';
 
 class ProfileProvider extends ChangeNotifier {
   String? username = box.get("username", defaultValue: null);
-  bool hasProfile = box.get("hasProfile", defaultValue: false);
+  bool hasProfile = box.get("hasprofile", defaultValue: false);
   bool isLoading = false;
 
   Future<void> addPlayer(
@@ -41,7 +41,7 @@ class ProfileProvider extends ChangeNotifier {
         this.username = profile["username"];
         box.put("username", username);
         hasProfile = true;
-        box.put("hasProfile", hasProfile);
+        box.put("hasprofile", hasProfile);
 
         isLoading = false;
 
@@ -97,7 +97,7 @@ class ProfileProvider extends ChangeNotifier {
           this.username = username;
           box.put("username", username);
           hasProfile = true;
-          box.put("hasProfile", hasProfile);
+          box.put("hasprofile", hasProfile);
 
           isLoading = false;
 
@@ -331,7 +331,7 @@ class ProfileProvider extends ChangeNotifier {
           this.username = username;
           box.put("username", username);
           hasProfile = true;
-          box.put("hasProfile", hasProfile);
+          box.put("hasprofile", hasProfile);
 
           Future.delayed(.5.seconds, () {
             showGameDialog(
