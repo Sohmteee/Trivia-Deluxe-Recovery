@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:restart_app/restart_app.dart';
 import 'package:trivia/colors/app_color.dart';
@@ -38,7 +39,7 @@ showRestartDialog(BuildContext context) {
         ZoomTapAnimation(
           onTap: () {
             playTap(context);
-            Restart.restartApp();
+            Future.delayed(.5.seconds, () => Restart.restartApp());
           },
           child: Container(
             padding: EdgeInsets.symmetric(
@@ -73,7 +74,7 @@ showRestartDialog(BuildContext context) {
               borderRadius: BorderRadius.circular(20.r),
             ),
             child: Text(
-              "I'll do that later",
+              "Restart later",
               style: TextStyle(
                 fontSize: 20.sp,
               ),

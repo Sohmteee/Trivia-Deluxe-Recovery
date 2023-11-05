@@ -421,6 +421,7 @@ Future<void> _checkForUpdates(BuildContext context) async {
 
   if (isUpdateAvailable) {
     await shorebirdCodePush.downloadUpdateIfAvailable();
+    // ignore: use_build_context_synchronously
     showRestartDialog(context);
   }
 }
