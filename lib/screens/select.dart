@@ -158,7 +158,7 @@ class _SelectScreenState extends State<SelectScreen> {
               ),
               const Spacer(flex: 7),
               Text(
-                "Choose a category",
+                "Select a category",
                 style: TextStyle(
                   color: AppColor.white,
                   fontSize: 30.sp,

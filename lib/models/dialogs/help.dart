@@ -16,7 +16,7 @@ showHelpDialog(BuildContext context) {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          "Auto Answer",
+          "Auto Advance",
           style: TextStyle(
             color: AppColor.yellow,
             fontSize: 25.sp,
@@ -26,7 +26,7 @@ showHelpDialog(BuildContext context) {
         ),
         SizedBox(height: 20.h),
         Text(
-          "Activate this setting for automatic progression to the next question without manual selection.",
+          "Activate this setting for automatic advancement to the next question without manual selection.",
           style: TextStyle(
             color: Colors.white,
             fontSize: 18.sp,

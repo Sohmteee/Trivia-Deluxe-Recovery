@@ -142,7 +142,7 @@ showSettingsDialog(BuildContext context) {
                   Row(
                     children: [
                       Text(
-                        "Auto Answer",
+                        "Auto Advance",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18.sp,

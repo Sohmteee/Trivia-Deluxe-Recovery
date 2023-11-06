@@ -4,9 +4,11 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
+import 'package:trivia/ad_helper.dart';
 import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/colors/hex_color.dart';
 import 'package:trivia/data/controllers.dart';
@@ -14,12 +16,10 @@ import 'package:trivia/main.dart';
 import 'package:trivia/models/circle_border.dart';
 import 'package:trivia/models/dialogs/exit.dart';
 import 'package:trivia/models/dialogs/low_cash.dart';
-import 'package:trivia/models/dialogs/restart_dialog.dart';
 import 'package:trivia/models/dialogs/settings.dart';
 import 'package:trivia/providers/audio.dart';
 import 'package:trivia/screens/reward.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
-import 'package:shorebird_code_push/shorebird_code_push.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
@@ -28,27 +28,23 @@ class MenuScreen extends StatefulWidget {
   State<MenuScreen> createState() => _MenuScreenState();
 }
 
-final shorebirdCodePush = ShorebirdCodePush();
-
 class _MenuScreenState extends State<MenuScreen>
     with WidgetsBindingObserver, TickerProviderStateMixin {
   late Animation<double> rotationAnimation;
   late Animation<double> reverseRotationAnimation;
   late AnimationController rotationController;
 
-  // AppOpenAd? _appOpenAd;
-  // bool _appOpenIsLoaded = false;
+  AppOpenAd? _appOpenAd;
+  bool _appOpenIsLoaded = false;
 
   @override
   void initState() {
     WidgetsBinding.instance.addObserver(this);
     ToastContext().init(context);
 
-    // _checkForUpdates(context);
+    _loadAppOpenAd;
 
     playBGAudio(context);
-    // _loadAppOpenAd();
-    // loadBannerAd();
     Future.microtask(() => initializeEffectsVolume());
 
     rotationController = AnimationController(duration: 100.seconds, vsync: this)
@@ -86,12 +82,15 @@ class _MenuScreenState extends State<MenuScreen>
       case AppLifecycleState.resumed:
         if (rewardedAd == null || interstitialAd == null) {
           playBGAudio(context);
+          if (_appOpenIsLoaded) {
+            _showAppOpenAd();
+          }
         }
         break;
       case AppLifecycleState.inactive:
-        /* if (_appOpenIsLoaded) {
-          _appOpenAd!.show();
-        } */
+        if (_appOpenIsLoaded) {
+          _showAppOpenAd();
+        }
         break;
       case AppLifecycleState.paused:
       case AppLifecycleState.hidden:
@@ -363,31 +362,43 @@ class _MenuScreenState extends State<MenuScreen>
     }
   }
 
-  /* void _loadAppOpenAd() {
-    MobileAds.instance.initialize().then((InitializationStatus status) {
-      AppOpenAd.load(
-        adUnitId: AdHelper.appOpenUnitID,
-        request: const AdRequest(),
-        orientation: AppOpenAd.orientationPortrait,
-        adLoadCallback: AppOpenAdLoadCallback(
-          onAdLoaded: (ad) {
-            ad.fullScreenContentCallback = FullScreenContentCallback(
-              onAdDismissedFullScreenContent: (ad) {
-                Navigator.pushReplacementNamed(context, "/menu");
-              },
-            );
+  void _loadAppOpenAd() {
+    AppOpenAd.loadWithAdManagerAdRequest(
+      adUnitId: AdHelper.appOpenUnitID,
+      orientation: AppOpenAd.orientationPortrait,
+      adManagerAdRequest: const AdManagerAdRequest(),
+      adLoadCallback: AppOpenAdLoadCallback(
+        onAdLoaded: (ad) {
+          _appOpenAd = ad;
+          _appOpenAd!.show();
+        },
+        onAdFailedToLoad: (error) {
+          _loadAppOpenAd();
+        },
+      ),
+    );
+  }
 
-            setState(() {
-              _appOpenAd = ad;
-            });
-          },
-          onAdFailedToLoad: (err) {
-            print('Failed to load an app open ad: ${err.message}');
-          },
-        ),
-      );
-    });
-  } */
+  void _showAppOpenAd() {
+    _appOpenAd!.fullScreenContentCallback = FullScreenContentCallback(
+      onAdShowedFullScreenContent: (ad) {
+        _appOpenIsLoaded = true;
+      },
+      onAdFailedToShowFullScreenContent: (ad, error) {
+        _appOpenIsLoaded = false;
+        ad.dispose();
+        _appOpenAd = null;
+        // loadAd();
+      },
+      onAdDismissedFullScreenContent: (ad) {
+        _appOpenIsLoaded = false;
+        ad.dispose();
+        _appOpenAd = null;
+        _loadAppOpenAd();
+      },
+    );
+    _appOpenAd!.show();
+  }
 }
 
 Future<void> playBGAudio(context) async {
@@ -413,15 +424,4 @@ Future<void> pauseBGAudio() async {
 Future<void> stopBGAudio() async {
   await bgPlayer.stop();
   debugPrint("music stopped");
-}
-
-Future<void> _checkForUpdates(BuildContext context) async {
-  final isUpdateAvailable =
-      await shorebirdCodePush.isNewPatchAvailableForDownload();
-
-  if (isUpdateAvailable) {
-    await shorebirdCodePush.downloadUpdateIfAvailable();
-    // ignore: use_build_context_synchronously
-    showRestartDialog(context);
-  }
 }

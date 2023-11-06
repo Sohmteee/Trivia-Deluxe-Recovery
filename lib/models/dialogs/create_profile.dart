@@ -22,7 +22,7 @@ showCreateProfileDialog(BuildContext context) {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          "Choose an Avatar",
+          "Select an Avatar",
           style: TextStyle(
             color: AppColor.slightlyLighterYellow,
             fontSize: 30.sp,
