@@ -73,7 +73,7 @@ class _StreaksScreeenState extends State<StreaksScreeen> {
             .indexWhere((element) => element.id == fingerprint) +
         1;
 
-    print(leaderBoardPosition);
+    debugPrint(leaderBoardPosition.toString());
 
     return leaderBoardPosition;
   }

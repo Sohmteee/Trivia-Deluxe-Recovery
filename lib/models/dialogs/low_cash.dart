@@ -43,7 +43,7 @@ loadRewardedAd(BuildContext context, {bool? isStatBar}) {
         rewardedAd = ad;
       },
       onAdFailedToLoad: (err) {
-        print('Failed to load a rewarded ad: ${err.message}');
+        debugPrint('Failed to load a rewarded ad: ${err.message}');
       },
     ),
   );

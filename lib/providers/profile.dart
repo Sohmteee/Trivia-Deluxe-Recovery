@@ -31,10 +31,10 @@ class ProfileProvider extends ChangeNotifier {
     fb.doc(fingerprint).get().then((DocumentSnapshot snapshot) async {
       playerExists = snapshot.exists;
       if (playerExists) {
-        print("Player exists!");
+        debugPrint("Player exists!");
 
         var profile = snapshot.data() as Map<String, dynamic>;
-        print(profile);
+        debugPrint(profile.toString());
 
         box.put("fingerprint", fingerprint);
         hasProfile = true;
@@ -76,7 +76,7 @@ class ProfileProvider extends ChangeNotifier {
           );
         });
       } else {
-        print("Player does not exist.");
+        debugPrint("Player does not exist.");
 
         await fb.doc(fingerprint).set(
           {
@@ -89,7 +89,7 @@ class ProfileProvider extends ChangeNotifier {
           },
           SetOptions(merge: true),
         ).then((_) {
-          print("Success adding player!");
+          debugPrint("Success adding player!");
 
           box.put("fingerprint", fingerprint);
           hasProfile = true;
@@ -131,7 +131,7 @@ class ProfileProvider extends ChangeNotifier {
             );
           });
         }).catchError((error) {
-          print("Error: $error");
+          debugPrint("Error: $error");
 
           isLoading = false;
           notifyListeners();
@@ -168,7 +168,7 @@ class ProfileProvider extends ChangeNotifier {
         });
       }
     }).catchError((error) {
-      print("Error checking player existence: $error");
+      debugPrint("Error checking player existence: $error");
 
       isLoading = false;
       notifyListeners();
@@ -245,7 +245,7 @@ class ProfileProvider extends ChangeNotifier {
         notifyListeners();
 
         Navigator.pop(context);
-        print(profile);
+        debugPrint(profile.toString());
 
         Future.delayed(.5.seconds, () {
           showGameDialog(
@@ -279,7 +279,7 @@ class ProfileProvider extends ChangeNotifier {
           );
         });
       }).catchError((error) {
-        print("Error: $error");
+        debugPrint("Error: $error");
 
         isLoading = false;
         notifyListeners();
@@ -340,9 +340,9 @@ class ProfileProvider extends ChangeNotifier {
         SetOptions(merge: true),
       ).then((_) {
         var profile = snapshot.data() as Map<String, dynamic>;
-        print(profile);
+        debugPrint(profile.toString());
       }).catchError((error) {
-        print("Error: $error");
+        debugPrint("Error: $error");
 
         notifyListeners();
 
@@ -411,13 +411,13 @@ class ProfileProvider extends ChangeNotifier {
       );
 
       box.put("fingerprint", fingerprint);
-      print("ID: $fingerprint");
+      debugPrint("ID: $fingerprint");
 
       Map<String, dynamic> responseData = jsonDecode(response.body);
 
       if (response.statusCode == 200 && responseData['status'] == "success") {
         // Request was successful
-        print(responseData);
+        debugPrint(responseData);
 
         if (isCreatePlayer) {
           this.username = username;
@@ -482,8 +482,8 @@ class ProfileProvider extends ChangeNotifier {
         }
       } else {
         // Request failed
-        print('An error occured while creating profile');
-        print(responseData);
+        debugPrint('An error occured while creating profile');
+        debugPrint(responseData);
 
         Future.delayed(.5.seconds, () {
           return showGameDialog(

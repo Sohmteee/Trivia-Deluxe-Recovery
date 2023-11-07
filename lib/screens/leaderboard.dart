@@ -32,7 +32,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
     super.initState();
     tabController = TabController(length: 3, vsync: this);
 
-    print(fingerprint);
+    debugPrint(fingerprint);
 
     Future.microtask(() {
       final questionProvider =
@@ -77,7 +77,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
       return playerTime.isAfter(constraint);
     }).toList();
 
-    print(leaderBoardData);
+    debugPrint(leaderBoardData.toString());
 
     return leaderBoardData;
   }
@@ -379,7 +379,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                         child: GestureDetector(
                           onDoubleTap: () {
                             playTap(context);
-                            print(snapshot.data[1]["username"]);
+                            debugPrint(snapshot.data[1]["username"]);
                             if (snapshot.data[1]["device_id"] == fingerprint) {
                               showEditProfileDialog(context);
                             }
@@ -501,7 +501,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                         child: GestureDetector(
                           onDoubleTap: () {
                             playTap(context);
-                            print(snapshot.data[0]["username"]);
+                            debugPrint(snapshot.data[0]["username"]);
                             if (snapshot.data[0]["device_id"] == fingerprint) {
                               showEditProfileDialog(context);
                             }
@@ -624,7 +624,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                         child: GestureDetector(
                           onDoubleTap: () {
                             playTap(context);
-                            print(snapshot.data[2]["username"]);
+                            debugPrint(snapshot.data[2]["username"]);
                             if (snapshot.data[2]["device_id"] == fingerprint) {
                               showEditProfileDialog(context);
                             }
@@ -916,7 +916,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                         child: GestureDetector(
                           onDoubleTap: () {
                             playTap(context);
-                            print(snapshot.data[index + 3]["username"]);
+                            debugPrint(snapshot.data[index + 3]["username"]);
                             if (snapshot.data[index + 3]["device_id"] ==
                                 fingerprint) {
                               showEditProfileDialog(context);

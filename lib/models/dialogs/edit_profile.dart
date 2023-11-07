@@ -87,8 +87,8 @@ showEnterUsernameDialog(BuildContext context) {
             playTap(context);
             if (controller.value.text.trim().isNotEmpty) {
               box.put("avatar", avatar!);
-              print("Avatar: $avatar");
-              print("Username: ${controller.value.text.trim()}");
+              debugPrint("Avatar: $avatar");
+              debugPrint("Username: ${controller.value.text.trim()}");
               final profileProvider =
                   Provider.of<ProfileProvider>(context, listen: false);
               profileProvider.editPlayerProfile(

@@ -77,7 +77,7 @@ class QuestionProvider extends ChangeNotifier {
     currentLevel = currentLevel + 1;
     data["currentLevel"] = currentLevel;
     box.put(data["title"], data);
-    // print(data["title"]);
+    // debugPrint(data["title"]);
 
     notifyListeners();
   }
@@ -98,7 +98,7 @@ class QuestionProvider extends ChangeNotifier {
 
     box.put("leaderboardScore", leaderboardScore);
 
-    print("Leaderboard score: $leaderboardScore");
+    debugPrint("Leaderboard score: $leaderboardScore");
 
     notifyListeners();
   }
@@ -118,13 +118,13 @@ class QuestionProvider extends ChangeNotifier {
         options[index]["color"] = "right";
         correctAnswers = correctAnswers + 1;
         box.put("correctAnswers", correctAnswers);
-        print("Correct Answers: $correctAnswers");
+        debugPrint("Correct Answers: $correctAnswers");
 
         averageTime = ((averageTime * (correctAnswers - 1)) +
                 (30 - double.parse(timeElapsed ?? "1"))) /
             correctAnswers;
         box.put("averageTime", averageTime);
-        print("Average Answering Time: $averageTime");
+        debugPrint("Average Answering Time: $averageTime");
       } else {
         options[index]["color"] = "wrong";
 
@@ -137,7 +137,7 @@ class QuestionProvider extends ChangeNotifier {
 
       totalQuestionsAnswered = totalQuestionsAnswered + 1;
       box.put("totalQuestionsAnswered", totalQuestionsAnswered);
-      print("Total Questions Answered: $totalQuestionsAnswered");
+      debugPrint("Total Questions Answered: $totalQuestionsAnswered");
 
       updateLeaderBoardScore(context);
 

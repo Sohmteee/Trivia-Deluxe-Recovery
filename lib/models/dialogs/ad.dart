@@ -36,7 +36,7 @@ showAdDialog(BuildContext context) {
           rewardedAd = ad;
         },
         onAdFailedToLoad: (err) {
-          print('Failed to load a rewarded ad: ${err.message}');
+          debugPrint('Failed to load a rewarded ad: ${err.message}');
         },
       ),
     );
@@ -84,9 +84,11 @@ showAdDialog(BuildContext context) {
                   Provider.of<QuestionProvider>(context, listen: false)
                       .updateLeaderBoardScore(context);
 
-                      if (Provider.of<ProfileProvider>(context, listen: false).hasProfile) {
-                        Provider.of<ProfileProvider>(context, listen: false).updatePlayer(context);
-                      }
+                  if (Provider.of<ProfileProvider>(context, listen: false)
+                      .hasProfile) {
+                    Provider.of<ProfileProvider>(context, listen: false)
+                        .updatePlayer(context);
+                  }
                 },
               );
             } else {

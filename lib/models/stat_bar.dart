@@ -78,7 +78,7 @@ class _GameStatsState extends State<GameStats> {
       return playerTime.isAfter(constraint);
     }).toList();
 
-    print(leaderBoardData);
+    debugPrint(leaderBoardData.toString());
 
     return leaderBoardData;
   }
