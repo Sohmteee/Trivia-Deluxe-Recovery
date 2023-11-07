@@ -150,15 +150,15 @@ Map<String, dynamic> politicsData = {
     {
       "question": "What is the capital of Brazil?",
       "dialog": {
-        "title": "Bras\u00c3\u00adlia",
+        "title": "Brasília",
         "content":
-            "Bras\u00c3\u00adlia is the capital of Brazil, designed by architect Oscar Niemeyer."
+            "Brasília is the capital of Brazil, designed by architect Oscar Niemeyer."
       },
       "options": [
         {"text": "Buenos Aires", "value": false, "color": "yellow"},
         {"text": "Rio de Janeiro", "value": false, "color": "yellow"},
-        {"text": "Bras\u00c3\u00adlia", "value": true, "color": "yellow"},
-        {"text": "S\u00c3\u00a3o Paulo", "value": false, "color": "yellow"}
+        {"text": "Brasília", "value": true, "color": "yellow"},
+        {"text": "São Paulo", "value": false, "color": "yellow"}
       ]
     },
     {
@@ -323,7 +323,7 @@ Map<String, dynamic> politicsData = {
         {"text": "Ellen Johnson Sirleaf", "value": true, "color": "yellow"},
         {"text": "Joyce Banda", "value": false, "color": "yellow"},
         {"text": "Amina Mohamed", "value": false, "color": "yellow"},
-        {"text": "Gra\u00c3\u00a7a Machel", "value": false, "color": "yellow"}
+        {"text": "Graça Machel", "value": false, "color": "yellow"}
       ]
     },
     {
@@ -772,7 +772,7 @@ Map<String, dynamic> politicsData = {
       "dialog": {
         "title": "Euro",
         "content":
-            "The Euro (\u00e2\u201a\u00ac) is the currency used by most European Union member countries in the Eurozone."
+            "The Euro (€) is the currency used by most European Union member countries in the Eurozone."
       },
       "options": [
         {"text": "Pound Sterling", "value": false, "color": "yellow"},
@@ -839,12 +839,12 @@ Map<String, dynamic> politicsData = {
         {"text": "In Varietate Concordia", "value": true, "color": "yellow"},
         {
           "text":
-              "Libert\u00c3\u00a9, \u00c3\u00a9galit\u00c3\u00a9, fraternit\u00c3\u00a9",
+              "Liberté, égalité, fraternité",
           "value": false,
           "color": "yellow"
         },
         {
-          "text": "Ich bin ein Europ\u00c3\u00a4er",
+          "text": "Ich bin ein Europäer",
           "value": false,
           "color": "yellow"
         }
@@ -899,15 +899,15 @@ Map<String, dynamic> politicsData = {
       "question":
           "What is the name of the official residence and workplace of the President of France?",
       "dialog": {
-        "title": "\u00c3\u2030lys\u00c3\u00a9e Palace",
+        "title": "Lycée Palace",
         "content":
-            "The official residence and workplace of the President of France is the \u00c3\u2030lys\u00c3\u00a9e Palace."
+            "The official residence and workplace of the President of France is the Lycée Palace."
       },
       "options": [
         {"text": "Buckingham Palace", "value": false, "color": "yellow"},
         {"text": "The White House", "value": false, "color": "yellow"},
         {
-          "text": "\u00c3\u2030lys\u00c3\u00a9e Palace",
+          "text": "Lycée Palace",
           "value": true,
           "color": "yellow"
         },
@@ -1130,7 +1130,7 @@ Map<String, dynamic> politicsData = {
       },
       "options": [
         {
-          "text": "Luiz In\u00c3\u00a1cio Lula da Silva",
+          "text": "Luiz Inácio Lula da Silva",
           "value": false,
           "color": "yellow"
         },
@@ -1212,11 +1212,11 @@ Map<String, dynamic> politicsData = {
     },
     {
       "question":
-          "Which South American country is associated with the Gal\u00c3\u00a1pagos Islands, known for their unique wildlife?",
+          "Which South American country is associated with the Galápagos Islands, known for their unique wildlife?",
       "dialog": {
         "title": "Ecuador",
         "content":
-            "Ecuador is associated with the Gal\u00c3\u00a1pagos Islands, known for their unique wildlife."
+            "Ecuador is associated with the Galápagos Islands, known for their unique wildlife."
       },
       "options": [
         {"text": "Ecuador", "value": true, "color": "yellow"},
@@ -1270,13 +1270,13 @@ Map<String, dynamic> politicsData = {
     {
       "question": "What is the official currency of Venezuela?",
       "dialog": {
-        "title": "Bol\u00c3\u00advar",
+        "title": "Bolívar",
         "content":
-            "The official currency of Venezuela is the Bol\u00c3\u00advar."
+            "The official currency of Venezuela is the Bolívar."
       },
       "options": [
         {"text": "Peso", "value": false, "color": "yellow"},
-        {"text": "Bol\u00c3\u00advar", "value": true, "color": "yellow"},
+        {"text": "Bolívar", "value": true, "color": "yellow"},
         {"text": "Sol", "value": false, "color": "yellow"},
         {"text": "Real", "value": false, "color": "yellow"}
       ]
@@ -1314,13 +1314,13 @@ Map<String, dynamic> politicsData = {
       "question":
           "In which country did the Narcos drug cartel operate in the late 20th century?",
       "dialog": {
-        "title": "Bol\u00c3\u00advar",
+        "title": "Bolívar",
         "content":
             "The Narcos drug cartel operated in Colombia during the late 20th century."
       },
       "options": [
         {"text": "Peru", "value": false, "color": "yellow"},
-        {"text": "Bol\u00c3\u00advar", "value": true, "color": "yellow"},
+        {"text": "Bolívar", "value": true, "color": "yellow"},
         {"text": "Venezuela", "value": false, "color": "yellow"},
         {"text": "Ecuador", "value": false, "color": "yellow"}
       ]

@@ -59,7 +59,7 @@ Map<String, dynamic> proverbsIdiomsRiddlesData = {
     },
     {
       "question":
-          "I have keys but no locks. I have a space but no room. You can enter, but can\u00e2\u20ac\u2122t go outside. What am I?",
+          "I have keys but no locks. I have a space but no room. You can enter, but can't go outside. What am I?",
       "dialog": {
         "title": "A keyboard",
         "content":

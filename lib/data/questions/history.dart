@@ -576,7 +576,7 @@ Map<String, dynamic> historyData = {
       "options": [
         {"text": "Charles Dickens", "value": false, "color": "yellow"},
         {"text": "Mark Twain", "value": false, "color": "yellow"},
-        {"text": "Emily Bront\u00c3\u00ab", "value": false, "color": "yellow"},
+        {"text": "Emily Brontë", "value": false, "color": "yellow"},
         {"text": "Jane Austen", "value": true, "color": "yellow"}
       ]
     },
@@ -1132,19 +1132,19 @@ Map<String, dynamic> historyData = {
       "question":
           "Who is the famous author known for writing Wuthering Heights in the 19th century, a classic of English literature?",
       "dialog": {
-        "title": "Emily Bront\u00c3\u00ab",
+        "title": "Emily Brontë",
         "content":
-            "Emily Bront\u00c3\u00ab is known for writing Wuthering Heights, a classic of English literature in the 19th century."
+            "Emily Brontë is known for writing Wuthering Heights, a classic of English literature in the 19th century."
       },
       "options": [
         {
-          "text": "Charlotte Bront\u00c3\u00ab",
+          "text": "Charlotte Brontë",
           "value": false,
           "color": "yellow"
         },
         {"text": "Jane Austen", "value": false, "color": "yellow"},
         {"text": "Louisa May Alcott", "value": false, "color": "yellow"},
-        {"text": "Emily Bront\u00c3\u00ab", "value": true, "color": "yellow"}
+        {"text": "Emily Brontë", "value": true, "color": "yellow"}
       ]
     },
     {
@@ -1188,11 +1188,11 @@ Map<String, dynamic> historyData = {
       "options": [
         {"text": "Jane Austen", "value": false, "color": "yellow"},
         {
-          "text": "Charlotte Bront\u00c3\u00ab",
+          "text": "Charlotte Brontë",
           "value": false,
           "color": "yellow"
         },
-        {"text": "Emily Bront\u00c3\u00ab", "value": false, "color": "yellow"},
+        {"text": "Emily Brontë", "value": false, "color": "yellow"},
         {"text": "Louisa May Alcott", "value": true, "color": "yellow"}
       ]
     },
@@ -1258,11 +1258,11 @@ Map<String, dynamic> historyData = {
     },
     {
       "question":
-          "Who is the famous musician and composer known for works like F\u00c3\u00bcr Elise and Symphony No. 9 in the 18th century?",
+          "Who is the famous musician and composer known for works like Für Elise and Symphony No. 9 in the 18th century?",
       "dialog": {
         "title": "Ludwig van Beethoven",
         "content":
-            "Ludwig van Beethoven is known for works like F\u00c3\u00bcr Elise and Symphony No. 9."
+            "Ludwig van Beethoven is known for works like Für Elise and Symphony No. 9."
       },
       "options": [
         {"text": "Wolfgang Amadeus Mozart", "value": false, "color": "yellow"},

@@ -148,7 +148,7 @@ showCreditsDialog(BuildContext context) {
                           textAlign: TextAlign.center,
                         ),
                         Text(
-                          "Izuchukwu",
+                          "Izuchukwu Onyerele",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20.sp,

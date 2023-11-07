@@ -61,7 +61,7 @@ class _GameStatsState extends State<GameStats> {
       2 => DateTime.now().subtract(30.days),
       _ => DateTime.now().subtract(1.days),
     };
-    final fb = FirebaseFirestore.instance.collection("players");
+    final fb = FirebaseFirestore.instance.collection("leaderboard");
     final querySnapshot = await fb.orderBy("score", descending: true).get();
 
     final leaderBoardData = querySnapshot.docs.map((doc) {

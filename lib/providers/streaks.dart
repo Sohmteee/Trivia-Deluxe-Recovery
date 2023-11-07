@@ -647,12 +647,12 @@ class StreaksProvider extends ChangeNotifier {
   }
 
   Future<void> updateLeaderboardStreak() async {
-    if ((await FirebaseFirestore.instance.collection("players").get())
+    if ((await FirebaseFirestore.instance.collection("leaderboard").get())
             .docs
             .length >=
         10) {
       final leaderBoardPosition = (await FirebaseFirestore.instance
-                  .collection("players")
+                  .collection("leaderboard")
                   .orderBy("score", descending: true)
                   .get())
               .docs

@@ -981,11 +981,11 @@ Map<String, dynamic> inventionsData = {
     },
     {
       "question":
-          "What did \u00c3\u2030douard Michelin invent in the 19th century, related to tires?",
+          "What did Édouard Michelin invent in the 19th century, related to tires?",
       "dialog": {
         "title": "Pneumatic tire",
         "content":
-            "\u00c3\u2030douard Michelin is known for inventing the pneumatic tire, filled with air."
+            "Édouard Michelin is known for inventing the pneumatic tire, filled with air."
       },
       "options": [
         {"text": "Waterproof fabric", "value": false, "color": "yellow"},
@@ -1148,11 +1148,11 @@ Map<String, dynamic> inventionsData = {
     },
     {
       "question":
-          "What invention is associated with the name Joseph Nic\u00c3\u00a9phore Ni\u00c3\u00a9pce?",
+          "What invention is associated with the name Joseph Nicéphore Niépce?",
       "dialog": {
         "title": "Photography",
         "content":
-            "Joseph Nic\u00c3\u00a9phore Ni\u00c3\u00a9pce is known for pioneering photography with the heliography process."
+            "Joseph Nicéphore Niépce is known for pioneering photography with the heliography process."
       },
       "options": [
         {"text": "Photography", "value": true, "color": "yellow"},

@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:toast/toast.dart';
 import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/data/box.dart';
 import 'package:trivia/main.dart';
 import 'package:trivia/models/circle_tab_indicator.dart';
 import 'package:trivia/models/dialogs/create_profile.dart';
+import 'package:trivia/models/dialogs/edit_profile.dart';
 import 'package:trivia/models/dialogs/leaderboard_scoring.dart';
 import 'package:trivia/models/game_background.dart';
 import 'package:trivia/providers/profile.dart';
@@ -56,7 +58,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
       2 => DateTime.now().subtract(30.days),
       _ => DateTime.now().subtract(1.days),
     };
-    final fb = FirebaseFirestore.instance.collection("players");
+    final fb = FirebaseFirestore.instance.collection("leaderboard");
     final querySnapshot = await fb.orderBy("score", descending: true).get();
 
     final leaderBoardData = querySnapshot.docs.map((doc) {
@@ -133,7 +135,6 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                         )
                   : createProfilePrompt(context),
             ),
-            
           ],
         ),
       ),
@@ -357,75 +358,101 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                 ? Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Stack(
-                        clipBehavior: Clip.none,
-                        children: [
-                          Container(
-                            height: 65.h,
-                            padding: EdgeInsets.all(2.sp),
-                            decoration: const BoxDecoration(
-                              color: Colors.grey,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Image.asset(
-                              // "assets/images/avatars/avatar_${snapshot.data[0]['avatar']}.png",
-                              "assets/images/avatars/avatar_${snapshot.data[1]["avatar"]}.png",
-                            ),
-                          ),
-                          Positioned(
-                            bottom: 0,
-                            left: 50.w,
-                            child: Column(
-                              children: [
-                                Text(
-                                  "${snapshot.data[1]["username"]}",
-                                  style: TextStyle(
-                                      color: Colors.grey[400],
-                                      fontSize: 18.sp,
-                                      shadows: const [
-                                        Shadow(
-                                          color: Colors.black,
-                                          offset: Offset(-2, 2),
-                                          blurRadius: 5,
-                                        ),
-                                        Shadow(
-                                          color: Colors.black,
-                                          offset: Offset(-2, -2),
-                                          blurRadius: 5,
-                                        ),
-                                      ]),
+                      ZoomTapAnimation(
+                        onTap: () {
+                          if (snapshot.data[1]["device_id"] == deviceID) {
+                            ToastContext().init(context);
+                            Toast.show(
+                              "Please double tap to edit your profile",
+                              duration: 2,
+                              gravity: 0,
+                              backgroundColor: AppColor.slightlyLighterYellow,
+                              textStyle: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.sp,
+                              ),
+                            );
+                          }
+                        },
+                        child: GestureDetector(
+                          onDoubleTap: () {
+                            playTap(context);
+                            print(snapshot.data[1]["username"]);
+                            if (snapshot.data[1]["device_id"] == deviceID) {
+                              showEditProfileDialog(context);
+                            }
+                          },
+                          child: Stack(
+                            clipBehavior: Clip.none,
+                            children: [
+                              Container(
+                                height: 65.h,
+                                padding: EdgeInsets.all(2.sp),
+                                decoration: const BoxDecoration(
+                                  color: Colors.grey,
+                                  shape: BoxShape.circle,
                                 ),
-                                Text(
-                                  "${snapshot.data[1]["score"]}",
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 18.sp,
-                                    shadows: const [
-                                      Shadow(
-                                        color: Colors.black,
-                                        offset: Offset(-2, 2),
-                                        blurRadius: 5,
-                                      ),
-                                      Shadow(
-                                        color: Colors.black,
-                                        offset: Offset(-2, -2),
-                                        blurRadius: 5,
-                                      ),
-                                    ],
-                                  ),
+                                child: Image.asset(
+                                  // "assets/images/avatars/avatar_${snapshot.data[0]['avatar']}.png",
+                                  "assets/images/avatars/avatar_${snapshot.data[1]["avatar"]}.png",
                                 ),
-                              ],
-                            ),
+                              ),
+                              Positioned(
+                                bottom: 0,
+                                left: 50.w,
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "${snapshot.data[1]["username"]}",
+                                      style: TextStyle(
+                                          color: Colors.grey[400],
+                                          fontSize: 18.sp,
+                                          shadows: const [
+                                            Shadow(
+                                              color: Colors.black,
+                                              offset: Offset(-2, 2),
+                                              blurRadius: 5,
+                                            ),
+                                            Shadow(
+                                              color: Colors.black,
+                                              offset: Offset(-2, -2),
+                                              blurRadius: 5,
+                                            ),
+                                          ]),
+                                    ),
+                                    Text(
+                                      "${snapshot.data[1]["score"]}",
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 18.sp,
+                                        shadows: const [
+                                          Shadow(
+                                            color: Colors.black,
+                                            offset: Offset(-2, 2),
+                                            blurRadius: 5,
+                                          ),
+                                          Shadow(
+                                            color: Colors.black,
+                                            offset: Offset(-2, -2),
+                                            blurRadius: 5,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 0,
+                                left: 0.w,
+                                child: Image.asset(
+                                  "assets/images/medals/silver.png",
+                                  width: 30.w,
+                                ),
+                              ),
+                            ],
                           ),
-                          Positioned(
-                            bottom: 0,
-                            left: 0.w,
-                            child: Image.asset(
-                              "assets/images/medals/silver.png",
-                              width: 30.w,
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
                       Container(
                         height: 43.h,
@@ -453,76 +480,102 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                 ? Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Stack(
-                        clipBehavior: Clip.none,
-                        children: [
-                          Container(
-                            height: 70.h,
-                            padding: EdgeInsets.all(2.sp),
-                            decoration: const BoxDecoration(
-                              color: Color.fromARGB(255, 243, 165, 47),
-                              shape: BoxShape.circle,
-                            ),
-                            child: Image.asset(
-                              "assets/images/avatars/avatar_${snapshot.data[0]['avatar']}.png",
-                            ),
-                          ),
-                          Positioned(
-                            bottom: 0,
-                            right: 0.w,
-                            child: Image.asset(
-                              "assets/images/medals/gold.png",
-                              width: 30.w,
-                            ),
-                          ),
-                          Positioned(
-                            top: 0,
-                            left: 50.w,
-                            child: Column(
-                              children: [
-                                Text(
-                                  "${snapshot.data[0]["username"]}",
-                                  style: TextStyle(
-                                      color: const Color.fromARGB(
-                                          255, 247, 180, 81),
-                                      fontSize: 18.sp,
-                                      shadows: const [
-                                        Shadow(
-                                          color: Colors.black,
-                                          offset: Offset(-2, 2),
-                                          blurRadius: 5,
-                                        ),
-                                        Shadow(
-                                          color: Colors.black,
-                                          offset: Offset(-2, -2),
-                                          blurRadius: 5,
-                                        ),
-                                      ]),
+                      ZoomTapAnimation(
+                        onTap: () {
+                          if (snapshot.data[0]["device_id"] == deviceID) {
+                            ToastContext().init(context);
+                            Toast.show(
+                              "Please double tap to edit your profile",
+                              duration: 2,
+                              gravity: 0,
+                              backgroundColor: AppColor.slightlyLighterYellow,
+                              textStyle: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.sp,
+                              ),
+                            );
+                          }
+                        },
+                        child: GestureDetector(
+                          onDoubleTap: () {
+                            playTap(context);
+                            print(snapshot.data[0]["username"]);
+                            if (snapshot.data[0]["device_id"] == deviceID) {
+                              showEditProfileDialog(context);
+                            }
+                          },
+                          child: Stack(
+                            clipBehavior: Clip.none,
+                            children: [
+                              Container(
+                                height: 70.h,
+                                padding: EdgeInsets.all(2.sp),
+                                decoration: const BoxDecoration(
+                                  color: Color.fromARGB(255, 243, 165, 47),
+                                  shape: BoxShape.circle,
                                 ),
-                                Text(
-                                  "${snapshot.data[0]["score"]}",
-                                  style: TextStyle(
-                                    color:
-                                        const Color.fromARGB(255, 243, 165, 47),
-                                    fontSize: 18.sp,
-                                    shadows: const [
-                                      Shadow(
-                                        color: Colors.black,
-                                        offset: Offset(-2, 2),
-                                        blurRadius: 5,
-                                      ),
-                                      Shadow(
-                                        color: Colors.black,
-                                        offset: Offset(-2, -2),
-                                        blurRadius: 5,
-                                      ),
-                                    ],
-                                  ),
+                                child: Image.asset(
+                                  "assets/images/avatars/avatar_${snapshot.data[0]['avatar']}.png",
                                 ),
-                              ],
-                            ),
+                              ),
+                              Positioned(
+                                bottom: 0,
+                                right: 0.w,
+                                child: Image.asset(
+                                  "assets/images/medals/gold.png",
+                                  width: 30.w,
+                                ),
+                              ),
+                              Positioned(
+                                top: 0,
+                                left: 50.w,
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "${snapshot.data[0]["username"]}",
+                                      style: TextStyle(
+                                          color: const Color.fromARGB(
+                                              255, 247, 180, 81),
+                                          fontSize: 18.sp,
+                                          shadows: const [
+                                            Shadow(
+                                              color: Colors.black,
+                                              offset: Offset(-2, 2),
+                                              blurRadius: 5,
+                                            ),
+                                            Shadow(
+                                              color: Colors.black,
+                                              offset: Offset(-2, -2),
+                                              blurRadius: 5,
+                                            ),
+                                          ]),
+                                    ),
+                                    Text(
+                                      "${snapshot.data[0]["score"]}",
+                                      style: TextStyle(
+                                        color: const Color.fromARGB(
+                                            255, 243, 165, 47),
+                                        fontSize: 18.sp,
+                                        shadows: const [
+                                          Shadow(
+                                            color: Colors.black,
+                                            offset: Offset(-2, 2),
+                                            blurRadius: 5,
+                                          ),
+                                          Shadow(
+                                            color: Colors.black,
+                                            offset: Offset(-2, -2),
+                                            blurRadius: 5,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                       Container(
                         height: 78.h,
@@ -550,77 +603,103 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                 ? Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Stack(
-                        clipBehavior: Clip.none,
-                        children: [
-                          Container(
-                            height: 60.h,
-                            padding: EdgeInsets.all(2.sp),
-                            decoration: const BoxDecoration(
-                              color: Color.fromARGB(255, 177, 117, 95),
-                              shape: BoxShape.circle,
-                            ),
-                            child: Image.asset(
-                              "assets/images/avatars/avatar_${snapshot.data[2]['avatar']}.png",
-                            ),
-                          ),
-                          Positioned(
-                            bottom: 0,
-                            right: 0.w,
-                            child: Image.asset(
-                              "assets/images/medals/bronze.png",
-                              width: 30.w,
-                            ),
-                          ),
-                          Positioned(
-                            bottom: 0,
-                            right: 50.w,
-                            child: Column(
-                              children: [
-                                Text(
-                                  "${snapshot.data[2]["username"]}",
-                                  style: TextStyle(
-                                    color: const Color.fromARGB(
-                                        255, 226, 157, 132),
-                                    fontSize: 18.sp,
-                                    shadows: const [
-                                      Shadow(
-                                        color: Colors.black,
-                                        offset: Offset(2, 2),
-                                        blurRadius: 5,
-                                      ),
-                                      Shadow(
-                                        color: Colors.black,
-                                        offset: Offset(2, -2),
-                                        blurRadius: 5,
-                                      ),
-                                    ],
-                                  ),
+                      ZoomTapAnimation(
+                        onTap: () {
+                          if (snapshot.data[2]["device_id"] == deviceID) {
+                            ToastContext().init(context);
+                            Toast.show(
+                              "Please double tap to edit your profile",
+                              duration: 2,
+                              gravity: 0,
+                              backgroundColor: AppColor.slightlyLighterYellow,
+                              textStyle: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.sp,
+                              ),
+                            );
+                          }
+                        },
+                        child: GestureDetector(
+                          onDoubleTap: () {
+                            playTap(context);
+                            print(snapshot.data[2]["username"]);
+                            if (snapshot.data[2]["device_id"] == deviceID) {
+                              showEditProfileDialog(context);
+                            }
+                          },
+                          child: Stack(
+                            clipBehavior: Clip.none,
+                            children: [
+                              Container(
+                                height: 60.h,
+                                padding: EdgeInsets.all(2.sp),
+                                decoration: const BoxDecoration(
+                                  color: Color.fromARGB(255, 177, 117, 95),
+                                  shape: BoxShape.circle,
                                 ),
-                                Text(
-                                  "${snapshot.data[2]["score"]}",
-                                  style: TextStyle(
-                                    color:
-                                        const Color.fromARGB(255, 177, 117, 95),
-                                    fontSize: 18.sp,
-                                    shadows: const [
-                                      Shadow(
-                                        color: Colors.black,
-                                        offset: Offset(2, 2),
-                                        blurRadius: 5,
-                                      ),
-                                      Shadow(
-                                        color: Colors.black,
-                                        offset: Offset(2, -2),
-                                        blurRadius: 5,
-                                      ),
-                                    ],
-                                  ),
+                                child: Image.asset(
+                                  "assets/images/avatars/avatar_${snapshot.data[2]['avatar']}.png",
                                 ),
-                              ],
-                            ),
+                              ),
+                              Positioned(
+                                bottom: 0,
+                                right: 0.w,
+                                child: Image.asset(
+                                  "assets/images/medals/bronze.png",
+                                  width: 30.w,
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 0,
+                                right: 50.w,
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "${snapshot.data[2]["username"]}",
+                                      style: TextStyle(
+                                        color: const Color.fromARGB(
+                                            255, 226, 157, 132),
+                                        fontSize: 18.sp,
+                                        shadows: const [
+                                          Shadow(
+                                            color: Colors.black,
+                                            offset: Offset(2, 2),
+                                            blurRadius: 5,
+                                          ),
+                                          Shadow(
+                                            color: Colors.black,
+                                            offset: Offset(2, -2),
+                                            blurRadius: 5,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Text(
+                                      "${snapshot.data[2]["score"]}",
+                                      style: TextStyle(
+                                        color: const Color.fromARGB(
+                                            255, 177, 117, 95),
+                                        fontSize: 18.sp,
+                                        shadows: const [
+                                          Shadow(
+                                            color: Colors.black,
+                                            offset: Offset(2, 2),
+                                            blurRadius: 5,
+                                          ),
+                                          Shadow(
+                                            color: Colors.black,
+                                            offset: Offset(2, -2),
+                                            blurRadius: 5,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                       Container(
                         height: 25.h,
@@ -815,55 +894,83 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                         : snapshot.data.length - 3,
                     physics: const BouncingScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {
-                      return Container(
-                        padding: EdgeInsets.symmetric(
-                            vertical: 10.h, horizontal: 15.w),
-                        decoration: BoxDecoration(
-                          color: AppColor.white,
-                          borderRadius: BorderRadius.circular(50.r),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
+                      return ZoomTapAnimation(
+                        onTap: () {
+                          if (snapshot.data[index + 3]["device_id"] ==
+                              deviceID) {
+                            ToastContext().init(context);
+                            Toast.show(
+                              "Please double tap to edit your profile",
+                              duration: 2,
+                              gravity: 0,
+                              backgroundColor: AppColor.slightlyLighterYellow,
+                              textStyle: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.sp,
+                              ),
+                            );
+                          }
+                        },
+                        child: GestureDetector(
+                          onDoubleTap: () {
+                            playTap(context);
+                            print(snapshot.data[index + 3]["username"]);
+                            if (snapshot.data[index + 3]["device_id"] ==
+                                deviceID) {
+                              showEditProfileDialog(context);
+                            }
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 10.h, horizontal: 15.w),
+                            decoration: BoxDecoration(
+                              color: AppColor.white,
+                              borderRadius: BorderRadius.circular(50.r),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  "${index + 3 + 1}",
-                                  style: TextStyle(
-                                    color: AppColor.black,
-                                    fontSize: 18.sp,
-                                  ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      "${index + 3 + 1}",
+                                      style: TextStyle(
+                                        color: AppColor.black,
+                                        fontSize: 18.sp,
+                                      ),
+                                    ),
+                                    SizedBox(width: 10.w),
+                                    Image.asset(
+                                      "assets/images/avatars/avatar_${snapshot.data[index + 3]["avatar"]}.png",
+                                      height: 30.h,
+                                    ),
+                                    SizedBox(width: 10.w),
+                                    Text(
+                                      "${snapshot.data[index + 3]["username"]}",
+                                      style: TextStyle(
+                                        color: AppColor.black,
+                                        fontSize: 20.sp,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                SizedBox(width: 10.w),
-                                Image.asset(
-                                  "assets/images/avatars/avatar_${snapshot.data[index + 3]["avatar"]}.png",
-                                  height: 30.h,
-                                ),
-                                SizedBox(width: 10.w),
-                                Text(
-                                  "${snapshot.data[index + 3]["username"]}",
-                                  style: TextStyle(
-                                    color: AppColor.black,
-                                    fontSize: 20.sp,
+                                Container(
+                                  padding: EdgeInsets.all(15.sp),
+                                  decoration: BoxDecoration(
+                                      color: AppColor.slightlyLighterYellow
+                                          .withOpacity(.8),
+                                      shape: BoxShape.circle),
+                                  child: Text(
+                                    "${snapshot.data[index + 3]["score"]}",
+                                    style: TextStyle(
+                                      color: AppColor.white,
+                                      fontSize: 18.sp,
+                                    ),
                                   ),
                                 ),
                               ],
                             ),
-                            Container(
-                              padding: EdgeInsets.all(15.sp),
-                              decoration: BoxDecoration(
-                                  color: AppColor.slightlyLighterYellow
-                                      .withOpacity(.8),
-                                  shape: BoxShape.circle),
-                              child: Text(
-                                "${snapshot.data[index + 3]["score"]}",
-                                style: TextStyle(
-                                  color: AppColor.white,
-                                  fontSize: 18.sp,
-                                ),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
                       );
                     },

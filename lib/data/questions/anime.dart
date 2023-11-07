@@ -807,16 +807,16 @@ Map<String, dynamic> animeData = {
     },
     {
       "question":
-          "Who is the protagonist in Nausica\u00c3\u00a4 of the Valley of the Wind?",
+          "Who is the protagonist in Nausicaä of the Valley of the Wind?",
       "dialog": {
-        "title": "Nausica\u00c3\u00a4",
-        "content": "Nausica\u00c3\u00a4 is the main character and a princess."
+        "title": "Nausicaä",
+        "content": "Nausicaä is the main character and a princess."
       },
       "options": [
         {"text": "Ashitaka", "value": false, "color": "yellow"},
         {"text": "Chihiro", "value": false, "color": "yellow"},
         {"text": "Kiki", "value": false, "color": "yellow"},
-        {"text": "Nausica\u00c3\u00a4", "value": true, "color": "yellow"}
+        {"text": "Nausicaä", "value": true, "color": "yellow"}
       ]
     },
     {

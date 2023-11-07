@@ -8,7 +8,6 @@ import 'package:trivia/providers/money.dart';
 import 'package:trivia/providers/profile.dart';
 import 'package:trivia/providers/stage.dart';
 
-
 class QuestionProvider extends ChangeNotifier {
   Map data = {};
   List questions = [];
@@ -145,7 +144,7 @@ class QuestionProvider extends ChangeNotifier {
       final stageProvider = Provider.of<StageProvider>(context, listen: false);
 
       Future.delayed(
-          (options[index]["value"] == true) ? 4.3.seconds : 1.5.seconds, () {
+          (options[index]["value"] == true) ? 3.seconds : 1.5.seconds, () {
         if (options[index]["value"] == true) {
           Provider.of<MoneyProvider>(context, listen: false)
               .updateReward(int.parse(countDownController.getTime()!));

@@ -677,7 +677,7 @@ Map<String, dynamic> artsData = {
         {"text": "Pablo Picasso", "value": false, "color": "yellow"},
         {"text": "Vincent van Gogh", "value": false, "color": "yellow"},
         {
-          "text": "Jackson\u00c2\u00a0Pollock",
+          "text": "Jackson Pollock",
           "value": false,
           "color": "yellow"
         },
@@ -1149,7 +1149,7 @@ Map<String, dynamic> artsData = {
         "content": "A founder of French Impressionism"
       },
       "options": [
-        {"text": "Paul C\u00c3\u00a9zanne", "value": false, "color": "yellow"},
+        {"text": "Paul Cézanne", "value": false, "color": "yellow"},
         {"text": "Pierre-Auguste Renoir", "value": false, "color": "yellow"},
         {"text": "Vincent van Gogh", "value": false, "color": "yellow"},
         {"text": "Claude Monet", "value": true, "color": "yellow"}
@@ -1448,7 +1448,7 @@ Map<String, dynamic> artsData = {
       "options": [
         {"text": "Henri Matisse", "value": false, "color": "yellow"},
         {"text": "Georges Braque", "value": false, "color": "yellow"},
-        {"text": "Paul C\u00c3\u00a9zanne", "value": false, "color": "yellow"},
+        {"text": "Paul Cézanne", "value": false, "color": "yellow"},
         {"text": "Pablo Picasso", "value": true, "color": "yellow"}
       ]
     }

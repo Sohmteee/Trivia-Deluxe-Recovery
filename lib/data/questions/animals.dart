@@ -625,7 +625,7 @@ Map<String, dynamic> animalsData = {
         {"text": "Little Blue Penguin", "value": true, "color": "yellow"},
         {"text": "Rockhopper Penguin", "value": false, "color": "yellow"},
         {
-          "text": "Gal\u00c3\u00a1pagos Penguin",
+          "text": "Galápagos Penguin",
           "value": false,
           "color": "yellow"
         }
@@ -805,7 +805,7 @@ Map<String, dynamic> animalsData = {
         {"text": "Emperor Penguin", "value": true, "color": "yellow"},
         {"text": "Rockhopper Penguin", "value": false, "color": "yellow"},
         {
-          "text": "Gal\u00c3\u00a1pagos Penguin",
+          "text": "Galápagos Penguin",
           "value": false,
           "color": "yellow"
         }

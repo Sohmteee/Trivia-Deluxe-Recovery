@@ -42,7 +42,7 @@ Map<String, dynamic> popCultureData = {
             "Madonna earned this title due to her immense influence in the music industry."
       },
       "options": [
-        {"text": "Beyonc\u00c3\u00a9", "value": false, "color": "yellow"},
+        {"text": "Beyoncé", "value": false, "color": "yellow"},
         {"text": "Lady Gaga", "value": false, "color": "yellow"},
         {"text": "Taylor Swift", "value": false, "color": "yellow"},
         {"text": "Madonna", "value": true, "color": "yellow"}
@@ -223,7 +223,7 @@ Map<String, dynamic> popCultureData = {
         "content": "Lady Gaga's fans are famously known as Little Monsters."
       },
       "options": [
-        {"text": "Beyonc\u00c3\u00a9", "value": false, "color": "yellow"},
+        {"text": "Beyoncé", "value": false, "color": "yellow"},
         {"text": "Taylor Swift", "value": false, "color": "yellow"},
         {"text": "Katy Perry", "value": false, "color": "yellow"},
         {"text": "Lady Gaga", "value": true, "color": "yellow"}
@@ -1539,7 +1539,7 @@ Map<String, dynamic> popCultureData = {
     },
     {
       "question":
-          "Who is the Nigerian music producer known for his contributions to the Afrobeats genre and for producing hit songs for various artists, including Beyonc\u00c3\u00a9's \"The Lion King: The Gift\" album?",
+          "Who is the Nigerian music producer known for his contributions to the Afrobeats genre and for producing hit songs for various artists, including Beyoncé's \"The Lion King: The Gift\" album?",
       "dialog": {
         "title": "Sarz",
         "content":

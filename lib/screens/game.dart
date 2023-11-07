@@ -81,7 +81,7 @@ class _GameScreenState extends State<GameScreen> {
         body: Consumer<QuestionProvider>(
           builder: (context, questionProvider, _) {
             return Stack(
-              alignment: Alignment.topCenter,
+              alignment: Alignment.center,
               clipBehavior: Clip.none,
               children: [
                 Column(
@@ -101,12 +101,14 @@ class _GameScreenState extends State<GameScreen> {
                 ),
                 ConfettiWidget(
                   confettiController: confettiController,
+                  // blastDirection: -pi / 2,
                   blastDirectionality: BlastDirectionality.explosive,
-                  emissionFrequency: 0.6,
+                  minBlastForce: 15,
+                  emissionFrequency: 0.9,
                   minimumSize: const Size(10, 10),
                   maximumSize: const Size(10, 10),
                   numberOfParticles: 5,
-                  gravity: .7,
+                  gravity: 0,
                   colors: const [
                     Colors.green,
                     Colors.blue,
@@ -114,7 +116,6 @@ class _GameScreenState extends State<GameScreen> {
                     Colors.orange,
                     Colors.purple,
                   ],
-                  // createParticlePath: drawStar,
                 ),
               ],
             );

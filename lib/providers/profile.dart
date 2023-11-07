@@ -8,10 +8,11 @@ import 'package:provider/provider.dart';
 import 'package:trivia/colors/app_color.dart';
 import 'package:trivia/data/box.dart';
 import 'package:trivia/models/dialogs/game.dart';
+import 'package:trivia/providers/money.dart';
 import 'package:trivia/providers/question.dart';
 
 class ProfileProvider extends ChangeNotifier {
-  bool hasProfile = box.get("hasprofile", defaultValue: false);
+  bool hasProfile = box.get("hasProf", defaultValue: false);
   bool isLoading = false;
 
   Future<void> addPlayer(
@@ -21,7 +22,7 @@ class ProfileProvider extends ChangeNotifier {
   }) async {
     final questionProvider =
         Provider.of<QuestionProvider>(context, listen: false);
-    final fb = FirebaseFirestore.instance.collection("players");
+    final fb = FirebaseFirestore.instance.collection("leaderboard");
 
     bool playerExists;
 
@@ -37,7 +38,7 @@ class ProfileProvider extends ChangeNotifier {
 
         box.put("deviceID", deviceID);
         hasProfile = true;
-        box.put("hasprofile", hasProfile);
+        box.put("hasProf", hasProfile);
 
         isLoading = false;
 
@@ -84,6 +85,7 @@ class ProfileProvider extends ChangeNotifier {
             'avatar': avatar,
             'time': Timestamp.fromDate(DateTime.now()),
             'device_id': deviceID,
+            'coins': Provider.of<MoneyProvider>(context, listen: false).coins,
           },
           SetOptions(merge: true),
         ).then((_) {
@@ -91,7 +93,7 @@ class ProfileProvider extends ChangeNotifier {
 
           box.put("deviceID", deviceID);
           hasProfile = true;
-          box.put("hasprofile", hasProfile);
+          box.put("hasProf", hasProfile);
 
           isLoading = false;
 
@@ -221,22 +223,119 @@ class ProfileProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> updatePlayer(BuildContext context) async {
-    final questionProvider =
-        Provider.of<QuestionProvider>(context, listen: false);
-
-    final fb = FirebaseFirestore.instance.collection("players");
+  Future<void> editPlayerProfile(
+    BuildContext context, {
+    required String username,
+    required int avatar,
+  }) async {
+    final fb = FirebaseFirestore.instance.collection("leaderboard");
 
     isLoading = true;
 
     fb.doc(deviceID).get().then((DocumentSnapshot snapshot) async {
-      fb.doc(deviceID).set(
+      await fb.doc(deviceID).set(
+        {
+          'username': username.trim(),
+          'avatar': avatar,
+        },
+        SetOptions(merge: true),
+      ).then((_) {
+        var profile = snapshot.data() as Map<String, dynamic>;
+        isLoading = false;
+        notifyListeners();
+
+        Navigator.pop(context);
+        print(profile);
+
+        Future.delayed(.5.seconds, () {
+          showGameDialog(
+            context,
+            isExitable: true,
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+            margin: EdgeInsets.symmetric(horizontal: 60.w, vertical: 24.h),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "Profile Edited Successfully",
+                  style: TextStyle(
+                    color: AppColor.yellow,
+                    fontSize: 25.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 20.h),
+                Text(
+                  "Your new username is ${username.trim()}",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18.sp,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          );
+        });
+      }).catchError((error) {
+        print("Error: $error");
+
+        isLoading = false;
+        notifyListeners();
+
+        Navigator.pop(context);
+
+        showGameDialog(
+          context,
+          isExitable: true,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+          margin: EdgeInsets.symmetric(horizontal: 60.w, vertical: 24.h),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                "Error Updating Profile",
+                style: TextStyle(
+                  color: AppColor.yellow,
+                  fontSize: 25.sp,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 20.h),
+              Text(
+                "An error occured while updating your profile. Please make sure you have an active internet connection and try again later.",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18.sp,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        );
+      });
+    });
+
+    notifyListeners();
+  }
+
+  Future<void> updatePlayer(BuildContext context) async {
+    final questionProvider =
+        Provider.of<QuestionProvider>(context, listen: false);
+
+    final fb = FirebaseFirestore.instance.collection("leaderboard");
+
+    fb.doc(deviceID).get().then((DocumentSnapshot snapshot) async {
+      await fb.doc(deviceID).set(
         {
           'score': questionProvider.leaderboardScore,
           'correct_answers': questionProvider.correctAnswers,
           'total_questions': questionProvider.totalQuestionsAnswered,
           'average_time': questionProvider.averageTime,
           'time': Timestamp.fromDate(DateTime.now()),
+          'coins': Provider.of<MoneyProvider>(context, listen: false).coins,
         },
         SetOptions(merge: true),
       ).then((_) {
@@ -245,7 +344,6 @@ class ProfileProvider extends ChangeNotifier {
       }).catchError((error) {
         print("Error: $error");
 
-        isLoading = false;
         notifyListeners();
 
         showGameDialog(
@@ -325,7 +423,7 @@ class ProfileProvider extends ChangeNotifier {
           this.username = username;
           
           hasProfile = true;
-          box.put("hasprofile", hasProfile);
+          box.put("hasProf", hasProfile);
 
           Future.delayed(.5.seconds, () {
             showGameDialog(
