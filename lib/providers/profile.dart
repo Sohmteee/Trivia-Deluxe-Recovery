@@ -12,7 +12,7 @@ import 'package:trivia/providers/money.dart';
 import 'package:trivia/providers/question.dart';
 
 class ProfileProvider extends ChangeNotifier {
-  bool hasProfile = box.get("hasProf", defaultValue: false);
+  bool hasProfile = box.get("hasP", defaultValue: false);
   bool isLoading = false;
 
   Future<void> addPlayer(
@@ -38,7 +38,7 @@ class ProfileProvider extends ChangeNotifier {
 
         box.put("fingerprint", fingerprint);
         hasProfile = true;
-        box.put("hasProf", hasProfile);
+        box.put("hasP", hasProfile);
 
         isLoading = false;
 
@@ -93,7 +93,7 @@ class ProfileProvider extends ChangeNotifier {
 
           box.put("fingerprint", fingerprint);
           hasProfile = true;
-          box.put("hasProf", hasProfile);
+          box.put("hasP", hasProfile);
 
           isLoading = false;
 
@@ -423,7 +423,7 @@ class ProfileProvider extends ChangeNotifier {
           this.username = username;
           
           hasProfile = true;
-          box.put("hasProf", hasProfile);
+          box.put("hasP", hasProfile);
 
           Future.delayed(.5.seconds, () {
             showGameDialog(
