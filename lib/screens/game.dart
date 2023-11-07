@@ -107,7 +107,7 @@ class _GameScreenState extends State<GameScreen> {
                   emissionFrequency: 0.9,
                   minimumSize: const Size(10, 10),
                   maximumSize: const Size(10, 10),
-                  numberOfParticles: 5,
+                  numberOfParticles: 10,
                   gravity: 0,
                   colors: const [
                     Colors.green,
