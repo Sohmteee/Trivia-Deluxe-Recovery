@@ -177,7 +177,7 @@ class _GameStatsState extends State<GameStats> {
 
                     // Find the index of the player with the specified device_id, if it exists.
                     int index = snapshot.data.indexWhere(
-                        (profile) => profile["device_id"] == deviceID);
+                        (profile) => profile["device_id"] == fingerprint);
 
                     // If the player with device_id is found, return the position.
                     if (index != -1) {

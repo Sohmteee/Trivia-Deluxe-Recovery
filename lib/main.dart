@@ -49,7 +49,7 @@ Future<void> main() async {
 
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
   AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-  deviceID = androidInfo.fingerprint;
+  fingerprint = androidInfo.fingerprint;
 
   runApp(
     MultiProvider(

@@ -28,7 +28,7 @@ class ProfileProvider extends ChangeNotifier {
 
     isLoading = true;
 
-    fb.doc(deviceID).get().then((DocumentSnapshot snapshot) async {
+    fb.doc(fingerprint).get().then((DocumentSnapshot snapshot) async {
       playerExists = snapshot.exists;
       if (playerExists) {
         print("Player exists!");
@@ -36,7 +36,7 @@ class ProfileProvider extends ChangeNotifier {
         var profile = snapshot.data() as Map<String, dynamic>;
         print(profile);
 
-        box.put("deviceID", deviceID);
+        box.put("fingerprint", fingerprint);
         hasProfile = true;
         box.put("hasProf", hasProfile);
 
@@ -78,20 +78,20 @@ class ProfileProvider extends ChangeNotifier {
       } else {
         print("Player does not exist.");
 
-        await fb.doc(deviceID).set(
+        await fb.doc(fingerprint).set(
           {
             'username': username.trim(),
             'score': questionProvider.leaderboardScore,
             'avatar': avatar,
             'time': Timestamp.fromDate(DateTime.now()),
-            'device_id': deviceID,
+            'device_id': fingerprint,
             'coins': Provider.of<MoneyProvider>(context, listen: false).coins,
           },
           SetOptions(merge: true),
         ).then((_) {
           print("Success adding player!");
 
-          box.put("deviceID", deviceID);
+          box.put("fingerprint", fingerprint);
           hasProfile = true;
           box.put("hasProf", hasProfile);
 
@@ -213,7 +213,7 @@ class ProfileProvider extends ChangeNotifier {
       body: {
         'username': username,
         'avatar': avatar,
-        'device_id': deviceID,
+        'device_id': fingerprint,
         'game_type': 'triviaD',
         'score': questionProvider.leaderboardScore,
         'mode': 0
@@ -232,8 +232,8 @@ class ProfileProvider extends ChangeNotifier {
 
     isLoading = true;
 
-    fb.doc(deviceID).get().then((DocumentSnapshot snapshot) async {
-      await fb.doc(deviceID).set(
+    fb.doc(fingerprint).get().then((DocumentSnapshot snapshot) async {
+      await fb.doc(fingerprint).set(
         {
           'username': username.trim(),
           'avatar': avatar,
@@ -327,8 +327,8 @@ class ProfileProvider extends ChangeNotifier {
 
     final fb = FirebaseFirestore.instance.collection("leaderboard");
 
-    fb.doc(deviceID).get().then((DocumentSnapshot snapshot) async {
-      await fb.doc(deviceID).set(
+    fb.doc(fingerprint).get().then((DocumentSnapshot snapshot) async {
+      await fb.doc(fingerprint).set(
         {
           'score': questionProvider.leaderboardScore,
           'correct_answers': questionProvider.correctAnswers,
@@ -387,7 +387,7 @@ class ProfileProvider extends ChangeNotifier {
       required bool isCreatePlayer}) async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-    String? deviceID = androidInfo.id;
+    String? fingerprint = androidInfo.id;
 
     final questionProvider =
         Provider.of<QuestionProvider>(context, listen: false);
@@ -404,14 +404,14 @@ class ProfileProvider extends ChangeNotifier {
           'game_type': 'triviaDTest',
           'username': username,
           'avatar': avatar,
-          'device_id': deviceID + 127.toString(),
+          'device_id': fingerprint + 127.toString(),
           'score': questionProvider.leaderboardScore,
           'mode': 1,
         }),
       );
 
-      box.put("deviceID", deviceID);
-      print("ID: $deviceID");
+      box.put("fingerprint", fingerprint);
+      print("ID: $fingerprint");
 
       Map<String, dynamic> responseData = jsonDecode(response.body);
 

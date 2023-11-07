@@ -32,8 +32,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
     super.initState();
     tabController = TabController(length: 3, vsync: this);
 
-    
-    print(deviceID);
+    print(fingerprint);
 
     Future.microtask(() {
       final questionProvider =
@@ -363,7 +362,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                     children: [
                       ZoomTapAnimation(
                         onTap: () {
-                          if (snapshot.data[1]["device_id"] == deviceID) {
+                          if (snapshot.data[1]["device_id"] == fingerprint) {
                             ToastContext().init(context);
                             Toast.show(
                               "Please double tap to edit your profile",
@@ -381,7 +380,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                           onDoubleTap: () {
                             playTap(context);
                             print(snapshot.data[1]["username"]);
-                            if (snapshot.data[1]["device_id"] == deviceID) {
+                            if (snapshot.data[1]["device_id"] == fingerprint) {
                               showEditProfileDialog(context);
                             }
                           },
@@ -485,7 +484,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                     children: [
                       ZoomTapAnimation(
                         onTap: () {
-                          if (snapshot.data[0]["device_id"] == deviceID) {
+                          if (snapshot.data[0]["device_id"] == fingerprint) {
                             ToastContext().init(context);
                             Toast.show(
                               "Please double tap to edit your profile",
@@ -503,7 +502,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                           onDoubleTap: () {
                             playTap(context);
                             print(snapshot.data[0]["username"]);
-                            if (snapshot.data[0]["device_id"] == deviceID) {
+                            if (snapshot.data[0]["device_id"] == fingerprint) {
                               showEditProfileDialog(context);
                             }
                           },
@@ -608,7 +607,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                     children: [
                       ZoomTapAnimation(
                         onTap: () {
-                          if (snapshot.data[2]["device_id"] == deviceID) {
+                          if (snapshot.data[2]["device_id"] == fingerprint) {
                             ToastContext().init(context);
                             Toast.show(
                               "Please double tap to edit your profile",
@@ -626,7 +625,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                           onDoubleTap: () {
                             playTap(context);
                             print(snapshot.data[2]["username"]);
-                            if (snapshot.data[2]["device_id"] == deviceID) {
+                            if (snapshot.data[2]["device_id"] == fingerprint) {
                               showEditProfileDialog(context);
                             }
                           },
@@ -799,7 +798,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
 
                               // Find the index of the player with the specified device_id, if it exists.
                               int index = snapshot.data.indexWhere((profile) =>
-                                  profile["device_id"] == deviceID);
+                                  profile["device_id"] == fingerprint);
 
                               if (index != -1) {
                                 // Player with device_id found, adjust the index as needed.
@@ -900,7 +899,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                       return ZoomTapAnimation(
                         onTap: () {
                           if (snapshot.data[index + 3]["device_id"] ==
-                              deviceID) {
+                              fingerprint) {
                             ToastContext().init(context);
                             Toast.show(
                               "Please double tap to edit your profile",
@@ -919,7 +918,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen>
                             playTap(context);
                             print(snapshot.data[index + 3]["username"]);
                             if (snapshot.data[index + 3]["device_id"] ==
-                                deviceID) {
+                                fingerprint) {
                               showEditProfileDialog(context);
                             }
                           },

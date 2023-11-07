@@ -656,7 +656,7 @@ class StreaksProvider extends ChangeNotifier {
                   .orderBy("score", descending: true)
                   .get())
               .docs
-              .indexWhere((element) => element.id == deviceID) +
+              .indexWhere((element) => element.id == fingerprint) +
           1;
 
       leaderboardStreak = leaderBoardPosition;
