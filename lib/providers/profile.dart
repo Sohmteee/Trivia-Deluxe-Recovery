@@ -29,6 +29,7 @@ class ProfileProvider extends ChangeNotifier {
     isLoading = true;
 
     fb.doc(deviceID).get().then((DocumentSnapshot snapshot) async {
+      print(deviceID);
       playerExists = snapshot.exists;
       if (playerExists) {
         print("Player exists!");
